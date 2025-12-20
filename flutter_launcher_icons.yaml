@@ -1,0 +1,15 @@
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path_android: "assets/images/ic_launcher_android.png"
+  image_path_ios: "assets/images/ic_launcher_ios.png"
+  min_sdk_android: 21
+  remove_alpha_ios: true
+  adaptive_icon_background: "#F9ECF0"
+  background_color_ios: "#F9ECF0"
+  web:
+    generate: true
+    image_path: "assets/images/ic_launcher_web.png"
+    background_color: "#F9ECF0"
+    theme_color: "#F9ECF0"
+# dart run flutter_launcher_icons
