@@ -120,6 +120,11 @@
     "please_enter_your_code": "Please enter your code that send to your email address ",
     "invalid_code": "Invalid code",
     "didn_t_receive_code": "Didn't receive code?",
-    "resend": "Resend"
+    "resend": "Resend",
+    "rest_password": "Reset password",
+    "password_requierment": "Password must not be empty and must contain 6 characters with upper case letter and one number at least",
+    "new_password": "New password",
+    "confirm_password": "Confirm password",
+    "enter_your_password": "Enter your password"
   }
 }

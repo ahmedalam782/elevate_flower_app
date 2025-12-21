@@ -6,6 +6,9 @@ import 'package:elevate_flower_app/core/shared/widgets/custom_button.dart';
 import 'package:elevate_flower_app/core/shared/widgets/custom_text_field.dart';
 import 'package:elevate_flower_app/core/theme/app_colors.dart';
 import 'package:elevate_flower_app/core/validations/validations.dart';
+import 'package:elevate_flower_app/features/forget-password/presentation/view/widgets/forget_password_email_step_one.dart';
+import 'package:elevate_flower_app/features/forget-password/presentation/view/widgets/forget_password_otp_step_two.dart';
+import 'package:elevate_flower_app/features/forget-password/presentation/view/widgets/forget_password_reset_password_step_three.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -26,69 +29,23 @@ class _ForgetPasswordBodyState extends State<ForgetPasswordBody> {
         padding: EdgeInsets.symmetric(horizontal: 16.w),
         child: SafeArea(
           child: PageView.builder(
+            itemCount: 3,
             // physics: NeverScrollableScrollPhysics(),
             itemBuilder: (context, index) {
-              return ForgetPasswordEmailStepOne();
+              switch (index) {
+                case 0:
+                  return ForgetPasswordEmailStepOne(formKey: _formKey);
+                case 1:
+                  return ForgetPasswordOtpStepTwo();
+                case 2:
+                  return ForgetPasswordResetPasswordStepThree(
+                    formKey: _formKey,
+                  );
+              }
             },
           ),
         ),
       ),
-    );
-  }
-}
-
-class ForgetPasswordEmailStepOne extends StatefulWidget {
-  const ForgetPasswordEmailStepOne({super.key});
-
-  @override
-  State<ForgetPasswordEmailStepOne> createState() =>
-      _ForgetPasswordEmailStepOneState();
-}
-
-class _ForgetPasswordEmailStepOneState
-    extends State<ForgetPasswordEmailStepOne> {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        SizedBox(height: 40.h),
-        Align(
-          alignment: AlignmentGeometry.center,
-          child: Text(
-            LocaleKeys.forget_password_forget_password.tr(),
-            style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w500),
-          ),
-        ),
-        SizedBox(height: 16.h),
-        Align(
-          alignment: AlignmentGeometry.center,
-
-          child: Text(
-            LocaleKeys.forget_password_please_enter_your_email.tr(),
-            style: TextStyle(fontSize: 14.sp, color: AppColors.gray53),
-          ),
-        ),
-        SizedBox(height: 32.h),
-        CustomTextField(
-          // controller: viewModel.firstNameController,
-          validator: Validations.validateEmail,
-
-          maxLine: 1,
-          fillColor: AppColors.transparent,
-          hintText: LocaleKeys.forget_password_enter_your_email.tr(),
-          labelWidget: Text(LocaleKeys.forget_password_email.tr()),
-        ),
-        SizedBox(height: 64.h),
-        CustomButton(
-          onPressed: () {
-            if (_formKey.currentState!.validate()) {}
-          },
-          title: LocaleKeys.forget_password_confirm.tr(),
-        ),
-      ],
     );
   }
 }
