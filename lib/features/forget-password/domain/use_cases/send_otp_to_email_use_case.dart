@@ -4,10 +4,10 @@ import 'package:elevate_flower_app/features/forget-password/domain/repositories/
 import 'package:injectable/injectable.dart';
 
 @injectable
-class ForgetPasswordUseCase {
+class SendOtpToEmailUseCase {
   final ForgetpasswordRepository repo;
 
-  ForgetPasswordUseCase({required this.repo});
+  SendOtpToEmailUseCase({required this.repo});
   Future<Result<ForgetPasswordEntity>> call(String email) =>
       repo.sendOtpToEmail(email);
 }
