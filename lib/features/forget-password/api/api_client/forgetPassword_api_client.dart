@@ -14,5 +14,5 @@ abstract class ForgetpasswordApiClient {
   factory ForgetpasswordApiClient(Dio dio) = _ForgetpasswordApiClient;
 
   @POST(EndPoints.forgetPassword)
-  Future<ForgetPasswordResponse> signupUser(@Body() String email);
+  Future<ForgetPasswordResponse> sendOtpToEmail(@Body() String email);
 }
