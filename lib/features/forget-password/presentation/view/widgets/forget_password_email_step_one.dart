@@ -1,15 +1,29 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:elevate_flower_app/core/config/base_state/base_state.dart';
+import 'package:elevate_flower_app/core/errors/failures.dart';
 import 'package:elevate_flower_app/core/languages/locale_keys.g.dart';
 import 'package:elevate_flower_app/core/shared/widgets/custom_button.dart';
 import 'package:elevate_flower_app/core/shared/widgets/custom_text_field.dart';
+import 'package:elevate_flower_app/core/shared/widgets/custom_toast.dart';
+import 'package:elevate_flower_app/core/shared/widgets/loading_flower_widget.dart';
 import 'package:elevate_flower_app/core/theme/app_colors.dart';
 import 'package:elevate_flower_app/core/validations/validations.dart';
+import 'package:elevate_flower_app/features/forget-password/presentation/view_model/cubit/forgetPassword_cubit.dart';
+import 'package:elevate_flower_app/features/forget-password/presentation/view_model/cubit/forgetPassword_events.dart';
+import 'package:elevate_flower_app/features/forget-password/presentation/view_model/cubit/forgetPassword_states.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:toastification/toastification.dart';
 
 class ForgetPasswordEmailStepOne extends StatefulWidget {
   final GlobalKey<FormState> formKey;
-  const ForgetPasswordEmailStepOne({super.key, required this.formKey});
+  final ForgetpasswordCubit forgetpasswordCubit;
+  const ForgetPasswordEmailStepOne({
+    super.key,
+    required this.formKey,
+    required this.forgetpasswordCubit,
+  });
 
   @override
   State<ForgetPasswordEmailStepOne> createState() =>
@@ -42,7 +56,7 @@ class _ForgetPasswordEmailStepOneState
         ),
         SizedBox(height: 32.h),
         CustomTextField(
-          // controller: viewModel.firstNameController,
+          controller: widget.forgetpasswordCubit.emailController,
           validator: Validations.validateEmail,
 
           maxLine: 1,
@@ -51,11 +65,39 @@ class _ForgetPasswordEmailStepOneState
           labelWidget: Text(LocaleKeys.forget_password_email.tr()),
         ),
         SizedBox(height: 64.h),
-        CustomButton(
-          onPressed: () {
-            if (widget.formKey.currentState!.validate()) {}
+        BlocListener<ForgetpasswordCubit, ForgetpasswordStates>(
+          listener: (context, state) {
+            print("ABOVE STATE");
+            if (state.state == StateType.error) {
+              print("ERROR STATE");
+              final exe = state.exception;
+              if (exe is Failures) {
+                CustomToast(
+                  context: context,
+                  description: exe.errorMessage,
+
+                  // header: ,
+                  type: ToastificationType.error,
+                ).showAlertToast(
+                  // mainColor: Colors.red,
+                  backgroundColor: AppColors.redCC,
+                  message: exe.errorMessage,
+                  mainColor: Colors.white,
+                );
+              }
+            }
           },
-          title: LocaleKeys.forget_password_confirm.tr(),
+          child: CustomButton(
+            onPressed: () {
+              if (widget.formKey.currentState!.validate()) {
+                widget.forgetpasswordCubit.doIntent(
+                  SendOtpToEmailEvent(),
+                  context,
+                );
+              }
+            },
+            title: LocaleKeys.forget_password_confirm.tr(),
+          ),
         ),
       ],
     );

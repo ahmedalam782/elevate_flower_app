@@ -17,7 +17,9 @@ class ForgetpasswordRemoteDataSourceImpl
   @override
   Future<Result<ForgetPasswordResponse>> sendOtpToEmail(String email) async {
     return await executeApi<ForgetPasswordResponse>(() async {
-      final response = await forgetpasswordApiClient.sendOtpToEmail(email);
+      final body = {"email": email};
+      final response = await forgetpasswordApiClient.sendOtpToEmail(body);
+      print("THIS IS EMAIL ${body}");
       return response;
     });
   }

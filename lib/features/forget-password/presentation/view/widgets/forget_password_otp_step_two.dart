@@ -36,6 +36,7 @@ class ForgetPasswordOtpStepTwo extends StatelessWidget {
         ),
         SizedBox(height: 32.h),
         Pinput(
+          length: 6,
           onCompleted: (value) {
             if (value.length == 4) {}
           },
@@ -43,10 +44,10 @@ class ForgetPasswordOtpStepTwo extends StatelessWidget {
 
           // errorPinTheme: ,
           focusedPinTheme: PinTheme(
-            width: 75.w,
-            height: 75.w,
+            width: 50.w,
+            height: 50.w,
             textStyle: TextStyle(
-              fontSize: 32.sp,
+              fontSize: 20.sp,
               color: Colors.black,
               fontWeight: FontWeight.bold,
             ),
@@ -60,10 +61,10 @@ class ForgetPasswordOtpStepTwo extends StatelessWidget {
           ),
 
           submittedPinTheme: PinTheme(
-            width: 75.w,
-            height: 75.w,
+            width: 50.w,
+            height: 50.w,
             textStyle: TextStyle(
-              fontSize: 32.sp,
+              fontSize: 20.sp,
               color: Colors.white,
               fontWeight: FontWeight.bold,
             ),
@@ -75,10 +76,10 @@ class ForgetPasswordOtpStepTwo extends StatelessWidget {
             ),
           ),
           defaultPinTheme: PinTheme(
-            width: 75.w,
-            height: 75.w,
+            width: 50.w,
+            height: 50.w,
             textStyle: TextStyle(
-              fontSize: 32.sp,
+              fontSize: 20.sp,
               color: Colors.black,
               fontWeight: FontWeight.bold,
             ),
