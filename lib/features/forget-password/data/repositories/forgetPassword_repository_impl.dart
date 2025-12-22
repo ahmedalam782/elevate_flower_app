@@ -25,4 +25,15 @@ class ForgetpasswordRepositoryImpl implements ForgetpasswordRepository {
         return Error<ForgetPasswordEntity>(exception: response.exception);
     }
   }
+
+  @override
+  Future<Result<void>> verifyCode(String code) async {
+    final response = await remoteDataSource.verifyCode(code);
+    switch (response) {
+      case Success<void>():
+        return Success<void>();
+      case Error<void>():
+        return Error<void>(exception: response.exception);
+    }
+  }
 }

@@ -5,4 +5,5 @@ import 'package:elevate_flower_app/features/forget-password/domain/entities/forg
 
 abstract class ForgetpasswordRepository {
   Future<Result<ForgetPasswordEntity>> sendOtpToEmail(String email);
+  Future<Result<void>> verifyCode(String code);
 }

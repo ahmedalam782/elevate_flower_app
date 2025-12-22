@@ -2,12 +2,26 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:elevate_flower_app/core/languages/locale_keys.g.dart';
 import 'package:elevate_flower_app/core/theme/app_colors.dart';
 import 'package:elevate_flower_app/features/forget-password/presentation/view/widgets/resend_otp_text.dart';
+import 'package:elevate_flower_app/features/forget-password/presentation/view_model/cubit/forgetPassword_cubit.dart';
+import 'package:elevate_flower_app/features/forget-password/presentation/view_model/cubit/forgetPassword_events.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pinput/pinput.dart';
 
-class ForgetPasswordOtpStepTwo extends StatelessWidget {
-  const ForgetPasswordOtpStepTwo({super.key});
+class ForgetPasswordOtpStepTwo extends StatefulWidget {
+  final ForgetpasswordCubit forgetpasswordCubit;
+  const ForgetPasswordOtpStepTwo({
+    super.key,
+    required this.forgetpasswordCubit,
+  });
+
+  @override
+  State<ForgetPasswordOtpStepTwo> createState() =>
+      _ForgetPasswordOtpStepTwoState();
+}
+
+class _ForgetPasswordOtpStepTwoState extends State<ForgetPasswordOtpStepTwo> {
+  String otp = "";
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +52,12 @@ class ForgetPasswordOtpStepTwo extends StatelessWidget {
         Pinput(
           length: 6,
           onCompleted: (value) {
-            if (value.length == 4) {}
+            if (value.length == 6) {
+              widget.forgetpasswordCubit.doIntent(
+                VerifyOtpEvent(otp: value),
+                context,
+              );
+            }
           },
           enabled: true,
 
@@ -92,7 +111,11 @@ class ForgetPasswordOtpStepTwo extends StatelessWidget {
           ),
         ),
         SizedBox(height: 24.h),
-        ResendOtpText(onResend: () {}),
+        ResendOtpText(
+          onResend: () {
+            widget.forgetpasswordCubit.doIntent(SendOtpToEmailEvent(), context);
+          },
+        ),
       ],
     );
   }

@@ -5,4 +5,5 @@ import 'package:elevate_flower_app/features/forget-password/data/models/forget_p
 
 abstract class ForgetpasswordRemoteDataSourceContract {
   Future<Result<ForgetPasswordResponse>> sendOtpToEmail(String email);
+  Future<Result<void>> verifyCode(String code);
 }

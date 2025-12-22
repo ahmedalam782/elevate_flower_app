@@ -65,39 +65,16 @@ class _ForgetPasswordEmailStepOneState
           labelWidget: Text(LocaleKeys.forget_password_email.tr()),
         ),
         SizedBox(height: 64.h),
-        BlocListener<ForgetpasswordCubit, ForgetpasswordStates>(
-          listener: (context, state) {
-            print("ABOVE STATE");
-            if (state.state == StateType.error) {
-              print("ERROR STATE");
-              final exe = state.exception;
-              if (exe is Failures) {
-                CustomToast(
-                  context: context,
-                  description: exe.errorMessage,
-
-                  // header: ,
-                  type: ToastificationType.error,
-                ).showAlertToast(
-                  // mainColor: Colors.red,
-                  backgroundColor: AppColors.redCC,
-                  message: exe.errorMessage,
-                  mainColor: Colors.white,
-                );
-              }
+        CustomButton(
+          onPressed: () {
+            if (widget.formKey.currentState!.validate()) {
+              widget.forgetpasswordCubit.doIntent(
+                SendOtpToEmailEvent(),
+                context,
+              );
             }
           },
-          child: CustomButton(
-            onPressed: () {
-              if (widget.formKey.currentState!.validate()) {
-                widget.forgetpasswordCubit.doIntent(
-                  SendOtpToEmailEvent(),
-                  context,
-                );
-              }
-            },
-            title: LocaleKeys.forget_password_confirm.tr(),
-          ),
+          title: LocaleKeys.forget_password_confirm.tr(),
         ),
       ],
     );

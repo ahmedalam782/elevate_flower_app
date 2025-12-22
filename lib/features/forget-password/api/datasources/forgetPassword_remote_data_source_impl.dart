@@ -23,4 +23,13 @@ class ForgetpasswordRemoteDataSourceImpl
       return response;
     });
   }
+
+  @override
+  Future<Result<void>> verifyCode(String code) async {
+    return await executeApi<ForgetPasswordResponse>(() async {
+      final body = {"resetCode": code};
+      final response = await forgetpasswordApiClient.verifyCode(body);
+      return response;
+    });
+  }
 }
