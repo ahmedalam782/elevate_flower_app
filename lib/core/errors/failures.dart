@@ -60,7 +60,7 @@ class ServerFailure extends Failures {
         statusCode == 404) {
       return ServerFailure(
         errorMessage:
-            response['message'] ?? LocaleKeys.error_api_failure_unknown.tr(),
+            response['error'] ?? LocaleKeys.error_api_failure_unknown.tr(),
       );
     } else if (statusCode == 500) {
       return ServerFailure(
