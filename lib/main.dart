@@ -20,6 +20,7 @@ void main() async {
       systemNavigationBarColor: AppColors.whiteF9,
       statusBarIconBrightness: Brightness.dark,
       statusBarBrightness: Brightness.dark,
+      systemNavigationBarIconBrightness: Brightness.dark,
     ),
   );
   runApp(
