@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:elevate_flower_app/features/main_layout/presentation/view/pages/main_layout_page.dart';
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -19,8 +20,8 @@ final GoRouter router = GoRouter(
     ),
     _customAnimatedGoRoute(
       route: Routes.login,
-      page: (state, context) =>
-          LoginPage(key: ValueKey(context.locale.languageCode.toString())),
+      page: (state, context) => MainLayoutPage(key: ValueKey(context.locale.languageCode.toString())),
+          //LoginPage(key: ValueKey(context.locale.languageCode.toString())),
     ),
   ],
 );

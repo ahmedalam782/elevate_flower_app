@@ -108,5 +108,11 @@
         "phone_invalid_start": "يرجى إدخال رقم هاتف لا يبدأ بصفر",
         "pin_required": "رمز التحقق مطلوب",
         "pin_length_error": "يجب أن يكون رمز التحقق {} رقمًا"
+    },
+    "bottom_navigation": {
+        "home": "الصفحة الرئيسية",
+        "categories": "التصنيفات",
+        "cart": "السلة",
+        "profile": "الحساب"
     }
 }
