@@ -108,5 +108,30 @@
         "phone_invalid_start": "Please enter a phone number that does not start with zero",
         "pin_required": "Verification code is required",
         "pin_length_error": "Verification code must be {} digits"
+    },
+    "register": {
+        "register_title": "Sign up",
+        "first_name_label": "First Name",
+        "first_name_hint": "Enter first name",
+        "last_name_label": "Last Name",
+        "last_name_hint": "Enter last name",
+        "email_label": "Email Address",
+        "email_hint": "Enter email address",
+        "phone_label": "Phone Number",
+        "phone_hint": "Enter phone number",
+        "password_label": "Password",
+        "password_hint": "Enter password",
+        "confirm_password_label": "Confirm Password",
+        "confirm_password_hint": "Re-enter password",
+        "register_button": "Sign up",
+        "have_account": "Already have an account? ",
+        "login_button": "Login",
+        "gender_label": "Gender",
+        "male_label": "Male",
+        "female_label": "Female",
+        "terms_conditions_1": "Creating an account, you agree to our  ",
+        "terms_conditions_2": "Terms & Conditions"
     }
+
+    
 }

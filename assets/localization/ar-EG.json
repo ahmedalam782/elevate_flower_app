@@ -108,5 +108,30 @@
         "phone_invalid_start": "يرجى إدخال رقم هاتف لا يبدأ بصفر",
         "pin_required": "رمز التحقق مطلوب",
         "pin_length_error": "يجب أن يكون رمز التحقق {} رقمًا"
-    }
+    },
+    
+"register": {
+  "register_title": "إنشاء حساب",
+  "first_name_label": "الاسم الأول",
+  "first_name_hint": "أدخل الاسم الأول",
+  "last_name_label": "اسم العائلة",
+  "last_name_hint": "أدخل اسم العائلة",
+  "email_label": "البريد الإلكتروني",
+  "email_hint": "أدخل البريد الإلكتروني",
+  "phone_label": "رقم الهاتف",
+  "phone_hint": "أدخل رقم الهاتف",
+  "password_label": "كلمة المرور",
+  "password_hint": "أدخل كلمة المرور",
+  "confirm_password_label": "تأكيد كلمة المرور",
+  "confirm_password_hint": "أعد إدخال كلمة المرور",
+  "register_button": "إنشاء حساب",
+  "have_account": " لديك حساب بالفعل؟",
+  "login_button": "تسجيل الدخول",
+  "gender_label": "الجنس",
+  "male_label": "ذكر",
+  "female_label": "أنثى",
+  "terms_conditions_1": "بإنشائك حسابًا، فإنك توافق على ",
+  "terms_conditions_2": "الشروط والأحكام"
+}
+
 }
