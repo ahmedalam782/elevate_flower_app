@@ -6,13 +6,24 @@ import 'package:flutter_svg/svg.dart';
 class NavBarItem extends BottomNavigationBarItem {
   NavBarItem({required super.label, required String icon})
     : super(
-        icon: SvgPicture.asset(
-          icon,
+        icon: Padding(
+          padding: const EdgeInsets.only(bottom: 8),
+          child: SvgPicture.asset(
+            icon,
+            fit: BoxFit.scaleDown,
+            colorFilter: ColorFilter.mode(AppColors.gray7D, BlendMode.srcIn),
+          ),
         ),
-        activeIcon: SvgPicture.asset(
-          fit: BoxFit.scaleDown,
-          icon,
-          colorFilter: ColorFilter.mode(AppColors.primerColor, BlendMode.srcIn),
+        activeIcon: Padding(
+          padding: const EdgeInsets.only(bottom: 8.0),
+          child: SvgPicture.asset(
+            fit: BoxFit.scaleDown,
+            icon,
+            colorFilter: ColorFilter.mode(
+              AppColors.primerColor,
+              BlendMode.srcIn,
+            ),
+          ),
         ),
       );
 }

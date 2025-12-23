@@ -1,8 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:elevate_flower_app/core/languages/locale_keys.g.dart';
 import 'package:elevate_flower_app/core/theme/app_icons.dart';
-
-import 'package:flutter/services.dart';
+import 'package:elevate_flower_app/features/main_layout/presentation/view/widgets/custom_nav_bar.dart';
 
 import '../widgets/nav_bar_item.dart';
 import 'package:flutter/material.dart';
@@ -37,14 +36,8 @@ class _MainLayoutState extends State<MainLayoutPage> {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(
-      SystemUiOverlayStyle(
-        systemNavigationBarColor: Colors.lightBlue,
-        systemNavigationBarIconBrightness: Brightness.dark,
-        statusBarColor: Colors.lightBlue,
-        statusBarIconBrightness: Brightness.dark,
-      ),
-    );
+    
+
     return Scaffold(
       body: PageView(
         controller: _pageController,
@@ -52,7 +45,7 @@ class _MainLayoutState extends State<MainLayoutPage> {
         onPageChanged: (value) => setState(() => selectedIndex = value),
         children: tabs,
       ),
-      bottomNavigationBar: BottomNavigationBar(
+      bottomNavigationBar: CustomNavBar(
         currentIndex: selectedIndex,
         onTap: (value) {
           _pageController.animateToPage(

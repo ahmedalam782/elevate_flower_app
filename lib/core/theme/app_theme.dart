@@ -195,8 +195,8 @@ class AppTheme {
       selectedItemColor: AppColors.primerColor,
       unselectedItemColor: AppColors.black0C,
       elevation: 0,
-      selectedLabelStyle: 10.regular.copyWith(color: AppColors.primerColor),
-      unselectedLabelStyle: 10.regular.copyWith(color: AppColors.grayA6),
+      selectedLabelStyle: 12.regular.copyWith(color: AppColors.primerColor),
+      unselectedLabelStyle: 12.regular.copyWith(color: AppColors.gray7D),
     ),
   );
 
@@ -383,8 +383,8 @@ class AppTheme {
       selectedItemColor: AppColors.primerColor,
       unselectedItemColor: AppColors.grayA6,
       elevation: 0,
-      selectedLabelStyle: 10.regular.copyWith(color: AppColors.primerColor),
-      unselectedLabelStyle: 10.regular.copyWith(color: AppColors.grayA6),
+      selectedLabelStyle: 12.regular.copyWith(color: AppColors.primerColor),
+      unselectedLabelStyle: 12.regular.copyWith(color: AppColors.gray7D),
     ),
   );
 }
