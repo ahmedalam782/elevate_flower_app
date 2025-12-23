@@ -18,6 +18,7 @@ import 'package:elevate_flower_app/features/forget-password/presentation/view_mo
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:toastification/toastification.dart';
 
 class ForgetPasswordBody extends StatefulWidget {
@@ -64,6 +65,12 @@ class _ForgetPasswordBodyState extends State<ForgetPasswordBody> {
                 );
               }
             }
+            if (state.isPasswordReset == true) {
+              print("SUCCESSS");
+              if (context.canPop()) {
+                context.pop();
+              }
+            }
           },
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 16.w),
@@ -86,6 +93,7 @@ class _ForgetPasswordBodyState extends State<ForgetPasswordBody> {
                     case 2:
                       return ForgetPasswordResetPasswordStepThree(
                         formKey: _formKey,
+                        forgetpasswordCubit: viewModel,
                       );
                   }
                   return SizedBox.shrink();

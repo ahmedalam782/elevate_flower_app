@@ -8,3 +8,11 @@ class VerifyOtpEvent extends ForgetpasswordEvents {
 
   VerifyOtpEvent({required this.otp});
 }
+
+class TogglePasswordEvent extends ForgetpasswordEvents {
+  final bool isConfirmPassword;
+
+  TogglePasswordEvent({required this.isConfirmPassword});
+}
+
+class ResetPasswordEvent extends ForgetpasswordEvents {}

@@ -4,15 +4,21 @@ import 'package:elevate_flower_app/core/shared/widgets/custom_button.dart';
 import 'package:elevate_flower_app/core/shared/widgets/custom_text_field.dart';
 import 'package:elevate_flower_app/core/theme/app_colors.dart';
 import 'package:elevate_flower_app/core/validations/validations.dart';
+import 'package:elevate_flower_app/features/forget-password/presentation/view_model/cubit/forgetPassword_cubit.dart';
+import 'package:elevate_flower_app/features/forget-password/presentation/view_model/cubit/forgetPassword_events.dart';
+import 'package:elevate_flower_app/features/forget-password/presentation/view_model/cubit/forgetPassword_states.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ForgetPasswordResetPasswordStepThree extends StatefulWidget {
   final GlobalKey<FormState> formKey;
+  final ForgetpasswordCubit forgetpasswordCubit;
 
   const ForgetPasswordResetPasswordStepThree({
     super.key,
     required this.formKey,
+    required this.forgetpasswordCubit,
   });
 
   @override
@@ -48,35 +54,93 @@ class _ForgetPasswordResetPasswordStepThreeState
           ),
         ),
         SizedBox(height: 32.h),
-        CustomTextField(
-          // controller: viewModel.firstNameController,
-          autovalidateMode: AutovalidateMode.disabled,
-          validator: Validations.validatePassword,
+        BlocSelector<ForgetpasswordCubit, ForgetpasswordStates, bool>(
+          selector: (state) {
+            return state.newPasswordVisible;
+          },
+          builder: (context, state) {
+            return CustomTextField(
+              controller: widget.forgetpasswordCubit.passwordController,
 
-          maxLine: 1,
-          fillColor: AppColors.transparent,
-          hintText: LocaleKeys.forget_password_enter_your_password.tr(),
-          labelWidget: Text(LocaleKeys.forget_password_new_password.tr()),
+              isObscureText: !state,
+              suffixWidget: InkWell(
+                onTap: () {
+                  widget.forgetpasswordCubit.doIntent(
+                    TogglePasswordEvent(isConfirmPassword: false),
+                    context,
+                  );
+                },
+                child: Icon(
+                  !state
+                      ? Icons.visibility_off_rounded
+                      : Icons.visibility_rounded,
+                  color: AppColors.primerColor,
+                ),
+              ),
+              // controller: viewModel.firstNameController,
+              autovalidateMode: AutovalidateMode.disabled,
+              validator: Validations.validatePassword,
+
+              maxLine: 1,
+              fillColor: AppColors.transparent,
+              hintText: LocaleKeys.forget_password_enter_your_password.tr(),
+              labelWidget: Text(LocaleKeys.forget_password_new_password.tr()),
+            );
+          },
         ),
         SizedBox(height: 24.h),
 
-        CustomTextField(
-          // controller: viewModel.firstNameController,
-          autovalidateMode: AutovalidateMode.disabled,
-
-          validator: (value) {
-            return Validations.validatePasswordVerification(value, "");
+        BlocSelector<ForgetpasswordCubit, ForgetpasswordStates, bool>(
+          selector: (state) {
+            return state.confirmPasswordVisible;
           },
+          builder: (context, state) {
+            return CustomTextField(
+              controller: widget.forgetpasswordCubit.confirmPasswordController,
+              isObscureText: !state,
+              suffixWidget: InkWell(
+                onTap: () {
+                  widget.forgetpasswordCubit.doIntent(
+                    TogglePasswordEvent(isConfirmPassword: true),
+                    context,
+                  );
+                },
+                child: Icon(
+                  !state
+                      ? Icons.visibility_off_rounded
+                      : Icons.visibility_rounded,
+                  color: AppColors.primerColor,
+                ),
+              ),
 
-          maxLine: 1,
-          fillColor: AppColors.transparent,
-          hintText: LocaleKeys.forget_password_confirm_password.tr(),
-          labelWidget: Text(LocaleKeys.forget_password_confirm_password.tr()),
+              // controller: viewModel.firstNameController,
+              autovalidateMode: AutovalidateMode.disabled,
+
+              validator: (value) {
+                return Validations.validatePasswordVerification(
+                  value,
+                  widget.forgetpasswordCubit.passwordController.text,
+                );
+              },
+
+              maxLine: 1,
+              fillColor: AppColors.transparent,
+              hintText: LocaleKeys.forget_password_confirm_password.tr(),
+              labelWidget: Text(
+                LocaleKeys.forget_password_confirm_password.tr(),
+              ),
+            );
+          },
         ),
         SizedBox(height: 64.h),
         CustomButton(
           onPressed: () {
-            if (widget.formKey.currentState!.validate()) {}
+            if (widget.formKey.currentState!.validate()) {
+              widget.forgetpasswordCubit.doIntent(
+                ResetPasswordEvent(),
+                context,
+              );
+            }
           },
           title: LocaleKeys.forget_password_confirm.tr(),
         ),

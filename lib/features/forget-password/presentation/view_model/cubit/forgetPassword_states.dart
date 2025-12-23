@@ -5,18 +5,24 @@ import 'package:elevate_flower_app/features/forget-password/domain/entities/forg
 import 'package:injectable/injectable.dart';
 
 class ForgetpasswordStates extends Equatable {
-  final int currentScreen;
-  final bool isLoading;
-  final ForgetPasswordEntity? forgetPasswordEntity;
-  final StateType state;
-  final Exception? exception;
+  int currentScreen;
+  bool isLoading;
+  ForgetPasswordEntity? forgetPasswordEntity;
+  StateType state;
+  Exception? exception;
+  bool newPasswordVisible;
+  bool confirmPasswordVisible;
+  bool isPasswordReset;
 
-  const ForgetpasswordStates({
+  ForgetpasswordStates({
     this.currentScreen = 0,
     this.isLoading = false,
     this.forgetPasswordEntity,
     this.state = StateType.initial,
     this.exception,
+    this.newPasswordVisible = false,
+    this.confirmPasswordVisible = false,
+    this.isPasswordReset = false,
   });
 
   @override
@@ -26,11 +32,17 @@ class ForgetpasswordStates extends Equatable {
     forgetPasswordEntity,
     state,
     exception,
+    newPasswordVisible,
+    confirmPasswordVisible,
+    isPasswordReset,
   ];
 
   ForgetpasswordStates copyWith({
     int? currentScreen,
     bool? isLoading,
+    bool? confirmPasswordVisible,
+    bool? newPasswordVisible,
+    bool? isPasswordReset,
     ForgetPasswordEntity? forgetPasswordEntity,
     StateType? state,
     Exception? exception,
@@ -41,6 +53,10 @@ class ForgetpasswordStates extends Equatable {
       forgetPasswordEntity: forgetPasswordEntity ?? this.forgetPasswordEntity,
       state: state ?? this.state,
       exception: exception ?? this.exception,
+      newPasswordVisible: newPasswordVisible ?? this.newPasswordVisible,
+      confirmPasswordVisible:
+          confirmPasswordVisible ?? this.confirmPasswordVisible,
+      isPasswordReset: isPasswordReset ?? this.isPasswordReset,
     );
   }
 }

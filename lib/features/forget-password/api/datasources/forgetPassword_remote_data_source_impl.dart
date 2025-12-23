@@ -5,6 +5,7 @@ import 'package:elevate_flower_app/core/config/base_response/result.dart';
 import 'package:elevate_flower_app/features/forget-password/api/api_client/forgetPassword_api_client.dart';
 import 'package:elevate_flower_app/features/forget-password/data/datasources/forgetPassword_remote_data_source_contract.dart';
 import 'package:elevate_flower_app/features/forget-password/data/models/forget_password_response/forget_password_response.dart';
+import 'package:elevate_flower_app/features/forget-password/data/models/reset_password_dto/reset_password_dto.dart';
 import 'package:injectable/injectable.dart';
 
 @Injectable(as: ForgetpasswordRemoteDataSourceContract)
@@ -26,9 +27,19 @@ class ForgetpasswordRemoteDataSourceImpl
 
   @override
   Future<Result<void>> verifyCode(String code) async {
-    return await executeApi<ForgetPasswordResponse>(() async {
+    return await executeApi<void>(() async {
       final body = {"resetCode": code};
       final response = await forgetpasswordApiClient.verifyCode(body);
+      return response;
+    });
+  }
+
+  @override
+  Future<Result<void>> resetPassword(ResetPasswordDTo resetPasswordDto) async {
+    return await executeApi<void>(() async {
+      final response = await forgetpasswordApiClient.resetPassword(
+        resetPasswordDto,
+      );
       return response;
     });
   }
