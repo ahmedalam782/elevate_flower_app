@@ -3,6 +3,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'core/languages/lang.dart';
 import 'core/routes/app_router.dart';
@@ -38,27 +39,36 @@ class FlowerApp extends StatelessWidget {
   Widget _buildMaterialApp(BuildContext context) {
     AppTypography.setLocale(context.locale.languageCode);
     AppTypography.setTheme(Brightness.light);
-    return ScreenUtilInit(
-      designSize: kIsWeb
-          ? const Size(1440, 1024)
-          : const Size(375, 812), // mobile size
-      minTextAdapt: true,
-      useInheritedMediaQuery: true,
-      builder: (context, Widget? child) {
-        return GestureDetector(
-          onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-          child: MaterialApp.router(
-            localizationsDelegates: context.localizationDelegates,
-            supportedLocales: context.supportedLocales,
-            locale: context.locale,
-            routerConfig: router,
-            debugShowCheckedModeBanner: false,
-            themeMode: ThemeMode.light,
-            theme: AppTheme.lightTheme,
-            darkTheme: AppTheme.darkTheme,
-          ),
-        );
-      },
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: const SystemUiOverlayStyle(
+        statusBarColor: AppColors.whiteF9,
+        systemNavigationBarColor: AppColors.whiteF9,
+        statusBarIconBrightness: Brightness.dark,
+        statusBarBrightness: Brightness.dark,
+        systemNavigationBarIconBrightness: Brightness.light,
+      ),
+      child: ScreenUtilInit(
+        designSize: kIsWeb
+            ? const Size(1440, 1024)
+            : const Size(375, 812), // mobile size
+        minTextAdapt: true,
+        useInheritedMediaQuery: true,
+        builder: (context, Widget? child) {
+          return GestureDetector(
+            onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+            child: MaterialApp.router(
+              localizationsDelegates: context.localizationDelegates,
+              supportedLocales: context.supportedLocales,
+              locale: context.locale,
+              routerConfig: router,
+              debugShowCheckedModeBanner: false,
+              themeMode: ThemeMode.light,
+              theme: AppTheme.lightTheme,
+              darkTheme: AppTheme.darkTheme,
+            ),
+          );
+        },
+      ),
     );
   }
 }
