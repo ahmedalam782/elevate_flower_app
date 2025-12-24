@@ -36,8 +36,6 @@ class _MainLayoutState extends State<MainLayoutPage> {
 
   @override
   Widget build(BuildContext context) {
-    
-
     return Scaffold(
       body: PageView(
         controller: _pageController,

@@ -1,3 +1,4 @@
+import 'package:elevate_flower_app/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
@@ -44,20 +45,6 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
     super.initState();
     _initAnimations();
     _navigateToNextScreen();
-  }
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    // Set status bar style based on theme
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-    SystemChrome.setSystemUIOverlayStyle(
-      SystemUiOverlayStyle(
-        statusBarColor: Colors.transparent,
-        statusBarIconBrightness: isDark ? Brightness.light : Brightness.dark,
-        statusBarBrightness: isDark ? Brightness.dark : Brightness.light,
-      ),
-    );
   }
 
   void _initAnimations() {
@@ -200,89 +187,101 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
     final size = MediaQuery.of(context).size;
     final splashTheme = SplashTheme.of(context);
 
-    return Scaffold(
-      body: AnimatedContainer(
-        duration: const Duration(milliseconds: 500),
-        width: double.infinity,
-        height: double.infinity,
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: splashTheme.backgroundGradient,
-            stops: const [0.0, 0.4, 0.8, 1.0],
-          ),
-        ),
-        child: Stack(
-          children: [
-            // Mesh gradient background
-            MeshGradient(size: size, plusController: _pulseController),
-
-            // Animated background patterns
-            ..._buildBackgroundElements(size),
-
-            // Animated particles
-            ...List.generate(12, (index) {
-              return Particles(
-                size: size,
-                index: index,
-                particleController: _particleController,
-              );
-            }),
-
-            // Main content
-            Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Spacer(flex: 3),
-
-                  // Logo section with enhanced effects
-                  LogoSection(
-                    rotateController: _rotateController,
-                    glowController: _glowController,
-                    glowAnimation: _glowAnimation,
-                    pulseController: _pulseController,
-                    logoController: _logoController,
-                    logoOpacity: _logoOpacity,
-                    logoScale: _logoScale,
-                    fillController: _fillController,
-                    orbitController: _rotateController,
-                    shimmerController: _shimmerController,
-                  ),
-
-                  const SizedBox(height: 40),
-
-                  // App name with gradient
-                  AppName(titleOpacity: _titleOpacity, titleSlide: _titleSlide),
-
-                  const SizedBox(height: 16),
-
-                  // Slogan with typewriter effect
-                  Slogan(textOpacity: _textOpacity, textSlide: _textSlide),
-
-                  const Spacer(flex: 2),
-
-                  // Enhanced loading indicator
-                  LoadingIndicator(
-                    loadingController: _loadingController,
-                    textController: _textController,
-                    textOpacity: _textOpacity,
-                  ),
-
-                  const SizedBox(height: 24),
-
-                  // Version info
-                  VersionInfo(
-                    textController: _textController,
-                    textOpacity: _textOpacity,
-                  ),
-
-                  const SizedBox(height: 32),
-                ],
-              ),
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: const SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+        systemNavigationBarColor: AppColors.pinkF9,
+        statusBarIconBrightness: Brightness.light,
+        statusBarBrightness: Brightness.light,
+        systemNavigationBarIconBrightness: Brightness.light,
+      ),
+      child: Scaffold(
+        body: AnimatedContainer(
+          duration: const Duration(milliseconds: 500),
+          width: double.infinity,
+          height: double.infinity,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: splashTheme.backgroundGradient,
+              stops: const [0.0, 0.4, 0.8, 1.0],
             ),
-          ],
+          ),
+          child: Stack(
+            children: [
+              // Mesh gradient background
+              MeshGradient(size: size, plusController: _pulseController),
+
+              // Animated background patterns
+              ..._buildBackgroundElements(size),
+
+              // Animated particles
+              ...List.generate(12, (index) {
+                return Particles(
+                  size: size,
+                  index: index,
+                  particleController: _particleController,
+                );
+              }),
+
+              // Main content
+              Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Spacer(flex: 3),
+
+                    // Logo section with enhanced effects
+                    LogoSection(
+                      rotateController: _rotateController,
+                      glowController: _glowController,
+                      glowAnimation: _glowAnimation,
+                      pulseController: _pulseController,
+                      logoController: _logoController,
+                      logoOpacity: _logoOpacity,
+                      logoScale: _logoScale,
+                      fillController: _fillController,
+                      orbitController: _rotateController,
+                      shimmerController: _shimmerController,
+                    ),
+
+                    const SizedBox(height: 40),
+
+                    // App name with gradient
+                    AppName(
+                      titleOpacity: _titleOpacity,
+                      titleSlide: _titleSlide,
+                    ),
+
+                    const SizedBox(height: 16),
+
+                    // Slogan with typewriter effect
+                    Slogan(textOpacity: _textOpacity, textSlide: _textSlide),
+
+                    const Spacer(flex: 2),
+
+                    // Enhanced loading indicator
+                    LoadingIndicator(
+                      loadingController: _loadingController,
+                      textController: _textController,
+                      textOpacity: _textOpacity,
+                    ),
+
+                    const SizedBox(height: 24),
+
+                    // Version info
+                    VersionInfo(
+                      textController: _textController,
+                      textOpacity: _textOpacity,
+                    ),
+
+                    const SizedBox(height: 32),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
