@@ -20,6 +20,6 @@ abstract class UserHelper {
     await _secureStorage.deleteAll();
     await DefaultCacheManager().emptyCache();
     // FirebaseUnsubscribe.unsubscribeFromTopics();
-    router.go(Routes.login);
+    //router.go(Routes.login);
   }
 }

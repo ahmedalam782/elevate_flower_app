@@ -49,6 +49,8 @@ class CustomTextField extends StatefulWidget {
     this.floatingLabelBehavior,
     this.labelText,
     this.autovalidateMode,
+    this.errorText,
+    this.errorMaxLines,
   });
   final AutovalidateMode? autovalidateMode;
   final Widget? labelWidget;
@@ -90,6 +92,8 @@ class CustomTextField extends StatefulWidget {
   final TextDirection? textDirection;
   final bool isErrorEnabled;
   final void Function(PointerDownEvent)? onTapOutside;
+  final String? errorText;
+  final int? errorMaxLines;
 
   @override
   State<CustomTextField> createState() => _CustomTextFormFieldState();
@@ -227,6 +231,8 @@ class _CustomTextFormFieldState extends State<CustomTextField> {
                     fit: BoxFit.scaleDown,
                   )
                 : widget.prefixWidget,
+            errorText: widget.errorText,
+            errorMaxLines: widget.errorMaxLines ?? 1,
             label:
                 widget.labelWidget ??
                 Text(widget.labelText ?? "", style: 14.regular),

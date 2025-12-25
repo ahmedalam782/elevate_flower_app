@@ -13,14 +13,12 @@ class TermsConditionsSpan extends StatelessWidget {
         TextSpan(
           text: LocaleKeys.register_terms_conditions_1.tr(),
           style: Theme.of(context).textTheme.bodySmall?.copyWith(
-            fontSize: 12,
             fontWeight: FontWeight.w400,
           ),
           children: [
             TextSpan(
               text: LocaleKeys.register_terms_conditions_2.tr(),
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                fontSize: 12,
                 fontWeight: FontWeight.w600,
                 decoration: TextDecoration.underline,
               ),

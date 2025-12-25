@@ -5,6 +5,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+
 class AlreadyHaveAccount extends StatelessWidget {
   const AlreadyHaveAccount({super.key});
 
@@ -13,8 +14,7 @@ class AlreadyHaveAccount extends StatelessWidget {
     return Text.rich(
       TextSpan(
         text: LocaleKeys.register_have_account.tr(),
-        style: Theme.of(context).textTheme.bodySmall?.copyWith(
-          fontSize: 14,
+        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
           fontWeight: FontWeight.w400,
         ),
         children: [
@@ -28,7 +28,7 @@ class AlreadyHaveAccount extends StatelessWidget {
             ),
             recognizer: TapGestureRecognizer()
               ..onTap = () {
-                context.push(Routes.login);
+                context.go(Routes.login);
               },
           ),
         ],
