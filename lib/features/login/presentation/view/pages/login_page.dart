@@ -55,22 +55,22 @@ class _LoginViewState extends State<LoginView> {
                 SizedBox(height: 40.h),
 
                 Text(
-                  'Login',
+                  'login.title'.tr(),
                   style: 32.bold.copyWith(color: AppColors.primerColor),
                 ),
                 SizedBox(height: 8.h),
 
                 Text(
-                  'Welcome back! Please login to continue',
+                  'login.subtitle'.tr(),
                   style: 14.regular.copyWith(color: AppColors.grayA6),
                 ),
                 SizedBox(height: 40.h),
 
                 CustomTextField(
                   controller: cubit.emailController,
-                  hintText: 'Enter your email',
-                  labelText: 'Email',
-                  title: 'Email',
+                  hintText: 'login.email_hint_text'.tr(),
+                  labelText: 'login.email_label'.tr(),
+                  title: 'login.email_label'.tr(),
                   prefixIcon: AppIcons.iconsLock,
                   textInputType: TextInputType.emailAddress,
                   textInputAction: TextInputAction.next,
@@ -80,9 +80,9 @@ class _LoginViewState extends State<LoginView> {
 
                 PassTextField(
                   controller: cubit.passwordController,
-                  hintText: 'Enter your password',
-                  labelText: 'Password',
-                  title: 'Password',
+                  hintText: 'login.password_hint_text'.tr(),
+                  labelText: 'login.password_label'.tr(),
+                  title: 'login.password_label'.tr(),
                   textInputAction: TextInputAction.done,
                   isErrorEnabled: false,
                   validator: (value) {
@@ -90,7 +90,7 @@ class _LoginViewState extends State<LoginView> {
                       return 'validations.password_required'.tr();
                     }
                     if (value.length < 6) {
-                      return 'Password must be at least 6 characters';
+                      return 'validations.password_min_length'.tr();
                     }
                     return null;
                   },
@@ -116,7 +116,7 @@ class _LoginViewState extends State<LoginView> {
                           visualDensity: VisualDensity.compact,
                         ),
                         Text(
-                          'Remember me',
+                          'login.remember_me'.tr(),
                           style: 14.regular.copyWith(color: AppColors.grayA6),
                         ),
                       ],
@@ -132,7 +132,7 @@ class _LoginViewState extends State<LoginView> {
                         tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                       ),
                       child: Text(
-                        'Forgot password?',
+                        'login.forgot_password'.tr(),
                         style: 14.regular.copyWith(
                           color: AppColors.primerColor,
                         ),
@@ -150,9 +150,12 @@ class _LoginViewState extends State<LoginView> {
                       success: (loginResponse) {
                         CustomToast(
                           context: context,
-                          header: 'Success',
-                          description:
-                              'Welcome ${loginResponse.user.firstName} ${loginResponse.user.lastName}!',
+                          header: 'global.success'.tr(),
+                          description: 'login.welcome_message'.tr(
+                            namedArgs: {
+                              'name': '${loginResponse.user.firstName} ${loginResponse.user.lastName}'
+                            },
+                          ),
                           type: ToastificationType.success,
                         ).showToast();
 
@@ -165,7 +168,7 @@ class _LoginViewState extends State<LoginView> {
                       error: (exception) {
                         CustomToast(
                           context: context,
-                          header: 'Error',
+                          header: 'global.error'.tr(),
                           description: exception.toString(),
                           type: ToastificationType.error,
                         ).showToast();
@@ -177,7 +180,7 @@ class _LoginViewState extends State<LoginView> {
                         states.loginState.state == StateType.loading;
 
                     return CustomButton(
-                      title: 'Login',
+                      title: 'login.login_button'.tr(),
                       onPressed: isLoading ? null : () => _handleLogin(context),
                       isLoading: isLoading,
                       isGradient: true,
@@ -188,7 +191,7 @@ class _LoginViewState extends State<LoginView> {
                 SizedBox(height: 24.h),
 
                 CustomButton(
-                  title: 'Continue as guest',
+                  title: 'login.continue_as_guest'.tr(),
                   onPressed: () {
                     context.go(Routes.home);
                   },
@@ -202,7 +205,7 @@ class _LoginViewState extends State<LoginView> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "Don't have an account? ",
+                      'login.no_account'.tr(),
                       style: 14.regular.copyWith(color: AppColors.grayA6),
                     ),
                     TextButton(
@@ -215,7 +218,7 @@ class _LoginViewState extends State<LoginView> {
                         tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                       ),
                       child: Text(
-                        'Sign up',
+                        'login.sign_up'.tr(),
                         style: 14.semiBold.copyWith(
                           color: AppColors.primerColor,
                         ),
