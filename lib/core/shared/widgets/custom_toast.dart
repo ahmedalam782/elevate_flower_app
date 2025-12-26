@@ -34,9 +34,15 @@ class CustomToast {
       showProgressBar: true,
       showIcon: false,
       context: context,
-      title: Text(header ?? "", style: 16.semiBold),
+      title: Text(
+        header ?? "",
+        style: 16.semiBold.copyWith(color: AppColors.whiteF9),
+      ),
       description: description != null
-          ? Text(description!, style: 16.regular)
+          ? Text(
+              description!,
+              style: 16.regular.copyWith(color: AppColors.whiteF9),
+            )
           : null,
       autoCloseDuration: const Duration(seconds: 5),
     );
@@ -90,8 +96,16 @@ class CustomToast {
         mainAxisSize: MainAxisSize.min,
         spacing: 8,
         children: [
-          Text(title ?? "", textAlign: TextAlign.center, style: 20.bold),
-          Text(message ?? "", textAlign: TextAlign.center, style: 16.regular),
+          Text(
+            title ?? "",
+            textAlign: TextAlign.center,
+            style: 20.bold.copyWith(color: AppColors.whiteF9),
+          ),
+          Text(
+            message ?? "",
+            textAlign: TextAlign.center,
+            style: 16.regular.copyWith(color: AppColors.whiteF9),
+          ),
         ],
       ),
       autoCloseDuration: const Duration(seconds: 5),

@@ -4,13 +4,14 @@ import 'package:elevate_flower_app/features/register/presentation/view/pages/reg
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../features/forget_password/presentation/view/pages/forgetPassword_page.dart';
 import '../../features/login/presentation/view/pages/login_page.dart';
 import '../../features/splash/presentation/view/pages/splash_page.dart';
 import 'routes.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
 final GoRouter router = GoRouter(
-  initialLocation: Routes.splash,
+  initialLocation: Routes.forgetPassword,
   navigatorKey: navigatorKey,
   routes: [
     _customAnimatedGoRoute(
@@ -27,6 +28,12 @@ final GoRouter router = GoRouter(
       route: Routes.register,
       page: (state, context) =>
           RegisterPage(key: ValueKey(context.locale.languageCode.toString())),
+    ),
+    _customAnimatedGoRoute(
+      route: Routes.forgetPassword,
+      page: (state, context) => ForgetPasswordPage(
+        key: ValueKey(context.locale.languageCode.toString()),
+      ),
     ),
   ],
 );

@@ -210,7 +210,7 @@ class _PassTextFieldState extends State<PassTextField> {
                               ),
                             ),
                             const SizedBox(width: 10),
-                            SizedBox(
+                            Flexible(
                               child: AnimatedDefaultTextStyle(
                                 duration: const Duration(milliseconds: 500),
                                 curve: Curves.easeInOut,
@@ -271,13 +271,17 @@ class _PassTextFieldState extends State<PassTextField> {
                               ),
                             ),
                             const SizedBox(width: 10),
-                            AnimatedDefaultTextStyle(
-                              duration: const Duration(milliseconds: 500),
-                              curve: Curves.easeInOut,
-                              style: !passwordConditionsState[index + 3]
-                                  ? 12.regular.copyWith(color: AppColors.redCC)
-                                  : 12.regular,
-                              child: Text(passwordConditions[index + 3].tr()),
+                            Flexible(
+                              child: AnimatedDefaultTextStyle(
+                                duration: const Duration(milliseconds: 500),
+                                curve: Curves.easeInOut,
+                                style: !passwordConditionsState[index + 3]
+                                    ? 12.regular.copyWith(
+                                        color: AppColors.redCC,
+                                      )
+                                    : 12.regular,
+                                child: Text(passwordConditions[index + 3].tr()),
+                              ),
                             ),
                           ],
                         ),
