@@ -168,5 +168,11 @@
     "new_password": "New password",
     "confirm_password": "Confirm password",
     "enter_your_password": "Enter your password"
+  },
+  "bottom_navigation": {
+    "home": "Home",
+    "categories": "Categories",
+    "cart": "Cart",
+    "profile": "Profile"
   }
 }

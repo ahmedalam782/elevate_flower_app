@@ -168,5 +168,11 @@
     "new_password": "رقم سري جديد",
     "confirm_password": "تأكيد الرقم السري",
     "enter_your_password": "أدخل الرقم السري الخاص بك"
+  },
+  "bottom_navigation": {
+    "home": "الصفحة الرئيسية",
+    "categories": "التصنيفات",
+    "cart": "السلة",
+    "profile": "الحساب"
   }
 }
