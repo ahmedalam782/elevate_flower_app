@@ -1,9 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:elevate_flower_app/features/forget-password/presentation/view/pages/forgetPassword_page.dart';
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../features/forget_password/presentation/view/pages/forgetPassword_page.dart';
 import '../../features/login/presentation/view/pages/login_page.dart';
 import '../../features/splash/presentation/view/pages/splash_page.dart';
 import 'routes.dart';

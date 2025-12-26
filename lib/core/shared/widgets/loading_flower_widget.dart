@@ -2,6 +2,8 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
+import '../../theme/app_animations.dart';
+
 class FlowerLoadingOverlay extends StatelessWidget {
   const FlowerLoadingOverlay({super.key});
 
@@ -14,9 +16,13 @@ class FlowerLoadingOverlay extends StatelessWidget {
         child: Container(
           width: double.infinity,
           height: double.infinity,
-          color: Colors.black.withOpacity(0.25),
+          color: Colors.black.withValues(alpha: 0.25),
           alignment: Alignment.center,
-          child: Center(child: CircularProgressIndicator()),
+          child: Lottie.asset(
+            AppAnimations.animationsLoadingAnimation,
+            width: 200,
+            height: 200,
+          ),
         ),
       ),
     );
