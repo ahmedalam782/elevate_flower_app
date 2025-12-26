@@ -107,6 +107,23 @@
         "phone_length_error": "يجب أن يكون رقم الهاتف {} رقمًا",
         "phone_invalid_start": "يرجى إدخال رقم هاتف لا يبدأ بصفر",
         "pin_required": "رمز التحقق مطلوب",
-        "pin_length_error": "يجب أن يكون رمز التحقق {} رقمًا"
+        "pin_length_error": "يجب أن يكون رمز التحقق {} رقمًا",
+
+        "password_min_length": "كلمة المرور يجب أن تكون 6 أحرف على الأقل"
+    },
+    "login": {
+        "title": "تسجيل الدخول",
+        "subtitle": "مرحباً بعودتك! يرجى تسجيل الدخول للمتابعة",
+        "email_hint_text": "أدخل بريدك الإلكتروني",
+        "email_label": "البريد الإلكتروني",
+        "password_hint_text": "أدخل كلمة المرور",
+        "password_label": "كلمة المرور",
+        "remember_me": "تذكرني",
+        "forgot_password": "هل نسيت كلمة المرور؟",
+        "login_button": "تسجيل الدخول",
+        "continue_as_guest": "المتابعة كزائر",
+        "no_account": "ليس لديك حساب؟ ",
+        "sign_up": "إنشاء حساب",
+        "welcome_message": "مرحباً {name}!"
     }
 }

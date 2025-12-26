@@ -107,6 +107,23 @@
         "phone_length_error": "Phone number must be {} digits",
         "phone_invalid_start": "Please enter a phone number that does not start with zero",
         "pin_required": "Verification code is required",
-        "pin_length_error": "Verification code must be {} digits"
+        "pin_length_error": "Verification code must be {} digits",
+        
+        "password_min_length": "Password must be at least 6 characters"
+    },
+    "login": {
+        "title": "Login",
+        "subtitle": "Welcome back! Please login to continue",
+        "email_hint_text": "Enter your email",
+        "email_label": "Email",
+        "password_hint_text": "Enter your password",
+        "password_label": "Password",
+        "remember_me": "Remember me",
+        "forgot_password": "Forgot password?",
+        "login_button": "Login",
+        "continue_as_guest": "Continue as guest",
+        "no_account": "Don't have an account? ",
+        "sign_up": "Sign up",
+        "welcome_message": "Welcome {name}!"
     }
 }
