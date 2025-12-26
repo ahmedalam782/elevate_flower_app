@@ -37,8 +37,6 @@ void main() {
       sendOtpToEmailUseCase: mockSendOtpToEmailUseCase,
       verifyOtpUseCase: mockVerifyOtpUseCase,
       resetPasswordUseCase: mockResetPasswordUseCase,
-      showLoading: false,
-      animatePage: false,
     );
     context = null;
   });

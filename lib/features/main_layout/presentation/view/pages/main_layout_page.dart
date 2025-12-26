@@ -3,6 +3,7 @@ import 'package:elevate_flower_app/core/languages/locale_keys.g.dart';
 import 'package:elevate_flower_app/core/theme/app_icons.dart';
 import 'package:elevate_flower_app/features/main_layout/presentation/view/widgets/custom_nav_bar.dart';
 
+import '../../../../../core/shared/widgets/custom_app_bar.dart';
 import '../widgets/nav_bar_item.dart';
 import 'package:flutter/material.dart';
 
@@ -37,6 +38,7 @@ class _MainLayoutState extends State<MainLayoutPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar:CustomAppBar(title: "Flowery"),
       body: PageView(
         controller: _pageController,
         physics: const NeverScrollableScrollPhysics(),

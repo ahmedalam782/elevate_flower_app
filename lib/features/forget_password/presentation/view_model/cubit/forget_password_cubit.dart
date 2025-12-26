@@ -20,15 +20,13 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordStates> {
   final SendOtpToEmailUseCase _sendOtpToEmailUseCase;
   final VerifyOtpUseCase _verifyOtpUseCase;
   final ResetPasswordUseCase _resetPasswordUseCase;
-  final bool showLoading;
-  final bool animatePage;
+  bool showLoading = true;
+  bool animatePage = true;
 
   ForgetPasswordCubit({
     required SendOtpToEmailUseCase sendOtpToEmailUseCase,
     required VerifyOtpUseCase verifyOtpUseCase,
     required ResetPasswordUseCase resetPasswordUseCase,
-    this.showLoading = true,
-    this.animatePage = true,
   }) : _sendOtpToEmailUseCase = sendOtpToEmailUseCase,
        _verifyOtpUseCase = verifyOtpUseCase,
        _resetPasswordUseCase = resetPasswordUseCase,

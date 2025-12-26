@@ -24,7 +24,7 @@ class RegisterBlocListener extends StatelessWidget {
           success: (data) {
             CustomToast(
               context: context,
-              description: data.message,
+              header: data.message,
               type: ToastificationType.success,
             ).showToast();
             context.go(Routes.login);
@@ -32,7 +32,7 @@ class RegisterBlocListener extends StatelessWidget {
           error: (exception) {
             CustomToast(
               context: context,
-              description: handleError(exception),
+              header: handleError(exception),
               type: ToastificationType.error,
             ).showToast();
           },

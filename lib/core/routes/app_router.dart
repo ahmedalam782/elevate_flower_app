@@ -6,12 +6,13 @@ import 'package:go_router/go_router.dart';
 
 import '../../features/forget_password/presentation/view/pages/forgetPassword_page.dart';
 import '../../features/login/presentation/view/pages/login_page.dart';
+import '../../features/main_layout/presentation/view/pages/main_layout_page.dart';
 import '../../features/splash/presentation/view/pages/splash_page.dart';
 import 'routes.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
 final GoRouter router = GoRouter(
-  initialLocation: Routes.forgetPassword,
+  initialLocation: Routes.splash,
   navigatorKey: navigatorKey,
   routes: [
     _customAnimatedGoRoute(
@@ -32,6 +33,12 @@ final GoRouter router = GoRouter(
     _customAnimatedGoRoute(
       route: Routes.forgetPassword,
       page: (state, context) => ForgetPasswordPage(
+        key: ValueKey(context.locale.languageCode.toString()),
+      ),
+    ),
+    _customAnimatedGoRoute(
+      route: Routes.appLayout,
+      page: (state, context) => MainLayoutPage(
         key: ValueKey(context.locale.languageCode.toString()),
       ),
     ),

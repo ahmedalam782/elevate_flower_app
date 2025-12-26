@@ -11,6 +11,9 @@ import 'package:elevate_flower_app/features/register/presentation/view_model/cub
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../../core/config/base_state/base_state.dart';
+import '../../view_model/cubit/register_states.dart';
+
 class RegisterBody extends StatelessWidget {
   const RegisterBody({super.key});
   @override
@@ -24,12 +27,17 @@ class RegisterBody extends StatelessWidget {
         SizedBox(height: 24.0),
         TermsConditionsSpan(),
         SizedBox(height: 50.0),
-        CustomButton(
-          title: LocaleKeys.register_register_button.tr(),
-          onPressed: () {
-            cubit.doIntent(RegisterUserEvent());
+        BlocBuilder<RegisterCubit, RegisterStates>(
+          builder: (context, state) {
+            return CustomButton(
+              title: LocaleKeys.register_register_button.tr(),
+              isLoading: state.registerState.state == StateType.loading,
+              onPressed: () {
+                cubit.doIntent(RegisterUserEvent());
+              },
+              borderColor: Colors.transparent,
+            );
           },
-          borderColor: Colors.transparent,
         ),
         SizedBox(height: 16.0),
         AlreadyHaveAccount(),

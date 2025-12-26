@@ -7,12 +7,12 @@ import 'package:toastification/toastification.dart';
 import '../../../../../core/config/base_state/base_state.dart';
 import '../../../../../core/config/di/injectable_config.dart';
 import '../../../../../core/routes/routes.dart';
+import '../../../../../core/shared/widgets/custom_app_bar.dart';
 import '../../../../../core/shared/widgets/custom_button.dart';
 import '../../../../../core/shared/widgets/custom_text_field.dart';
 import '../../../../../core/shared/widgets/custom_toast.dart';
 import '../../../../../core/shared/widgets/pass_text_field.dart';
 import '../../../../../core/theme/app_colors.dart';
-import '../../../../../core/theme/app_icons.dart';
 import '../../../../../core/theme/app_typography.dart';
 import '../../../../../core/validations/validations.dart';
 import '../../view_model/cubit/login_cubit.dart';
@@ -44,6 +44,7 @@ class _LoginViewState extends State<LoginView> {
     final cubit = context.read<LoginCubit>();
 
     return Scaffold(
+      appBar: CustomAppBar(title: 'login.title'.tr()),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 16.h),
@@ -70,8 +71,6 @@ class _LoginViewState extends State<LoginView> {
                   controller: cubit.emailController,
                   hintText: 'login.email_hint_text'.tr(),
                   labelText: 'login.email_label'.tr(),
-                  title: 'login.email_label'.tr(),
-                  prefixIcon: AppIcons.iconsLock,
                   textInputType: TextInputType.emailAddress,
                   textInputAction: TextInputAction.next,
                   validator: Validations.validateEmail,
@@ -82,18 +81,7 @@ class _LoginViewState extends State<LoginView> {
                   controller: cubit.passwordController,
                   hintText: 'login.password_hint_text'.tr(),
                   labelText: 'login.password_label'.tr(),
-                  title: 'login.password_label'.tr(),
                   textInputAction: TextInputAction.done,
-                  isErrorEnabled: false,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'validations.password_required'.tr();
-                    }
-                    if (value.length < 6) {
-                      return 'validations.password_min_length'.tr();
-                    }
-                    return null;
-                  },
                   onFieldSubmitted: (_) => _handleLogin(context),
                 ),
                 SizedBox(height: 8.h),
@@ -110,15 +98,13 @@ class _LoginViewState extends State<LoginView> {
                               cubit.isRememberMe = value ?? false;
                             });
                           },
+                          checkColor: AppColors.whiteF9,
                           activeColor: AppColors.primerColor,
                           materialTapTargetSize:
                               MaterialTapTargetSize.shrinkWrap,
                           visualDensity: VisualDensity.compact,
                         ),
-                        Text(
-                          'login.remember_me'.tr(),
-                          style: 14.regular.copyWith(color: AppColors.grayA6),
-                        ),
+                        Text('login.remember_me'.tr(), style: 14.regular),
                       ],
                     ),
 
@@ -153,17 +139,14 @@ class _LoginViewState extends State<LoginView> {
                           header: 'global.success'.tr(),
                           description: 'login.welcome_message'.tr(
                             namedArgs: {
-                              'name': '${loginResponse.user.firstName} ${loginResponse.user.lastName}'
+                              'name':
+                                  '${loginResponse.user.firstName} ${loginResponse.user.lastName}',
                             },
                           ),
                           type: ToastificationType.success,
                         ).showToast();
 
-                        Future.delayed(const Duration(seconds: 1), () {
-                          if (context.mounted) {
-                            context.go(Routes.home);
-                          }
-                        });
+                        context.go(Routes.appLayout);
                       },
                       error: (exception) {
                         CustomToast(
@@ -178,13 +161,10 @@ class _LoginViewState extends State<LoginView> {
                   builder: (context, states) {
                     final isLoading =
                         states.loginState.state == StateType.loading;
-
                     return CustomButton(
                       title: 'login.login_button'.tr(),
                       onPressed: isLoading ? null : () => _handleLogin(context),
                       isLoading: isLoading,
-                      isGradient: true,
-                      gradient: AppColors.primerGradient,
                     );
                   },
                 ),
@@ -193,7 +173,7 @@ class _LoginViewState extends State<LoginView> {
                 CustomButton(
                   title: 'login.continue_as_guest'.tr(),
                   onPressed: () {
-                    context.go(Routes.home);
+                    context.go(Routes.appLayout);
                   },
                   isFilled: false,
                   borderColor: AppColors.primerColor,
