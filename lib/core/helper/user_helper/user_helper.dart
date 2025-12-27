@@ -3,6 +3,7 @@ import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../config/api/end_points.dart';
 import '../../config/di/injectable_config.dart';
 import '../../routes/app_router.dart';
 import '../../routes/routes.dart';
