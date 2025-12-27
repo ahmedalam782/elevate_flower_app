@@ -78,9 +78,9 @@ class CustomPinInput extends StatelessWidget {
     height: 48,
     textStyle: 24.semiBold,
     decoration: BoxDecoration(
-      color: AppColors.transparent,
+      color: AppColors.black.withValues(alpha: 0.1),
       borderRadius: BorderRadius.circular(8),
-      border: Border.all(color: AppColors.primerColor, width: 1),
+      // border: Border.all(color: AppColors.primerColor, width: 1),
       boxShadow: [
         BoxShadow(
           color: Theme.brightnessOf(context) == Brightness.dark
