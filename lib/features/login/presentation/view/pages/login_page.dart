@@ -140,7 +140,7 @@ class _LoginViewState extends State<LoginView> {
                         CustomToast(
                           context: context,
                           header: LocaleKeys.global_error.tr(),
-                          description: LocaleKeys.login_login_Invalid_email_or_password.tr(),
+                          description: LocaleKeys.login_Invalid_email_or_password.tr(),
                           type: ToastificationType.error,
                         ).showToast();
                       },
@@ -164,7 +164,7 @@ class _LoginViewState extends State<LoginView> {
                     context.go(Routes.appLayout);
                   },
                   isFilled: false,
-                  borderColor: AppColors.primerColor,
+                  borderColor: AppColors.grayA6,
                   backGroundColor: AppColors.gray53,
                 ),
                 SizedBox(height: 24.h),

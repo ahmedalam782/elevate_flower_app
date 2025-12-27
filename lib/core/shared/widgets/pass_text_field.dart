@@ -342,7 +342,7 @@ class _PassTextFieldState extends State<PassTextField> {
     } else {
       passwordConditionsState[3] = false;
     }
-    if (value != null && value.length > 6 && value.length < 30) {
+    if (value != null && value.length > 8 && value.length < 30) {
       passwordConditionsState[4] = true;
     } else {
       passwordConditionsState[4] = false;

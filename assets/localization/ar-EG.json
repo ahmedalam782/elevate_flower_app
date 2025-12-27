@@ -97,7 +97,7 @@
     "set_password_2_condition": "حرف كبير واحد على الأقل",
     "set_password_3_condition": "رقم واحد على الأقل",
     "set_password_4_condition": "حرف خاص واحد على الأقل",
-    "set_password_5_condition": "من 6 إلى 30 حرفًا",
+    "set_password_5_condition": "من 8 إلى 30 حرفًا",
     "set_password_1_condition_error": "يجب أن تحتوي كلمة المرور على حرف صغير واحد على الأقل",
     "set_password_2_condition_error": "يجب أن تحتوي كلمة المرور على حرف كبير واحد على الأقل",
     "set_password_3_condition_error": "يجب أن تحتوي كلمة المرور على رقم واحد على الأقل",
@@ -126,7 +126,8 @@
     "no_account": "ليس لديك حساب؟ ",
     "sign_up": "إنشاء حساب",
     "welcome_message": "مرحباً {name}!",
-    "Invalid_email_or_password": "البريد الإلكتروني أو كلمة المرور غير صحيحة"
+    "Invalid_email_or_password": "بريد إلكتروني أو كلمة مرور غير صحيحة",
+    "loading": "جارٍ التحميل"
   },
   "register": {
     "register_title": "إنشاء حساب",
@@ -170,5 +171,11 @@
     "confirm_password": "تأكيد الرقم السري",
     "enter_your_password": "أدخل الرقم السري الخاص بك",
     "password_rest_successfully": "تم تغير الرقم السري بنجاح"
+  },
+  "bottom_navigation": {
+    "home": "الصفحة الرئيسية",
+    "categories": "التصنيفات",
+    "cart": "السلة",
+    "profile": "الحساب"
   }
 }

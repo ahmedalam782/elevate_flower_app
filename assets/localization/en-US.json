@@ -97,7 +97,7 @@
     "set_password_2_condition": "At least one uppercase letter",
     "set_password_3_condition": "At least one number",
     "set_password_4_condition": "At least one special character",
-    "set_password_5_condition": "6 to 30 characters",
+    "set_password_5_condition": "8 to 30 characters",
     "set_password_1_condition_error": "Password must contain at least one lowercase letter",
     "set_password_2_condition_error": "Password must contain at least one uppercase letter",
     "set_password_3_condition_error": "Password must contain at least one number",
@@ -170,5 +170,11 @@
     "confirm_password": "Confirm password",
     "enter_your_password": "Enter your password",
     "password_rest_successfully": "Password changed successfully"
+  },
+  "bottom_navigation": {
+    "home": "Home",
+    "categories": "Categories",
+    "cart": "Cart",
+    "profile": "Profile"
   }
 }
