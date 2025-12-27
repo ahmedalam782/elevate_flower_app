@@ -1,4 +1,6 @@
 import 'dart:developer';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:elevate_flower_app/core/languages/locale_keys.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -44,9 +46,17 @@ class _ForgetPasswordBodyState extends State<ForgetPasswordBody> {
             }
           }
           if (state.isPasswordReset == true) {
+            CustomToast(
+              context: context,
+              header: LocaleKeys.forget_password_password_rest_successfully
+                  .tr(),
+
+              // header: ,
+              type: ToastificationType.success,
+            ).showToast();
             log("SUCCESSS");
             if (context.canPop()) {
-              context.pop();
+              context.pop(true);
             }
           }
         },
