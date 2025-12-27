@@ -1,6 +1,4 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:elevate_flower_app/core/config/base_state/base_state.dart';
-import 'package:elevate_flower_app/core/languages/locale_keys.g.dart';
 import 'package:elevate_flower_app/core/utils/enums/Gender.dart';
 import 'package:elevate_flower_app/features/register/domain/entities/register_params.dart';
 import 'package:elevate_flower_app/features/register/domain/use_cases/register_user_user_case.dart';
@@ -36,8 +34,6 @@ class RegisterCubit extends Cubit<RegisterStates> {
     event.when(
       registerUser: _registerUser,
       onGenderSelected: _onGenderSelected,
-      togglePasswordObscure: _togglePasswordObscure,
-      toggleConfirmPasswordObscure: _toggleConfirmPasswordObscure,
     );
   }
 
@@ -52,27 +48,9 @@ class RegisterCubit extends Cubit<RegisterStates> {
     );
   }
 
-  void _togglePasswordObscure() {
-    final currentState = state.passwordFieldState;
-    emit(
-      state.copyWith(
-        passwordFieldState: currentState.copyWith(
-          isObscure: !currentState.isObscure,
-        ),
-      ),
-    );
-  }
 
-  void _toggleConfirmPasswordObscure() {
-    final currentState = state.confirmPasswordFieldState;
-    emit(
-      state.copyWith(
-        confirmPasswordFieldState: currentState.copyWith(
-          isObscure: !currentState.isObscure,
-        ),
-      ),
-    );
-  }
+
+
 
   bool _isFormValid() {
     return formValidator?.call() ?? (formKey.currentState?.validate() ?? false);
@@ -80,33 +58,13 @@ class RegisterCubit extends Cubit<RegisterStates> {
 
   void _registerUser() async {
     final isGenderSelected = state.genderRowState.selectedGender != null;
-    final passwordsMatch =
-        passwordController.text == confirmPasswordController.text;
-    if (!_isFormValid() || !isGenderSelected || !passwordsMatch) {
+    if (!_isFormValid() || !isGenderSelected ) {
       // Show error message
       if (!isGenderSelected) {
         emit(
           state.copyWith(
             genderRowState: state.genderRowState.copyWith(
               showGenderError: true,
-            ),
-          ),
-        );
-      } else if (!passwordsMatch) {
-        emit(
-          state.copyWith(
-            confirmPasswordFieldState: state.confirmPasswordFieldState.copyWith(
-              error: LocaleKeys.validations_confirm_password_mismatch.tr(),
-            ),
-          ),
-        );
-      } else {
-        // Clear previous password mismatch error if any
-        emit(
-          state.copyWith(
-            confirmPasswordFieldState: state.confirmPasswordFieldState.copyWith(
-              error: null,
-              clearError: true,
             ),
           ),
         );
