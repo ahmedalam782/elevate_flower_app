@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:elevate_flower_app/core/languages/locale_keys.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -44,7 +45,7 @@ class _LoginViewState extends State<LoginView> {
     final cubit = context.read<LoginCubit>();
 
     return Scaffold(
-      appBar: CustomAppBar(title: 'login.title'.tr()),
+      appBar: CustomAppBar(title: LocaleKeys.login_title.tr()),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 16.h),
@@ -53,24 +54,12 @@ class _LoginViewState extends State<LoginView> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: 40.h),
-
-                Text(
-                  'login.title'.tr(),
-                  style: 32.bold.copyWith(color: AppColors.primerColor),
-                ),
-                SizedBox(height: 8.h),
-
-                Text(
-                  'login.subtitle'.tr(),
-                  style: 14.regular.copyWith(color: AppColors.grayA6),
-                ),
-                SizedBox(height: 40.h),
+                SizedBox(height: 20.h),
 
                 CustomTextField(
                   controller: cubit.emailController,
-                  hintText: 'login.email_hint_text'.tr(),
-                  labelText: 'login.email_label'.tr(),
+                  hintText: LocaleKeys.login_email_hint_text.tr(),
+                  labelText: LocaleKeys.login_email_label.tr(),
                   textInputType: TextInputType.emailAddress,
                   textInputAction: TextInputAction.next,
                   validator: Validations.validateEmail,
@@ -79,8 +68,8 @@ class _LoginViewState extends State<LoginView> {
 
                 PassTextField(
                   controller: cubit.passwordController,
-                  hintText: 'login.password_hint_text'.tr(),
-                  labelText: 'login.password_label'.tr(),
+                  hintText: LocaleKeys.login_password_hint_text.tr(),
+                  labelText: LocaleKeys.login_password_label.tr(),
                   textInputAction: TextInputAction.done,
                   onFieldSubmitted: (_) => _handleLogin(context),
                   validator: Validations.validatePassword,
@@ -105,7 +94,7 @@ class _LoginViewState extends State<LoginView> {
                               MaterialTapTargetSize.shrinkWrap,
                           visualDensity: VisualDensity.compact,
                         ),
-                        Text('login.remember_me'.tr(), style: 14.regular),
+                        Text(LocaleKeys.login_remember_me.tr(), style: 14.regular),
                       ],
                     ),
 
@@ -119,15 +108,13 @@ class _LoginViewState extends State<LoginView> {
                         tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                       ),
                       child: Text(
-                        'login.forgot_password'.tr(),
-                        style: 14.regular.copyWith(
-                          color: AppColors.primerColor,
-                        ),
+                        LocaleKeys.login_forgot_password.tr(),
+                        style: 14.regular.copyWith(color: AppColors.black0C),
                       ),
                     ),
                   ],
                 ),
-                SizedBox(height: 32.h),
+                SizedBox(height: 50.h),
 
                 BlocConsumer<LoginCubit, LoginStates>(
                   listener: (context, states) {
@@ -137,8 +124,8 @@ class _LoginViewState extends State<LoginView> {
                       success: (loginResponse) {
                         CustomToast(
                           context: context,
-                          header: 'global.success'.tr(),
-                          description: 'login.welcome_message'.tr(
+                          header: LocaleKeys.global_success.tr(),
+                          description: LocaleKeys.login_welcome_message.tr(
                             namedArgs: {
                               'name':
                                   '${loginResponse.user.firstName} ${loginResponse.user.lastName}',
@@ -152,8 +139,8 @@ class _LoginViewState extends State<LoginView> {
                       error: (exception) {
                         CustomToast(
                           context: context,
-                          header: 'global.error'.tr(),
-                          description: exception.toString(),
+                          header: LocaleKeys.global_error.tr(),
+                          description: LocaleKeys.login_login_Invalid_email_or_password.tr(),
                           type: ToastificationType.error,
                         ).showToast();
                       },
@@ -163,7 +150,7 @@ class _LoginViewState extends State<LoginView> {
                     final isLoading =
                         states.loginState.state == StateType.loading;
                     return CustomButton(
-                      title: 'login.login_button'.tr(),
+                      title: LocaleKeys.login_login_button.tr(),
                       onPressed: isLoading ? null : () => _handleLogin(context),
                       isLoading: isLoading,
                     );
@@ -172,13 +159,13 @@ class _LoginViewState extends State<LoginView> {
                 SizedBox(height: 24.h),
 
                 CustomButton(
-                  title: 'login.continue_as_guest'.tr(),
+                  title: LocaleKeys.login_continue_as_guest.tr(),
                   onPressed: () {
                     context.go(Routes.appLayout);
                   },
                   isFilled: false,
                   borderColor: AppColors.primerColor,
-                  backGroundColor: AppColors.black,
+                  backGroundColor: AppColors.gray53,
                 ),
                 SizedBox(height: 24.h),
 
@@ -186,8 +173,8 @@ class _LoginViewState extends State<LoginView> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      'login.no_account'.tr(),
-                      style: 14.regular.copyWith(color: AppColors.grayA6),
+                      LocaleKeys.login_no_account.tr(),
+                      style: 14.regular.copyWith(color: AppColors.black0C),
                     ),
                     TextButton(
                       onPressed: () {
@@ -199,7 +186,7 @@ class _LoginViewState extends State<LoginView> {
                         tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                       ),
                       child: Text(
-                        'login.sign_up'.tr(),
+                        LocaleKeys.login_sign_up.tr(),
                         style: 14.semiBold.copyWith(
                           color: AppColors.primerColor,
                         ),

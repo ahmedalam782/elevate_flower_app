@@ -125,7 +125,8 @@
     "continue_as_guest": "المتابعة كزائر",
     "no_account": "ليس لديك حساب؟ ",
     "sign_up": "إنشاء حساب",
-    "welcome_message": "مرحباً {name}!"
+    "welcome_message": "مرحباً {name}!",
+    "Invalid_email_or_password": "البريد الإلكتروني أو كلمة المرور غير صحيحة"
   },
   "register": {
     "register_title": "إنشاء حساب",

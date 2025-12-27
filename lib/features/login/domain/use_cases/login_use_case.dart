@@ -1,4 +1,4 @@
-import 'package:elevate_flower_app/features/login/data/models/login_response_model.dart';
+import 'package:elevate_flower_app/features/login/domain/entities/login_response_entity.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../core/config/base_response/result.dart';
@@ -10,7 +10,7 @@ class LoginUseCase {
 
   LoginUseCase({required this.repository});
 
-  Future<Result<LoginResponseModel>> call({
+  Future<Result<LoginResponseEntity>> call({
     required String email,
     required String password,
     required bool rememberMe,

@@ -21,34 +21,13 @@ class LoginLocalDataSourceImpl implements LoginLocalDataSourceContract {
   }
 
   @override
-  Future<void> saveUserId(String userId) async {
-    await secureStorage.write(key: Apikeys.userId, value: userId);
-  }
-
-  @override
   Future<void> saveRememberMe(bool rememberMe) async {
     await sharedPreferences.setBool(Apikeys.rememberMe, rememberMe);
   }
 
   @override
-  Future<String?> getToken() async {
-    return await secureStorage.read(key: Apikeys.accessToken);
-  }
-
-  @override
-  Future<String?> getUserId() async {
-    return await secureStorage.read(key: Apikeys.userId);
-  }
-
-  @override
-  Future<bool> getRememberMe() async {
-    return sharedPreferences.getBool(Apikeys.rememberMe) ?? false;
-  }
-
-  @override
   Future<void> clearLoginData() async {
     await secureStorage.delete(key: Apikeys.accessToken);
-    await secureStorage.delete(key: Apikeys.userId);
     await sharedPreferences.remove(Apikeys.rememberMe);
   }
 }

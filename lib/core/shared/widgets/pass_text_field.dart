@@ -168,118 +168,126 @@ class _PassTextFieldState extends State<PassTextField> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    ListView.separated(
-                      itemCount: 3,
-                      padding: EdgeInsets.zero,
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemBuilder: (context, index) => Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          AnimatedSwitcher(
-                            duration: const Duration(milliseconds: 500),
-                            switchInCurve: Curves.easeInOut,
-                            switchOutCurve: Curves.easeInOut,
-                            transitionBuilder: (child, animation) {
-                              return ClipRect(
-                                child: SlideTransition(
-                                  position:
-                                      Tween<Offset>(
-                                        begin: const Offset(1, 0),
-                                        end: Offset.zero,
-                                      ).animate(
-                                        CurvedAnimation(
-                                          parent: animation,
-                                          curve: Curves.easeInOut,
-                                        ),
-                                      ),
-                                  child: child,
-                                ),
-                              );
-                            },
-                            child: SvgPicture.asset(
-                              passwordConditionsState[index]
-                                  ? AppIcons.iconsCheckCircle
-                                  : AppIcons.iconsCloseCircle,
-                              key: ValueKey<bool>(
-                                passwordConditionsState[index],
-                              ),
-                              height: 15,
-                              fit: BoxFit.scaleDown,
-                            ),
-                          ),
-                          const SizedBox(width: 10),
-                          Flexible(
-                            child: AnimatedDefaultTextStyle(
+                    Expanded(
+                      child: ListView.separated(
+                        itemCount: 3,
+                        shrinkWrap: true,
+                        padding: EdgeInsets.zero,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemBuilder: (context, index) => Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            AnimatedSwitcher(
                               duration: const Duration(milliseconds: 500),
-                              curve: Curves.easeInOut,
-                              style: !passwordConditionsState[index]
-                                  ? 12.regular.copyWith(color: AppColors.redCC)
-                                  : 12.regular,
-                              child: Text(passwordConditions[index].tr()),
+                              switchInCurve: Curves.easeInOut,
+                              switchOutCurve: Curves.easeInOut,
+                              transitionBuilder: (child, animation) {
+                                return ClipRect(
+                                  child: SlideTransition(
+                                    position:
+                                        Tween<Offset>(
+                                          begin: const Offset(1, 0),
+                                          end: Offset.zero,
+                                        ).animate(
+                                          CurvedAnimation(
+                                            parent: animation,
+                                            curve: Curves.easeInOut,
+                                          ),
+                                        ),
+                                    child: child,
+                                  ),
+                                );
+                              },
+                              child: SvgPicture.asset(
+                                passwordConditionsState[index]
+                                    ? AppIcons.iconsCheckCircle
+                                    : AppIcons.iconsCloseCircle,
+                                key: ValueKey<bool>(
+                                  passwordConditionsState[index],
+                                ),
+                                height: 15,
+                                fit: BoxFit.scaleDown,
+                              ),
                             ),
-                          ),
-                        ],
+                            const SizedBox(width: 10),
+                            Flexible(
+                              child: AnimatedDefaultTextStyle(
+                                duration: const Duration(milliseconds: 500),
+                                curve: Curves.easeInOut,
+                                style: !passwordConditionsState[index]
+                                    ? 12.regular.copyWith(
+                                        color: AppColors.redCC,
+                                      )
+                                    : 12.regular,
+                                child: Text(passwordConditions[index].tr()),
+                              ),
+                            ),
+                          ],
+                        ),
+                        separatorBuilder: (BuildContext context, int index) =>
+                            SizedBox(height: 6),
                       ),
-                      separatorBuilder: (BuildContext context, int index) =>
-                          SizedBox(height: 6),
                     ),
-                    SizedBox(height: 6),
-                    ListView.separated(
-                      itemCount: 2,
-                      padding: EdgeInsets.zero,
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemBuilder: (context, index) => Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          AnimatedSwitcher(
-                            duration: const Duration(milliseconds: 500),
-                            switchInCurve: Curves.easeInOut,
-                            switchOutCurve: Curves.easeInOut,
-                            transitionBuilder: (child, animation) {
-                              return ClipRect(
-                                child: SlideTransition(
-                                  position:
-                                      Tween<Offset>(
-                                        begin: const Offset(1, 0),
-                                        end: Offset.zero,
-                                      ).animate(
-                                        CurvedAnimation(
-                                          parent: animation,
-                                          curve: Curves.easeInOut,
-                                        ),
-                                      ),
-                                  child: child,
-                                ),
-                              );
-                            },
-                            child: SvgPicture.asset(
-                              passwordConditionsState[index + 3]
-                                  ? AppIcons.iconsCheckCircle
-                                  : AppIcons.iconsCloseCircle,
-                              key: ValueKey<bool>(
-                                passwordConditionsState[index + 3],
-                              ),
-                              height: 15,
-                              fit: BoxFit.scaleDown,
-                            ),
-                          ),
-                          const SizedBox(width: 10),
-                          Flexible(
-                            child: AnimatedDefaultTextStyle(
+                    Expanded(
+                      child: ListView.separated(
+                        itemCount: 2,
+                        shrinkWrap: true,
+                        padding: EdgeInsets.zero,
+
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemBuilder: (context, index) => Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            AnimatedSwitcher(
                               duration: const Duration(milliseconds: 500),
-                              curve: Curves.easeInOut,
-                              style: !passwordConditionsState[index + 3]
-                                  ? 12.regular.copyWith(color: AppColors.redCC)
-                                  : 12.regular,
-                              child: Text(passwordConditions[index + 3].tr()),
+                              switchInCurve: Curves.easeInOut,
+                              switchOutCurve: Curves.easeInOut,
+                              transitionBuilder: (child, animation) {
+                                return ClipRect(
+                                  child: SlideTransition(
+                                    position:
+                                        Tween<Offset>(
+                                          begin: const Offset(1, 0),
+                                          end: Offset.zero,
+                                        ).animate(
+                                          CurvedAnimation(
+                                            parent: animation,
+                                            curve: Curves.easeInOut,
+                                          ),
+                                        ),
+                                    child: child,
+                                  ),
+                                );
+                              },
+                              child: SvgPicture.asset(
+                                passwordConditionsState[index + 3]
+                                    ? AppIcons.iconsCheckCircle
+                                    : AppIcons.iconsCloseCircle,
+                                key: ValueKey<bool>(
+                                  passwordConditionsState[index + 3],
+                                ),
+                                height: 15,
+                                fit: BoxFit.scaleDown,
+                              ),
                             ),
-                          ),
-                        ],
+                            const SizedBox(width: 10),
+                            Flexible(
+                              child: AnimatedDefaultTextStyle(
+                                duration: const Duration(milliseconds: 500),
+                                curve: Curves.easeInOut,
+                                style: !passwordConditionsState[index + 3]
+                                    ? 12.regular.copyWith(
+                                        color: AppColors.redCC,
+                                      )
+                                    : 12.regular,
+                                child: Text(passwordConditions[index + 3].tr()),
+                              ),
+                            ),
+                          ],
+                        ),
+                        separatorBuilder: (BuildContext context, int index) =>
+                            SizedBox(height: 6),
                       ),
-                      separatorBuilder: (BuildContext context, int index) =>
-                          SizedBox(height: 6),
                     ),
                   ],
                 )
