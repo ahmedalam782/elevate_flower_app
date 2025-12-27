@@ -83,6 +83,7 @@ class _LoginViewState extends State<LoginView> {
                   labelText: 'login.password_label'.tr(),
                   textInputAction: TextInputAction.done,
                   onFieldSubmitted: (_) => _handleLogin(context),
+                  validator: Validations.validatePassword,
                 ),
                 SizedBox(height: 8.h),
 

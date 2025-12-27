@@ -1,3 +1,4 @@
+import 'package:elevate_flower_app/core/helper/user_helper/user_helper.dart';
 import 'package:elevate_flower_app/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -164,7 +165,16 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
   void _navigateToNextScreen() async {
     await Future.delayed(const Duration(seconds: 4));
     if (mounted) {
-      context.go(Routes.login);
+      bool loggedIn = await UserHelper.isLogin();
+      bool rememberMe = await UserHelper.isRememberMe() ?? false;
+      if (loggedIn && rememberMe && mounted) {
+        context.go(Routes.appLayout);
+      } else {
+        await UserHelper.clearUserData();
+        if (mounted) {
+          context.go(Routes.login);
+        }
+      }
     }
   }
 

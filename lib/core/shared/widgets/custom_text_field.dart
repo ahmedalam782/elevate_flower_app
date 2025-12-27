@@ -198,7 +198,10 @@ class _CustomTextFormFieldState extends State<CustomTextField> {
           style: widget.textStyle ?? 16.regular,
           onFieldSubmitted: widget.onFieldSubmitted,
           errorBuilder: widget.isErrorEnabled
-              ? (context, errorText) => const SizedBox()
+              ? (context, errorText) => Text(
+                  errorText,
+                  style: 12.regular.copyWith(color: AppColors.redCC),
+                )
               : null,
           decoration: InputDecoration(
             fillColor: !widget.isReadOnly

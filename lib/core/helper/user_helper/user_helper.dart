@@ -1,3 +1,4 @@
+import 'package:elevate_flower_app/core/config/api/end_points.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -5,7 +6,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../config/di/injectable_config.dart';
 import '../../routes/app_router.dart';
 import '../../routes/routes.dart';
-import '../../utils/constants/app_strings.dart';
 
 abstract class UserHelper {
   static final FlutterSecureStorage _secureStorage =
@@ -14,7 +14,9 @@ abstract class UserHelper {
       .get<SharedPreferences>();
 
   static Future<bool> isLogin() async =>
-      (await _secureStorage.read(key: AppStrings.userId)) != null;
+      (await _secureStorage.read(key: Apikeys.userId)) != null;
+  static Future<bool?> isRememberMe() async =>
+      _sharedPreferences.getBool(Apikeys.rememberMe);
   static Future<void> clearUserData() async {
     _sharedPreferences.clear();
     await _secureStorage.deleteAll();
