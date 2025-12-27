@@ -60,21 +60,6 @@ void main() {
       });
     });
 
-    group("togglePasswordObscure test", () {
-      test("test toggle password obscure", () {
-        final initialObscure = cubit.state.passwordFieldState.isObscure;
-        cubit.doIntent(RegisterEvents.togglePasswordObscure());
-        final updatedObscure = cubit.state.passwordFieldState.isObscure;
-        expect(updatedObscure, !initialObscure);
-      });
-      test("test toggle confirmation password obscure", () {
-        final initialObscure = cubit.state.confirmPasswordFieldState.isObscure;
-        cubit.doIntent(RegisterEvents.toggleConfirmPasswordObscure());
-        final updatedObscure = cubit.state.confirmPasswordFieldState.isObscure;
-        expect(updatedObscure, !initialObscure);
-      });
-    });
-
     group("registerUser test", () {
       test("emits gender error if gender is not selected", () async {
         cubit.doIntent(RegisterEvents.onGenderSelected(null));
@@ -86,14 +71,7 @@ void main() {
         cubit.doIntent(RegisterEvents.registerUser());
         expect(cubit.state.genderRowState.showGenderError, true);
       });
-      test("emits password error if passwords do not match", () {
-        final errorMessage = "Passwords do not match";
-        cubit.passwordController.text = "password";
-        cubit.confirmPasswordController.text = "password1";
-        cubit.doIntent(RegisterEvents.onGenderSelected(Gender.female));
-        cubit.doIntent(RegisterEvents.registerUser());
-        expect(cubit.state.confirmPasswordFieldState.error, errorMessage);
-      });
+
       test("emits success state if registration is successful", () async {
         final RegisterUserResponse registerUserResponse = RegisterUserResponse(
           token: "token",

@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:elevate_flower_app/core/languages/locale_keys.g.dart';
 import 'package:elevate_flower_app/core/shared/widgets/custom_text_field.dart';
+import 'package:elevate_flower_app/core/shared/widgets/pass_text_field.dart';
 import 'package:elevate_flower_app/core/theme/app_colors.dart';
 import 'package:elevate_flower_app/core/validations/validations.dart';
 import 'package:elevate_flower_app/features/register/presentation/view_model/cubit/register_cubit.dart';
@@ -72,84 +73,31 @@ class RegisterForm extends StatelessWidget {
             spacing: rowPadding,
             children: [
               Expanded(
-                child:
-                    BlocSelector<
-                      RegisterCubit,
-                      RegisterStates,
-                      PasswordFieldState
-                    >(
-                      selector: (state) {
-                        return state.passwordFieldState;
-                      },
-                      builder: (context, state) {
-                        return CustomTextField(
-                          controller: cubit.passwordController,
-                          hintText: LocaleKeys.register_password_hint.tr(),
-                          labelWidget: Text(
-                            LocaleKeys.register_password_label.tr(),
-                          ),
-                          autovalidateMode: AutovalidateMode.disabled,
-                          maxLine: 1,
-                          errorMaxLines: 3,
-                          isObscureText: state.isObscure,
-                          suffixWidget: GestureDetector(
-                            onTap: () {
-                              cubit.doIntent(TogglePasswordObscureEvent());
-                            },
-                            child: Icon(
-                              state.isObscure
-                                  ? Icons.visibility_off_outlined
-                                  : Icons.visibility_outlined,
-                              color: AppColors.gray53,
-                            ),
-                          ),
-                          validator: (value) {
-                            return Validations.validatePassword(value);
-                          },
-                        );
-                      },
-                    ),
+                child: PassTextField(
+                  controller: cubit.passwordController,
+                  hintText: LocaleKeys.register_password_hint.tr(),
+                  labelWidget: Text(LocaleKeys.register_password_label.tr()),
+                  autovalidateMode: AutovalidateMode.disabled,
+                  validator: (value) {
+                    return Validations.validatePassword(value);
+                  },
+                ),
               ),
               Expanded(
-                child:
-                    BlocSelector<
-                      RegisterCubit,
-                      RegisterStates,
-                      PasswordFieldState
-                    >(
-                      selector: (state) {
-                        return state.confirmPasswordFieldState;
-                      },
-                      builder: (context, state) {
-                        return CustomTextField(
-                          controller: cubit.confirmPasswordController,
-                          hintText: LocaleKeys.register_confirm_password_hint
-                              .tr(),
-                          labelWidget: Text(
-                            LocaleKeys.register_confirm_password_label.tr(),
-                          ),
-                          autovalidateMode: AutovalidateMode.disabled,
-                          maxLine: 1,
-                          isObscureText: state.isObscure,
-                          errorMaxLines: 3,
-                          errorText: state.error,
-                          suffixWidget: GestureDetector(
-                            onTap: () {
-                              cubit.doIntent(ToggleConfirmPasswordObscureEvent());
-                            },
-                            child: Icon(
-                              state.isObscure
-                                  ? Icons.visibility_off_outlined
-                                  : Icons.visibility_outlined,
-                              color: AppColors.gray53,
-                            ),
-                          ),
-                          validator: (value) {
-                            return Validations.validatePassword(value);
-                          },
-                        );
-                      },
-                    ),
+                child: PassTextField(
+                  controller: cubit.confirmPasswordController,
+                  hintText: LocaleKeys.register_confirm_password_hint.tr(),
+                  labelWidget: Text(
+                    LocaleKeys.register_confirm_password_label.tr(),
+                  ),
+                  autovalidateMode: AutovalidateMode.disabled,
+                  validator: (value) {
+                    return Validations.validatePasswordVerification(
+                      value,
+                      cubit.passwordController.text,
+                    );
+                  },
+                ),
               ),
             ],
           ),
@@ -161,7 +109,11 @@ class RegisterForm extends StatelessWidget {
             textInputType: TextInputType.phone,
             autovalidateMode: AutovalidateMode.disabled,
             validator: (value) {
-              return Validations.validatePhoneNumber(value, phoneLength, countryCode);
+              return Validations.validatePhoneNumber(
+                value,
+                phoneLength,
+                countryCode,
+              );
             },
           ),
         ],
