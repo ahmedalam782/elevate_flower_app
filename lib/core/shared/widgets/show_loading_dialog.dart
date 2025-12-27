@@ -35,7 +35,10 @@ class ShowDialogLoading extends StatelessWidget {
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Lottie.asset(AppAnimations.animationsLoadingAnimation),
+            Lottie.asset(
+              AppAnimations.animationsLoadingAnimation,
+              fit: BoxFit.scaleDown,
+            ),
             Text(LocaleKeys.global_loading.tr(), style: 16.medium),
           ],
         ),
