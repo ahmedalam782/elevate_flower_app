@@ -125,6 +125,7 @@
     "password_requierment": "ينبغي ألا يكون الرقم السري فارغ ويحتوي علي ستة أحرف علي الاقل وحرف أبجدي كبير وصغير (A-a)",
     "new_password": "رقم سري جديد",
     "confirm_password": "تأكيد الرقم السري",
-    "enter_your_password": "أدخل الرقم السري الخاص بك"
+    "enter_your_password": "أدخل الرقم السري الخاص بك",
+    "password_rest_successfully": "تم تغير الرقم السري بنجاح"
   }
 }
