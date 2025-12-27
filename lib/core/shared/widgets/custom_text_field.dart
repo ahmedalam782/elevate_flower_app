@@ -157,10 +157,7 @@ class _CustomTextFormFieldState extends State<CustomTextField> {
       spacing: 6,
       children: [
         if (widget.title != null && widget.title!.isNotEmpty)
-          Text(
-            widget.title ?? "",
-            style: 14.light,
-          ),
+          Text(widget.title ?? "", style: 14.light),
         TextFormField(
           enabled: !widget.isReadOnly,
           textDirection: widget.textDirection,
@@ -194,7 +191,10 @@ class _CustomTextFormFieldState extends State<CustomTextField> {
           style: widget.textStyle ?? 16.regular,
           onFieldSubmitted: widget.onFieldSubmitted,
           errorBuilder: widget.isErrorEnabled
-              ? (context, errorText) => const SizedBox()
+              ? (context, errorText) => Text(
+                  errorText,
+                  style: 12.regular.copyWith(color: AppColors.redCC),
+                )
               : null,
           decoration: InputDecoration(
             fillColor: !widget.isReadOnly
