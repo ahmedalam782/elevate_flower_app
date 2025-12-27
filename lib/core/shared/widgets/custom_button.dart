@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:elevate_flower_app/core/languages/locale_keys.g.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -111,8 +112,7 @@ class CustomButton extends StatelessWidget {
             Flexible(
               child: Text(
                 isLoading
-                    ? "delivery_app_custom_widgets_loading_accessibility_label"
-                          .tr()
+                    ? LocaleKeys.custom_widgets_loading_accessibility_label.tr()
                     : title!,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,

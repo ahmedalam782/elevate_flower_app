@@ -124,6 +124,8 @@
         "continue_as_guest": "Continue as guest",
         "no_account": "Don't have an account? ",
         "sign_up": "Sign up",
-        "welcome_message": "Welcome {name}!"
+        "welcome_message": "Welcome {name}!",
+        "Invalid_email_or_password": "Invalid email or password",
+        "loading": "Loding"
     }
 }
