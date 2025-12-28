@@ -3,7 +3,6 @@ import 'package:elevate_flower_app/core/shared/widgets/custom_product_grid_view.
 import 'package:elevate_flower_app/core/shared/widgets/paginated_product_grid_view.dart';
 import 'package:elevate_flower_app/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 /// Example page demonstrating how to use the custom product grid widgets
 ///
@@ -126,33 +125,9 @@ class _ProductGridExamplePageState extends State<ProductGridExamplePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          _showInfiniteScroll ? 'Infinite Scroll Grid' : 'Paginated Grid',
-          style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold),
-        ),
-        backgroundColor: AppColors.primerColor,
-        foregroundColor: AppColors.whiteFF,
-        actions: [
-          // Toggle button
-          IconButton(
-            icon: Icon(
-              _showInfiniteScroll ? Icons.grid_view : Icons.view_agenda,
-            ),
-            onPressed: () {
-              setState(() {
-                _showInfiniteScroll = !_showInfiniteScroll;
-              });
-            },
-            tooltip: 'Switch view',
-          ),
-        ],
-      ),
-      body: _showInfiniteScroll
-          ? _buildInfiniteScrollView()
-          : _buildPaginatedView(),
-    );
+    return _showInfiniteScroll
+        ? _buildInfiniteScrollView()
+        : _buildPaginatedView();
   }
 
   Widget _buildInfiniteScrollView() {

@@ -108,5 +108,11 @@
         "phone_invalid_start": "Please enter a phone number that does not start with zero",
         "pin_required": "Verification code is required",
         "pin_length_error": "Verification code must be {} digits"
+    },
+    "products": {
+        "no_products": "No products available",
+        "check_back_later": "Please check back later.",
+        "EGP": "EGP",
+        "add_to_cart": "Add to cart"
     }
 }

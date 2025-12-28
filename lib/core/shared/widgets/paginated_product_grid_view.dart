@@ -1,10 +1,14 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:elevate_flower_app/core/shared/entities/product_item_entity.dart';
 import 'package:elevate_flower_app/core/shared/widgets/custom_product_item.dart';
 
 import 'package:elevate_flower_app/core/theme/app_colors.dart';
+import 'package:elevate_flower_app/core/theme/app_typography.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
+
+import '../../languages/locale_keys.g.dart';
 
 class PaginatedProductGridView extends StatelessWidget {
   final List<ProductItemEntity> products;
@@ -298,24 +302,18 @@ class PaginatedProductGridView extends StatelessWidget {
         children: [
           Icon(
             Icons.local_florist_outlined,
-            size: 80.sp,
-            color: AppColors.gray7D.withValues(alpha: 0.5),
           ),
-          SizedBox(height: 16.h),
+          SizedBox(height: 16),
           Text(
-            'No products found',
-            style: TextStyle(
-              fontSize: 18.sp,
-              fontWeight: FontWeight.w600,
-              color: AppColors.black0C,
+            LocaleKeys.products_no_products.tr(),
+            style: 16.medium.copyWith(
+              color: AppColors.gray7D,
             ),
           ),
-          SizedBox(height: 8.h),
+          SizedBox(height: 8),
           Text(
-            'Try adjusting your filters',
-            style: TextStyle(
-              fontSize: 14.sp,
-              fontWeight: FontWeight.w400,
+            LocaleKeys.products_check_back_later.tr(),
+            style: 14.regular.copyWith(
               color: AppColors.gray7D,
             ),
           ),

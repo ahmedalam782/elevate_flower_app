@@ -13,6 +13,7 @@ class CustomProductGridView extends StatefulWidget {
   final Function(ProductItemEntity)? onAddToCart;
   final int itemsPerPage;
   final ScrollController? scrollController;
+  final Widget? errorWidget;
 
   const CustomProductGridView({
     super.key,
@@ -24,6 +25,7 @@ class CustomProductGridView extends StatefulWidget {
     this.onAddToCart,
     this.itemsPerPage = 10,
     this.scrollController,
+    this.errorWidget,
   });
 
   @override
@@ -93,7 +95,8 @@ class _CustomProductGridViewState extends State<CustomProductGridView> {
     }
 
     if (widget.products.isEmpty && !widget.isLoading) {
-      return _buildEmptyWidget();
+      return widget.errorWidget ??
+          _buildEmptyWidget();
     }
 
     return GridView.builder(
@@ -172,7 +175,7 @@ class _CustomProductGridViewState extends State<CustomProductGridView> {
           ),
           SizedBox(height: 8.h),
           Text(
-            'Try adjusting your filters',
+            'Please check back later.',
             style: TextStyle(
               fontSize: 14.sp,
               fontWeight: FontWeight.w400,

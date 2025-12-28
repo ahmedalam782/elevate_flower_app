@@ -1,4 +1,4 @@
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:elevate_flower_app/core/shared/entities/product_item_entity.dart';
 import 'package:elevate_flower_app/core/shared/widgets/custom_button.dart';
 import 'package:elevate_flower_app/core/theme/app_colors.dart';
@@ -7,6 +7,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:shimmer/shimmer.dart';
+
+import '../../languages/locale_keys.g.dart';
+import 'custom_cached_image.dart';
 
 class CustomProductItem extends StatelessWidget {
   final ProductItemEntity product;
@@ -46,106 +49,53 @@ class CustomProductItem extends StatelessWidget {
         curve: Curves.easeInOut,
         decoration: BoxDecoration(
           color: AppColors.whiteFF,
-          borderRadius: BorderRadius.circular(16.r),
-          boxShadow: [
-            BoxShadow(
-              color: AppColors.black.withValues(alpha: 0.08),
-              blurRadius: 12,
-              offset: const Offset(0, 4),
-            ),
-          ],
+          borderRadius: BorderRadius.circular(8),
+          border: Border.all(color: AppColors.grayA6, width: .5),
         ),
         child: Column(
+          spacing: 8,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Image Container
-            Expanded(
-              flex: 3,
-              child: Container(
-                decoration: BoxDecoration(
-                  color: AppColors.pinkF9,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(16.r),
-                    topRight: Radius.circular(16.r),
-                  ),
-                ),
-                child: Stack(
-                  children: [
-                    // Product Image
-                    Center(
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(16.r),
-                          topRight: Radius.circular(16.r),
-                        ),
-                        child: product.imageUrl != null
-                            ? CachedNetworkImage(
-                                imageUrl: product.imageUrl!,
-                                fit: BoxFit.cover,
-                                width: double.infinity,
-                                height: double.infinity,
-                                placeholder: (context, url) =>
-                                    Shimmer.fromColors(
-                                      baseColor: AppColors.pinkF9,
-                                      highlightColor: AppColors.whiteFF,
-                                      child: Container(color: AppColors.pinkF9),
-                                    ),
-                                errorWidget: (context, url, error) => Container(
-                                  color: AppColors.pinkF9,
-                                  child: Icon(
-                                    Icons.local_florist,
-                                    size: 48.sp,
-                                    color: AppColors.primerColor.withValues(
-                                      alpha: 0.3,
-                                    ),
-                                  ),
-                                ),
-                              )
-                            : Icon(
-                                Icons.local_florist,
-                                size: 48.sp,
-                                color: AppColors.primerColor.withValues(
-                                  alpha: 0.3,
-                                ),
-                              ),
-                      ),
-                    ),
-                  ],
-                ),
+            AnimatedContainer(
+              duration: const Duration(milliseconds: 500),
+              curve: Curves.easeInOut,
+              margin: EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: AppColors.pinkF9,
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: CustomCachedImage(
+                imagePath: product.imageUrl ?? '',
+                height: 160,
               ),
             ),
 
             // Product Details
             Expanded(
-              flex: 2,
               child: Padding(
-                padding: EdgeInsets.all(10.w),
+                padding: const EdgeInsets.symmetric(horizontal: 12),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     // Product Name
                     Text(
                       product.name ?? 'Product',
-                      style: 14.medium.copyWith(color: AppColors.black0C),
+                      style: 12.regular,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
-
-                    // Spacer to push price and button to bottom
-                    const Spacer(),
-
+                    Gap(4),
                     // Price Section with Discount Badge
                     Row(
+                      spacing: 6,
                       children: [
                         // Current Price
                         Text(
-                          'EGP ${hasDiscount ? product.priceAfterDiscount!.toStringAsFixed(0) : product.price?.toStringAsFixed(0) ?? '0'}',
-                          style: 16.bold.copyWith(color: AppColors.black0C),
+                          '${LocaleKeys.products_EGP.tr()} ${hasDiscount ? product.priceAfterDiscount!.toStringAsFixed(0) : product.price?.toStringAsFixed(0) ?? '0'}',
+                          style: 14.medium,
                         ),
-
-                        Gap(6.w),
-
+              
                         if (hasDiscount) ...[
                           // Original Price (strikethrough)
                           Text(
@@ -155,48 +105,29 @@ class CustomProductItem extends StatelessWidget {
                               decoration: TextDecoration.lineThrough,
                             ),
                           ),
-
-                          Gap(6.w),
-
+              
                           // Discount Badge (after price)
-                          Container(
-                            padding: EdgeInsets.symmetric(
-                              horizontal: 6.w,
-                              vertical: 2.h,
-                            ),
-                            decoration: BoxDecoration(
-                              color: AppColors.green0C,
-                              borderRadius: BorderRadius.circular(6.r),
-                            ),
-                            child: Text(
-                              '$discountPercentage%',
-                              style: 11.bold.copyWith(color: AppColors.whiteFF),
-                            ),
+                          Text(
+                            '$discountPercentage%',
+                            style: 12.regular.copyWith(color: AppColors.green0C),
                           ),
                         ],
                       ],
-                    ),
-
-                    Gap(6.h),
-
-                    // Add to Cart Button
-                    SizedBox(
-                      width: double.infinity,
-                      height: 34.h,
-                      child: CustomButton(
-                        onPressed: onAddToCart,
-                        title: 'Add to cart',
-                        titleStyle: 13.semiBold.copyWith(
-                          color: AppColors.whiteFF,
-                        ),
-                        leading: Icon(
-                          Icons.shopping_cart_outlined,
-                          size: 16.sp,
-                          color: AppColors.whiteFF,
-                        ),
-                        isExpanded: true,
+                    ),    
+                    Spacer(),              // Add to Cart Button
+                    CustomButton(
+                      onPressed: onAddToCart,
+                      title: LocaleKeys.products_add_to_cart.tr(),
+                      titleStyle: 13.medium.copyWith(color: AppColors.whiteF9),
+                      height: 30,
+                      padding: EdgeInsets.symmetric(vertical: 0, horizontal: 0),
+                      leading: Icon(
+                        Icons.shopping_cart_outlined,
+                        size: 16,
+                        color: AppColors.whiteF9,
                       ),
                     ),
+                    Gap(12)
                   ],
                 ),
               ),
@@ -261,7 +192,7 @@ class CustomProductItem extends StatelessWidget {
                       width: double.infinity,
                       decoration: BoxDecoration(
                         color: AppColors.whiteFF,
-                        borderRadius: BorderRadius.circular(4.r),
+                        borderRadius: BorderRadius.circular(4),
                       ),
                     ),
 
@@ -277,7 +208,7 @@ class CustomProductItem extends StatelessWidget {
                           width: 80.w,
                           decoration: BoxDecoration(
                             color: AppColors.whiteFF,
-                            borderRadius: BorderRadius.circular(4.r),
+                            borderRadius: BorderRadius.circular(4),
                           ),
                         ),
                         Gap(8.w),
@@ -288,7 +219,7 @@ class CustomProductItem extends StatelessWidget {
                           width: 40.w,
                           decoration: BoxDecoration(
                             color: AppColors.whiteFF,
-                            borderRadius: BorderRadius.circular(4.r),
+                            borderRadius: BorderRadius.circular(4),
                           ),
                         ),
                       ],
@@ -304,7 +235,7 @@ class CustomProductItem extends StatelessWidget {
                       width: double.infinity,
                       decoration: BoxDecoration(
                         color: AppColors.whiteFF,
-                        borderRadius: BorderRadius.circular(12.r),
+                        borderRadius: BorderRadius.circular(12),
                       ),
                     ),
                   ],

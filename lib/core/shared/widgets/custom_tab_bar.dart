@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
+import 'package:shimmer/shimmer.dart';
 
-import '../../theme/app_animations.dart';
+import '../../theme/app_colors.dart';
 import 'animated_tab_item.dart';
 
 class CustomTabBar extends StatelessWidget {
@@ -14,8 +14,10 @@ class CustomTabBar extends StatelessWidget {
     this.itemsPerPage,
     this.scrollController,
     this.isLoadingMore = false,
+    this.isInitialLoading = false,
     this.maxItems = 20,
   });
+
   final List<String> tabList;
   final EdgeInsets? padding;
   final void Function(int) onSelectedItem;
@@ -23,10 +25,16 @@ class CustomTabBar extends StatelessWidget {
   final int? itemsPerPage;
   final ScrollController? scrollController;
   final bool isLoadingMore;
+  final bool isInitialLoading;
   final int maxItems;
 
   @override
   Widget build(BuildContext context) {
+    // Show shimmer tabs during initial loading
+    if (isInitialLoading) {
+      return _buildShimmerTabs();
+    }
+
     final displayCount = itemsPerPage != null && itemsPerPage! > 0
         ? itemsPerPage!.clamp(0, maxItems)
         : tabList.length.clamp(0, maxItems);
@@ -42,18 +50,13 @@ class CustomTabBar extends StatelessWidget {
         controller: scrollController,
         scrollDirection: Axis.horizontal,
         padding: padding ?? const EdgeInsets.symmetric(horizontal: 8),
-        itemCount: displayList.length + (hasMoreItems ? 1 : 0),
+        itemCount: displayList.length + (hasMoreItems && isLoadingMore ? 1 : 0),
         physics: const BouncingScrollPhysics(),
         separatorBuilder: (context, index) => const SizedBox(width: 24),
         itemBuilder: (context, index) {
           if (index == displayList.length) {
-            // Show loading indicator
-            return Center(
-              child: Lottie.asset(
-                AppAnimations.animationsLoadingAnimation,
-                fit: BoxFit.scaleDown,
-              ),
-            );
+            // Show shimmer loading indicator for pagination
+            return _buildShimmerTabItem();
           }
 
           return GestureDetector(
@@ -65,6 +68,57 @@ class CustomTabBar extends StatelessWidget {
             ),
           );
         },
+      ),
+    );
+  }
+
+  Widget _buildShimmerTabs() {
+    return SizedBox(
+      height: 48,
+      child: ListView.separated(
+        scrollDirection: Axis.horizontal,
+        padding: padding ?? const EdgeInsets.symmetric(horizontal: 8),
+        itemCount: 5, // Show 5 shimmer tabs
+        physics: const NeverScrollableScrollPhysics(),
+        separatorBuilder: (context, index) => const SizedBox(width: 24),
+        itemBuilder: (context, index) {
+          return _buildShimmerTabItem();
+        },
+      ),
+    );
+  }
+
+  Widget _buildShimmerTabItem() {
+    return Shimmer.fromColors(
+      baseColor: AppColors.grayCF.withValues(alpha: 0.3),
+      highlightColor: AppColors.whiteFF,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Tab text shimmer
+          Container(
+            height: 35,
+            width: 80,
+            decoration: BoxDecoration(
+              color: AppColors.whiteFF,
+              borderRadius: BorderRadius.circular(8),
+            ),
+          ),
+          const SizedBox(height: 5),
+          // Bottom border shimmer
+          Container(
+            height: 3,
+            width: 80,
+            decoration: BoxDecoration(
+              color: AppColors.whiteFF,
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(100),
+                topRight: Radius.circular(100),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
