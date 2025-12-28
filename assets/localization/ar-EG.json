@@ -177,5 +177,14 @@
     "categories": "التصنيفات",
     "cart": "السلة",
     "profile": "الحساب"
+  },
+  "product_details": {
+    "EGP": "جنيه",
+    "status": "الحالة: ",
+    "in_stock": "متوفر",
+    "all_prices_include_taxes": "كل الأسعار شاملة الضريبة",
+    "description": "الوصف",
+    "bouqet_include": "محتوي باقة الزهور",
+    "add_to_cart": "أضف إلي العربة"
   }
 }

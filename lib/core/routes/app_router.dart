@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:elevate_flower_app/features/product_details/presentation/view/pages/product_details_page.dart';
 import 'package:elevate_flower_app/features/register/presentation/view/pages/register_page.dart';
 
 import 'package:flutter/material.dart';
@@ -12,7 +13,7 @@ import 'routes.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
 final GoRouter router = GoRouter(
-  initialLocation: Routes.splash,
+  initialLocation: Routes.productDetails,
   navigatorKey: navigatorKey,
   routes: [
     _customAnimatedGoRoute(
@@ -38,7 +39,12 @@ final GoRouter router = GoRouter(
     ),
     _customAnimatedGoRoute(
       route: Routes.appLayout,
-      page: (state, context) => MainLayoutPage(
+      page: (state, context) =>
+          MainLayoutPage(key: ValueKey(context.locale.languageCode.toString())),
+    ),
+    _customAnimatedGoRoute(
+      route: Routes.productDetails,
+      page: (state, context) => ProductDetailsPage(
         key: ValueKey(context.locale.languageCode.toString()),
       ),
     ),

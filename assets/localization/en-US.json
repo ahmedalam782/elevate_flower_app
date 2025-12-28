@@ -176,5 +176,14 @@
     "categories": "Categories",
     "cart": "Cart",
     "profile": "Profile"
+  },
+  "product_details": {
+    "EGP": "EGP",
+    "status": "Status: ",
+    "in_stock": "In stock",
+    "all_prices_include_taxes": "All prices include tax",
+    "description": "Description",
+    "bouqet_include": "Bouqet include",
+    "add_to_cart": "Add to cart"
   }
 }
