@@ -26,6 +26,8 @@ class AppIcons {
 
   static const String iconsError = "assets/icons/error.svg";
 
+  static const String iconsFilter = "assets/icons/filter.svg";
+
   static const String iconsHome = "assets/icons/home.svg";
 
   static const String iconsLock = "assets/icons/lock.svg";
