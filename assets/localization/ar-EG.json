@@ -177,5 +177,9 @@
     "categories": "التصنيفات",
     "cart": "السلة",
     "profile": "الحساب"
+  },
+  "occasion":{
+    "occasion_title": "المناسبات",
+    "occasion_hint": "تألّق مع مجموعتنا الراقية من أفضل المبيعات"
   }
 }

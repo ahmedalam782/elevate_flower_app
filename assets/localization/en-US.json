@@ -176,5 +176,10 @@
     "categories": "Categories",
     "cart": "Cart",
     "profile": "Profile"
+  },
+  "occasion":{
+    "occasion_title": "Occasion",
+    "occasion_hint": "Bloom with our exquisite best sellers"
   }
+
 }

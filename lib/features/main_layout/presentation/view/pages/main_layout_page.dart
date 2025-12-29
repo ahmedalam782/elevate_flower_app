@@ -1,9 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:elevate_flower_app/core/languages/locale_keys.g.dart';
+import 'package:elevate_flower_app/core/routes/routes.dart';
 import 'package:elevate_flower_app/core/theme/app_icons.dart';
 import 'package:elevate_flower_app/features/main_layout/presentation/view/widgets/custom_nav_bar.dart';
-import 'package:elevate_flower_app/features/occasions/presentation/view/pages/occasions_page.dart';
-
+import 'package:go_router/go_router.dart';
 import '../../../../../core/shared/widgets/custom_app_bar.dart';
 import '../widgets/nav_bar_item.dart';
 import 'package:flutter/material.dart';
@@ -18,15 +18,24 @@ class MainLayoutPage extends StatefulWidget {
 class _MainLayoutState extends State<MainLayoutPage> {
   late PageController _pageController;
   int selectedIndex = 0;
-  final List<Widget> tabs =  [
-    OccasionsPage(),
-    Container(color: Colors.green),
-    Container(color: Colors.blue),
-    Container(color: Colors.yellow),
-  ];
+  late List<Widget> tabs;
   @override
   void initState() {
     _pageController = PageController(initialPage: selectedIndex);
+    tabs = [
+      Column(
+        children: [
+          ElevatedButton(
+            onPressed: () => context.push(Routes.occasions),
+            child: Text('Refresh'),
+          ),
+          Text('occasions page'),
+        ],
+      ),
+      Column(),
+      Column(),
+      Column(),
+    ];
     super.initState();
   }
 
@@ -39,7 +48,7 @@ class _MainLayoutState extends State<MainLayoutPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:CustomAppBar(title: "Flowery"),
+      appBar: CustomAppBar(title: "Flowery"),
       body: PageView(
         controller: _pageController,
         physics: const NeverScrollableScrollPhysics(),
