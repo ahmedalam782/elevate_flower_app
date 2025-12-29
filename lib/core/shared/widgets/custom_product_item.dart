@@ -15,6 +15,10 @@ class CustomProductItem extends StatelessWidget {
   final ProductItemEntity product;
   final VoidCallback? onTap;
   final VoidCallback? onAddToCart;
+  final VoidCallback? onIncrement;
+  final VoidCallback? onDecrement;
+  final VoidCallback? onRemove;
+  final int quantity;
   final bool isLoading;
 
   const CustomProductItem({
@@ -22,6 +26,10 @@ class CustomProductItem extends StatelessWidget {
     required this.product,
     this.onTap,
     this.onAddToCart,
+    this.onIncrement,
+    this.onDecrement,
+    this.onRemove,
+    this.quantity = 0,
     this.isLoading = false,
   });
 
@@ -95,7 +103,7 @@ class CustomProductItem extends StatelessWidget {
                           '${LocaleKeys.products_EGP.tr()} ${hasDiscount ? product.priceAfterDiscount!.toStringAsFixed(0) : product.price?.toStringAsFixed(0) ?? '0'}',
                           style: 14.medium,
                         ),
-              
+
                         if (hasDiscount) ...[
                           // Original Price (strikethrough)
                           Text(
@@ -105,35 +113,108 @@ class CustomProductItem extends StatelessWidget {
                               decoration: TextDecoration.lineThrough,
                             ),
                           ),
-              
+
                           // Discount Badge (after price)
                           Text(
                             '$discountPercentage%',
-                            style: 12.regular.copyWith(color: AppColors.green0C),
+                            style: 12.regular.copyWith(
+                              color: AppColors.green0C,
+                            ),
                           ),
                         ],
                       ],
-                    ),    
-                    Spacer(),              // Add to Cart Button
-                    CustomButton(
-                      onPressed: onAddToCart,
-                      title: LocaleKeys.products_add_to_cart.tr(),
-                      titleStyle: 13.medium.copyWith(color: AppColors.whiteF9),
-                      height: 30,
-                      padding: EdgeInsets.symmetric(vertical: 0, horizontal: 0),
-                      leading: Icon(
-                        Icons.shopping_cart_outlined,
-                        size: 16,
-                        color: AppColors.whiteF9,
-                      ),
                     ),
-                    Gap(12)
+                    Spacer(),
+
+                    // Add to Cart Button or Quantity Controls
+                    quantity == 0
+                        ? CustomButton(
+                            onPressed: onAddToCart,
+                            title: LocaleKeys.products_add_to_cart.tr(),
+                            titleStyle: 13.medium.copyWith(
+                              color: AppColors.whiteF9,
+                            ),
+                            height: 30,
+                            padding: EdgeInsets.symmetric(
+                              vertical: 0,
+                              horizontal: 0,
+                            ),
+                            leading: Icon(
+                              Icons.shopping_cart_outlined,
+                              size: 16,
+                              color: AppColors.whiteF9,
+                            ),
+                          )
+                        : _buildQuantityControls(),
+                    Gap(12),
                   ],
                 ),
               ),
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _buildQuantityControls() {
+    return Container(
+      height: 30,
+      decoration: BoxDecoration(
+        color: AppColors.primerColor,
+        borderRadius: BorderRadius.circular(15),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          // Decrement Button
+          GestureDetector(
+            onTap: () {
+              if (quantity == 1) {
+                onRemove?.call();
+              } else {
+                onDecrement?.call();
+              }
+            },
+            child: Container(
+              width: 30,
+              height: 30,
+              decoration: BoxDecoration(
+                color: AppColors.primerColor,
+                borderRadius: BorderRadius.circular(15),
+              ),
+              child: Icon(
+                quantity == 1 ? Icons.delete_outline : Icons.remove,
+                color: AppColors.whiteFF,
+                size: 16,
+              ),
+            ),
+          ),
+
+          // Quantity Display
+          Expanded(
+            child: Center(
+              child: Text(
+                '$quantity',
+                style: 13.medium.copyWith(color: AppColors.whiteFF),
+              ),
+            ),
+          ),
+
+          // Increment Button
+          GestureDetector(
+            onTap: onIncrement,
+            child: Container(
+              width: 30,
+              height: 30,
+              decoration: BoxDecoration(
+                color: AppColors.primerColor,
+                borderRadius: BorderRadius.circular(15),
+              ),
+              child: Icon(Icons.add, color: AppColors.whiteFF, size: 16),
+            ),
+          ),
+        ],
       ),
     );
   }

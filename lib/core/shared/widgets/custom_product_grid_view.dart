@@ -1,3 +1,5 @@
+import 'package:easy_localization/easy_localization.dart';
+import 'package:elevate_flower_app/core/languages/locale_keys.g.dart';
 import 'package:elevate_flower_app/core/shared/entities/product_item_entity.dart';
 import 'package:elevate_flower_app/core/shared/widgets/custom_product_item.dart';
 import 'package:elevate_flower_app/core/theme/app_colors.dart';
@@ -11,6 +13,10 @@ class CustomProductGridView extends StatefulWidget {
   final VoidCallback? onLoadMore;
   final Function(ProductItemEntity)? onProductTap;
   final Function(ProductItemEntity)? onAddToCart;
+  final Function(ProductItemEntity)? onIncrement;
+  final Function(ProductItemEntity)? onDecrement;
+  final Function(ProductItemEntity)? onRemove;
+  final int Function(String productId)? getQuantity;
   final int itemsPerPage;
   final ScrollController? scrollController;
   final Widget? errorWidget;
@@ -23,6 +29,10 @@ class CustomProductGridView extends StatefulWidget {
     this.onLoadMore,
     this.onProductTap,
     this.onAddToCart,
+    this.onIncrement,
+    this.onDecrement,
+    this.onRemove,
+    this.getQuantity,
     this.itemsPerPage = 10,
     this.scrollController,
     this.errorWidget,
@@ -95,8 +105,7 @@ class _CustomProductGridViewState extends State<CustomProductGridView> {
     }
 
     if (widget.products.isEmpty && !widget.isLoading) {
-      return widget.errorWidget ??
-          _buildEmptyWidget();
+      return widget.errorWidget ?? _buildEmptyWidget();
     }
 
     return GridView.builder(
@@ -115,10 +124,16 @@ class _CustomProductGridViewState extends State<CustomProductGridView> {
         }
 
         final product = widget.products[index];
+        final quantity = widget.getQuantity?.call(product.id) ?? 0;
+
         return CustomProductItem(
           product: product,
+          quantity: quantity,
           onTap: () => widget.onProductTap?.call(product),
           onAddToCart: () => widget.onAddToCart?.call(product),
+          onIncrement: () => widget.onIncrement?.call(product),
+          onDecrement: () => widget.onDecrement?.call(product),
+          onRemove: () => widget.onRemove?.call(product),
         );
       },
     );
@@ -166,7 +181,7 @@ class _CustomProductGridViewState extends State<CustomProductGridView> {
           ),
           SizedBox(height: 16.h),
           Text(
-            'No products found',
+            LocaleKeys.products_no_products.tr(),
             style: TextStyle(
               fontSize: 18.sp,
               fontWeight: FontWeight.w600,
@@ -175,7 +190,7 @@ class _CustomProductGridViewState extends State<CustomProductGridView> {
           ),
           SizedBox(height: 8.h),
           Text(
-            'Please check back later.',
+            LocaleKeys.products_check_back_later.tr(),
             style: TextStyle(
               fontSize: 14.sp,
               fontWeight: FontWeight.w400,

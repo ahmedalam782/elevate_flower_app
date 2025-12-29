@@ -46,128 +46,110 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: AppColors.whiteFF,
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(24.r),
-          topRight: Radius.circular(24.r),
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Gap(24.h),
+    
+        // Title
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 24.w),
+          child: Align(
+            alignment: AlignmentDirectional.centerStart,
+            child: Text(
+              LocaleKeys.products_sort_by.tr(),
+              style: 20.bold.copyWith(color: AppColors.primerColor),
+            ),
+          ),
         ),
-      ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          // Handle Bar
-          Container(
-            margin: EdgeInsets.only(top: 12.h),
-            width: 40.w,
-            height: 4.h,
-            decoration: BoxDecoration(
-              color: AppColors.grayCF,
-              borderRadius: BorderRadius.circular(2.r),
-            ),
-          ),
-
-          Gap(20.h),
-
-          // Title
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.w),
-            child: Align(
-              alignment: AlignmentDirectional.centerStart,
-              child: Text(
-                LocaleKeys.products_sort_by.tr(),
-                style: 18.bold.copyWith(color: AppColors.primerColor),
-              ),
-            ),
-          ),
-
-          Gap(16.h),
-
-          // Sort Options
-          ...SortOption.values.map((option) {
-            final isSelected = _selectedSort == option;
-            return InkWell(
-              onTap: () {
-                setState(() {
-                  _selectedSort = option;
-                });
-              },
-              child: Container(
-                margin: EdgeInsets.symmetric(horizontal: 20.w, vertical: 6.h),
-                padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
-                decoration: BoxDecoration(
-                  color: AppColors.whiteFF,
-                  borderRadius: BorderRadius.circular(12.r),
-                  border: Border.all(
-                    color: isSelected
-                        ? AppColors.primerColor
-                        : AppColors.grayA6.withValues(alpha: 0.3),
-                    width: 1,
+    
+        Gap(20.h),
+    
+        // Sort Options
+        ...SortOption.values.map((option) {
+          final isSelected = _selectedSort == option;
+          return InkWell(
+            onTap: () {
+              setState(() {
+                _selectedSort = option;
+              });
+            },
+            child: AnimatedContainer(
+              duration: const Duration(milliseconds: 300),
+              curve: Curves.easeInOut,
+              margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              decoration: BoxDecoration(
+                color: AppColors.whiteFF,
+                borderRadius: BorderRadius.circular(12.r),
+                boxShadow:[
+                  BoxShadow(
+                    color: AppColors.black0C.withValues(alpha:0.10),
+                    blurRadius: 5.r,
+                    offset: const Offset(0, 0),
+                    spreadRadius: 0,
                   ),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      _getSortLabel(option),
-                      style: 14.medium.copyWith(
+                ]
+              ),
+              padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 16.h),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    _getSortLabel(option),
+                    style: 16.medium.copyWith(color: AppColors.black0C),
+                  ),
+                  AnimatedContainer(
+                    duration: const Duration(milliseconds: 300),
+                    curve: Curves.easeInOut,
+                    width: 22.w,
+                    height: 22.h,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      border: Border.all(
                         color: isSelected
                             ? AppColors.primerColor
-                            : AppColors.black0C,
+                            : AppColors.grayA6,
+                        width: 2,
                       ),
                     ),
-                    Container(
-                      width: 20.w,
-                      height: 20.h,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        border: Border.all(
-                          color: isSelected
-                              ? AppColors.primerColor
-                              : AppColors.grayA6,
-                          width: 2,
-                        ),
-                      ),
-                      child: isSelected
-                          ? Center(
-                              child: Container(
-                                width: 10.w,
-                                height: 10.h,
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: AppColors.primerColor,
-                                ),
+                    child: isSelected
+                        ? Center(
+                            child: Container(
+                              width: 12.w,
+                              height: 12.h,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: AppColors.primerColor,
                               ),
-                            )
-                          : null,
-                    ),
-                  ],
-                ),
+                            ),
+                          )
+                        : null,
+                  ),
+                ],
               ),
-            );
-          }),
-
-          Gap(24.h),
-
-          // Filter Button
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.w),
-            child: CustomButton(
-              onPressed: () {
-                widget.onApplyFilter?.call(_selectedSort);
-                Navigator.pop(context);
-              },
-              title: LocaleKeys.products_filter.tr(),
-              height: 48.h,
-              radius: 24.r,
-              leading: Icon(Icons.tune, color: AppColors.whiteFF, size: 20.sp),
             ),
+          );
+        }),
+    
+        Gap(32.h),
+    
+        // Filter Button
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 24.w),
+          child: CustomButton(
+            onPressed: () {
+              widget.onApplyFilter?.call(_selectedSort);
+              Navigator.pop(context);
+            },
+            title: LocaleKeys.products_filter.tr(),
+            height: 52.h,
+            radius: 26.r,
+            leading: Icon(Icons.tune, color: AppColors.whiteFF, size: 20.sp),
           ),
-
-          Gap(24.h),
-        ],
-      ),
+        ),
+    
+        Gap(32.h),
+      ],
     );
   }
 }
@@ -180,7 +162,6 @@ Future<void> showFilterBottomSheet({
 }) {
   return showModalBottomSheet(
     context: context,
-    backgroundColor: Colors.transparent,
     isScrollControlled: true,
     builder: (context) => FilterBottomSheet(
       selectedSort: selectedSort,

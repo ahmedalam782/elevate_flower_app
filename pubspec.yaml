@@ -113,21 +113,21 @@ flutter:
 #   field_prefix: null
 #   classname: AppAnimations
 #!=======================ICONS========================
-# flutter_assets:
-#   assets_path: assets/icons
-#   output_path: lib/core/theme
-#   filename: app_icons.dart
-#   ignore_comments: true
-#   field_prefix: null
-#   classname: AppIcons
-#!=======================IMAGES========================
 flutter_assets:
-  assets_path: assets/images
+  assets_path: assets/icons
   output_path: lib/core/theme
-  filename: app_images.dart
+  filename: app_icons.dart
   ignore_comments: true
   field_prefix: null
-  classname: AppImages
+  classname: AppIcons
+#!=======================IMAGES========================
+# flutter_assets:
+#   assets_path: assets/images
+#   output_path: lib/core/theme
+#   filename: app_images.dart
+#   ignore_comments: true
+#   field_prefix: null
+#   classname: AppImages
 #!=======================IMAGES========================
 
 
