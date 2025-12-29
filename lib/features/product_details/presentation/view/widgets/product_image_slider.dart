@@ -5,7 +5,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
 class ProductImageSlider extends StatefulWidget {
-  const ProductImageSlider({super.key});
+  final List<String> images;
+  const ProductImageSlider({super.key, required this.images});
 
   @override
   State<ProductImageSlider> createState() => _ProductImageSliderState();
@@ -28,11 +29,10 @@ class _ProductImageSliderState extends State<ProductImageSlider> {
               print(index);
               setState(() {});
             },
-            itemCount: images.length,
+            itemCount: widget.images.length,
             itemBuilder: (context, index) {
-              print(images[index]);
               return CachedNetworkImage(
-                imageUrl: images[index],
+                imageUrl: widget.images[index],
                 width: 1.sw,
                 height: 450.h,
                 fit: BoxFit.cover,
@@ -63,7 +63,7 @@ class _ProductImageSliderState extends State<ProductImageSlider> {
             child: SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
-                children: List.generate(images.length, (index) {
+                children: List.generate(widget.images.length, (index) {
                   return ImageDotIndicator(isCurrent: currentIndex == index);
                 }),
               ),
@@ -74,13 +74,6 @@ class _ProductImageSliderState extends State<ProductImageSlider> {
     );
   }
 }
-
-List<String> images = [
-  "https://images.unsplash.com/photo-1471899236350-e3016bf1e69e?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  "https://images.unsplash.com/photo-1471899236350-e3016bf1e69e?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  "https://images.unsplash.com/photo-1471899236350-e3016bf1e69e?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  "https://images.unsplash.com/photo-1471899236350-e3016bf1e69e?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-];
 
 // final String dummyImageLink =
 //     "https://images.unsplash.com/photo-1471899236350-e3016bf1e69e?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";

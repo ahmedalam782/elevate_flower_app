@@ -80,7 +80,8 @@
     "rotateRightTooltip": "تدوير لليمين",
     "version": "النسخة",
     "app_name": "زهور",
-    "app_slogan": "أجمل الزهور إلى باب منزلك"
+    "app_slogan": "أجمل الزهور إلى باب منزلك",
+    "try_again": "المحاولة مرة أخري"
   },
   "failures": {
     "server_failure": "فشل في الاتصال بالخادم",

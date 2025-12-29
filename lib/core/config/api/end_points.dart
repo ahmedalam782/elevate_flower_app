@@ -5,6 +5,7 @@ class EndPoints {
   static const String forgetPasswordEndpoint = "/auth/forgotPassword";
   static const String verifyResetEndpoint = "/auth/verifyResetCode";
   static const String resetPasswordEndpoint = "/auth/resetPassword";
+  static const String productsEndpoint = "/products";
 }
 
 class Apikeys {
@@ -12,5 +13,4 @@ class Apikeys {
   static const String refreshToken = 'refreshToken';
   static const String userId = 'userId';
   static const String rememberMe = 'rememberMe';
-
 }

@@ -13,7 +13,7 @@ import 'routes.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
 final GoRouter router = GoRouter(
-  initialLocation: Routes.productDetails,
+  initialLocation: Routes.splash,
   navigatorKey: navigatorKey,
   routes: [
     _customAnimatedGoRoute(
@@ -45,6 +45,7 @@ final GoRouter router = GoRouter(
     _customAnimatedGoRoute(
       route: Routes.productDetails,
       page: (state, context) => ProductDetailsPage(
+        productId: (state.extra as String?) ?? "ss",
         key: ValueKey(context.locale.languageCode.toString()),
       ),
     ),
