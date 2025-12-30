@@ -4,10 +4,10 @@ import 'package:elevate_flower_app/features/occasions/domain/entities/occasion_c
 extension OccasionsMapper on Occasion {
   OccasionCardEntity toEntity() {
     return OccasionCardEntity(
-      id: id,
-      name: name,
-      image: image,
-      productsCount: productsCount,
+      id: id ?? '',
+      name: name ?? '',
+      image: image ?? '',
+      productsCount: productsCount ?? 0,
     );
   }
 }

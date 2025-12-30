@@ -17,6 +17,6 @@ abstract class OccasionsApiClient {
   Future<OccasionModel> getOccasions();
   @GET(EndPoints.getOcccasionFlowers)
   Future<ProductModel> getOccasionFlowers(
-    @Path("occasionId") String occasionId,
+    @Query("occasion") String occasionId,
   );
 }

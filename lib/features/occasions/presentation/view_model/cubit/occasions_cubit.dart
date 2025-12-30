@@ -25,7 +25,6 @@ class OccasionsCubit extends Cubit<OccasionsStates> {
   }
 
   Future<void> _getOccasions() async {
-    log("Getting occasions...");
     emit(state.copyWith(occasions: const BaseState.loading()));
     final result = await _getOccasionsUseCase.call();
     result.when(

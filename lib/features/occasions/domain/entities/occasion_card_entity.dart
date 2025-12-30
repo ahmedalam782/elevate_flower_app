@@ -1,12 +1,12 @@
 class OccasionCardEntity {
-  String? id;
-  String? name;
-  String? image;
-  int? productsCount;
+  String id;
+  String name;
+  String image;
+  int productsCount;
   OccasionCardEntity({
-    this.id,
-    this.name,
-    this.image,
-    this.productsCount,
+   required this.id,
+   required this.name,
+   required this.image,
+   required this.productsCount,
   });
 }
