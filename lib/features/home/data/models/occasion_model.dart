@@ -1,3 +1,4 @@
+import 'package:elevate_flower_app/features/home/domain/entities/occasion_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'occasion_model.g.dart';
@@ -27,4 +28,12 @@ class OccasionModel {
       _$OccasionModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$OccasionModelToJson(this);
+
+
+
+  OccasionEntity toDomain() => OccasionEntity(
+  id: id,
+  name: name,
+  image: image,
+);
 }

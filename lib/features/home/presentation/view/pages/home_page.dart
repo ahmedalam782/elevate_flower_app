@@ -1,3 +1,4 @@
+import 'package:elevate_flower_app/features/home/presentation/view/widgets/home_body.dart';
 import 'package:flutter/material.dart';
     
 class HomePage extends StatelessWidget {
@@ -5,7 +6,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(child: Text('home page')),
+      body:HomeBody(),
     );
   }
 }

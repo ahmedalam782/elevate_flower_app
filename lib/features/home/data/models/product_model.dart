@@ -1,3 +1,4 @@
+import 'package:elevate_flower_app/features/home/domain/entities/product_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'product_model.g.dart';
@@ -49,4 +50,16 @@ class ProductModel {
       _$ProductModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$ProductModelToJson(this);
+
+
+  ProductEntity toDomain() => ProductEntity(
+  id: id,
+  title: title,
+  description: description,
+  imgCover: imgCover,
+  images: images,
+  price: price,
+  priceAfterDiscount: priceAfterDiscount,
+  quantity: quantity,
+);
 }
