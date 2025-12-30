@@ -12,8 +12,7 @@ import 'package:injectable/injectable.dart';
 class HomeCubit extends BaseCubit<HomeStates, HomeEvents, void> {
   final GetHomeDataUsecase _getHomeDataUsecase;
 
-  HomeCubit(this._getHomeDataUsecase)
-      : super(HomeStates.initial());
+  HomeCubit(this._getHomeDataUsecase) : super(HomeStates.initial());
 
   // ================== EVENTS ==================
 
@@ -41,21 +40,50 @@ class HomeCubit extends BaseCubit<HomeStates, HomeEvents, void> {
   // ================== ALL ==================
 
   void _getAllData() async {
-    await Future.wait([
-      _getCategories(),
-      _getBestSeller(),
-      _getOccasions(),
-    ]);
+    emit(
+      state.copyWith(
+        categoryState: const BaseState.loading(),
+        bestSellerState: const BaseState.loading(),
+        occasionState: const BaseState.loading(),
+      ),
+    );
+
+    Result<HomeEntity> res = await _getHomeDataUsecase();
+
+    switch (res) {
+      case Success<HomeEntity>():
+        emit(
+          state.copyWith(
+            categoryState: BaseState.success(res.data?.categories),
+            bestSellerState: BaseState.success(res.data?.bestSeller),
+            occasionState: BaseState.success(res.data?.occasions),
+          ),
+        );
+
+      case Error<HomeEntity>():
+        log(res.exception.toString());
+        emit(
+          state.copyWith(
+            categoryState: BaseState.error(res.exception),
+            bestSellerState: BaseState.error(res.exception),
+            occasionState: BaseState.error(res.exception),
+          ),
+        );
+    }
   }
+
+  // void _getAllData() async {
+  //   await Future.wait([
+  //     _getCategories(),
+  //     _getBestSeller(),
+  //     _getOccasions(),
+  //   ]);
+  // }
 
   // ================== CATEGORIES ==================
 
   Future<void> _getCategories() async {
-    emit(
-      state.copyWith(
-        categoryState: const BaseState.loading(),
-      ),
-    );
+    emit(state.copyWith(categoryState: const BaseState.loading()));
 
     Result<HomeEntity> res = await _getHomeDataUsecase();
 
@@ -69,22 +97,14 @@ class HomeCubit extends BaseCubit<HomeStates, HomeEvents, void> {
 
       case Error<HomeEntity>():
         log(res.exception.toString());
-        emit(
-          state.copyWith(
-            categoryState: BaseState.error(res.exception),
-          ),
-        );
+        emit(state.copyWith(categoryState: BaseState.error(res.exception)));
     }
   }
 
   // ================== BEST SELLER ==================
 
   Future<void> _getBestSeller() async {
-    emit(
-      state.copyWith(
-        bestSellerState: const BaseState.loading(),
-      ),
-    );
+    emit(state.copyWith(bestSellerState: const BaseState.loading()));
 
     Result<HomeEntity> res = await _getHomeDataUsecase();
 
@@ -98,59 +118,29 @@ class HomeCubit extends BaseCubit<HomeStates, HomeEvents, void> {
 
       case Error<HomeEntity>():
         log(res.exception.toString());
-        emit(
-          state.copyWith(
-            bestSellerState: BaseState.error(res.exception),
-          ),
-        );
+        emit(state.copyWith(bestSellerState: BaseState.error(res.exception)));
     }
   }
 
   // ================== OCCASIONS ==================
 
   Future<void> _getOccasions() async {
-    emit(
-      state.copyWith(
-        occasionState: const BaseState.loading(),
-      ),
-    );
+    emit(state.copyWith(occasionState: const BaseState.loading()));
 
     Result<HomeEntity> res = await _getHomeDataUsecase();
 
     switch (res) {
       case Success<HomeEntity>():
         emit(
-          state.copyWith(
-            occasionState: BaseState.success(res.data?.occasions),
-          ),
+          state.copyWith(occasionState: BaseState.success(res.data?.occasions)),
         );
 
       case Error<HomeEntity>():
         log(res.exception.toString());
-        emit(
-          state.copyWith(
-            occasionState: BaseState.error(res.exception),
-          ),
-        );
+        emit(state.copyWith(occasionState: BaseState.error(res.exception)));
     }
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // import 'package:elevate_flower_app/core/config/base_cubit/base_cubit.dart';
 // import 'package:elevate_flower_app/core/config/base_state/base_state.dart';
