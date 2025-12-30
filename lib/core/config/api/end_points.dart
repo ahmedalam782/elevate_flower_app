@@ -6,7 +6,7 @@ class EndPoints {
   static const String verifyResetEndpoint = "/auth/verifyResetCode";
   static const String resetPasswordEndpoint = "/auth/resetPassword";
   static const String getAllOccasions = "/occasions";
-  static const String getOcccasionFlowers = "/products";
+  static const String getAllProducts = "/products";
 }
 
 class Apikeys {
