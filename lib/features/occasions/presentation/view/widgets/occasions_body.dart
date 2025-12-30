@@ -1,11 +1,15 @@
 import 'package:elevate_flower_app/core/config/base_state/base_state.dart';
+import 'package:elevate_flower_app/core/errors/failures.dart';
 import 'package:elevate_flower_app/core/shared/widgets/custom_tab_bar.dart';
+import 'package:elevate_flower_app/core/shared/widgets/custom_toast.dart';
+import 'package:elevate_flower_app/core/shared/widgets/error_page.dart';
 import 'package:elevate_flower_app/core/shared/widgets/paginated_product_grid_view.dart';
 import 'package:elevate_flower_app/features/occasions/presentation/view_model/cubit/occasions_cubit.dart';
 import 'package:elevate_flower_app/features/occasions/presentation/view_model/cubit/occasions_events.dart';
 import 'package:elevate_flower_app/features/occasions/presentation/view_model/cubit/occasions_states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:toastification/toastification.dart';
 
 class OccasionsBody extends StatefulWidget {
   const OccasionsBody({super.key});
@@ -25,13 +29,42 @@ class _OccasionsBodyState extends State<OccasionsBody> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        BlocBuilder<OccasionsCubit, OccasionsStates>(
-          buildWhen: (previous, current) =>
-              previous.occasions != current.occasions,
-          builder: (context, state) {
-            return CustomTabBar(
+    return BlocConsumer<OccasionsCubit, OccasionsStates>(
+      listener: (BuildContext context, OccasionsStates state) {
+        // Handle occasions error
+        if (state.occasions.state == StateType.error) {
+          final error = state.occasions.exception;
+          if (error is Failures) {
+            CustomToast(
+              context: context,
+              header: error.errorMessage,
+              type: ToastificationType.error,
+            ).showToast();
+          }
+        }
+        // Handle products error
+        if (state.productsByOccasion.state == StateType.error) {
+          final error = state.productsByOccasion.exception;
+          if (error is Failures) {
+            CustomToast(
+              context: context,
+              header: error.errorMessage,
+              type: ToastificationType.error,
+            ).showToast();
+          }
+        }
+      },
+      builder: (context, state) {
+        if (state.occasions.state == StateType.error) {
+          return ErrorPage(
+            isConnectionerror: true,
+            onRefresh: () async =>
+                _cubit.doIntent(OccasionsEvents.getOccasions()),
+          );
+        }
+        return Column(
+          children: [
+            CustomTabBar(
               isInitialLoading: state.occasions.state == StateType.loading,
               itemsPerPage: state.occasions.data?.length ?? 0,
               tabList:
@@ -51,24 +84,20 @@ class _OccasionsBodyState extends State<OccasionsBody> {
                 );
               },
               selectedIndex: _selectedIndex,
-            );
-          },
-        ),
-        SizedBox(
-          height: MediaQuery.sizeOf(context).height * 0.80,
-          child: BlocBuilder<OccasionsCubit, OccasionsStates>(
-            buildWhen: (previous, current) =>
-                previous.productsByOccasion != current.productsByOccasion,
-            builder: (context, state) {
-              return PaginatedProductGridView(
+            ),
+            SizedBox(
+              height: MediaQuery.sizeOf(context).height - 160,
+              child: PaginatedProductGridView(
                 key: ValueKey(_selectedIndex),
-                isLoading: state.productsByOccasion.state == StateType.loading,
+                isLoading:
+                    state.productsByOccasion.state == StateType.loading ||
+                    state.occasions.state == StateType.loading,
                 products: state.productsByOccasion.data ?? [],
-              );
-            },
-          ),
-        ),
-      ],
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
 }

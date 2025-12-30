@@ -42,6 +42,7 @@ class OccasionsCubit extends Cubit<OccasionsStates> {
     selectedOccasionId = occasionId;
     emit(state.copyWith(productsByOccasion: const BaseState.loading()));
     final result = await _getProductsByOccasionUseCase.call(occasionId);
+    if (occasionId != selectedOccasionId) return;
     result.when(
       success: (data) {
         emit(state.copyWith(productsByOccasion: BaseState.success(data)));
