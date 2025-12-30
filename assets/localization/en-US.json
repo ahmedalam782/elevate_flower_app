@@ -176,5 +176,19 @@
     "categories": "Categories",
     "cart": "Cart",
     "profile": "Profile"
+  },
+  "products": {
+    "no_products": "No products found",
+    "check_back_later": "Please check back later",
+    "EGP": "EGP",
+    "add_to_cart": "Add to cart",
+    "search": "Search",
+    "filter": "Filter",
+    "sort_by": "Sort by",
+    "lowest_price": "Lowest price",
+    "highest_price": "Highest price",
+    "new": "New",
+    "old": "Old",
+    "discount": "Discount"
   }
 }
