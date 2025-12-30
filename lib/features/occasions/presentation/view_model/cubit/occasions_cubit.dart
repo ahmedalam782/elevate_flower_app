@@ -30,7 +30,9 @@ class OccasionsCubit extends Cubit<OccasionsStates> {
     result.when(
       success: (data) {
         emit(state.copyWith(occasions: BaseState.success(data)));
-        _getFlowersByOccasion(data?.first.id ?? '');
+        if (data != null && data.isNotEmpty) {
+          _getFlowersByOccasion(data.first.id);
+        }
       },
       error: (exception) {
         emit(state.copyWith(occasions: BaseState.error(exception)));
