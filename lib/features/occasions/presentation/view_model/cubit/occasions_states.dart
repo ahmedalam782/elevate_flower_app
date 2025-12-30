@@ -1,11 +1,11 @@
 import 'package:elevate_flower_app/core/config/base_state/base_state.dart';
+import 'package:elevate_flower_app/core/shared/entities/product_item_entity.dart';
 import 'package:elevate_flower_app/features/occasions/domain/entities/occasion_card_entity.dart';
-import 'package:elevate_flower_app/features/occasions/domain/entities/product_card_entity.dart';
 import 'package:equatable/equatable.dart';
 
 class OccasionsStates extends Equatable {
   final BaseState<List<OccasionCardEntity>> occasions;
-  final BaseState<List<ProductCardEntity>> productsByOccasion;
+  final BaseState<List<ProductItemEntity>> productsByOccasion;
   const OccasionsStates({
     this.occasions = const BaseState.initial(),
     this.productsByOccasion = const BaseState.initial(),
@@ -15,7 +15,7 @@ class OccasionsStates extends Equatable {
   List<Object> get props => [occasions, productsByOccasion];
   OccasionsStates copyWith({
     BaseState<List<OccasionCardEntity>>? occasions,
-    BaseState<List<ProductCardEntity>>? productsByOccasion,
+    BaseState<List<ProductItemEntity>>? productsByOccasion,
   }) => OccasionsStates(
     occasions: occasions ?? this.occasions,
     productsByOccasion: productsByOccasion ?? this.productsByOccasion,

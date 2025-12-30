@@ -1,33 +1,56 @@
+import 'package:elevate_flower_app/core/theme/app_colors.dart';
+import 'package:elevate_flower_app/core/theme/app_typography.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class OccasionsAppBar extends StatelessWidget {
-  const OccasionsAppBar({super.key, required this.title, required this.subTitle});
+  const OccasionsAppBar({
+    super.key,
+    required this.title,
+    required this.subTitle,
+  });
   final String title;
   final String subTitle;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              Icon(Icons.arrow_back_ios_new, size: 20),
-              const SizedBox(width: 8),
-              Text(
-                title,
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+      padding: EdgeInsets.only(
+        top: MediaQuery.of(context).padding.top + 16,
+        bottom: 16,
+        left: 14,
+        right: 14,
+      ),
+      child: SizedBox(
+        height: 44,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            InkWell(
+              onTap: () => context.pop(),
+              child: const Icon(
+                Icons.arrow_back_ios_new,
+                size: 22,
+                fontWeight: FontWeight.w500,
               ),
-            ],
-          ),
-          const SizedBox(height: 6),
-          Text(
-            subTitle,
-            style: TextStyle(fontSize: 14, color: Colors.grey),
-          ),
-        ],
+            ),
+            const SizedBox(width: 8),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(title, style: 20.medium.copyWith(height: 1.2)),
+                const SizedBox(height: 4),
+                Text(
+                  subTitle,
+                  style: 13.regular.copyWith(
+                    color: AppColors.gray53,
+                    height: 1.2,
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

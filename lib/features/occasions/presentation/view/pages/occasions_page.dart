@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:elevate_flower_app/core/config/di/injectable_config.dart';
 import 'package:elevate_flower_app/core/languages/locale_keys.g.dart';
 import 'package:elevate_flower_app/features/occasions/presentation/view/widgets/occasions_app_bar.dart';
+import 'package:elevate_flower_app/features/occasions/presentation/view/widgets/occasions_body.dart';
 import 'package:elevate_flower_app/features/occasions/presentation/view_model/cubit/occasions_cubit.dart';
 import 'package:elevate_flower_app/features/occasions/presentation/view_model/cubit/occasions_events.dart';
 import 'package:elevate_flower_app/features/occasions/presentation/view_model/cubit/occasions_states.dart';
@@ -24,21 +25,17 @@ class _OccasionsPageState extends State<OccasionsPage> {
       child: BlocBuilder<OccasionsCubit, OccasionsStates>(
         builder: (context, state) {
           return Scaffold(
-            body: Center(
-              child: Column(
-                children: [
-                  OccasionsAppBar(
-                    title: LocaleKeys.occasion_occasion_title.tr(),
-                    subTitle: LocaleKeys.occasion_occasion_hint.tr(),
-                  ),
-                  ElevatedButton(
-                    onPressed: () =>
-                        _viewModel.doIntent(OccasionsEvents.getOccasions()),
-                    child: Text('Refresh'),
-                  ),
-                  Text('occasions page'),
-                ],
-              ),
+            body: Column(
+              children: [
+                OccasionsAppBar(
+                  title: LocaleKeys.occasion_occasion_title.tr(),
+                  subTitle: LocaleKeys.occasion_occasion_hint.tr(),
+                ),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 14.0),
+                  child: OccasionsBody(),
+                ),
+              ],
             ),
           );
         },

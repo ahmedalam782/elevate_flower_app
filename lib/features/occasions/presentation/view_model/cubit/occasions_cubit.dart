@@ -14,7 +14,7 @@ class OccasionsCubit extends Cubit<OccasionsStates> {
   final GetOccasionsUseCase _getOccasionsUseCase;
   final GetProductsByOccasionUseCase _getProductsByOccasionUseCase;
   OccasionsCubit(this._getOccasionsUseCase, this._getProductsByOccasionUseCase)
-    : super(OccasionsStates());
+    : super(const OccasionsStates());
 
   void doIntent(OccasionsEvents event) {
     log(event.toString());
@@ -26,7 +26,7 @@ class OccasionsCubit extends Cubit<OccasionsStates> {
 
   Future<void> _getOccasions() async {
     log("Getting occasions...");
-    emit(state.copyWith(occasions: BaseState.loading()));
+    emit(state.copyWith(occasions: const BaseState.loading()));
     final result = await _getOccasionsUseCase.call();
     result.when(
       success: (data) {
@@ -41,7 +41,7 @@ class OccasionsCubit extends Cubit<OccasionsStates> {
 
   Future<void> _getFlowersByOccasion(String occasionId) async {
     selectedOccasionId = occasionId;
-    emit(state.copyWith(productsByOccasion: BaseState.loading()));
+    emit(state.copyWith(productsByOccasion: const BaseState.loading()));
     final result = await _getProductsByOccasionUseCase.call(occasionId);
     result.when(
       success: (data) {

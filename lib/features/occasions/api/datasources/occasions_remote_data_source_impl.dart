@@ -1,6 +1,4 @@
-import 'dart:developer';
-
-import 'package:dio/dio.dart';
+import 'package:elevate_flower_app/core/config/api/api_executer.dart';
 import 'package:elevate_flower_app/core/config/base_response/result.dart';
 import 'package:elevate_flower_app/features/occasions/api/api_client/occasions_api_client.dart';
 import 'package:elevate_flower_app/features/occasions/data/datasources/occasions_remote_data_source_contract.dart';
@@ -16,27 +14,13 @@ class OccasionsRemoteDataSourceImpl
 
   @override
   Future<Result<OccasionModel>> getAllOccasions() async {
-    try {
-      log('Fetching occasions from remote data source');
-      final response = await occasionsApiClient.getOccasions();
-      log('Occasions response: $response');
-      return Success<OccasionModel>(data: response);
-    } on DioException catch (e) {
-      return Error<OccasionModel>(exception: e);
-    } on Exception catch (e) {
-      return Error<OccasionModel>(exception: e);
-    }
+    return await executeApi(() => occasionsApiClient.getOccasions());
   }
 
   @override
   Future<Result<ProductModel>> getOccasionFlowers(String occasionId) async {
-    try {
-      final response = await occasionsApiClient.getOccasionFlowers(occasionId);
-      return Success<ProductModel>(data: response);
-    } on DioException catch (e) {
-      return Error<ProductModel>(exception: e);
-    } on Exception catch (e) {
-      return Error<ProductModel>(exception: e);
-    }
+    return await executeApi(
+      () => occasionsApiClient.getOccasionFlowers(occasionId),
+    );
   }
 }
