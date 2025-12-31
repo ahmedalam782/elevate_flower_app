@@ -94,7 +94,10 @@ class _LoginViewState extends State<LoginView> {
                               MaterialTapTargetSize.shrinkWrap,
                           visualDensity: VisualDensity.compact,
                         ),
-                        Text(LocaleKeys.login_remember_me.tr(), style: 14.regular),
+                        Text(
+                          LocaleKeys.login_remember_me.tr(),
+                          style: 14.regular,
+                        ),
                       ],
                     ),
 
@@ -140,7 +143,9 @@ class _LoginViewState extends State<LoginView> {
                         CustomToast(
                           context: context,
                           header: LocaleKeys.global_error.tr(),
-                          description: LocaleKeys.login_Invalid_email_or_password.tr(),
+                          description: LocaleKeys
+                              .login_Invalid_email_or_password
+                              .tr(),
                           type: ToastificationType.error,
                         ).showToast();
                       },
