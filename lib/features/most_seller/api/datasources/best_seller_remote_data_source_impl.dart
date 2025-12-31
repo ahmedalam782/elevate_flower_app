@@ -3,7 +3,9 @@ import 'package:elevate_flower_app/core/config/base_response/result.dart';
 import 'package:elevate_flower_app/features/most_seller/api/api_client/best_seller_api_client.dart';
 import 'package:elevate_flower_app/features/most_seller/data/datasources/best_seller_remote_data_source_contract.dart';
 import 'package:elevate_flower_app/features/most_seller/data/models/best_seller_response_model.dart';
+import 'package:injectable/injectable.dart';
 
+@Injectable(as: BestSellerRemoteDataSourceContract)
 class BestSellerRemoteDataSourceImpl
     implements BestSellerRemoteDataSourceContract {
   const BestSellerRemoteDataSourceImpl(this._apiClient);
