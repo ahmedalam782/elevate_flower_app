@@ -72,13 +72,7 @@ class HomeCubit extends BaseCubit<HomeStates, HomeEvents, void> {
     }
   }
 
-  // void _getAllData() async {
-  //   await Future.wait([
-  //     _getCategories(),
-  //     _getBestSeller(),
-  //     _getOccasions(),
-  //   ]);
-  // }
+
 
   // ================== CATEGORIES ==================
 

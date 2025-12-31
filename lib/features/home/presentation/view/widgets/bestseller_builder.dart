@@ -4,31 +4,36 @@ import 'package:elevate_flower_app/features/home/presentation/view_model/cubit/h
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class OccasionWidget extends StatelessWidget {
-  const OccasionWidget({super.key});
+class BestsellerBuilder extends StatelessWidget {
+  const BestsellerBuilder({super.key});
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<HomeCubit, HomeStates>(
-      buildWhen: (prev, curr) => prev.occasionState != curr.occasionState,
+      buildWhen: (prev, curr) => prev.bestSellerState != curr.bestSellerState,
       builder: (context, state) {
-        return state.occasionState.when(
+        return state.bestSellerState.when(
           initial: () => const SizedBox.shrink(),
 
           loading: () => const Center(child: CircularProgressIndicator()),
 
           error: (error) => Center(child: Text(error.toString())),
 
-          success: (occasions) {
+          success: (products) {
             return SizedBox(
-              height: 160,
+              height: 220,
               child: ListView.separated(
                 scrollDirection: Axis.horizontal,
-                itemCount: occasions.length,
+                itemCount: products.length,
                 separatorBuilder: (_, __) => const SizedBox(width: 12),
                 itemBuilder: (context, index) {
-                  final occasion = occasions[index];
-                  return ProductItem(imageUrl: occasion.image, name: occasion.name,);
+                  final item = products[index];
+
+                  return ProductItem(
+                    imageUrl: item.imgCover,
+                    name: item.title,
+                    price: item.price,
+                  );
                 },
               ),
             );
@@ -38,18 +43,3 @@ class OccasionWidget extends StatelessWidget {
     );
   }
 }
-
-// Column(
-//                     children: [
-//                       SizedBox(
-//                         height: 120,
-//                         width: 160,
-//                         child: Image.network(
-//                           occasion.image ?? '',
-//                           fit: BoxFit.cover,
-//                         ),
-//                       ),
-//                       const SizedBox(height: 6),
-//                       Text(occasion.name ?? ''),
-//                     ],
-//                   );

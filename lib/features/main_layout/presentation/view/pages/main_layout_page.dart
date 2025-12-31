@@ -39,7 +39,7 @@ class _MainLayoutState extends State<MainLayoutPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(title: "Flowery"),
+      // appBar: CustomAppBar(title: "Flowery"),
       body: PageView(
         controller: _pageController,
         physics: const NeverScrollableScrollPhysics(),
