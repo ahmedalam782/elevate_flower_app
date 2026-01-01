@@ -18,5 +18,7 @@ abstract class CategoriesApiClient {
   Future<CategoryResponseModel> getallCategories();
 
   @GET(EndPoints.allproducts)
-  Future<ProductsResponseModels> getallproducts();
+  Future<ProductsResponseModels> getallproducts(
+    @Query("category") String categoryId,
+  );
 }

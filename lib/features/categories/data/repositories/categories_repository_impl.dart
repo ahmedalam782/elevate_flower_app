@@ -14,8 +14,8 @@ class CategoriesRepositoryImpl implements CategoriesRepository {
   CategoriesRepositoryImpl({required this.remoteDataSource});
 
   @override
-  Future<Result<List<CategoryEntity>>> getCategories() async {
-    final result = await remoteDataSource.getCategories();
+  Future<Result<List<CategoryEntity>>> getallCategories() async {
+    final result = await remoteDataSource.getallCategories();
 
     return result.when(
       success: (data) {
@@ -29,8 +29,8 @@ class CategoriesRepositoryImpl implements CategoriesRepository {
   }
 
   @override
-  Future<Result<List<ProductEntity>>> getProducts() async {
-    final result = await remoteDataSource.getProducts();
+  Future<Result<List<ProductEntity>>> getallproducts(String categoryId) async {
+    final result = await remoteDataSource.getallproducts(categoryId);
 
     return result.when(
       success: (data) {

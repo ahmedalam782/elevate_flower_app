@@ -14,18 +14,20 @@ class CategoriesRemoteDataSourceImpl
   CategoriesRemoteDataSourceImpl({required this.apiClient});
 
   @override
-  Future<Result<CategoryResponseModel>> getCategories() async {
-    return await executeApi<CategoryResponseModel>(() async {
+  Future<Result<CategoryResponseModel>> getallCategories() async {
+    return await executeApi(() async {
       final response = await apiClient.getallCategories();
       return response;
     });
   }
 
   @override
-  Future<Result<ProductsResponseModels>> getProducts() async {
-    return await executeApi<ProductsResponseModels>(() async {
-      final response = await apiClient.getallproducts();
+  Future<Result<ProductsResponseModels>> getallproducts(String categoryId) async {
+    return await executeApi(() async {
+      final response = await apiClient.getallproducts(categoryId);
       return response;
     });
   }
+  
+
 }

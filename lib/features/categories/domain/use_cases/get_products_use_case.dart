@@ -9,11 +9,7 @@ class GetProductsUseCase {
 
   GetProductsUseCase({required this.repository});
 
-  /// Execute the use case
-  Future<Result<List<ProductEntity>>> execute() async {
-    return await repository.getProducts();
+  Future<Result<List<ProductEntity>>> call(String categoryId) async {
+    return await repository.getallproducts(categoryId);
   }
-
-  /// Shorthand call method
-  Future<Result<List<ProductEntity>>> call() => execute();
 }

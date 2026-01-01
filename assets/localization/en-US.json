@@ -190,5 +190,11 @@
     "new": "New",
     "old": "Old",
     "discount": "Discount"
+  },
+  "categories":{
+    "error_loading_categories": "Error loading categories",
+    "select_a_category": "Select a category",
+    "error_loading_products": "Error loading products",
+    "category_filter_buttom_text": "Filter"
   }
 }

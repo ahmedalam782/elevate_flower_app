@@ -1,9 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:elevate_flower_app/core/languages/locale_keys.g.dart';
 import 'package:elevate_flower_app/core/theme/app_icons.dart';
+import 'package:elevate_flower_app/features/categories/presentation/view/pages/categories_page.dart';
 import 'package:elevate_flower_app/features/main_layout/presentation/view/widgets/custom_nav_bar.dart';
 
-import '../../../../../core/shared/widgets/custom_app_bar.dart';
 import '../widgets/nav_bar_item.dart';
 import 'package:flutter/material.dart';
 
@@ -17,9 +17,9 @@ class MainLayoutPage extends StatefulWidget {
 class _MainLayoutState extends State<MainLayoutPage> {
   late PageController _pageController;
   int selectedIndex = 0;
-  final List<Widget> tabs =  [
+  final List<Widget> tabs = [
     Column(),
-    Container(color: Colors.green),
+    CategoriesPage(),
     Container(color: Colors.blue),
     Container(color: Colors.yellow),
   ];
@@ -38,7 +38,6 @@ class _MainLayoutState extends State<MainLayoutPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:CustomAppBar(title: "Flowery"),
       body: PageView(
         controller: _pageController,
         physics: const NeverScrollableScrollPhysics(),

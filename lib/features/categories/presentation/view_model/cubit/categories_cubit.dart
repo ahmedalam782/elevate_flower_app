@@ -1,108 +1,94 @@
-import 'dart:developer';
-
-import 'package:elevate_flower_app/core/config/base_response/result.dart';
-import 'package:elevate_flower_app/core/config/base_state/base_cubit.dart';
 import 'package:elevate_flower_app/core/config/base_state/base_state.dart';
-import 'package:elevate_flower_app/features/categories/domain/entities/category_entity.dart';
-import 'package:elevate_flower_app/features/categories/domain/entities/product_entity.dart';
 import 'package:elevate_flower_app/features/categories/domain/use_cases/get_categories_use_case.dart';
 import 'package:elevate_flower_app/features/categories/domain/use_cases/get_products_use_case.dart';
 import 'package:elevate_flower_app/features/categories/presentation/view_model/cubit/categories_events.dart';
 import 'package:elevate_flower_app/features/categories/presentation/view_model/cubit/categories_states.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
-class CategoriesCubit extends BaseCubit<CategoriesStates, CategoriesEvents, void> {
-  final GetCategoriesUseCase _getCategoriesUseCase;
-  final GetProductsUseCase _getProductsUseCase;
+class CategoriesCubit extends Cubit<CategoriesStates> {
+  final GetCategoriesUseCase getCategoriesUseCase;
+  final GetProductsUseCase getProductsUseCase;
 
-  CategoriesCubit(
-    this._getCategoriesUseCase,
-    this._getProductsUseCase,
-  ) : super(CategoriesStates.initial());
+  CategoriesCubit({
+    required this.getCategoriesUseCase,
+    required this.getProductsUseCase,
+  }) : super(const CategoriesStates());
 
-  // ================== EVENTS ==================
-
-  @override
-  Future<void> doAction(CategoriesEvents event) async {
+  void onEvent(CategoriesEvents event) {
     switch (event) {
       case GetCategoriesEvent():
-        await _getCategories();
+        _getCategories();
         break;
-
       case GetProductsEvent():
-        await _getProducts();
+        _getProducts(event.categoryId);
         break;
-
       case GetAllDataEvent():
-        await _getAllData();
-        break;
-
-      case FilterProductsByCategoryEvent():
-        _filterProductsByCategory(event.categoryId);
+        _getAllData();
         break;
     }
   }
-
-  // ================== CATEGORIES ==================
 
   Future<void> _getCategories() async {
     emit(
       state.copyWith(
         categoriesState: const BaseState.loading(),
+        productsState: state.productsOfCategory,
       ),
     );
 
-    Result<List<CategoryEntity>> result = await _getCategoriesUseCase();
+    final result = await getCategoriesUseCase.call();
 
-    switch (result) {
-      case Success<List<CategoryEntity>>():
+    result.when(
+      success: (categories) {
         emit(
           state.copyWith(
-            categoriesState: BaseState.success(result.data ?? []),
+            categoriesState: BaseState.success(categories),
+            productsState: state.productsOfCategory,
           ),
         );
-
-      case Error<List<CategoryEntity>>():
-        log('Categories Error: ${result.exception}');
+      },
+      error: (exception) {
         emit(
           state.copyWith(
-            categoriesState: BaseState.error(result.exception),
+            categoriesState: BaseState.error(exception),
+            productsState: state.productsOfCategory,
           ),
         );
-    }
+      },
+    );
   }
 
-  // ================== PRODUCTS ==================
-
-  Future<void> _getProducts() async {
+  Future<void> _getProducts(String categoryId) async {
     emit(
       state.copyWith(
+        categoriesState: state.category,
         productsState: const BaseState.loading(),
       ),
     );
 
-    Result<List<ProductEntity>> result = await _getProductsUseCase();
+    final result = await getProductsUseCase.call(categoryId);
 
-    switch (result) {
-      case Success<List<ProductEntity>>():
+    result.when(
+      success: (products) {
         emit(
           state.copyWith(
-            productsState: BaseState.success(result.data ?? []),
+            categoriesState: state.category,
+            productsState: BaseState.success(products),
           ),
         );
-
-      case Error<List<ProductEntity>>():
-        log('Products Error: ${result.exception}');
+      },
+      error: (exception) {
         emit(
           state.copyWith(
-            productsState: BaseState.error(result.exception),
+            categoriesState: state.category,
+            productsState: BaseState.error(exception),
           ),
         );
-    }
+      },
+    );
   }
-
-  // ================== ALL DATA ==================
 
   Future<void> _getAllData() async {
     emit(
@@ -112,29 +98,50 @@ class CategoriesCubit extends BaseCubit<CategoriesStates, CategoriesEvents, void
       ),
     );
 
-    await Future.wait([
-      _getCategories(),
-      _getProducts(),
-    ]);
-  }
+    final categoriesResult = await getCategoriesUseCase.call();
+    final productsResult = await getProductsUseCase.call('');
 
-  // ================== FILTER ==================
-
-  void _filterProductsByCategory(String categoryId) {
-    emit(
-      state.copyWith(
-        selectedCategoryId: categoryId,
-      ),
-    );
-  }
-
-  // ================== CLEAR FILTER ==================
-
-  void clearFilter() {
-    emit(
-      state.copyWith(
-        selectedCategoryId: null,
-      ),
+    categoriesResult.when(
+      success: (categories) {
+        productsResult.when(
+          success: (products) {
+            emit(
+              state.copyWith(
+                categoriesState: BaseState.success(categories),
+                productsState: BaseState.success(products),
+              ),
+            );
+          },
+          error: (exception) {
+            emit(
+              state.copyWith(
+                categoriesState: BaseState.success(categories),
+                productsState: BaseState.error(exception),
+              ),
+            );
+          },
+        );
+      },
+      error: (exception) {
+        productsResult.when(
+          success: (products) {
+            emit(
+              state.copyWith(
+                categoriesState: BaseState.error(exception),
+                productsState: BaseState.success(products),
+              ),
+            );
+          },
+          error: (productsException) {
+            emit(
+              state.copyWith(
+                categoriesState: BaseState.error(exception),
+                productsState: BaseState.error(productsException),
+              ),
+            );
+          },
+        );
+      },
     );
   }
 }
