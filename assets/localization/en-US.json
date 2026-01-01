@@ -190,5 +190,9 @@
     "new": "New",
     "old": "Old",
     "discount": "Discount"
+  },
+  "best_seller":{
+    "best_seller": "Best Seller",
+    "caption": "Bloom with our exquisite best sellers"
   }
 }
