@@ -15,7 +15,7 @@ class BestSellerCubit extends Cubit<BestSellerStates> {
     event.when(getBestSellerProducts: _getBestSellerProducts);
   }
 
-  Future<void> _getBestSellerProducts() async {
+  void _getBestSellerProducts() async {
     emit(state.copyWith(getMostSellerState: const BaseState.loading()));
     final result = await _getBestSellerProductsUseCase();
     result.when(
