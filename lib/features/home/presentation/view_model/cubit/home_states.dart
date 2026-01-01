@@ -34,37 +34,3 @@ class HomeStates {
     );
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-// import 'package:elevate_flower_app/core/config/base_state/base_state.dart';
-// import 'package:elevate_flower_app/features/home/data/models/product_model.dart';
-// import 'package:elevate_flower_app/features/home/domain/entities/category_entity.dart';
-// import 'package:elevate_flower_app/features/home/domain/entities/occasion_entity.dart';
-// import 'package:elevate_flower_app/features/home/domain/entities/product_entity.dart';
-
-// class HomeStates {
-//   BaseState<List<CategoryEntity>>? categoryState;
-//   BaseState<List<ProductEntity>>? bestSellerState;
-//   BaseState<List<OccasionEntity>>? occasionState;
-//   HomeStates({this.bestSellerState, this.categoryState, this.occasionState});
-//   HomeStates copyWith({
-//     BaseState<List<CategoryEntity>>? categoryStatePram,
-//     BaseState<List<ProductEntity>>? bestSellerStatePram,
-//     BaseState<List<OccasionEntity>>? occasionStatePram,
-//   }) {
-//     return HomeStates(
-//       categoryState: categoryStatePram ?? categoryState,
-//       bestSellerState: bestSellerStatePram ?? bestSellerState,
-//       occasionState: occasionStatePram ?? occasionState,
-//     );
-//   }
-// }

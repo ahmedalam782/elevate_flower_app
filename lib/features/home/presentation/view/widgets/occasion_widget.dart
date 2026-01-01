@@ -38,18 +38,3 @@ class OccasionWidget extends StatelessWidget {
     );
   }
 }
-
-// Column(
-//                     children: [
-//                       SizedBox(
-//                         height: 120,
-//                         width: 160,
-//                         child: Image.network(
-//                           occasion.image ?? '',
-//                           fit: BoxFit.cover,
-//                         ),
-//                       ),
-//                       const SizedBox(height: 6),
-//                       Text(occasion.name ?? ''),
-//                     ],
-//                   );

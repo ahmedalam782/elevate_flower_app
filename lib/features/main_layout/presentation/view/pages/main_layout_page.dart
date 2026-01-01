@@ -4,7 +4,6 @@ import 'package:elevate_flower_app/core/theme/app_icons.dart';
 import 'package:elevate_flower_app/features/home/presentation/view/pages/home_page.dart';
 import 'package:elevate_flower_app/features/main_layout/presentation/view/widgets/custom_nav_bar.dart';
 
-import '../../../../../core/shared/widgets/custom_app_bar.dart';
 import '../widgets/nav_bar_item.dart';
 import 'package:flutter/material.dart';
 
