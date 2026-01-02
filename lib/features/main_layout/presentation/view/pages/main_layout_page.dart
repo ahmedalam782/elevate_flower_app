@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:elevate_flower_app/core/languages/locale_keys.g.dart';
+import 'package:elevate_flower_app/core/routes/routes.dart';
 import 'package:elevate_flower_app/core/theme/app_icons.dart';
 import 'package:elevate_flower_app/features/home/presentation/view/pages/home_page.dart';
 import 'package:elevate_flower_app/features/main_layout/presentation/view/widgets/custom_nav_bar.dart';
@@ -26,6 +27,7 @@ class _MainLayoutState extends State<MainLayoutPage> {
   @override
   void initState() {
     _pageController = PageController(initialPage: selectedIndex);
+
     super.initState();
   }
 

@@ -12,6 +12,8 @@ class EndPoints {
   static const String allProducts = "/products";
   static const String homeEndpoint = "/home";
 
+  static const String getAllOccasions = "/occasions";
+  static const String getAllProducts = "/products";
 }
 
 class Apikeys {

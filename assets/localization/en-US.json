@@ -180,13 +180,12 @@
 
   "home_screen": {
     "home_title": "Flowery",
-    "temp_location":"Deliver to 2XVP+XC - Sheikh Zayed",
-    "view_all":"View All",
-    "categories_title":"Categories",
-    "best_seller_title":"Best seller",
-    "occasion_title":"Occasion"
-},
-
+    "temp_location": "Deliver to 2XVP+XC - Sheikh Zayed",
+    "view_all": "View All",
+    "categories_title": "Categories",
+    "best_seller_title": "Best seller",
+    "occasion_title": "Occasion"
+  },
 
   "products": {
     "no_products": "No products found",
@@ -202,15 +201,19 @@
     "old": "Old",
     "discount": "Discount"
   },
-  "best_seller":{
+  "best_seller": {
     "best_seller": "Best Seller",
     "caption": "Bloom with our exquisite best sellers"
   },
 
-  "categories":{
+  "categories": {
     "error_loading_categories": "Error loading categories",
     "select_a_category": "Select a category",
     "error_loading_products": "Error loading products",
     "category_filter_buttom_text": "Filter"
+  },
+  "occasion": {
+    "occasion_title": "Occasion",
+    "occasion_hint": "Bloom with our exquisite best sellers"
   }
 }
