@@ -202,6 +202,11 @@
     "old": "Old",
     "discount": "Discount"
   },
+  "best_seller":{
+    "best_seller": "Best Seller",
+    "caption": "Bloom with our exquisite best sellers"
+  },
+
   "categories":{
     "error_loading_categories": "Error loading categories",
     "select_a_category": "Select a category",

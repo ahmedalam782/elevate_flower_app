@@ -200,10 +200,15 @@
     "old": "قديم",
     "discount": "خصم"
   },
+    "best_seller":{
+    "best_seller": "المنتجات المميزة",
+    "caption": "اختر منتجاتنا المميزة"
+},
   "categories":{
     "error_loading_categories": "خطأ في تحميل التصنيفات",
     "select_a_category": "اختر تصنيفاً",
     "error_loading_products": "خطأ في تحميل المنتجات",
     "category_filter_buttom_text": "تصفية"
+
   }
 }

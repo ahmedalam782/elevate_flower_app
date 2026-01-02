@@ -1,5 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
+
+import 'package:elevate_flower_app/features/best_seller/presentation/view/pages/best_seller_page.dart';
+
 import 'package:elevate_flower_app/features/categories/presentation/view/pages/categories_page.dart';
+
 import 'package:elevate_flower_app/features/register/presentation/view/pages/register_page.dart';
 
 import 'package:flutter/material.dart';
@@ -43,9 +47,9 @@ final GoRouter router = GoRouter(
           MainLayoutPage(key: ValueKey(context.locale.languageCode.toString())),
     ),
     _customAnimatedGoRoute(
-      route: Routes.categories,
+      route: Routes.bestSellers,
       page: (state, context) =>
-          CategoriesPage(key: ValueKey(context.locale.languageCode.toString())),
+          BestSellerPage(key: ValueKey(context.locale.languageCode.toString())),
     ),
   ],
 );
