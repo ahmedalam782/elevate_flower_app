@@ -22,7 +22,7 @@ class CustomNavBar extends StatelessWidget {
           onTap: onTap,
           items: items,
         ),
-        Divider(color: AppColors.grayCF, height: 1, thickness: 1),
+        const Divider(color: AppColors.grayCF, height: 1, thickness: 1),
       ],
     );
   }

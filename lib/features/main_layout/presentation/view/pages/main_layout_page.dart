@@ -16,8 +16,8 @@ class MainLayoutPage extends StatefulWidget {
 class _MainLayoutState extends State<MainLayoutPage> {
   late PageController _pageController;
   int selectedIndex = 0;
-  final List<Widget> tabs =  [
-    Column(),
+  final List<Widget> tabs = [
+    const Column(),
     Container(color: Colors.green),
     Container(color: Colors.blue),
     Container(color: Colors.yellow),
@@ -47,9 +47,9 @@ class _MainLayoutState extends State<MainLayoutPage> {
         currentIndex: selectedIndex,
         onTap: (value) {
           _pageController.animateToPage(
-            duration: Duration(milliseconds: 300),
-            curve: Curves.easeInOut,
             value,
+            duration: const Duration(milliseconds: 300),
+            curve: Curves.easeInOut,
           );
         },
         items: [
