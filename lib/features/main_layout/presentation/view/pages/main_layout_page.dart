@@ -2,9 +2,9 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:elevate_flower_app/core/languages/locale_keys.g.dart';
 import 'package:elevate_flower_app/core/routes/routes.dart';
 import 'package:elevate_flower_app/core/theme/app_icons.dart';
+import 'package:elevate_flower_app/features/home/presentation/view/pages/home_page.dart';
 import 'package:elevate_flower_app/features/main_layout/presentation/view/widgets/custom_nav_bar.dart';
-import 'package:go_router/go_router.dart';
-import '../../../../../core/shared/widgets/custom_app_bar.dart';
+
 import '../widgets/nav_bar_item.dart';
 import 'package:flutter/material.dart';
 
@@ -18,7 +18,12 @@ class MainLayoutPage extends StatefulWidget {
 class _MainLayoutState extends State<MainLayoutPage> {
   late PageController _pageController;
   int selectedIndex = 0;
-  late List<Widget> tabs;
+  final List<Widget> tabs = [
+    HomePage(),
+    Container(color: Colors.green),
+    Container(color: Colors.blue),
+    Container(color: Colors.yellow),
+  ];
   @override
   void initState() {
     _pageController = PageController(initialPage: selectedIndex);
@@ -48,7 +53,7 @@ class _MainLayoutState extends State<MainLayoutPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(title: "Flowery"),
+      // appBar: CustomAppBar(title: "Flowery"),
       body: PageView(
         controller: _pageController,
         physics: const NeverScrollableScrollPhysics(),
