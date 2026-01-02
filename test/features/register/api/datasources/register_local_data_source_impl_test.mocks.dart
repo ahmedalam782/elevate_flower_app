@@ -66,67 +66,70 @@ class MockFlutterSecureStorage extends _i1.Mock
   }
 
   @override
-  _i2.IOSOptions get iOptions =>
-      (super.noSuchMethod(
-            Invocation.getter(#iOptions),
-            returnValue: _FakeIOSOptions_0(this, Invocation.getter(#iOptions)),
-          )
-          as _i2.IOSOptions);
+  _i2.IOSOptions get iOptions => (
+    super.noSuchMethod(
+          Invocation.getter(#iOptions),
+          returnValue: _FakeIOSOptions_0(this, Invocation.getter(#iOptions)),
+        )
+        as _i2.IOS_options,
+    _result,
+  );
 
   @override
-  _i2.AndroidOptions get aOptions =>
-      (super.noSuchMethod(
+  _i2.AndroidOptions get aOptions => (
+    super.noSuchMethod(
+          Invocation.getter(#aOptions),
+          returnValue: _FakeAndroidOptions_1(
+            this,
             Invocation.getter(#aOptions),
-            returnValue: _FakeAndroidOptions_1(
-              this,
-              Invocation.getter(#aOptions),
-            ),
-          )
-          as _i2.AndroidOptions);
+          ),
+        )
+        as _i2.Android_options,
+    _result,
+  );
 
   @override
-  _i2.LinuxOptions get lOptions =>
-      (super.noSuchMethod(
-            Invocation.getter(#lOptions),
-            returnValue: _FakeLinuxOptions_2(
-              this,
-              Invocation.getter(#lOptions),
-            ),
-          )
-          as _i2.LinuxOptions);
+  _i2.LinuxOptions get lOptions => (
+    super.noSuchMethod(
+          Invocation.getter(#lOptions),
+          returnValue: _FakeLinuxOptions_2(this, Invocation.getter(#lOptions)),
+        )
+        as _i2.Linux_options,
+    _result,
+  );
 
   @override
-  _i2.WindowsOptions get wOptions =>
-      (super.noSuchMethod(
+  _i2.WindowsOptions get wOptions => (
+    super.noSuchMethod(
+          Invocation.getter(#wOptions),
+          returnValue: _FakeWindowsOptions_3(
+            this,
             Invocation.getter(#wOptions),
-            returnValue: _FakeWindowsOptions_3(
-              this,
-              Invocation.getter(#wOptions),
-            ),
-          )
-          as _i2.WindowsOptions);
+          ),
+        )
+        as _i2.Windows_options,
+    _result,
+  );
 
   @override
-  _i2.WebOptions get webOptions =>
-      (super.noSuchMethod(
-            Invocation.getter(#webOptions),
-            returnValue: _FakeWebOptions_4(
-              this,
-              Invocation.getter(#webOptions),
-            ),
-          )
-          as _i2.WebOptions);
+  _i2.WebOptions get webOptions => (
+    super.noSuchMethod(
+          Invocation.getter(#webOptions),
+          returnValue: _FakeWebOptions_4(this, Invocation.getter(#webOptions)),
+        )
+        as _i2.Web_options,
+    _result,
+  );
 
   @override
-  _i2.AppleOptions get mOptions =>
-      (super.noSuchMethod(
-            Invocation.getter(#mOptions),
-            returnValue: _FakeAppleOptions_5(
-              this,
-              Invocation.getter(#mOptions),
-            ),
-          )
-          as _i2.AppleOptions);
+  _i2.AppleOptions get mOptions => (
+    super.noSuchMethod(
+          Invocation.getter(#mOptions),
+          returnValue: _FakeAppleOptions_5(this, Invocation.getter(#mOptions)),
+        )
+        as _i2.Apple_options,
+    _result,
+  );
 
   @override
   Map<String, List<_i3.ValueChanged<String?>>> get getListeners =>

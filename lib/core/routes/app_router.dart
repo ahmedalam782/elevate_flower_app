@@ -1,4 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:elevate_flower_app/features/best_seller/presentation/view/pages/best_seller_page.dart';
+import 'package:elevate_flower_app/features/occasions/presentation/view/pages/occasions_page.dart';
 import 'package:elevate_flower_app/features/product_details/presentation/view/pages/product_details_page.dart';
 import 'package:elevate_flower_app/features/register/presentation/view/pages/register_page.dart';
 
@@ -45,9 +47,19 @@ final GoRouter router = GoRouter(
     _customAnimatedGoRoute(
       route: Routes.productDetails,
       page: (state, context) => ProductDetailsPage(
-        productId: (state.extra as String?) ?? "ss",
+        productId: (state.extra as String?) ?? "",
         key: ValueKey(context.locale.languageCode.toString()),
       ),
+    ),
+    _customAnimatedGoRoute(
+      route: Routes.bestSellers,
+      page: (state, context) =>
+          BestSellerPage(key: ValueKey(context.locale.languageCode.toString())),
+    ),
+    _customAnimatedGoRoute(
+      route: Routes.occasions,
+      page: (state, context) =>
+          OccasionsPage(key: ValueKey(context.locale.languageCode.toString())),
     ),
   ],
 );
