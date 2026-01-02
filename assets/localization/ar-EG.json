@@ -187,5 +187,43 @@
     "description": "الوصف",
     "bouqet_include": "محتوي باقة الزهور",
     "add_to_cart": "أضف إلي العربة"
+},
+
+  "home_screen": {
+    "home_title": "فلوري",
+    "temp_location": "التوصيل إلى 2XVP+XC - الشيخ زايد",
+    "view_all": "عرض الكل",
+    "categories_title": "التصنيفات",
+    "best_seller_title": "الأكثر مبيعًا",
+    "occasion_title": "المناسبات"
+  },
+  "products": {
+    "no_products": "لا توجد منتجات",
+    "check_back_later": "يرجى المحاولة مرة أخرى لاحقًا",
+    "EGP": "ج.م",
+    "add_to_cart": "أضف إلى السلة",
+    "search": "بحث",
+    "filter": "تصفية",
+    "sort_by": "ترتيب حسب",
+    "lowest_price": "السعر الأقل",
+    "highest_price": "السعر الأعلى",
+    "new": "جديد",
+    "old": "قديم",
+    "discount": "خصم"
+  },
+  "best_seller": {
+    "best_seller": "المنتجات المميزة",
+    "caption": "اختر منتجاتنا المميزة"
+  },
+  "categories": {
+    "error_loading_categories": "خطأ في تحميل التصنيفات",
+    "select_a_category": "اختر تصنيفاً",
+    "error_loading_products": "خطأ في تحميل المنتجات",
+    "category_filter_buttom_text": "تصفية"
+  },
+  "occasion": {
+    "occasion_title": "المناسبات",
+    "occasion_hint": "ازهر مع أفضل المنتجات المميزة لدينا"
+
   }
 }

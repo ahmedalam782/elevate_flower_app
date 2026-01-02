@@ -6,7 +6,6 @@ sealed class RegisterEvents {
       OnGenderSelectedEvent;
   factory RegisterEvents.registerUser() = RegisterUserEvent;
 
-
   void when({
     required void Function() registerUser,
 
@@ -19,8 +18,6 @@ sealed class RegisterEvents {
     }
   }
 }
-
-
 
 class OnGenderSelectedEvent extends RegisterEvents {
   final Gender? gender;
