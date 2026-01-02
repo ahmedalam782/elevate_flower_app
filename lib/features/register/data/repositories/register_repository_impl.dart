@@ -19,6 +19,9 @@ class RegisterRepositoryImpl implements RegisterRepository {
     final requestBody = RegisterRequestBody.fromEntity(params);
     final result = await _remoteDataSource.registerUser(requestBody);
     return result.when(success: (data) {
+      if (data?.token != null && data!.token != null) {
+        saveAuthToken(data.token!);
+      }
       return Success<RegisterUserResponse>(data:data?.toEntity());
     }, error: (exception){
       return Error<RegisterUserResponse>(exception: exception);

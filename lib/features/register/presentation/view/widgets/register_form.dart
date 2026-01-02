@@ -2,11 +2,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:elevate_flower_app/core/languages/locale_keys.g.dart';
 import 'package:elevate_flower_app/core/shared/widgets/custom_text_field.dart';
 import 'package:elevate_flower_app/core/shared/widgets/pass_text_field.dart';
-import 'package:elevate_flower_app/core/theme/app_colors.dart';
 import 'package:elevate_flower_app/core/validations/validations.dart';
 import 'package:elevate_flower_app/features/register/presentation/view_model/cubit/register_cubit.dart';
-import 'package:elevate_flower_app/features/register/presentation/view_model/cubit/register_events.dart';
-import 'package:elevate_flower_app/features/register/presentation/view_model/cubit/register_states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
