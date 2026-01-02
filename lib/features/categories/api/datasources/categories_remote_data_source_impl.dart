@@ -9,25 +9,26 @@ import 'package:injectable/injectable.dart';
 @Injectable(as: CategoriesRemoteDataSourceContract)
 class CategoriesRemoteDataSourceImpl
     implements CategoriesRemoteDataSourceContract {
-  final CategoriesApiClient apiClient;
+  final CategoriesApiClient _apiClient;
 
-  CategoriesRemoteDataSourceImpl({required this.apiClient});
+  CategoriesRemoteDataSourceImpl({required CategoriesApiClient apiClient})
+      : _apiClient = apiClient;
 
   @override
-  Future<Result<CategoryResponseModel>> getallCategories() async {
+  Future<Result<CategoryResponseModel>> getAllCategories() async {
     return await executeApi(() async {
-      final response = await apiClient.getallCategories();
+      final response = await _apiClient.getAllCategories();
       return response;
     });
   }
 
   @override
-  Future<Result<ProductsResponseModels>> getallproducts(String categoryId) async {
+  Future<Result<ProductsResponseModels>> getAllProducts(
+    String categoryId,
+  ) async {
     return await executeApi(() async {
-      final response = await apiClient.getallproducts(categoryId);
+      final response = await _apiClient.getAllProducts(categoryId);
       return response;
     });
   }
-  
-
 }

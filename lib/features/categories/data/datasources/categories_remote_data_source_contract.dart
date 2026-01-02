@@ -3,7 +3,7 @@ import 'package:elevate_flower_app/features/categories/data/models/category_mode
 import 'package:elevate_flower_app/features/categories/data/models/product_model/products_response_models.dart';
 
 abstract class CategoriesRemoteDataSourceContract {
-  Future<Result<CategoryResponseModel>> getallCategories();
+  Future<Result<CategoryResponseModel>> getAllCategories();
 
-  Future<Result<ProductsResponseModels>> getallproducts(String categoryId);
+  Future<Result<ProductsResponseModels>> getAllProducts(String categoryId);
 }

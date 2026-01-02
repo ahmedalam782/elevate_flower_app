@@ -5,11 +5,12 @@ import 'package:injectable/injectable.dart';
 
 @lazySingleton
 class GetProductsUseCase {
-  final CategoriesRepository repository;
+  final CategoriesRepository _repository;
 
-  GetProductsUseCase({required this.repository});
+  GetProductsUseCase({required CategoriesRepository repository})
+    : _repository = repository;
 
   Future<Result<List<ProductEntity>>> call(String categoryId) async {
-    return await repository.getallproducts(categoryId);
+    return await _repository.getAllproducts(categoryId);
   }
 }

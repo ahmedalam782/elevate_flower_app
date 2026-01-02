@@ -14,11 +14,11 @@ abstract class CategoriesApiClient {
   @factoryMethod
   factory CategoriesApiClient(Dio dio) = _CategoriesApiClient;
 
-  @GET(EndPoints.allcategories)
-  Future<CategoryResponseModel> getallCategories();
+  @GET(EndPoints.allCategories)
+  Future<CategoryResponseModel> getAllCategories();
 
-  @GET(EndPoints.allproducts)
-  Future<ProductsResponseModels> getallproducts(
-    @Query("category") String categoryId,
+  @GET(EndPoints.allProducts)
+  Future<ProductsResponseModels> getAllProducts(
+    @Query(QueryParameter.categoryQuery) String categoryId,
   );
 }

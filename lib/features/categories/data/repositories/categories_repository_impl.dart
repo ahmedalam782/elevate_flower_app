@@ -9,13 +9,14 @@ import 'package:injectable/injectable.dart';
 
 @LazySingleton(as: CategoriesRepository)
 class CategoriesRepositoryImpl implements CategoriesRepository {
-  final CategoriesRemoteDataSourceContract remoteDataSource;
+  final CategoriesRemoteDataSourceContract _remoteDataSource;
 
-  CategoriesRepositoryImpl({required this.remoteDataSource});
+  CategoriesRepositoryImpl({required CategoriesRemoteDataSourceContract remoteDataSource})
+      : _remoteDataSource = remoteDataSource;
 
   @override
-  Future<Result<List<CategoryEntity>>> getallCategories() async {
-    final result = await remoteDataSource.getallCategories();
+  Future<Result<List<CategoryEntity>>> getAllCategories() async {
+    final result = await _remoteDataSource.getAllCategories();
 
     return result.when(
       success: (data) {
@@ -29,8 +30,8 @@ class CategoriesRepositoryImpl implements CategoriesRepository {
   }
 
   @override
-  Future<Result<List<ProductEntity>>> getallproducts(String categoryId) async {
-    final result = await remoteDataSource.getallproducts(categoryId);
+  Future<Result<List<ProductEntity>>> getAllproducts(String categoryId) async {
+    final result = await _remoteDataSource.getAllProducts(categoryId);
 
     return result.when(
       success: (data) {
