@@ -51,6 +51,11 @@ final GoRouter router = GoRouter(
       page: (state, context) =>
           BestSellerPage(key: ValueKey(context.locale.languageCode.toString())),
     ),
+    _customAnimatedGoRoute(
+      route: Routes.categories,
+      page: (state, context) =>
+          CategoriesPage(key: ValueKey(context.locale.languageCode.toString())),
+    ),
   ],
 );
 

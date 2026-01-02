@@ -52,6 +52,9 @@ class _HomeBodyState extends State<HomeBody> {
 
                       // Best Seller Section
                       SectionTitileAndViewAll(
+                        onTap: () {
+                          context.push(Routes.bestSellers);
+                        },
                         title: LocaleKeys.home_screen_best_seller_title.tr(),
                       ),
                       const BestsellerBuilder(),
