@@ -80,7 +80,8 @@
     "rotateRightTooltip": "Rotate right",
     "version": "Version",
     "app_name": "Flowers",
-    "app_slogan": "The most beautiful flowers to your doorstep"
+    "app_slogan": "The most beautiful flowers to your doorstep",
+    "try_again": "المحاولة مرة أخري"
   },
   "failures": {
     "server_failure": "Failed to connect to the server",
@@ -178,6 +179,18 @@
     "profile": "Profile"
   },
 
+  "product_details": {
+    "EGP": "EGP",
+    "status": "Status: ",
+    "in_stock": "In stock",
+    "all_prices_include_taxes": "All prices include tax",
+    "description": "Description",
+    "bouqet_include": "Bouqet include",
+    "add_to_cart": "Add to cart",
+    "try_again": "Try again"
+  },
+
+
   "home_screen": {
     "home_title": "Flowery",
     "temp_location": "Deliver to 2XVP+XC - Sheikh Zayed",
@@ -215,5 +228,6 @@
   "occasion": {
     "occasion_title": "Occasion",
     "occasion_hint": "Bloom with our exquisite best sellers"
+
   }
 }

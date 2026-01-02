@@ -80,7 +80,8 @@
     "rotateRightTooltip": "تدوير لليمين",
     "version": "النسخة",
     "app_name": "زهور",
-    "app_slogan": "أجمل الزهور إلى باب منزلك"
+    "app_slogan": "أجمل الزهور إلى باب منزلك",
+    "try_again": "المحاولة مرة أخري"
   },
   "failures": {
     "server_failure": "فشل في الاتصال بالخادم",
@@ -178,6 +179,16 @@
     "cart": "السلة",
     "profile": "الحساب"
   },
+  "product_details": {
+    "EGP": "جنيه",
+    "status": "الحالة: ",
+    "in_stock": "متوفر",
+    "all_prices_include_taxes": "كل الأسعار شاملة الضريبة",
+    "description": "الوصف",
+    "bouqet_include": "محتوي باقة الزهور",
+    "add_to_cart": "أضف إلي العربة"
+},
+
   "home_screen": {
     "home_title": "فلوري",
     "temp_location": "التوصيل إلى 2XVP+XC - الشيخ زايد",
@@ -213,5 +224,6 @@
   "occasion": {
     "occasion_title": "المناسبات",
     "occasion_hint": "ازهر مع أفضل المنتجات المميزة لدينا"
+
   }
 }
