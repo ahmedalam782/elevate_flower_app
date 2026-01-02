@@ -18,7 +18,7 @@ class ProductGridExamplePage extends StatefulWidget {
 
 class _ProductGridExamplePageState extends State<ProductGridExamplePage> {
   // For infinite scroll example
-  List<ProductItemEntity> _infiniteScrollProducts = [];
+  final List<ProductItemEntity> _infiniteScrollProducts = [];
   bool _isLoadingInfinite = false;
   bool _hasMoreInfinite = true;
   int _infiniteScrollPage = 1;
@@ -27,11 +27,11 @@ class _ProductGridExamplePageState extends State<ProductGridExamplePage> {
   List<ProductItemEntity> _paginatedProducts = [];
   bool _isLoadingPaginated = false;
   int _currentPage = 1;
-  int _totalPages = 10;
+  final int _totalPages = 10;
   final int _itemsPerPage = 10;
 
   // Toggle between examples
-  bool _showInfiniteScroll = true;
+  final bool _showInfiniteScroll = true;
 
   @override
   void initState() {

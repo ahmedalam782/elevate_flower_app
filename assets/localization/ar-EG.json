@@ -178,6 +178,14 @@
     "cart": "السلة",
     "profile": "الحساب"
   },
+  "home_screen": {
+    "home_title": "فلوري",
+    "temp_location": "التوصيل إلى 2XVP+XC - الشيخ زايد",
+    "view_all": "عرض الكل",
+    "categories_title": "التصنيفات",
+    "best_seller_title": "الأكثر مبيعًا",
+    "occasion_title": "المناسبات"
+},
   "products": {
     "no_products": "لا توجد منتجات",
     "check_back_later": "يرجى المحاولة مرة أخرى لاحقًا",
@@ -192,9 +200,15 @@
     "old": "قديم",
     "discount": "خصم"
   },
-
     "best_seller":{
     "best_seller": "المنتجات المميزة",
     "caption": "اختر منتجاتنا المميزة"
+},
+  "categories":{
+    "error_loading_categories": "خطأ في تحميل التصنيفات",
+    "select_a_category": "اختر تصنيفاً",
+    "error_loading_products": "خطأ في تحميل المنتجات",
+    "category_filter_buttom_text": "تصفية"
+
   }
 }
