@@ -27,20 +27,7 @@ class _MainLayoutState extends State<MainLayoutPage> {
   @override
   void initState() {
     _pageController = PageController(initialPage: selectedIndex);
-    tabs = [
-      Column(
-        children: [
-          ElevatedButton(
-            onPressed: () => context.push(Routes.occasions),
-            child: Text('Refresh'),
-          ),
-          Text('occasions page'),
-        ],
-      ),
-      Column(),
-      Column(),
-      Column(),
-    ];
+
     super.initState();
   }
 

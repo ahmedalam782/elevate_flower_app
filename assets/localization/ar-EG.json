@@ -1,74 +1,4 @@
 {
-  "login": {
-    "title": "تسجيل الدخول",
-    "subtitle": "مرحباً بعودتك! يرجى تسجيل الدخول للمتابعة",
-    "email_hint_text": "أدخل بريدك الإلكتروني",
-    "email_label": "البريد الإلكتروني",
-    "password_hint_text": "أدخل كلمة المرور",
-    "password_label": "كلمة المرور",
-    "remember_me": "تذكرني",
-    "forgot_password": "هل نسيت كلمة المرور؟",
-    "login_button": "تسجيل الدخول",
-    "continue_as_guest": "المتابعة كزائر",
-    "no_account": "ليس لديك حساب؟ ",
-    "sign_up": "إنشاء حساب",
-    "welcome_message": "مرحباً {name}!",
-    "Invalid_email_or_password": "بريد إلكتروني أو كلمة مرور غير صحيحة",
-    "loading": "جارٍ التحميل"
-  },
-  "register": {
-    "register_title": "إنشاء حساب",
-    "first_name_label": "الاسم الأول",
-    "first_name_hint": "أدخل الاسم الأول",
-    "last_name_label": "اسم العائلة",
-    "last_name_hint": "أدخل اسم العائلة",
-    "email_label": "البريد الإلكتروني",
-    "email_hint": "أدخل البريد الإلكتروني",
-    "phone_label": "رقم الهاتف",
-    "phone_hint": "أدخل رقم الهاتف",
-    "password_label": "كلمة المرور",
-    "password_hint": "أدخل كلمة المرور",
-    "confirm_password_label": "تأكيد كلمة المرور",
-    "confirm_password_hint": "أعد إدخال كلمة المرور",
-    "register_button": "إنشاء حساب",
-    "have_account": " لديك حساب بالفعل؟",
-    "login_button": "تسجيل الدخول",
-    "gender_label": "الجنس",
-    "validation_gender_required": "اختيار الجنس مطلوب.",
-    "male_label": "ذكر",
-    "female_label": "أنثى",
-    "terms_conditions_1": "بإنشائك حسابًا، فإنك توافق على ",
-    "terms_conditions_2": "الشروط والأحكام"
-  },
-  "forget_password": {
-    "password": "كلمة المرور",
-    "forget_password": "نسيت الرقم السري",
-    "please_enter_your_email": "من فضلك أدخل البريد الالكتروني المرتبط بالحساب",
-    "email": "البريد الإلكتروني",
-    "enter_your_email": "أدخل البريد الإلكتروني",
-    "confirm": "تأكيد",
-    "email_verification": "تأكيد البريد الإلكتروني",
-    "please_enter_your_code": "من فضلك أدخل الرمز المُرسل إلي البريد الاكتروني الخاص بك",
-    "invalid_code": "كود خاطئ",
-    "didn_t_receive_code": "لم يصلك الرمز؟",
-    "resend": "إعادة الإرسال",
-    "rest_password": "تغير الرقم السري",
-    "password_requierment": "ينبغي ألا يكون الرقم السري فارغ ويحتوي علي ستة أحرف علي الاقل وحرف أبجدي كبير وصغير (A-a)",
-    "new_password": "رقم سري جديد",
-    "confirm_password": "تأكيد الرقم السري",
-    "enter_your_password": "أدخل الرقم السري الخاص بك",
-    "password_rest_successfully": "تم تغير الرقم السري بنجاح"
-  },
-  "bottom_navigation": {
-    "home": "الصفحة الرئيسية",
-    "categories": "التصنيفات",
-    "cart": "السلة",
-    "profile": "الحساب"
-  },
-  "occasion": {
-    "occasion_title": "المناسبات",
-    "occasion_hint": "تألّق مع مجموعتنا الراقية من أفضل المبيعات"
-  },
   "error_api_failure": {
     "connectionError": "فشل الاتصال بالخادم",
     "connectionTimeout": "فشل الاتصال بالخادم",
@@ -248,6 +178,14 @@
     "cart": "السلة",
     "profile": "الحساب"
   },
+  "home_screen": {
+    "home_title": "فلوري",
+    "temp_location": "التوصيل إلى 2XVP+XC - الشيخ زايد",
+    "view_all": "عرض الكل",
+    "categories_title": "التصنيفات",
+    "best_seller_title": "الأكثر مبيعًا",
+    "occasion_title": "المناسبات"
+  },
   "products": {
     "no_products": "لا توجد منتجات",
     "check_back_later": "يرجى المحاولة مرة أخرى لاحقًا",
@@ -261,5 +199,15 @@
     "new": "جديد",
     "old": "قديم",
     "discount": "خصم"
+  },
+  "best_seller": {
+    "best_seller": "المنتجات المميزة",
+    "caption": "اختر منتجاتنا المميزة"
+  },
+  "categories": {
+    "error_loading_categories": "خطأ في تحميل التصنيفات",
+    "select_a_category": "اختر تصنيفاً",
+    "error_loading_products": "خطأ في تحميل المنتجات",
+    "category_filter_buttom_text": "تصفية"
   }
 }
