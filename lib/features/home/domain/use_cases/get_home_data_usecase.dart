@@ -3,12 +3,12 @@ import 'package:elevate_flower_app/features/home/domain/entities/home_entity.dar
 import 'package:elevate_flower_app/features/home/domain/repositories/home_repository.dart';
 import 'package:injectable/injectable.dart';
 
-
 @injectable
 class GetHomeDataUsecase {
-  final HomeRepository homeRepository;
+  final HomeRepository _homeRepository;
 
-  GetHomeDataUsecase(this.homeRepository);
+  GetHomeDataUsecase(HomeRepository homeRepository)
+    : _homeRepository = homeRepository;
 
-  Future<Result<HomeEntity>> call() => homeRepository.getHomeData();
+  Future<Result<HomeEntity>> call() => _homeRepository.getHomeData();
 }

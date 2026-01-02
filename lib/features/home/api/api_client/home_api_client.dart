@@ -6,6 +6,7 @@ import 'package:injectable/injectable.dart';
 import 'package:retrofit/retrofit.dart';
 
 part 'home_api_client.g.dart';
+
 @injectable
 @RestApi(baseUrl: EndPoints.baseUrl)
 abstract class HomeApiClient {

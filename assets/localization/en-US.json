@@ -176,5 +176,13 @@
     "categories": "Categories",
     "cart": "Cart",
     "profile": "Profile"
+  },
+  "home_screen": {
+    "home_title": "Flowery",
+    "temp_location":"Deliver to 2XVP+XC - Sheikh Zayed",
+    "view_all":"View All",
+    "categories_title":"Categories",
+    "best_seller_title":"Best seller",
+    "occasion_title":"Occasion"
   }
 }

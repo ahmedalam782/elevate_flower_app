@@ -7,13 +7,14 @@ import 'package:injectable/injectable.dart';
 
 @Injectable(as: HomeRepository)
 class HomeRepoImpl extends HomeRepository {
-   final HomeRemoteDataSourceContract homeRemoteDataSourceContract;
-  HomeRepoImpl(this.homeRemoteDataSourceContract);
+  final HomeRemoteDataSourceContract _remoteDataSource;
+
+  HomeRepoImpl(HomeRemoteDataSourceContract remoteDataSource)
+    : _remoteDataSource = remoteDataSource;
 
   @override
   Future<Result<HomeEntity>> getHomeData() async {
-    Result<HomeResponse> response = await homeRemoteDataSourceContract
-        .getHomeData();
+    Result<HomeResponse> response = await _remoteDataSource.getHomeData();
 
     return response.when(
       success: (homeResponse) {

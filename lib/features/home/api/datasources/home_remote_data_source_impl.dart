@@ -7,18 +7,17 @@ import 'package:injectable/injectable.dart';
 
 @Injectable(as: HomeRemoteDataSourceContract)
 class HomeRemoteDatasourceImpl implements HomeRemoteDataSourceContract {
-  HomeRemoteDatasourceImpl(this.homeApiClient);
-  final HomeApiClient homeApiClient;
+  HomeRemoteDatasourceImpl(HomeApiClient homeApiClient)
+    : _homeApiClient = homeApiClient;
+  final HomeApiClient _homeApiClient;
 
   @override
-  Future<Result<HomeResponse>> getHomeData()async {
-   try {
-      HomeResponse response=await homeApiClient.getHomeData();
-    return Success<HomeResponse>(data: response);
-   } catch (e) {
-     return Error<HomeResponse>(exception: Exception(e.toString()));
-   }
-
-  }}
-
- 
+  Future<Result<HomeResponse>> getHomeData() async {
+    try {
+      HomeResponse response = await _homeApiClient.getHomeData();
+      return Success<HomeResponse>(data: response);
+    } catch (e) {
+      return Error<HomeResponse>(exception: Exception(e.toString()));
+    }
+  }
+}

@@ -177,5 +177,13 @@
     "categories": "التصنيفات",
     "cart": "السلة",
     "profile": "الحساب"
+  },
+  "home_screen": {
+    "home_title": "فلوري",
+    "temp_location": "التوصيل إلى 2XVP+XC - الشيخ زايد",
+    "view_all": "عرض الكل",
+    "categories_title": "التصنيفات",
+    "best_seller_title": "الأكثر مبيعًا",
+    "occasion_title": "المناسبات"
   }
 }
