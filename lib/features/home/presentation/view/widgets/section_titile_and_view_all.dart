@@ -5,8 +5,9 @@ import 'package:flutter/material.dart';
 
 class SectionTitileAndViewAll extends StatelessWidget {
   final String title;
+  final Function()? onTap;
 
-  const SectionTitileAndViewAll({super.key, required this.title});
+  const SectionTitileAndViewAll({super.key, required this.title, this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +19,7 @@ class SectionTitileAndViewAll extends StatelessWidget {
           style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
         ),
         TextButton(
-          onPressed: () {},
+          onPressed: onTap,
           child: Text(
             LocaleKeys.home_screen_view_all.tr(),
             style: TextStyle(color: AppColors.primerColor, fontSize: 10),
