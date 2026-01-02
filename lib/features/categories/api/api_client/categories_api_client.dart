@@ -19,6 +19,6 @@ abstract class CategoriesApiClient {
 
   @GET(EndPoints.allProducts)
   Future<ProductsResponseModels> getAllProducts(
-    @Query(QueryParameter.categoryQuery) String categoryId,
+    @Query(QueryParameter.categoryQuery) String? categoryId,
   );
 }

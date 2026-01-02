@@ -11,8 +11,9 @@ import 'package:injectable/injectable.dart';
 class CategoriesRepositoryImpl implements CategoriesRepository {
   final CategoriesRemoteDataSourceContract _remoteDataSource;
 
-  CategoriesRepositoryImpl({required CategoriesRemoteDataSourceContract remoteDataSource})
-      : _remoteDataSource = remoteDataSource;
+  CategoriesRepositoryImpl({
+    required CategoriesRemoteDataSourceContract remoteDataSource,
+  }) : _remoteDataSource = remoteDataSource;
 
   @override
   Future<Result<List<CategoryEntity>>> getAllCategories() async {
@@ -30,7 +31,7 @@ class CategoriesRepositoryImpl implements CategoriesRepository {
   }
 
   @override
-  Future<Result<List<ProductEntity>>> getAllproducts(String categoryId) async {
+  Future<Result<List<ProductEntity>>> getAllproducts(String? categoryId) async {
     final result = await _remoteDataSource.getAllProducts(categoryId);
 
     return result.when(

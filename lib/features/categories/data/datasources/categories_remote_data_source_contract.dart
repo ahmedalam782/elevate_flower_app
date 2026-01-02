@@ -5,5 +5,5 @@ import 'package:elevate_flower_app/features/categories/data/models/product_model
 abstract class CategoriesRemoteDataSourceContract {
   Future<Result<CategoryResponseModel>> getAllCategories();
 
-  Future<Result<ProductsResponseModels>> getAllProducts(String categoryId);
+  Future<Result<ProductsResponseModels>> getAllProducts(String? categoryId);
 }

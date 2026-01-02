@@ -12,7 +12,7 @@ class CategoriesRemoteDataSourceImpl
   final CategoriesApiClient _apiClient;
 
   CategoriesRemoteDataSourceImpl({required CategoriesApiClient apiClient})
-      : _apiClient = apiClient;
+    : _apiClient = apiClient;
 
   @override
   Future<Result<CategoryResponseModel>> getAllCategories() async {
@@ -24,7 +24,7 @@ class CategoriesRemoteDataSourceImpl
 
   @override
   Future<Result<ProductsResponseModels>> getAllProducts(
-    String categoryId,
+    String? categoryId,
   ) async {
     return await executeApi(() async {
       final response = await _apiClient.getAllProducts(categoryId);

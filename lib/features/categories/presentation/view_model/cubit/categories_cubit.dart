@@ -68,7 +68,9 @@ class CategoriesCubit extends Cubit<CategoriesStates> {
       ),
     );
 
-    final result = await getProductsUseCase.call(categoryId);
+    final result = await getProductsUseCase.call(
+      categoryId.isEmpty ? null : categoryId,
+    );
 
     result.when(
       success: (products) {
@@ -99,7 +101,7 @@ class CategoriesCubit extends Cubit<CategoriesStates> {
     );
 
     final categoriesResult = await getCategoriesUseCase.call();
-    final productsResult = await getProductsUseCase.call('');
+    final productsResult = await getProductsUseCase.call(null);
 
     categoriesResult.when(
       success: (categories) {

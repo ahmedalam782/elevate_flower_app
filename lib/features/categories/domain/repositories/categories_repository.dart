@@ -3,8 +3,7 @@ import 'package:elevate_flower_app/features/categories/domain/entities/category_
 import 'package:elevate_flower_app/features/categories/domain/entities/product_entity.dart';
 
 abstract class CategoriesRepository {
-  
   Future<Result<List<CategoryEntity>>> getAllCategories();
 
-  Future<Result<List<ProductEntity>>> getAllproducts(String categoryId);
+  Future<Result<List<ProductEntity>>> getAllproducts(String? categoryId);
 }

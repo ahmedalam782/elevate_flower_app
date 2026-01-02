@@ -10,7 +10,7 @@ class GetProductsUseCase {
   GetProductsUseCase({required CategoriesRepository repository})
     : _repository = repository;
 
-  Future<Result<List<ProductEntity>>> call(String categoryId) async {
+  Future<Result<List<ProductEntity>>> call(String? categoryId) async {
     return await _repository.getAllproducts(categoryId);
   }
 }
