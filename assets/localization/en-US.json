@@ -211,5 +211,9 @@
     "select_a_category": "Select a category",
     "error_loading_products": "Error loading products",
     "category_filter_buttom_text": "Filter"
+  },
+  "occasion": {
+    "occasion_title": "Occasion",
+    "occasion_hint": "Bloom with our exquisite best sellers"
   }
 }

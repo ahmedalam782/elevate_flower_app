@@ -209,5 +209,9 @@
     "select_a_category": "اختر تصنيفاً",
     "error_loading_products": "خطأ في تحميل المنتجات",
     "category_filter_buttom_text": "تصفية"
+  },
+  "occasion": {
+    "occasion_title": "المناسبات",
+    "occasion_hint": "ازهر مع أفضل المنتجات المميزة لدينا"
   }
 }
