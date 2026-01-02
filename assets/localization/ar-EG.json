@@ -185,5 +185,19 @@
     "categories_title": "التصنيفات",
     "best_seller_title": "الأكثر مبيعًا",
     "occasion_title": "المناسبات"
+},
+  "products": {
+    "no_products": "لا توجد منتجات",
+    "check_back_later": "يرجى المحاولة مرة أخرى لاحقًا",
+    "EGP": "ج.م",
+    "add_to_cart": "أضف إلى السلة",
+    "search": "بحث",
+    "filter": "تصفية",
+    "sort_by": "ترتيب حسب",
+    "lowest_price": "السعر الأقل",
+    "highest_price": "السعر الأعلى",
+    "new": "جديد",
+    "old": "قديم",
+    "discount": "خصم"
   }
 }
