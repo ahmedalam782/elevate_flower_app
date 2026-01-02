@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:elevate_flower_app/core/config/di/injectable_config.dart';
 import 'package:elevate_flower_app/core/languages/locale_keys.g.dart';
+import 'package:elevate_flower_app/core/routes/routes.dart';
 import 'package:elevate_flower_app/features/home/presentation/view/widgets/Categories_builder.dart';
 import 'package:elevate_flower_app/features/home/presentation/view/widgets/bestseller_builder.dart';
 import 'package:elevate_flower_app/features/home/presentation/view/widgets/header_section.dart';
@@ -10,6 +11,7 @@ import 'package:elevate_flower_app/features/home/presentation/view_model/cubit/h
 import 'package:elevate_flower_app/features/home/presentation/view_model/cubit/home_events.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class HomeBody extends StatefulWidget {
   const HomeBody({super.key});
@@ -40,6 +42,9 @@ class _HomeBodyState extends State<HomeBody> {
 
                       // Categories Section
                       SectionTitileAndViewAll(
+                        onTap: () {
+                          context.push(Routes.categories);
+                        },
                         title: LocaleKeys.home_screen_categories_title.tr(),
                       ),
                       const CategoriesBuilder(),
