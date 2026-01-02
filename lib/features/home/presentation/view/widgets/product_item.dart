@@ -1,5 +1,7 @@
+import 'package:elevate_flower_app/core/shared/widgets/optimized_cached_image.dart';
 import 'package:elevate_flower_app/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ProductItem extends StatelessWidget {
   final String imageUrl;
@@ -23,12 +25,19 @@ class ProductItem extends StatelessWidget {
           Expanded(
             child: ClipRRect(
               borderRadius: BorderRadius.circular(12),
-              child: Image.network(
-                imageUrl,
-                height: 130,
-                width: double.infinity,
+              child: OptimizedCachedImage(
+                imageUrl: imageUrl,
+                height: 130.h,
                 fit: BoxFit.cover,
+                // width: ,
               ),
+
+              // Image.network(
+              //   imageUrl,
+              //   height: 130,
+              //   width: double.infinity,
+              //   fit: BoxFit.cover,
+              // ),
             ),
           ),
           const SizedBox(height: 8),
