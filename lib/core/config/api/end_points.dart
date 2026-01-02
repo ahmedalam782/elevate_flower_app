@@ -7,6 +7,7 @@ class EndPoints {
   static const String resetPasswordEndpoint = "/auth/resetPassword";
   static const String allCategories = "/categories";
   static const String allProducts = "/products";
+  static const String homeEndpoint = "/home";
 }
 
 class Apikeys {
