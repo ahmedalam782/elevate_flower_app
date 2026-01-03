@@ -41,8 +41,9 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
         builder: (context, state) {
           final currentState = state.state.state;
           return Scaffold(
+            appBar: currentState == StateType.error ? AppBar() : null,
             body: currentState == StateType.loading
-                ? Center(child: CircularProgressIndicator())
+                ? const Center(child: CircularProgressIndicator())
                 : currentState == StateType.error
                 ? Padding(
                     padding: EdgeInsets.symmetric(horizontal: 16.w),

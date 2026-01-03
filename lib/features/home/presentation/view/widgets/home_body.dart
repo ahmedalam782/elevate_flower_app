@@ -14,7 +14,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class HomeBody extends StatefulWidget {
-  const HomeBody({super.key});
+  const HomeBody({super.key, this.onSeeAllCategories, this.onSelectedCategory});
+  final VoidCallback? onSeeAllCategories;
+  final Function(int?)? onSelectedCategory;
 
   @override
   State<HomeBody> createState() => _HomeBodyState();
@@ -28,8 +30,7 @@ class _HomeBodyState extends State<HomeBody> {
         create: (_) => getIt<HomeCubit>()..doAction(GetAllDataEvent()),
         child: Column(
           children: [
-            HeaderSection(),
-
+            const HeaderSection(),
             // Scrollable Content
             Expanded(
               child: SingleChildScrollView(
@@ -42,12 +43,12 @@ class _HomeBodyState extends State<HomeBody> {
 
                       // Categories Section
                       SectionTitileAndViewAll(
-                        onTap: () {
-                          context.push(Routes.categories);
-                        },
+                        onTap: widget.onSeeAllCategories,
                         title: LocaleKeys.home_screen_categories_title.tr(),
                       ),
-                      const CategoriesBuilder(),
+                      CategoriesBuilder(
+                        onSelectedCategory: widget.onSelectedCategory,
+                      ),
                       const SizedBox(height: 20),
 
                       // Best Seller Section
@@ -62,6 +63,9 @@ class _HomeBodyState extends State<HomeBody> {
 
                       // Occasion Section
                       SectionTitileAndViewAll(
+                        onTap: () {
+                          context.push(Routes.occasions);
+                        },
                         title: LocaleKeys.home_screen_occasion_title.tr(),
                       ),
                       const OccasionWidget(),

@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CategoriesBuilder extends StatelessWidget {
-  const CategoriesBuilder({super.key});
+  const CategoriesBuilder({super.key, this.onSelectedCategory});
+   final Function(int? index)? onSelectedCategory;
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +31,10 @@ class CategoriesBuilder extends StatelessWidget {
                 itemBuilder: (context, index) {
                   final category = categories[index];
                   return CategoryItem(
+                    onTap: (){
+                      if(onSelectedCategory == null) return;
+                      onSelectedCategory!(index);
+                    },
                     imageUrl: category.image,
                     name: category.name,
                   );

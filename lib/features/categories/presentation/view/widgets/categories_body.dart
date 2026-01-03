@@ -6,7 +6,8 @@ import 'package:elevate_flower_app/features/categories/presentation/view/widgets
 import 'package:flutter/material.dart';
 
 class CategoriesBody extends StatefulWidget {
-  const CategoriesBody({super.key});
+  const CategoriesBody({super.key, this.incomingIndex});
+  final int? incomingIndex;
 
   @override
   State<CategoriesBody> createState() => _CategoriesBodyState();
@@ -21,15 +22,15 @@ class _CategoriesBodyState extends State<CategoriesBody> {
         children: [
           Column(
             children: [
-              SearchBarWithFiltter(),
+              const SearchBarWithFiltter(),
 
-              CategoryTabBuilder(),
-              SizedBox(height: 10),
+              CategoryTabBuilder(incomingIndex: widget.incomingIndex),
+              const SizedBox(height: 10),
 
-              ProductCardBuilder(),
+              const ProductCardBuilder(),
             ],
           ),
-          FilterBottom(),
+          const FilterBottom(),
         ],
       ),
     );

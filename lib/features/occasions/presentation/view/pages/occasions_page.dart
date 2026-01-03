@@ -11,8 +11,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class OccasionsPage extends StatefulWidget {
-  const OccasionsPage({super.key});
-
+  const OccasionsPage({super.key, this.selectedIndex});
+  final int? selectedIndex;
   @override
   State<OccasionsPage> createState() => _OccasionsPageState();
 }
@@ -33,7 +33,7 @@ class _OccasionsPageState extends State<OccasionsPage> {
                   title: LocaleKeys.occasion_occasion_title.tr(),
                   subTitle: LocaleKeys.occasion_occasion_hint.tr(),
                 ),
-                const OccasionsBody(),
+                Expanded(child: OccasionsBody(selectedIndex: widget.selectedIndex)),
               ],
             ),
           );

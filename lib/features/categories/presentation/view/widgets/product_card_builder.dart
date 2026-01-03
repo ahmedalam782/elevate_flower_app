@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:elevate_flower_app/core/languages/locale_keys.g.dart';
+import 'package:elevate_flower_app/core/routes/routes.dart';
 import 'package:elevate_flower_app/core/shared/entities/product_item_entity.dart';
 import 'package:elevate_flower_app/core/shared/widgets/custom_product_item.dart';
 import 'package:elevate_flower_app/core/theme/app_colors.dart';
@@ -8,6 +9,7 @@ import 'package:elevate_flower_app/features/categories/presentation/view_model/c
 import 'package:elevate_flower_app/features/categories/presentation/view_model/cubit/categories_states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class ProductCardBuilder extends StatelessWidget {
   const ProductCardBuilder({super.key});
@@ -26,7 +28,7 @@ class ProductCardBuilder extends StatelessWidget {
             error: (exception) => Center(
               child: Text(
                 LocaleKeys.categories_error_loading_products.tr(),
-                style: TextStyle(color: AppColors.redCC),
+                style: const TextStyle(color: AppColors.redCC),
               ),
             ),
           );
@@ -70,6 +72,7 @@ class ProductCardBuilder extends StatelessWidget {
           product: _mapToProductItemEntity(product),
           onTap: () {
             // Navigate to product details
+            context.push(Routes.productDetails, extra: product.id);
           },
           onAddToCart: () {
             // Add to cart logic

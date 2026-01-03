@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:elevate_flower_app/features/product_details/presentation/view/widgets/image_dot_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 
 class ProductImageSlider extends StatefulWidget {
   final List<String> images;
@@ -22,7 +21,6 @@ class _ProductImageSliderState extends State<ProductImageSlider> {
       children: [
         SizedBox(
           width: 1.sw,
-          height: 450.h,
           child: PageView.builder(
             onPageChanged: (index) {
               currentIndex = index;

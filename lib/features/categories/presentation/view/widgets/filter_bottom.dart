@@ -64,7 +64,7 @@ class _FilterBottomState extends State<FilterBottom> {
                     const SizedBox(width: 16),
                     Text(
                       LocaleKeys.categories_category_filter_buttom_text.tr(),
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: AppColors.whiteF9,
                         fontWeight: FontWeight.w600,
                         fontSize: 18,

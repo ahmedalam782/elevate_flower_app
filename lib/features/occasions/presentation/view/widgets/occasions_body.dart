@@ -1,5 +1,6 @@
 import 'package:elevate_flower_app/core/config/base_state/base_state.dart';
 import 'package:elevate_flower_app/core/errors/failures.dart';
+import 'package:elevate_flower_app/core/routes/routes.dart';
 import 'package:elevate_flower_app/core/shared/widgets/custom_tab_bar.dart';
 import 'package:elevate_flower_app/core/shared/widgets/custom_toast.dart';
 import 'package:elevate_flower_app/core/shared/widgets/error_page.dart';
@@ -9,21 +10,24 @@ import 'package:elevate_flower_app/features/occasions/presentation/view_model/cu
 import 'package:elevate_flower_app/features/occasions/presentation/view_model/cubit/occasions_states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:toastification/toastification.dart';
 
 class OccasionsBody extends StatefulWidget {
-  const OccasionsBody({super.key});
-
+  const OccasionsBody({super.key, this.selectedIndex});
+  final int? selectedIndex;
   @override
   State<OccasionsBody> createState() => _OccasionsBodyState();
 }
 
 class _OccasionsBodyState extends State<OccasionsBody> {
   late OccasionsCubit _cubit;
-  int _selectedIndex = 0;
+  int _selectedTabIndex = 0;
+
   @override
   void initState() {
     _cubit = context.read<OccasionsCubit>();
+    _selectedTabIndex = widget.selectedIndex ?? 0;
     super.initState();
   }
 
@@ -73,9 +77,9 @@ class _OccasionsBodyState extends State<OccasionsBody> {
                       .toList() ??
                   [],
               onSelectedItem: (int index) async {
-                if (index == _selectedIndex) return;
+                if (index == _selectedTabIndex) return;
                 setState(() {
-                  _selectedIndex = index;
+                  _selectedTabIndex = index;
                 });
                 final selectedOccasionId =
                     state.occasions.data?[index].id ?? '';
@@ -83,12 +87,14 @@ class _OccasionsBodyState extends State<OccasionsBody> {
                   OccasionsEvents.changeSelectedOccasion(selectedOccasionId),
                 );
               },
-              selectedIndex: _selectedIndex,
+              selectedIndex: _selectedTabIndex,
             ),
-            SizedBox(
-              height: MediaQuery.sizeOf(context).height - 160,
+            Expanded(
               child: PaginatedProductGridView(
-                key: ValueKey(_selectedIndex),
+                onProductTap: (product) {
+                  context.push(Routes.productDetails, extra: product.id);
+                },
+                key: ValueKey(_selectedTabIndex),
                 isLoading:
                     state.productsByOccasion.state == StateType.loading ||
                     state.occasions.state == StateType.loading,

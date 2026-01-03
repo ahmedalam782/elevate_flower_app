@@ -18,7 +18,7 @@ class BestSellerPage extends StatelessWidget {
       body: BlocProvider<BestSellerCubit>(
         create: (context) =>
             cubit..doIntent(BestSellerEvents.getBestSellerProducts()),
-        child: BestSellerBody(),
+        child: const BestSellerBody(),
       ),
     );
   }

@@ -7,14 +7,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/config/di/injectable_config.dart';
 
 class CategoriesPage extends StatelessWidget {
-  const CategoriesPage({super.key});
+  const CategoriesPage({super.key, this.incomingIndex});
+  final int? incomingIndex;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: BlocProvider(
         create: (context) =>
             getIt<CategoriesCubit>()..onEvent(GetAllDataEvent()),
-        child: const CategoriesBody(),
+        child: CategoriesBody(incomingIndex: incomingIndex),
       ),
     );
   }

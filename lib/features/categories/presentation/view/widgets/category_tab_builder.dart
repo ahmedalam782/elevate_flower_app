@@ -9,8 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CategoryTabBuilder extends StatefulWidget {
-  const CategoryTabBuilder({super.key});
-
+  const CategoryTabBuilder({super.key, this.incomingIndex});
+  final int? incomingIndex;
   @override
   State<CategoryTabBuilder> createState() => _CategoryTabBuilderState();
 }
@@ -18,7 +18,11 @@ class CategoryTabBuilder extends StatefulWidget {
 class _CategoryTabBuilderState extends State<CategoryTabBuilder> {
   int selectedCategoryIndex = 0;
   List<CategoryEntity> categories = [];
-
+  @override
+  void initState() {
+    super.initState();
+    selectedCategoryIndex = widget.incomingIndex ?? 0;
+  }
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<CategoriesCubit, CategoriesStates>(

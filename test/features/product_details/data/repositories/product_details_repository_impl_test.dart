@@ -8,7 +8,6 @@ import 'package:mocktail/mocktail.dart';
 
 class MockProductDetailsRemoteDataSource extends Mock
     implements ProductDetailsRemoteDataSourceContract {}
-
 void main() {
   late MockProductDetailsRemoteDataSource mockProductDetailsRemoteDataSource;
   late ProductDetailsRepositoryImpl repository;

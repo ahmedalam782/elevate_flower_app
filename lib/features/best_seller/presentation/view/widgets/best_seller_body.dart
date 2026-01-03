@@ -24,7 +24,7 @@ class BestSellerBody extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 10),
-        Expanded(child: BestSellerBlocBuilder()),
+        const Expanded(child: BestSellerBlocBuilder()),
       ],
     );
   }
