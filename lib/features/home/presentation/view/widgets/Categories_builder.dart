@@ -1,12 +1,14 @@
+import 'package:elevate_flower_app/features/home/presentation/view/widgets/category_home_shimmer.dart';
 import 'package:elevate_flower_app/features/home/presentation/view/widgets/category_item.dart';
 import 'package:elevate_flower_app/features/home/presentation/view_model/cubit/home_cubit.dart';
 import 'package:elevate_flower_app/features/home/presentation/view_model/cubit/home_states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shimmer/shimmer.dart';
 
 class CategoriesBuilder extends StatelessWidget {
   const CategoriesBuilder({super.key, this.onSelectedCategory});
-   final Function(int? index)? onSelectedCategory;
+  final Function(int? index)? onSelectedCategory;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +19,7 @@ class CategoriesBuilder extends StatelessWidget {
         return state.categoryState.when(
           initial: () => const SizedBox.shrink(),
 
-          loading: () => const Center(child: CircularProgressIndicator()),
+          loading: () => const CategoryHomeShimmer(),
 
           error: (error) => Center(child: Text(error.toString())),
 
@@ -31,8 +33,8 @@ class CategoriesBuilder extends StatelessWidget {
                 itemBuilder: (context, index) {
                   final category = categories[index];
                   return CategoryItem(
-                    onTap: (){
-                      if(onSelectedCategory == null) return;
+                    onTap: () {
+                      if (onSelectedCategory == null) return;
                       onSelectedCategory!(index);
                     },
                     imageUrl: category.image,
@@ -47,3 +49,4 @@ class CategoriesBuilder extends StatelessWidget {
     );
   }
 }
+

@@ -1,4 +1,5 @@
 import 'package:elevate_flower_app/core/routes/routes.dart';
+import 'package:elevate_flower_app/features/home/presentation/view/widgets/product_home_shimmer.dart';
 import 'package:elevate_flower_app/features/home/presentation/view/widgets/product_item.dart';
 import 'package:elevate_flower_app/features/home/presentation/view_model/cubit/home_cubit.dart';
 import 'package:elevate_flower_app/features/home/presentation/view_model/cubit/home_states.dart';
@@ -17,7 +18,7 @@ class BestsellerBuilder extends StatelessWidget {
         return state.bestSellerState.when(
           initial: () => const SizedBox.shrink(),
 
-          loading: () => const Center(child: CircularProgressIndicator()),
+          loading: () => const ProductHomeShimmer(),
 
           error: (error) => Center(child: Text(error.toString())),
 
@@ -48,3 +49,6 @@ class BestsellerBuilder extends StatelessWidget {
     );
   }
 }
+
+
+
