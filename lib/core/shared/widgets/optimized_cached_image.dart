@@ -13,7 +13,7 @@ class OptimizedCachedImage extends StatelessWidget {
   final double loadingIconSize;
 
   const OptimizedCachedImage({
-    Key? key,
+    super.key,
     required this.imageUrl,
     this.width,
     this.height,
@@ -22,7 +22,7 @@ class OptimizedCachedImage extends StatelessWidget {
     this.shimmerIcon = Icons.image,
     this.fadeDuration = const Duration(milliseconds: 400),
     this.loadingIconSize = 40,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

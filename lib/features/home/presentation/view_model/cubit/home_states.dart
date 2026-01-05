@@ -15,10 +15,10 @@ class HomeStates {
   });
 
   factory HomeStates.initial() {
-    return HomeStates(
-      categoryState: const BaseState.initial(),
-      bestSellerState: const BaseState.initial(),
-      occasionState: const BaseState.initial(),
+    return const HomeStates(
+      categoryState: BaseState.initial(),
+      bestSellerState: BaseState.initial(),
+      occasionState: BaseState.initial(),
     );
   }
 

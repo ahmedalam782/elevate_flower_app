@@ -82,7 +82,7 @@ class RegisterCubit extends Cubit<RegisterStates> {
       gender: state.genderRowState.selectedGender!.name,
     );
 
-    emit(state.copyWith(registerState: BaseState.loading()));
+    emit(state.copyWith(registerState: const BaseState.loading()));
     final result = await _registerUserUseCase(params);
     result.when(
       success: (data) async {

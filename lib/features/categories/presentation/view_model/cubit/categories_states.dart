@@ -20,7 +20,7 @@ class CategoriesStates extends Equatable {
     BaseState<List<ProductEntity>>? productsState,
   }) =>
       CategoriesStates(
-        category: categoriesState ?? this.category,
-        productsOfCategory: productsState ?? this.productsOfCategory,
+        category: categoriesState ?? category,
+        productsOfCategory: productsState ?? productsOfCategory,
       );
 }

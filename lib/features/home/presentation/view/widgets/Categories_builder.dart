@@ -4,7 +4,6 @@ import 'package:elevate_flower_app/features/home/presentation/view_model/cubit/h
 import 'package:elevate_flower_app/features/home/presentation/view_model/cubit/home_states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shimmer/shimmer.dart';
 
 class CategoriesBuilder extends StatelessWidget {
   const CategoriesBuilder({super.key, this.onSelectedCategory});

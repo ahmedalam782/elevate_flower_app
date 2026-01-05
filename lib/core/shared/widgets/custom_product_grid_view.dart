@@ -163,7 +163,7 @@ class _CustomProductGridViewState extends State<CustomProductGridView> {
   }
 
   Widget _buildLoadingIndicator() {
-    return CustomProductItem(
+    return const CustomProductItem(
       product: ProductItemEntity(id: 'loading', name: 'Loading...', price: 0),
       isLoading: true,
     );

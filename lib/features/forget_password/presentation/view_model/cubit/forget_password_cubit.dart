@@ -30,7 +30,7 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordStates> {
   }) : _sendOtpToEmailUseCase = sendOtpToEmailUseCase,
        _verifyOtpUseCase = verifyOtpUseCase,
        _resetPasswordUseCase = resetPasswordUseCase,
-       super(ForgetPasswordStates(isLoading: false));
+       super(const ForgetPasswordStates(isLoading: false));
 
   Future<void> doIntent(
     ForgetPasswordEvents event,
@@ -133,7 +133,7 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordStates> {
     pageController.animateToPage(
       page,
       curve: Curves.linear,
-      duration: Duration(milliseconds: 300),
+      duration: const Duration(milliseconds: 300),
     );
   }
 

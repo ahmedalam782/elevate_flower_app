@@ -22,7 +22,7 @@ class SectionTitileAndViewAll extends StatelessWidget {
           onPressed: onTap,
           child: Text(
             LocaleKeys.home_screen_view_all.tr(),
-            style: TextStyle(color: AppColors.primerColor, fontSize: 10),
+            style: const TextStyle(color: AppColors.primerColor, fontSize: 10),
           ),
         ),
       ],

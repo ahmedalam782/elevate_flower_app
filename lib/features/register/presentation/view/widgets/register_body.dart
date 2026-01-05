@@ -21,27 +21,27 @@ class RegisterBody extends StatelessWidget {
     final cubit = context.read<RegisterCubit>();
     return Column(
       children: [
-        RegisterForm(),
-        SizedBox(height: 24.0),
-        GenderRow(),
-        SizedBox(height: 24.0),
-        TermsConditionsSpan(),
-        SizedBox(height: 50.0),
+        const RegisterForm(),
+        const SizedBox(height: 24.0),
+        const GenderRow(),
+        const SizedBox(height: 24.0),
+        const TermsConditionsSpan(),
+        const SizedBox(height: 50.0),
         BlocBuilder<RegisterCubit, RegisterStates>(
           builder: (context, state) {
             return CustomButton(
               title: LocaleKeys.register_register_button.tr(),
               isLoading: state.registerState.state == StateType.loading,
               onPressed: () {
-                cubit.doIntent(RegisterUserEvent());
+                cubit.doIntent(const RegisterUserEvent());
               },
               borderColor: Colors.transparent,
             );
           },
         ),
-        SizedBox(height: 16.0),
-        AlreadyHaveAccount(),
-        RegisterBlocListener(),
+        const SizedBox(height: 16.0),
+        const AlreadyHaveAccount(),
+        const RegisterBlocListener(),
       ],
     );
   }

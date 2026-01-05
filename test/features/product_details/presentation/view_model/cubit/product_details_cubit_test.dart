@@ -206,7 +206,7 @@ void main() {
 
       test('handles Failures exception type correctly', () async {
         // Arrange
-        final failure = ServerFailure(errorMessage: 'Product not found');
+        const failure = ServerFailure(errorMessage: 'Product not found');
         when(
           () => mockGetSpeceficProductUseCase.call(testProductId),
         ).thenAnswer(

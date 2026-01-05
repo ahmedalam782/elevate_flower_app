@@ -28,7 +28,7 @@ void main() {
     test(
       "emit success state when get best seller products use case returns success",
       () async {
-        final dummyData = BestSellerPageEntity(
+        const dummyData = BestSellerPageEntity(
           currentPage: null,
           totalPages: null,
           products: [
@@ -54,7 +54,7 @@ void main() {
             .toList();
         cubit.doIntent(BestSellerEvents.getBestSellerProducts());
         final states = await registerStatesStream;
-        expect(states[0], equals(BaseState<BestSellerPageEntity>.loading()));
+        expect(states[0], equals(const BaseState<BestSellerPageEntity>.loading()));
         expect(states[1], equals(BaseState.success(dummyData)));
         expect(states[1].data, equals(dummyData));
       },
@@ -75,7 +75,7 @@ void main() {
             .toList();
         cubit.doIntent(BestSellerEvents.getBestSellerProducts());
         final states = await registerStatesStream;
-        expect(states[0], equals(BaseState<BestSellerPageEntity>.loading()));
+        expect(states[0], equals(const BaseState<BestSellerPageEntity>.loading()));
         expect(
           states[1],
           equals(BaseState<BestSellerPageEntity>.error(dummyException)),

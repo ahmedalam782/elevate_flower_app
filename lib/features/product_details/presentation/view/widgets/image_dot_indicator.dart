@@ -10,7 +10,7 @@ class ImageDotIndicator extends StatelessWidget {
   Widget build(BuildContext context) {
     return AnimatedContainer(
       margin: EdgeInsets.symmetric(horizontal: 4.w),
-      duration: Duration(milliseconds: 300),
+      duration: const Duration(milliseconds: 300),
       width: 10.w,
       height: 10.w,
       decoration: BoxDecoration(

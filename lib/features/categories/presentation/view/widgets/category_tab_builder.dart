@@ -57,7 +57,7 @@ class _CategoryTabBuilderState extends State<CategoryTabBuilder> {
 
   //!<<<<<<<<<=============???????????
   Widget _buildCategoryTabs(List<CategoryEntity> categories) {
-    final tabs = ['All', ...categories.map((c) => c.name).toList()];
+    final tabs = ['All', ...categories.map((c) => c.name)];
 
     return CustomTabBar(
       tabList: tabs,

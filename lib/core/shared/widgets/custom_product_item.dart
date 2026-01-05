@@ -68,7 +68,7 @@ class CustomProductItem extends StatelessWidget {
             AnimatedContainer(
               duration: const Duration(milliseconds: 500),
               curve: Curves.easeInOut,
-              margin: EdgeInsets.all(8),
+              margin: const EdgeInsets.all(8),
               decoration: BoxDecoration(
                 color: AppColors.pinkF9,
                 borderRadius: BorderRadius.circular(16),
@@ -93,7 +93,7 @@ class CustomProductItem extends StatelessWidget {
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
-                    Gap(4),
+                    const Gap(4),
                     // Price Section with Discount Badge
                     Row(
                       spacing: 6,
@@ -124,7 +124,7 @@ class CustomProductItem extends StatelessWidget {
                         ],
                       ],
                     ),
-                    Spacer(),
+                    const Spacer(),
 
                     // Add to Cart Button or Quantity Controls
                     quantity == 0
@@ -135,18 +135,18 @@ class CustomProductItem extends StatelessWidget {
                               color: AppColors.whiteF9,
                             ),
                             height: 30,
-                            padding: EdgeInsets.symmetric(
+                            padding: const EdgeInsets.symmetric(
                               vertical: 0,
                               horizontal: 0,
                             ),
-                            leading: Icon(
+                            leading: const Icon(
                               Icons.shopping_cart_outlined,
                               size: 16,
                               color: AppColors.whiteF9,
                             ),
                           )
                         : _buildQuantityControls(),
-                    Gap(12),
+                    const Gap(12),
                   ],
                 ),
               ),
@@ -211,7 +211,7 @@ class CustomProductItem extends StatelessWidget {
                 color: AppColors.primerColor,
                 borderRadius: BorderRadius.circular(15),
               ),
-              child: Icon(Icons.add, color: AppColors.whiteFF, size: 16),
+              child: const Icon(Icons.add, color: AppColors.whiteFF, size: 16),
             ),
           ),
         ],

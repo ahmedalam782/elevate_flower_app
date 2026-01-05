@@ -38,7 +38,7 @@ class RegisterBlocListener extends StatelessWidget {
           },
         );
       },
-      child: SizedBox.shrink(),
+      child: const SizedBox.shrink(),
     );
   }
 }

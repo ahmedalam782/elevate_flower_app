@@ -24,7 +24,7 @@ void main() async {
   );
   runApp(
     EasyLocalization(
-      supportedLocales: [arabicLocale, englishLocale],
+      supportedLocales: const [arabicLocale, englishLocale],
       fallbackLocale: englishLocale,
       startLocale: englishLocale,
       path: assetsLocalization,

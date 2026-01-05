@@ -42,14 +42,14 @@ class GenderRow extends StatelessWidget {
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Radio<Gender>(value: Gender.female),
+                        const Radio<Gender>(value: Gender.female),
                         AnimatedDefaultTextStyle(
                           style: TextStyle(
                             color: state.genderRowState.selectedGender == Gender.female
                                 ? AppColors.black0C
                                 : AppColors.gray53,
                           ),
-                          duration: Duration(milliseconds: _animationDuration),
+                          duration: const Duration(milliseconds: _animationDuration),
                           child: Text(LocaleKeys.register_female_label.tr()),
                         ),
                       ],
@@ -59,14 +59,14 @@ class GenderRow extends StatelessWidget {
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Radio<Gender>(value: Gender.male),
+                        const Radio<Gender>(value: Gender.male),
                         AnimatedDefaultTextStyle(
                           style: TextStyle(
                             color: state.genderRowState.selectedGender == Gender.male
                                 ? AppColors.black0C
                                 : AppColors.gray53,
                           ),
-                          duration: Duration(milliseconds: _animationDuration),
+                          duration: const Duration(milliseconds: _animationDuration),
                           child: Text(LocaleKeys.register_male_label.tr()),
                         ),
                       ],

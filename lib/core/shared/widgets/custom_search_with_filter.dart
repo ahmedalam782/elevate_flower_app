@@ -144,15 +144,15 @@ class _CustomSearchWithFilterState extends State<CustomSearchWithFilter> {
                   isDense: true,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(borderRadiusValue),
-                    borderSide: BorderSide(color: AppColors.grayA6, width: 1),
+                    borderSide: const BorderSide(color: AppColors.grayA6, width: 1),
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(borderRadiusValue),
-                    borderSide: BorderSide(color: AppColors.grayA6, width: 1),
+                    borderSide: const BorderSide(color: AppColors.grayA6, width: 1),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(borderRadiusValue),
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                       color: AppColors.primerColor,
                       width: 1.5,
                     ),
@@ -171,7 +171,7 @@ class _CustomSearchWithFilterState extends State<CustomSearchWithFilter> {
 
             // Filter button (optional)
             if (widget.showFilter) ...[
-              SizedBox(width: 12),
+              const SizedBox(width: 12),
               _FilterButton(
                 onTap: widget.onFilterTap,
                 height: widget.height ?? 48,

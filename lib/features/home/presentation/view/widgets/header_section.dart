@@ -26,7 +26,7 @@ class HeaderSection extends StatelessWidget {
               const SizedBox(width: 8),
               Text(
                 LocaleKeys.home_screen_home_title.tr(),
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 15,
                   fontWeight: FontWeight.bold,
                   // color: Colors.pink,
@@ -35,7 +35,7 @@ class HeaderSection extends StatelessWidget {
               ),
               const SizedBox(width: 16),
               // Search Field
-              Expanded(child: SearchTextField()),
+              const Expanded(child: SearchTextField()),
             ],
           ),
           const SizedBox(height: 20),
@@ -50,10 +50,10 @@ class HeaderSection extends StatelessWidget {
               const SizedBox(width: 4),
               Text(
                 LocaleKeys.home_screen_temp_location.tr(),
-                style: TextStyle(fontSize: 12, color: AppColors.black),
+                style: const TextStyle(fontSize: 12, color: AppColors.black),
               ),
               const SizedBox(width: 4),
-              Icon(
+              const Icon(
                 Icons.keyboard_arrow_down,
                 size: 30,
                 color: AppColors.primerColor,

@@ -34,7 +34,7 @@ void main() {
         ],
       );
       provideDummy<Result<BestSellerResponseModel>>(
-        Success<BestSellerResponseModel>(),
+        const Success<BestSellerResponseModel>(),
       );
       when(
         mockRemoteDataSource.getBestSellerProducts(),

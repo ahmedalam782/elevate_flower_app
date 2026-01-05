@@ -71,13 +71,13 @@ abstract class AppColors {
       color: black.withValues(alpha: 0.2),
       blurRadius: 4,
       spreadRadius: 0,
-      offset: Offset(0, 2),
+      offset: const Offset(0, 2),
     ),
     BoxShadow(
       color: black.withValues(alpha: 0.1),
       blurRadius: 1,
       spreadRadius: 0,
-      offset: Offset(0, 0),
+      offset: const Offset(0, 0),
     ),
   ];
 }

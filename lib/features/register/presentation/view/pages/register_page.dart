@@ -17,10 +17,10 @@ class RegisterPage extends StatelessWidget {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
             child: BlocProvider<RegisterCubit>(
               create: (context) => cubit,
-              child: RegisterBody(),
+              child: const RegisterBody(),
             ),
           ),
         ),

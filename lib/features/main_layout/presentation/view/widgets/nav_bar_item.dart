@@ -11,7 +11,7 @@ class NavBarItem extends BottomNavigationBarItem {
           child: SvgPicture.asset(
             icon,
             fit: BoxFit.scaleDown,
-            colorFilter: ColorFilter.mode(AppColors.gray7D, BlendMode.srcIn),
+            colorFilter: const ColorFilter.mode(AppColors.gray7D, BlendMode.srcIn),
           ),
         ),
         activeIcon: Padding(
@@ -19,7 +19,7 @@ class NavBarItem extends BottomNavigationBarItem {
           child: SvgPicture.asset(
             fit: BoxFit.scaleDown,
             icon,
-            colorFilter: ColorFilter.mode(
+            colorFilter: const ColorFilter.mode(
               AppColors.primerColor,
               BlendMode.srcIn,
             ),

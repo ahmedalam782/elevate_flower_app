@@ -15,8 +15,8 @@ import 'best_seller_remote_data_source_impl_test.mocks.dart';
 @GenerateMocks([BestSellerApiClient])
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
-  late BestSellerRemoteDataSourceImpl _dataSourceImpl;
-  late MockBestSellerApiClient _apiClientMock;
+  late BestSellerRemoteDataSourceImpl dataSourceImpl;
+  late MockBestSellerApiClient apiClientMock;
   late MockInternetConnection mockInternetConnection;
 
   setUp(() async {
@@ -34,8 +34,8 @@ void main() {
     GetIt.instance.registerSingleton<InternetConnection>(
       mockInternetConnection,
     );
-    _apiClientMock = MockBestSellerApiClient();
-    _dataSourceImpl = BestSellerRemoteDataSourceImpl(_apiClientMock);
+    apiClientMock = MockBestSellerApiClient();
+    dataSourceImpl = BestSellerRemoteDataSourceImpl(apiClientMock);
   });
   group("BestSellerRemoteDataSourceImpl test", () {
     final BestSellerResponseModel responseModel = BestSellerResponseModel(
@@ -54,25 +54,25 @@ void main() {
       "test getBestSellerProducts returns BestSellerResponseModel on success",
       () async {
         when(
-          _apiClientMock.getBestSellerProducts(),
+          apiClientMock.getBestSellerProducts(),
         ).thenAnswer((_) async => responseModel);
-        final result = await _dataSourceImpl.getBestSellerProducts();
+        final result = await dataSourceImpl.getBestSellerProducts();
         expect(result, isA<Success<BestSellerResponseModel>>());
         final success = result as Success<BestSellerResponseModel>;
         expect(success.data, responseModel);
-        verify(_apiClientMock.getBestSellerProducts()).called(1);
+        verify(apiClientMock.getBestSellerProducts()).called(1);
       },
     );
 
     test("test getBestSellerProducts returns Failure on failure", () async {
       when(
-        _apiClientMock.getBestSellerProducts(),
+        apiClientMock.getBestSellerProducts(),
       ).thenThrow(Exception("error"));
-      final result = await _dataSourceImpl.getBestSellerProducts();
+      final result = await dataSourceImpl.getBestSellerProducts();
       expect(result, isA<Error>());
       final error = result as Error;
       expect(error.exception, isA<Exception>());
-      verify(_apiClientMock.getBestSellerProducts()).called(1);
+      verify(apiClientMock.getBestSellerProducts()).called(1);
     });
   });
 }

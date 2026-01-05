@@ -42,7 +42,7 @@ class ErrorPage extends StatelessWidget {
                 ? const AlwaysScrollableScrollPhysics(
                     parent: BouncingScrollPhysics(),
                   )
-                : NeverScrollableScrollPhysics(),
+                : const NeverScrollableScrollPhysics(),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [

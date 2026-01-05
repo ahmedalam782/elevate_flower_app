@@ -18,7 +18,7 @@ class ProductDetailsCubit extends Cubit<ProductDetailsStates> {
   }) : _getSpeceficProductUseCase = getSpeceficProductUseCase,
        super(
          ProductDetailsStates(
-           state: BaseState<SpeceficProductEntity>.initial(),
+           state: const BaseState<SpeceficProductEntity>.initial(),
          ),
        );
 
@@ -28,7 +28,7 @@ class ProductDetailsCubit extends Cubit<ProductDetailsStates> {
 
   Future<void> getSpeceficProduct(String productId) async {
     // print("PRODUCT ID ${productId}");
-    emit(state.copyWith(BaseState<SpeceficProductEntity>.loading()));
+    emit(state.copyWith(const BaseState<SpeceficProductEntity>.loading()));
     final response = await _getSpeceficProductUseCase.call(productId);
     switch (response) {
       case Success<SpeceficProductEntity>():

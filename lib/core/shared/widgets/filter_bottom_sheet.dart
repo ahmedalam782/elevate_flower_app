@@ -77,7 +77,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
             child: AnimatedContainer(
               duration: const Duration(milliseconds: 300),
               curve: Curves.easeInOut,
-              margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               decoration: BoxDecoration(
                 color: AppColors.whiteFF,
                 borderRadius: BorderRadius.circular(12.r),
@@ -117,7 +117,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                             child: Container(
                               width: 12.w,
                               height: 12.h,
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                 shape: BoxShape.circle,
                                 color: AppColors.primerColor,
                               ),

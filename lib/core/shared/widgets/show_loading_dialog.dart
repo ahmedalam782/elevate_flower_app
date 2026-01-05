@@ -14,7 +14,7 @@ void showDialogLoading(
     context: context,
     barrierDismissible: barrierDismissible,
     transitionDuration: const Duration(milliseconds: 300),
-    pageBuilder: (context, anim1, anim2) => ShowDialogLoading(),
+    pageBuilder: (context, anim1, anim2) => const ShowDialogLoading(),
     transitionBuilder: (context, anim1, anim2, child) {
       return Transform.scale(
         scale: anim1.value,

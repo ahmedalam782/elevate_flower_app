@@ -31,7 +31,7 @@ class ForgetPasswordRepositoryImpl implements ForgetPasswordRepository {
     final response = await remoteDataSource.verifyCode(code);
     switch (response) {
       case Success<void>():
-        return Success<void>();
+        return const Success<void>();
       case Error<void>():
         return Error<void>(exception: response.exception);
     }
@@ -42,7 +42,7 @@ class ForgetPasswordRepositoryImpl implements ForgetPasswordRepository {
     final response = await remoteDataSource.resetPassword(data);
     switch (response) {
       case Success<void>():
-        return Success<void>();
+        return const Success<void>();
       case Error<void>():
         return Error<void>(exception: response.exception);
     }

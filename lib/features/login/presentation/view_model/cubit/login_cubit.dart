@@ -25,7 +25,7 @@ class LoginCubit extends Cubit<LoginStates> {
   void _validateThenLogin() async {
     if (formKey.currentState != null) {
       if (formKey.currentState!.validate()) {
-        emit(state.copyWith(loginState: BaseState.loading()));
+        emit(state.copyWith(loginState: const BaseState.loading()));
         
         final result = await _loginUserUseCase.call(
           email: emailController.text.trim(),
