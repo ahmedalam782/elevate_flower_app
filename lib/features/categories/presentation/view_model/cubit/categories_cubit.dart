@@ -1,4 +1,5 @@
 import 'package:elevate_flower_app/core/config/base_state/base_state.dart';
+import 'package:elevate_flower_app/core/shared/entities/product_item_entity.dart';
 import 'package:elevate_flower_app/features/categories/domain/use_cases/get_categories_use_case.dart';
 import 'package:elevate_flower_app/features/categories/domain/use_cases/get_products_use_case.dart';
 import 'package:elevate_flower_app/features/categories/presentation/view_model/cubit/categories_events.dart';
@@ -74,10 +75,20 @@ class CategoriesCubit extends Cubit<CategoriesStates> {
 
     result.when(
       success: (products) {
+        // Map ProductEntity to ProductItemEntity
+        final productItems = products?.map((product) => ProductItemEntity(
+          id: product.id,
+          name: product.title,
+          description: product.description,
+          price: product.price,
+          priceAfterDiscount: product.priceAfterDiscount,
+          imageUrl: product.imgCover,
+        )).toList() ?? [];
+
         emit(
           state.copyWith(
             categoriesState: state.category,
-            productsState: BaseState.success(products),
+            productsState: BaseState.success(productItems),
           ),
         );
       },
@@ -107,10 +118,20 @@ class CategoriesCubit extends Cubit<CategoriesStates> {
       success: (categories) {
         productsResult.when(
           success: (products) {
+            // Map ProductEntity to ProductItemEntity
+            final productItems = products?.map((product) => ProductItemEntity(
+              id: product.id,
+              name: product.title,
+              description: product.description,
+              price: product.price,
+              priceAfterDiscount: product.priceAfterDiscount,
+              imageUrl: product.imgCover,
+            )).toList() ?? [];
+
             emit(
               state.copyWith(
                 categoriesState: BaseState.success(categories),
-                productsState: BaseState.success(products),
+                productsState: BaseState.success(productItems),
               ),
             );
           },
@@ -127,10 +148,20 @@ class CategoriesCubit extends Cubit<CategoriesStates> {
       error: (exception) {
         productsResult.when(
           success: (products) {
+            // Map ProductEntity to ProductItemEntity
+            final productItems = products?.map((product) => ProductItemEntity(
+              id: product.id,
+              name: product.title,
+              description: product.description,
+              price: product.price,
+              priceAfterDiscount: product.priceAfterDiscount,
+              imageUrl: product.imgCover,
+            )).toList() ?? [];
+
             emit(
               state.copyWith(
                 categoriesState: BaseState.error(exception),
-                productsState: BaseState.success(products),
+                productsState: BaseState.success(productItems),
               ),
             );
           },
