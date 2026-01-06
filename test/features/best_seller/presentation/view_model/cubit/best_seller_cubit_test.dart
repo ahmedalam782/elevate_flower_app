@@ -43,10 +43,10 @@ void main() {
           ],
         );
         provideDummy<Result<BestSellerPageEntity>>(
-          Success<BestSellerPageEntity>(data: dummyData),
+          const Success<BestSellerPageEntity>(data: dummyData),
         );
         when(getBestSellerProductsUseCase()).thenAnswer(
-          (_) async => Success<BestSellerPageEntity>(data: dummyData),
+          (_) async => const Success<BestSellerPageEntity>(data: dummyData),
         );
         final registerStatesStream = cubit.stream
             .map((state) => state.getMostSellerState)
@@ -55,7 +55,7 @@ void main() {
         cubit.doIntent(BestSellerEvents.getBestSellerProducts());
         final states = await registerStatesStream;
         expect(states[0], equals(const BaseState<BestSellerPageEntity>.loading()));
-        expect(states[1], equals(BaseState.success(dummyData)));
+        expect(states[1], equals(const BaseState.success(dummyData)));
         expect(states[1].data, equals(dummyData));
       },
     );

@@ -6,14 +6,14 @@ import 'category_response_model.dart';
 extension CategoryDtoMapper on CategoryDto {
   CategoryEntity toEntity() {
     return CategoryEntity(
-      id: id,
-      name: name,
-      slug: slug,
-      image: image,
-      createdAt: createdAt,
-      updatedAt: updatedAt,
-      isSuperAdmin: isSuperAdmin,
-      productsCount: productsCount,
+      id: id ?? "",
+      name: name ?? "",
+      slug: slug ?? "",
+      image: image ?? "",
+      createdAt: createdAt ?? DateTime.now(),
+      updatedAt: updatedAt ?? DateTime.now(),
+      isSuperAdmin: isSuperAdmin ?? false,
+      productsCount: productsCount ?? 0,
     );
   }
 }
@@ -21,6 +21,7 @@ extension CategoryDtoMapper on CategoryDto {
 /// Convert CategoryResponseModel to List of CategoryEntity
 extension CategoryResponseModelMapper on CategoryResponseModel {
   List<CategoryEntity> toEntities() {
-    return categories.map((dto) => dto.toEntity()).toList();
+    if (categories == null || categories!.isEmpty) return [];
+    return categories!.map((dto) => dto.toEntity()).toList();
   }
 }

@@ -6,34 +6,36 @@ import 'products_response_models.dart';
 extension ProductDtoMapper on ProductDto {
   ProductEntity toEntity() {
     return ProductEntity(
-      id: id,
-      title: title,
-      slug: slug,
-      description: description,
-      imgCover: imgCover,
-      images: images,
-      price: price,
-      priceAfterDiscount: priceAfterDiscount,
-      discount: discount,
-      quantity: quantity,
-      category: category,
-      occasion: occasion,
-      createdAt: createdAt,
-      updatedAt: updatedAt,
-      version: version,
-      isSuperAdmin: isSuperAdmin,
-      sold: sold,
-      rateAvg: rateAvg,
-      rateCount: rateCount,
+      id: id ?? '',
+      title: title ?? '',
+      slug: slug ?? '',
+      description: description ?? '',
+      imgCover: imgCover ?? '',
+      images: images ?? const [],
+      price: price ?? 0,
+      priceAfterDiscount: priceAfterDiscount ?? price ?? 0,
+      discount: discount ?? 0,
+      quantity: quantity ?? 0,
+      category: category ?? '',
+      occasion: occasion ?? '',
+      createdAt: createdAt ?? DateTime.now(),
+      updatedAt: updatedAt ?? DateTime.now(),
+      version: version ?? 0,
+      isSuperAdmin: isSuperAdmin ?? false,
+      sold: sold ?? 0,
+      rateAvg: rateAvg ?? 0,
+      rateCount: rateCount ?? 0,
       favoriteId: favoriteId,
-      isInWishlist: isInWishlist,
+      isInWishlist: isInWishlist ?? false,
     );
   }
 }
 
+
 /// Convert ProductsResponseModels to List of ProductEntity
 extension ProductsResponseModelMapper on ProductsResponseModels {
   List<ProductEntity> toEntities() {
-    return products.map((dto) => dto.toEntity()).toList();
+    if (products == null || products!.isEmpty) return [];
+    return products!.map((dto) => dto.toEntity()).toList();
   }
 }

@@ -210,7 +210,7 @@ void main() {
         when(
           () => mockGetSpeceficProductUseCase.call(testProductId),
         ).thenAnswer(
-          (_) async => Error<SpeceficProductEntity>(exception: failure),
+          (_) async => const Error<SpeceficProductEntity>(exception: failure),
         );
 
         // Act & Assert

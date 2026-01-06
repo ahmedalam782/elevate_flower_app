@@ -5,51 +5,51 @@ part 'product_dto.g.dart';
 @JsonSerializable()
 class ProductDto {
   @JsonKey(name: '_id')
-  final String id;
-  final String title;
-  final String slug;
-  final String description;
-  final String imgCover;
-  final List<String> images;
-  final double price;
-  final double priceAfterDiscount;
+  final String? id;
+  final String? title;
+  final String? slug;
+  final String? description;
+  final String? imgCover;
+  final List<String>? images;
+  final double? price;
+  final double? priceAfterDiscount;
   final double? discount;
-  final int quantity;
-  final String category;
-  final String occasion;
-  final DateTime createdAt;
-  final DateTime updatedAt;
+  final int? quantity;
+  final String? category;
+  final String? occasion;
+  final DateTime? createdAt;
+  final DateTime? updatedAt;
   @JsonKey(name: '__v')
-  final int version;
+  final int? version;
   final bool? isSuperAdmin;
   final int? sold;
-  final double rateAvg;
-  final int rateCount;
+  final double? rateAvg;
+  final int? rateCount;
   final String? favoriteId;
-  final bool isInWishlist;
+  final bool? isInWishlist;
 
   ProductDto({
-    required this.id,
-    required this.title,
-    required this.slug,
-    required this.description,
-    required this.imgCover,
-    required this.images,
-    required this.price,
-    required this.priceAfterDiscount,
+    this.id,
+    this.title,
+    this.slug,
+    this.description,
+    this.imgCover,
+    this.images,
+    this.price,
+    this.priceAfterDiscount,
     this.discount,
-    required this.quantity,
-    required this.category,
-    required this.occasion,
-    required this.createdAt,
-    required this.updatedAt,
-    required this.version,
+    this.quantity,
+    this.category,
+    this.occasion,
+    this.createdAt,
+    this.updatedAt,
+    this.version,
     this.isSuperAdmin,
     this.sold,
-    required this.rateAvg,
-    required this.rateCount,
+    this.rateAvg,
+    this.rateCount,
     this.favoriteId,
-    required this.isInWishlist,
+    this.isInWishlist,
   });
 
   factory ProductDto.fromJson(Map<String, dynamic> json) =>

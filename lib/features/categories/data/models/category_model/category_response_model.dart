@@ -6,14 +6,14 @@ part 'category_response_model.g.dart';
 
 @JsonSerializable()
 class CategoryResponseModel {
-  final String message;
-  final MetadataModel metadata;
-  final List<CategoryDto> categories;
+  final String? message;
+  final MetadataModel? metadata;
+  final List<CategoryDto>? categories;
 
   CategoryResponseModel({
-    required this.message,
-    required this.metadata,
-    required this.categories,
+    this.message,
+    this.metadata,
+    this.categories,
   });
 
   factory CategoryResponseModel.fromJson(Map<String, dynamic> json) =>
