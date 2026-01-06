@@ -80,7 +80,7 @@ void main() {
       final ProductsResponseModels responseModel = ProductsResponseModels(
         message: "success",
         products: [
-          ProductDto(id: "1", title: "flawer", imgCover: "image", price: 100),
+          ProductDto(id: "1", title: "flower", imgCover: "image", price: 100),
         ],
       );
 
