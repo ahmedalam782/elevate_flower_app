@@ -9,10 +9,12 @@ import 'login_states.dart';
 
 @injectable
 class LoginCubit extends Cubit<LoginStates> {
-  LoginCubit(this._loginUserUseCase) : super(LoginStates());
-  
+  LoginCubit(this._loginUserUseCase, {this.formValidator})
+    : super(LoginStates());
+
   final LoginUseCase _loginUserUseCase;
-  
+  final bool Function()? formValidator;
+
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   final formKey = GlobalKey<FormState>();
@@ -23,36 +25,35 @@ class LoginCubit extends Cubit<LoginStates> {
   }
 
   void _validateThenLogin() async {
-    if (formKey.currentState != null) {
-      if (formKey.currentState!.validate()) {
-        emit(state.copyWith(loginState: const BaseState.loading()));
-        
-        final result = await _loginUserUseCase.call(
-          email: emailController.text.trim(),
-          password: passwordController.text,
-          rememberMe: isRememberMe,
-        );
+    final isValid =
+        formValidator?.call() ?? (formKey.currentState?.validate() ?? false);
 
-        result.when(
-          success: (data) {
-            emit(state.copyWith(loginState: BaseState.success(data)));
-          },
-          error: (error) {
-            emit(state.copyWith(loginState: BaseState.error(error)));
-          },
-        );
-      }
-    }
-  }
+    if (!isValid) return;
 
-  void _clearControllers() {
-    emailController.clear();
-    passwordController.clear();
+    emit(state.copyWith(loginState: const BaseState.loading()));
+
+    final result = await _loginUserUseCase.call(
+      email: emailController.text.trim(),
+      password: passwordController.text,
+      rememberMe: isRememberMe,
+    );
+
+    result.when(
+      success: (data) {
+        emit(state.copyWith(loginState: BaseState.success(data)));
+      },
+      error: (error) {
+        emit(state.copyWith(loginState: BaseState.error(error)));
+      },
+    );
   }
 
   @override
   Future<void> close() {
-    _clearControllers();
+    // ✅ امسح المحتوى الأول
+    emailController.clear();
+    passwordController.clear();
+    // ✅ بعدين اعمل dispose
     emailController.dispose();
     passwordController.dispose();
     return super.close();
