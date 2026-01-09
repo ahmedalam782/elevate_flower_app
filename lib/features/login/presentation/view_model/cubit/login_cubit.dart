@@ -18,10 +18,13 @@ class LoginCubit extends Cubit<LoginStates> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   final formKey = GlobalKey<FormState>();
-  bool isRememberMe = false;
 
   void doIntent(LoginEvents event) {
     event.when(loginUserEvent: _validateThenLogin);
+  }
+
+  void toggleRememberMe(bool value) {
+    emit(state.copyWith(isRememberMe: value));
   }
 
   void _validateThenLogin() async {
@@ -35,7 +38,7 @@ class LoginCubit extends Cubit<LoginStates> {
     final result = await _loginUserUseCase.call(
       email: emailController.text.trim(),
       password: passwordController.text,
-      rememberMe: isRememberMe,
+      rememberMe: state.isRememberMe,
     );
 
     result.when(
@@ -50,10 +53,8 @@ class LoginCubit extends Cubit<LoginStates> {
 
   @override
   Future<void> close() {
-    // ✅ امسح المحتوى الأول
     emailController.clear();
     passwordController.clear();
-    // ✅ بعدين اعمل dispose
     emailController.dispose();
     passwordController.dispose();
     return super.close();

@@ -17,7 +17,6 @@ void main() {
   late LoginCubit cubit;
   late MockLoginUseCase mockLoginUseCase;
 
-  // ✅ provideDummy خارج الـ tests عشان يشتغل مع كل التستات
   setUpAll(() {
     provideDummy<Result<LoginResponseEntity>>(
       const Success<LoginResponseEntity>(
@@ -46,36 +45,31 @@ void main() {
     cubit = LoginCubit(mockLoginUseCase, formValidator: () => true);
   });
 
-  group("LoginCubit test", () {
-    test("test if initial state is correct", () {
-      expect(cubit.state, isA<LoginStates>());
-      expect(cubit.state.loginState.state, equals(StateType.initial));
+  group("LoginCubit Tests", () {
+    test("initial state is correct", () {
+      expect(cubit.state.loginState.state, StateType.initial);
+      expect(cubit.state.isRememberMe, false);
     });
 
-    test("test initial values are correct", () {
+    test("initial controllers are empty", () {
       expect(cubit.emailController.text, isEmpty);
       expect(cubit.passwordController.text, isEmpty);
-      expect(cubit.isRememberMe, false);
-      // ✅ مش محتاجين نتشيك على formKey.currentState لأنه محتاج Widget
     });
 
-    group("loginUserEvent tests", () {
-      test("does not emit loading state when form is invalid", () async {
-        // Arrange
+    group("loginUserEvent", () {
+      test("does not login if form is invalid", () async {
         final invalidCubit = LoginCubit(
           mockLoginUseCase,
-          formValidator: () => false, // ← form مش valid
+          formValidator: () => false,
         );
-
-        invalidCubit.emailController.text = "";
-        invalidCubit.passwordController.text = "";
 
         // Act
         invalidCubit.doIntent(LoginEvents.loginUserEvent());
-
         // Assert
         await Future.delayed(const Duration(milliseconds: 100));
-        expect(invalidCubit.state.loginState.state, equals(StateType.initial));
+
+        expect(invalidCubit.state.loginState.state, StateType.initial);
+
         verifyNever(
           mockLoginUseCase.call(
             email: anyNamed('email'),
@@ -87,17 +81,17 @@ void main() {
         await invalidCubit.close();
       });
 
-      test("emits success state when login is successful", () async {
-        // Arrange
-        const loginResponse = LoginResponseEntity(
+      test("emits loading then success on successful login", () async {
+        
+        const response = LoginResponseEntity(
           message: "Login successful",
-          token: "test_token_123",
+          token: "token_123",
           user: UserModelEntity(
-            id: "user_123",
+            id: "1",
             firstName: "John",
             lastName: "Doe",
             email: "test@example.com",
-            phone: "123456",
+            phone: "123",
             photo: "",
             role: "user",
             wishlist: [],
@@ -113,26 +107,27 @@ void main() {
             rememberMe: anyNamed('rememberMe'),
           ),
         ).thenAnswer(
-          (_) async => const Success<LoginResponseEntity>(data: loginResponse),
+          (_) async => const Success<LoginResponseEntity>(data: response),
         );
 
         cubit.emailController.text = "test@example.com";
         cubit.passwordController.text = "password123";
-        cubit.isRememberMe = true;
+        cubit.toggleRememberMe(true);
 
-        final loginStatesStream = cubit.stream
+        expect(cubit.state.isRememberMe, true);
+
+        final states = cubit.stream
             .map((state) => state.loginState)
             .take(2)
             .toList();
 
-        // Act
         cubit.doIntent(LoginEvents.loginUserEvent());
 
-        // Assert
-        final loginStates = await loginStatesStream;
-        expect(loginStates[0].state, equals(StateType.loading));
-        expect(loginStates[1].state, equals(StateType.success));
-        expect(loginStates[1].data, equals(loginResponse));
+        final result = await states;
+
+        expect(result[0].state, StateType.loading);
+        expect(result[1].state, StateType.success);
+        expect(result[1].data, response);
 
         verify(
           mockLoginUseCase.call(
@@ -144,7 +139,6 @@ void main() {
       });
 
       test("emits error state when login fails", () async {
-        // Arrange
         final exception = Exception("Invalid credentials");
 
         when(
@@ -158,51 +152,32 @@ void main() {
         );
 
         cubit.emailController.text = "test@example.com";
-        cubit.passwordController.text = "wrongpassword";
-        cubit.isRememberMe = false;
+        cubit.passwordController.text = "wrong";
+        cubit.toggleRememberMe(false);
 
-        final loginStatesStream = cubit.stream
+        final states = cubit.stream
             .map((state) => state.loginState)
             .take(2)
             .toList();
 
-        // Act
         cubit.doIntent(LoginEvents.loginUserEvent());
 
-        // Assert
-        final loginStates = await loginStatesStream;
-        expect(loginStates[0].state, equals(StateType.loading));
-        expect(loginStates[1].state, equals(StateType.error));
-        expect(loginStates[1].exception, equals(exception));
+        final result = await states;
+
+        expect(result[0].state, StateType.loading);
+        expect(result[1].state, StateType.error);
+        expect(result[1].exception, exception);
 
         verify(
           mockLoginUseCase.call(
             email: "test@example.com",
-            password: "wrongpassword",
+            password: "wrong",
             rememberMe: false,
           ),
         ).called(1);
       });
 
-      test("trims email before calling use case", () async {
-        // Arrange
-        const loginResponse = LoginResponseEntity(
-          message: "Login successful",
-          token: "test_token",
-          user: UserModelEntity(
-            id: "user_123",
-            firstName: "John",
-            lastName: "Doe",
-            email: "test@example.com",
-            phone: "123456",
-            photo: "",
-            role: "user",
-            wishlist: [],
-            addresses: [],
-            createdAt: "2024-01-01",
-          ),
-        );
-
+      test("trims email but not password", () async {
         when(
           mockLoginUseCase.call(
             email: anyNamed('email'),
@@ -210,138 +185,50 @@ void main() {
             rememberMe: anyNamed('rememberMe'),
           ),
         ).thenAnswer(
-          (_) async => const Success<LoginResponseEntity>(data: loginResponse),
+          (_) async => const Success<LoginResponseEntity>(
+            data: LoginResponseEntity(
+              message: "Login successful",
+              token: "dummy",
+              user: UserModelEntity(
+                id: "1",
+                firstName: "Test",
+                lastName: "User",
+                email: "test@test.com",
+                phone: "000",
+                photo: "",
+                role: "user",
+                wishlist: [],
+                addresses: [],
+                createdAt: "2024-01-01",
+              ),
+            ),
+          ),
         );
 
         cubit.emailController.text = "  test@example.com  ";
-        cubit.passwordController.text = "password123";
+        cubit.passwordController.text = "  pass  ";
 
-        // Act
         cubit.doIntent(LoginEvents.loginUserEvent());
+
         await Future.delayed(const Duration(milliseconds: 100));
 
-        // Assert
         verify(
           mockLoginUseCase.call(
-            email: "test@example.com", // Should be trimmed
-            password: "password123",
+            email: "test@example.com",
+            password: "  pass  ",
             rememberMe: false,
-          ),
-        ).called(1);
-      });
-
-      test("does not trim password before calling use case", () async {
-        // Arrange
-        const loginResponse = LoginResponseEntity(
-          message: "Login successful",
-          token: "test_token",
-          user: UserModelEntity(
-            id: "user_123",
-            firstName: "John",
-            lastName: "Doe",
-            email: "test@example.com",
-            phone: "123456",
-            photo: "",
-            role: "user",
-            wishlist: [],
-            addresses: [],
-            createdAt: "2024-01-01",
-          ),
-        );
-
-        when(
-          mockLoginUseCase.call(
-            email: anyNamed('email'),
-            password: anyNamed('password'),
-            rememberMe: anyNamed('rememberMe'),
-          ),
-        ).thenAnswer(
-          (_) async => const Success<LoginResponseEntity>(data: loginResponse),
-        );
-
-        cubit.emailController.text = "test@example.com";
-        cubit.passwordController.text = "  password123  ";
-
-        // Act
-        cubit.doIntent(LoginEvents.loginUserEvent());
-        await Future.delayed(const Duration(milliseconds: 100));
-
-        // Assert
-        verify(
-          mockLoginUseCase.call(
-            email: "test@example.com",
-            password: "  password123  ", // Should NOT be trimmed
-            rememberMe: false,
-          ),
-        ).called(1);
-      });
-
-      test("uses isRememberMe value correctly", () async {
-        // Arrange
-        const loginResponse = LoginResponseEntity(
-          message: "Login successful",
-          token: "test_token",
-          user: UserModelEntity(
-            id: "user_123",
-            firstName: "John",
-            lastName: "Doe",
-            email: "test@example.com",
-            phone: "123456",
-            photo: "",
-            role: "user",
-            wishlist: [],
-            addresses: [],
-            createdAt: "2024-01-01",
-          ),
-        );
-
-        when(
-          mockLoginUseCase.call(
-            email: anyNamed('email'),
-            password: anyNamed('password'),
-            rememberMe: anyNamed('rememberMe'),
-          ),
-        ).thenAnswer(
-          (_) async => const Success<LoginResponseEntity>(data: loginResponse),
-        );
-
-        cubit.emailController.text = "test@example.com";
-        cubit.passwordController.text = "password123";
-        cubit.isRememberMe = true;
-
-        // Act
-        cubit.doIntent(LoginEvents.loginUserEvent());
-        await Future.delayed(const Duration(milliseconds: 100));
-
-        // Assert
-        verify(
-          mockLoginUseCase.call(
-            email: "test@example.com",
-            password: "password123",
-            rememberMe: true,
           ),
         ).called(1);
       });
     });
 
-    group("controller cleanup tests", () {
-      test("controllers are properly disposed after close", () async {
-        // Arrange
-        final testCubit = LoginCubit(
-          mockLoginUseCase,
-          formValidator: () => true,
-        );
-        testCubit.emailController.text = "test@example.com";
+    test("controllers are disposed on close", () async {
+      await cubit.close();
 
-        // Act
-        await testCubit.close();
-
-        // Assert - محاولة استخدام disposed controller لازم ترمي error
-        expect(
-          () => testCubit.emailController.text = "new text",
-          throwsA(isA<AssertionError>()),
-        );
-      });
+      expect(
+        () => cubit.emailController.text = "test",
+        throwsA(isA<AssertionError>()),
+      );
     });
   });
 }
