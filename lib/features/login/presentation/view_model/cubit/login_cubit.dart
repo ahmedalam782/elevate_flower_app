@@ -9,50 +9,52 @@ import 'login_states.dart';
 
 @injectable
 class LoginCubit extends Cubit<LoginStates> {
-  LoginCubit(this._loginUserUseCase) : super(LoginStates());
-  
+  LoginCubit(this._loginUserUseCase, {this.formValidator})
+    : super(LoginStates());
+
   final LoginUseCase _loginUserUseCase;
-  
+  final bool Function()? formValidator;
+
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   final formKey = GlobalKey<FormState>();
-  bool isRememberMe = false;
 
   void doIntent(LoginEvents event) {
     event.when(loginUserEvent: _validateThenLogin);
   }
 
-  void _validateThenLogin() async {
-    if (formKey.currentState != null) {
-      if (formKey.currentState!.validate()) {
-        emit(state.copyWith(loginState: const BaseState.loading()));
-        
-        final result = await _loginUserUseCase.call(
-          email: emailController.text.trim(),
-          password: passwordController.text,
-          rememberMe: isRememberMe,
-        );
-
-        result.when(
-          success: (data) {
-            emit(state.copyWith(loginState: BaseState.success(data)));
-          },
-          error: (error) {
-            emit(state.copyWith(loginState: BaseState.error(error)));
-          },
-        );
-      }
-    }
+  void toggleRememberMe(bool value) {
+    emit(state.copyWith(isRememberMe: value));
   }
 
-  void _clearControllers() {
-    emailController.clear();
-    passwordController.clear();
+  void _validateThenLogin() async {
+    final isValid =
+        formValidator?.call() ?? (formKey.currentState?.validate() ?? false);
+
+    if (!isValid) return;
+
+    emit(state.copyWith(loginState: const BaseState.loading()));
+
+    final result = await _loginUserUseCase.call(
+      email: emailController.text.trim(),
+      password: passwordController.text,
+      rememberMe: state.isRememberMe,
+    );
+
+    result.when(
+      success: (data) {
+        emit(state.copyWith(loginState: BaseState.success(data)));
+      },
+      error: (error) {
+        emit(state.copyWith(loginState: BaseState.error(error)));
+      },
+    );
   }
 
   @override
   Future<void> close() {
-    _clearControllers();
+    emailController.clear();
+    passwordController.clear();
     emailController.dispose();
     passwordController.dispose();
     return super.close();
