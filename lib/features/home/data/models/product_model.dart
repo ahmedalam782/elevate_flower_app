@@ -8,42 +8,42 @@ class ProductModel {
   @JsonKey(name: '_id')
   final String id;
   final String title;
-  final String slug;
-  final String description;
+  final String? slug;
+  final String? description;
   final String imgCover;
-  final List<String> images;
+  final List<String>? images;
   final int price;
-  final int priceAfterDiscount;
+  final int? priceAfterDiscount;
   final int? discount;
-  final int quantity;
-  final String category;
-  final String occasion;
-  final String createdAt;
-  final String updatedAt;
-  final bool isSuperAdmin;
+  final int? quantity;
+  final String? category;
+  final String? occasion;
+  final String? createdAt;
+  final String? updatedAt;
+  final bool? isSuperAdmin;
   final int? sold;
-  final num rateAvg;
-  final int rateCount;
+  final num? rateAvg;
+  final int? rateCount;
 
   ProductModel({
     required this.id,
     required this.title,
-    required this.slug,
-    required this.description,
+    this.slug,
+    this.description,
     required this.imgCover,
-    required this.images,
+    this.images,
     required this.price,
-    required this.priceAfterDiscount,
+    this.priceAfterDiscount,
     this.discount,
-    required this.quantity,
-    required this.category,
-    required this.occasion,
-    required this.createdAt,
-    required this.updatedAt,
-    required this.isSuperAdmin,
+    this.quantity,
+    this.category,
+    this.occasion,
+    this.createdAt,
+    this.updatedAt,
+    this.isSuperAdmin,
     this.sold,
-    required this.rateAvg,
-    required this.rateCount,
+    this.rateAvg,
+    this.rateCount,
   });
 
   factory ProductModel.fromJson(Map<String, dynamic> json) =>
@@ -51,15 +51,14 @@ class ProductModel {
 
   Map<String, dynamic> toJson() => _$ProductModelToJson(this);
 
-
   ProductEntity toDomain() => ProductEntity(
-  id: id,
-  title: title,
-  description: description,
-  imgCover: imgCover,
-  images: images,
-  price: price,
-  priceAfterDiscount: priceAfterDiscount,
-  quantity: quantity,
-);
+    id: id,
+    title: title,
+    description: description??'',
+    imgCover: imgCover,
+    images: images??[],
+    price: price,
+    priceAfterDiscount: priceAfterDiscount??0,
+    quantity: quantity??0,
+  );
 }
