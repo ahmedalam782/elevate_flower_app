@@ -5,7 +5,6 @@ import 'package:elevate_flower_app/features/login/domain/entities/user_model_ent
 import 'package:elevate_flower_app/features/login/domain/use_cases/login_use_case.dart';
 import 'package:elevate_flower_app/features/login/presentation/view_model/cubit/login_cubit.dart';
 import 'package:elevate_flower_app/features/login/presentation/view_model/cubit/login_events.dart';
-import 'package:elevate_flower_app/features/login/presentation/view_model/cubit/login_states.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
