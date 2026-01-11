@@ -8,20 +8,20 @@ class OccasionModel {
   @JsonKey(name: '_id')
   final String id;
   final String name;
-  final String slug;
+  final String? slug;
   final String image;
   final String? createdAt;
   final String? updatedAt;
-  final bool isSuperAdmin;
+  final bool? isSuperAdmin;
 
   OccasionModel({
     required this.id,
     required this.name,
-    required this.slug,
+    this.slug,
     required this.image,
     this.createdAt,
     this.updatedAt,
-    required this.isSuperAdmin,
+    this.isSuperAdmin,
   });
 
   factory OccasionModel.fromJson(Map<String, dynamic> json) =>
@@ -29,11 +29,5 @@ class OccasionModel {
 
   Map<String, dynamic> toJson() => _$OccasionModelToJson(this);
 
-
-
-  OccasionEntity toDomain() => OccasionEntity(
-  id: id,
-  name: name,
-  image: image,
-);
+  OccasionEntity toDomain() => OccasionEntity(id: id, name: name, image: image);
 }

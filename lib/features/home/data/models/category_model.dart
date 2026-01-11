@@ -8,20 +8,20 @@ class CategoryModel {
   @JsonKey(name: '_id')
   final String id;
   final String name;
-  final String slug;
+  final String? slug;
   final String image;
   final String? createdAt;
   final String? updatedAt;
-  final bool isSuperAdmin;
+  final bool? isSuperAdmin;
 
   CategoryModel({
     required this.id,
     required this.name,
-    required this.slug,
+    this.slug,
     required this.image,
     this.createdAt,
     this.updatedAt,
-    required this.isSuperAdmin,
+    this.isSuperAdmin,
   });
 
   factory CategoryModel.fromJson(Map<String, dynamic> json) =>
@@ -29,10 +29,5 @@ class CategoryModel {
 
   Map<String, dynamic> toJson() => _$CategoryModelToJson(this);
 
-
-  CategoryEntity toDomain() => CategoryEntity(
-  id: id,
-  name: name,
-  image: image,
-);
+  CategoryEntity toDomain() => CategoryEntity(id: id, name: name, image: image);
 }
