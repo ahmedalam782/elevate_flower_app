@@ -9,30 +9,24 @@ import 'login_states.dart';
 
 @injectable
 class LoginCubit extends Cubit<LoginStates> {
-  LoginCubit(this._loginUserUseCase, {this.formValidator})
-    : super(LoginStates());
+  LoginCubit(this._loginUserUseCase) : super(LoginStates());
 
   final LoginUseCase _loginUserUseCase;
-  final bool Function()? formValidator;
 
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+
   final formKey = GlobalKey<FormState>();
 
   void doIntent(LoginEvents event) {
-    event.when(loginUserEvent: _validateThenLogin);
+    event.when(loginUserEvent: _login);
   }
 
   void toggleRememberMe(bool value) {
     emit(state.copyWith(isRememberMe: value));
   }
 
-  void _validateThenLogin() async {
-    final isValid =
-        formValidator?.call() ?? (formKey.currentState?.validate() ?? false);
-
-    if (!isValid) return;
-
+  Future<void> _login() async {
     emit(state.copyWith(loginState: const BaseState.loading()));
 
     final result = await _loginUserUseCase.call(
@@ -53,8 +47,6 @@ class LoginCubit extends Cubit<LoginStates> {
 
   @override
   Future<void> close() {
-    emailController.clear();
-    passwordController.clear();
     emailController.dispose();
     passwordController.dispose();
     return super.close();

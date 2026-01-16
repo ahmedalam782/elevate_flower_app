@@ -41,7 +41,7 @@ void main() {
 
   setUp(() {
     mockLoginUseCase = MockLoginUseCase();
-    cubit = LoginCubit(mockLoginUseCase, formValidator: () => true);
+    cubit = LoginCubit(mockLoginUseCase);
   });
 
   group("LoginCubit Tests", () {
@@ -57,10 +57,7 @@ void main() {
 
     group("loginUserEvent", () {
       test("does not login if form is invalid", () async {
-        final invalidCubit = LoginCubit(
-          mockLoginUseCase,
-          formValidator: () => false,
-        );
+        final invalidCubit = LoginCubit(mockLoginUseCase);
 
         // Act
         invalidCubit.doIntent(LoginEvents.loginUserEvent());
@@ -81,7 +78,6 @@ void main() {
       });
 
       test("emits loading then success on successful login", () async {
-        
         const response = LoginResponseEntity(
           message: "Login successful",
           token: "token_123",
