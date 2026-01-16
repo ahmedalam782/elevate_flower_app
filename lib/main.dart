@@ -9,7 +9,6 @@ import 'core/config/di/injectable_config.dart';
 import 'core/helper/bloc/bloc_observer.dart';
 import 'core/languages/lang.dart';
 import 'core/routes/url_strategy.dart';
-import 'core/theme/app_colors.dart';
 
 const bool runLocal = false;
 void main() async {
@@ -22,6 +21,8 @@ void main() async {
       statusBarBrightness: Brightness.light,
     ),
   );
+
+ 
   runApp(
     EasyLocalization(
       supportedLocales: const [arabicLocale, englishLocale],
