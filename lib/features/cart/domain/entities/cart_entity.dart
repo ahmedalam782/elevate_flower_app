@@ -25,6 +25,18 @@ class CartEntity {
   @override
   int get hashCode =>
       numOfCartItems.hashCode ^ totalPrice.hashCode ^ cartProducts.hashCode;
+
+  CartEntity copyWith({
+    int? numOfCartItems,
+    double? totalPrice,
+    List<CartProductEntity>? cartProducts,
+  }) {
+    return CartEntity(
+      numOfCartItems: numOfCartItems ?? this.numOfCartItems,
+      totalPrice: totalPrice ?? this.totalPrice,
+      cartProducts: cartProducts ?? this.cartProducts,
+    );
+  }
 }
 
 class CartProductEntity {

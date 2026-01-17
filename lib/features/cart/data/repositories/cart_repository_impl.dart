@@ -47,4 +47,15 @@ class CartRepositoryImpl implements CartRepository {
         return Error<void>(exception: response.exception);
     }
   }
+
+  @override
+  Future<Result<void>> clearUserCart() async {
+    final response = await carRemoteDataSourceContract.clearUserCart();
+    switch (response) {
+      case Success<void>():
+        return Success<void>();
+      case Error<void>():
+        return Error<void>(exception: response.exception);
+    }
+  }
 }

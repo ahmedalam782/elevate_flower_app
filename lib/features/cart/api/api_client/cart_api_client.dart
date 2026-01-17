@@ -21,4 +21,6 @@ abstract class CartApiClient {
   Future<void> addItemToCart(@Body() CartProductPostData data);
   @DELETE("${EndPoints.cartEndPoint}/{id}")
   Future<void> removeItemFromCart(@Path() String id);
+  @DELETE(EndPoints.cartEndPoint)
+  Future<void> clearUserCart();
 }

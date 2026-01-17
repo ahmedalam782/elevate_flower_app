@@ -234,6 +234,7 @@
     "sub_total": "Sub Total",
     "total": "Total",
     "check_out": "Checkout",
-    "deliver_to": "Deliver to"
+    "deliver_to": "Deliver to",
+    "clear": "Clear cart"
   }
 }

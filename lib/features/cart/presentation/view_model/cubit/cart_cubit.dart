@@ -7,6 +7,7 @@ import 'package:elevate_flower_app/core/config/base_state/base_state.dart';
 import 'package:elevate_flower_app/features/cart/data/models/post/cart_product_post_data.dart';
 import 'package:elevate_flower_app/features/cart/domain/entities/cart_entity.dart';
 import 'package:elevate_flower_app/features/cart/domain/use_cases/add_product_to_cart_use_case.dart';
+import 'package:elevate_flower_app/features/cart/domain/use_cases/clear_user_cart_use_case.dart';
 import 'package:elevate_flower_app/features/cart/domain/use_cases/get_cart_data_use_case.dart';
 import 'package:elevate_flower_app/features/cart/domain/use_cases/remove_product_from_cart_use_case.dart';
 import 'package:elevate_flower_app/features/cart/presentation/view_model/cubit/cart_events.dart';
@@ -18,12 +19,14 @@ import 'package:injectable/injectable.dart';
 @injectable
 class CartCubit extends Cubit<CartStates> {
   CartCubit({
-    required GetCartDataUseCase getSpeceficProduct,
-    required AddProductToCartUseCase addProductToCart,
-    required RemoveProductFromCartUseCase removeProductFromCart,
-  }) : _getCartDataUseCase = getSpeceficProduct,
-       _addProductToCartUseCase = addProductToCart,
-       _removeProductFromCartUseCase = removeProductFromCart,
+    required GetCartDataUseCase getSpeceficProductUsecase,
+    required AddProductToCartUseCase addProductToCartUsecase,
+    required RemoveProductFromCartUseCase removeProductFromCartUsecase,
+    required ClearUserCartUseCase clearProductFromCartUsecase,
+  }) : _getCartDataUseCase = getSpeceficProductUsecase,
+       _addProductToCartUseCase = addProductToCartUsecase,
+       _removeProductFromCartUseCase = removeProductFromCartUsecase,
+       _clearProductFromCartUseCase = clearProductFromCartUsecase,
        super(
          CartStates(
            state: const BaseState<CartEntity>.initial(),
@@ -36,11 +39,13 @@ class CartCubit extends Cubit<CartStates> {
   final GetCartDataUseCase _getCartDataUseCase;
   final AddProductToCartUseCase _addProductToCartUseCase;
   final RemoveProductFromCartUseCase _removeProductFromCartUseCase;
+  final ClearUserCartUseCase _clearProductFromCartUseCase;
 
   Future<void> doIntent(CartEvents event) async => switch (event) {
     GetCartDataEvent() => getCartData(),
     AddProductToCartEvent() => addOneItemToCart(event.index),
     RemoveProductFromCartEvent() => _removeItemFromCartApICall(event.index),
+    ClearUserCartEvent() => _clearUserCart(),
   };
 
   Future<void> getCartData() async {
@@ -89,7 +94,6 @@ class CartCubit extends Cubit<CartStates> {
             totalPrice: cartEntity?.totalPrice,
           ),
         );
-        print(state.currentActedUponItemIndex);
 
       case Error<void>():
         emit(
@@ -101,7 +105,6 @@ class CartCubit extends Cubit<CartStates> {
   }
 
   Future<void> _removeItemFromCartApICall(int index) async {
-    debugPrint("THIS IS AN INDEX${index}");
     emit(
       state.copyWith(
         isAddingItem: false,
@@ -135,23 +138,52 @@ class CartCubit extends Cubit<CartStates> {
     }
   }
 
+  Future<void> _clearUserCart() async {
+    emit(state.copyWith(state: BaseState<CartEntity>.loading()));
+    final response = await _clearProductFromCartUseCase.call();
+    switch (response) {
+      case Success<void>():
+        getCartData();
+
+      case Error<void>():
+        emit(
+          state.copyWith(
+            state: BaseState<CartEntity>.error(response.exception),
+          ),
+        );
+    }
+  }
+
   CartEntity? _updateDataAfterIncrement(int index) {
     final newData = state.state.data;
     newData?.cartProducts[index].productQuantityInCart++;
     newData?.totalPrice += newData.cartProducts[index].productPrice;
 
-    // print(newData?.totalPrice);
     return newData;
   }
 
   CartEntity? _updateDateAfterRemoving(int index) {
-    final newData = state.state.data;
-    newData?.cartProducts.removeAt(index);
-    newData?.totalPrice -=
-        newData.cartProducts[index].productPrice *
-        newData.cartProducts[index].productQuantityInCart;
+    final oldData = state.state.data;
+    if (oldData == null) return null;
 
-    // print(newData?.totalPrice);
-    return newData;
+    // 1️⃣ Copy the list (DO NOT mutate state directly)
+    final updatedProducts = List<CartProductEntity>.from(oldData.cartProducts);
+
+    // 2️⃣ Capture the removed item BEFORE removal
+    final removedItem = updatedProducts[index];
+
+    // 3️⃣ Remove item
+    updatedProducts.removeAt(index);
+
+    // 4️⃣ Calculate updated total price
+    final updatedTotalPrice =
+        oldData.totalPrice -
+        (removedItem.productPrice * removedItem.productQuantityInCart);
+
+    // 5️⃣ Return new CartEntity (immutable update)
+    return oldData.copyWith(
+      cartProducts: updatedProducts,
+      totalPrice: updatedTotalPrice,
+    );
   }
 }

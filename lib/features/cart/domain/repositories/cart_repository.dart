@@ -8,4 +8,5 @@ abstract class CartRepository {
   Future<Result<CartEntity>> getCartData();
   Future<Result<void>> addProductToCart(CartProductPostData data);
   Future<Result<void>> removeProductFromCart(String id);
+  Future<Result<void>> clearUserCart();
 }

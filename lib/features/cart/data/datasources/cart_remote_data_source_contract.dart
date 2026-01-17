@@ -8,4 +8,5 @@ abstract class CartRemoteDataSourceContract {
   Future<Result<CartResponse>> getCartData();
   Future<Result<void>> addProductToCart(CartProductPostData data);
   Future<Result<void>> removeProductFromCart(String productId);
+  Future<Result<void>> clearUserCart();
 }

@@ -9,14 +9,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class CartItem extends StatelessWidget {
+class CartItemWidget extends StatelessWidget {
   final CartProductEntity cartProduct;
   final bool? isDeleting;
   final bool? isAdding;
   final bool? isDecremnting;
   final Function() onAddFunction;
   final Function() onRemoveFunction;
-  const CartItem({
+  const CartItemWidget({
     super.key,
     required this.cartProduct,
     this.isDeleting,

@@ -17,3 +17,5 @@ class RemoveProductFromCartEvent extends CartEvents {
 
   RemoveProductFromCartEvent({required this.index});
 }
+
+class ClearUserCartEvent extends CartEvents {}
