@@ -187,7 +187,7 @@
     "description": "الوصف",
     "bouqet_include": "محتوي باقة الزهور",
     "add_to_cart": "أضف إلي العربة"
-},
+  },
 
   "home_screen": {
     "home_title": "فلوري",
@@ -224,6 +224,13 @@
   "occasion": {
     "occasion_title": "المناسبات",
     "occasion_hint": "ازهر مع أفضل المنتجات المميزة لدينا"
-
+  },
+  "cart": {
+    "cart": "سلة التسوق",
+    "items": "عناصر",
+    "sub_total": "المجموع الفرعي",
+    "total": "المبلغ الكلي",
+    "check_out": "إتمام الطلب",
+    "deliver_to": "يوصل إلي"
   }
 }

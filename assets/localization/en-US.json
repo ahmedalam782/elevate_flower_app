@@ -190,7 +190,6 @@
     "try_again": "Try again"
   },
 
-
   "home_screen": {
     "home_title": "Flowery",
     "temp_location": "Deliver to 2XVP+XC - Sheikh Zayed",
@@ -228,6 +227,13 @@
   "occasion": {
     "occasion_title": "Occasion",
     "occasion_hint": "Bloom with our exquisite best sellers"
-
+  },
+  "cart": {
+    "cart": "Cart",
+    "items": "items",
+    "sub_total": "Sub Total",
+    "total": "Total",
+    "check_out": "Checkout",
+    "deliver_to": "Deliver to"
   }
 }
