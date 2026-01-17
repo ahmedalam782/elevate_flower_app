@@ -70,7 +70,8 @@ class _CartPageState extends State<CartPage> {
                               return CartItem(
                                 onAddFunction: () {
                                   // if(vm.)
-                                  if (vm.state.currentActedUponItemIndex !=
+                                  print(vm.state.currentActedUponItemIndex);
+                                  if (vm.state.currentActedUponItemIndex ==
                                       -1) {
                                     vm.doIntent(AddProductToCart(index: index));
                                   }

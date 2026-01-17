@@ -86,6 +86,7 @@ class CartItem {
       productPrice: price?.toDouble() ?? 0,
       productImage: cartProduct?.imgCover ?? "",
       productQuantityInCart: quantity?.toInt() ?? 0,
+      id: cartProduct?.id ?? "",
     );
   }
 }

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/foundation.dart';
 
 // ignore_for_file: public_member_api_docs, sort_constructors_first
@@ -26,6 +28,7 @@ class CartEntity {
 }
 
 class CartProductEntity {
+  String id;
   String productName;
   String productDescription;
   double productPrice;
@@ -33,6 +36,7 @@ class CartProductEntity {
   int productQuantityInCart;
 
   CartProductEntity({
+    required this.id,
     required this.productName,
     required this.productDescription,
     required this.productPrice,
@@ -44,7 +48,8 @@ class CartProductEntity {
   bool operator ==(covariant CartProductEntity other) {
     if (identical(this, other)) return true;
 
-    return other.productName == productName &&
+    return other.id == id &&
+        other.productName == productName &&
         other.productDescription == productDescription &&
         other.productPrice == productPrice &&
         other.productImage == productImage &&
@@ -53,10 +58,30 @@ class CartProductEntity {
 
   @override
   int get hashCode {
-    return productName.hashCode ^
+    return id.hashCode ^
+        productName.hashCode ^
         productDescription.hashCode ^
         productPrice.hashCode ^
         productImage.hashCode ^
         productQuantityInCart.hashCode;
+  }
+
+  CartProductEntity copyWith({
+    String? id,
+    String? productName,
+    String? productDescription,
+    double? productPrice,
+    String? productImage,
+    int? productQuantityInCart,
+  }) {
+    return CartProductEntity(
+      id: id ?? this.id,
+      productName: productName ?? this.productName,
+      productDescription: productDescription ?? this.productDescription,
+      productPrice: productPrice ?? this.productPrice,
+      productImage: productImage ?? this.productImage,
+      productQuantityInCart:
+          productQuantityInCart ?? this.productQuantityInCart,
+    );
   }
 }
