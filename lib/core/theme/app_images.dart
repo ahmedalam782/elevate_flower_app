@@ -11,4 +11,5 @@ class AppImages {
 
   static const String deleteTrash = "assets/icons/delete.svg";
   static const String locationSvg = "assets/icons/location.svg";
+  static const String emptyCartIcon = "assets/icons/no_items_in_cart.svg";
 }

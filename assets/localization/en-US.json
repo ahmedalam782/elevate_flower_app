@@ -235,6 +235,8 @@
     "total": "Total",
     "check_out": "Checkout",
     "deliver_to": "Deliver to",
-    "clear": "Clear cart"
+    "clear": "Clear cart",
+    "no_items_found": "Your cart is empty",
+    "browsing_as_guest": "You are browsing as a guest, please login to view your cart"
   }
 }
