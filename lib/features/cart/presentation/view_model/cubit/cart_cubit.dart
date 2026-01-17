@@ -12,7 +12,6 @@ import 'package:elevate_flower_app/features/cart/domain/use_cases/get_cart_data_
 import 'package:elevate_flower_app/features/cart/domain/use_cases/remove_product_from_cart_use_case.dart';
 import 'package:elevate_flower_app/features/cart/presentation/view_model/cubit/cart_events.dart';
 import 'package:elevate_flower_app/features/cart/presentation/view_model/cubit/cart_states.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 

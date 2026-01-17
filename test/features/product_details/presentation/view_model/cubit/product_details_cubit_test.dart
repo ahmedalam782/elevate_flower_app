@@ -1,6 +1,7 @@
 import 'package:elevate_flower_app/core/config/base_response/result.dart';
 import 'package:elevate_flower_app/core/config/base_state/base_state.dart';
 import 'package:elevate_flower_app/core/errors/failures.dart';
+import 'package:elevate_flower_app/features/cart/domain/use_cases/add_product_to_cart_use_case.dart';
 import 'package:elevate_flower_app/features/product_details/domain/entities/specefic_product_entity.dart';
 import 'package:elevate_flower_app/features/product_details/domain/use_cases/get_specefic_product_use_case.dart';
 import 'package:elevate_flower_app/features/product_details/presentation/view_model/cubit/product_details_cubit.dart';
@@ -12,8 +13,12 @@ import 'package:mocktail/mocktail.dart';
 class MockGetSpeceficProductUseCase extends Mock
     implements GetSpeceficProductUseCase {}
 
+class MockAddProductTocartUseCase extends Mock
+    implements AddProductToCartUseCase {}
+
 void main() {
   late MockGetSpeceficProductUseCase mockGetSpeceficProductUseCase;
+  late MockAddProductTocartUseCase mockAddProductTocartUseCase;
   late ProductDetailsCubit cubit;
 
   const String testProductId = '123';
@@ -28,8 +33,10 @@ void main() {
 
   setUp(() {
     mockGetSpeceficProductUseCase = MockGetSpeceficProductUseCase();
+    mockAddProductTocartUseCase = MockAddProductTocartUseCase();
     cubit = ProductDetailsCubit(
       getSpeceficProductUseCase: mockGetSpeceficProductUseCase,
+      addSpeceficProductUseCase: mockAddProductTocartUseCase,
     );
   });
 
@@ -381,7 +388,9 @@ void main() {
         );
 
         // Act
-        final newState = cubit.state.copyWith(BaseState.success(newProduct));
+        final newState = cubit.state.copyWith(
+          state: BaseState.success(newProduct),
+        );
 
         // Assert
         expect(newState.state.state, equals(StateType.success));

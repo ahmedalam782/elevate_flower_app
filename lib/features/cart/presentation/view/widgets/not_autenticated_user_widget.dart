@@ -20,6 +20,7 @@ class NotAutenticatedUserWidget extends StatelessWidget {
           Text(
             LocaleKeys.cart_browsing_as_guest.tr(),
             style: 16.medium.copyWith(color: AppColors.primerColor),
+            textAlign: TextAlign.center,
           ),
           SizedBox(height: 12.h),
           CustomButton(

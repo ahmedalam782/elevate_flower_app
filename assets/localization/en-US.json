@@ -237,6 +237,11 @@
     "deliver_to": "Deliver to",
     "clear": "Clear cart",
     "no_items_found": "Your cart is empty",
-    "browsing_as_guest": "You are browsing as a guest, please login to view your cart"
+    "browsing_as_guest": "You are browsing as a guest, please login to view your cart",
+    "confirm": "Confirm",
+    "back": "Back",
+    "you_are_browsing_as_guest": "You are browsing as a guest",
+    "to_continue_Shopping": "To add item to cart please login or create account if you don't have one",
+    "item_added_to_cart": "Item added successfully to your cart"
   }
 }
