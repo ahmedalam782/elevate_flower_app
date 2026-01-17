@@ -72,7 +72,7 @@ class ResendTimerState extends State<ResendTimer> {
                 : AppColors.grayA6,
           ),
         ),
-        Gap(4),
+        const Gap(4),
         InkWell(
           radius: 10,
           onTap: _timer == null || !_timer!.isActive

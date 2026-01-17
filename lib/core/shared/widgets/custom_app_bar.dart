@@ -42,7 +42,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                 onTap: () {
                   context.pop();
                 },
-                child: Icon(Icons.chevron_left, size: 38),
+                child: const Icon(Icons.chevron_left, size: 38),
               )
             : null,
         actions: actions,
@@ -51,5 +51,5 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => Size.fromHeight(kToolbarHeight);
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }

@@ -42,7 +42,7 @@ class AppName extends StatelessWidget {
                 Shadow(
                   color: splashTheme.isDark ? Colors.black26 : Colors.black12,
                   blurRadius: 10,
-                  offset: Offset(0, 4),
+                  offset: const Offset(0, 4),
                 ),
               ],
             ),

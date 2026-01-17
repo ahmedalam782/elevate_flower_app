@@ -114,7 +114,7 @@ class _CustomPhoneFieldState extends State<CustomPhoneField> {
               menuWidth: 0.15.sw.clamp(150, 200),
               autofocus: false,
               focusNode: _dropdownFocusNode,
-              padding: EdgeInsetsDirectional.only(end: 12),
+              padding: const EdgeInsetsDirectional.only(end: 12),
               alignment: AlignmentDirectional.centerEnd,
               elevation: 0,
               onChanged: null,
@@ -144,7 +144,7 @@ class _CustomPhoneFieldState extends State<CustomPhoneField> {
               menuWidth: 0.15.sw.clamp(150, 200),
               autofocus: false,
               focusNode: _dropdownFocusNode,
-              padding: EdgeInsetsDirectional.only(end: 12),
+              padding: const EdgeInsetsDirectional.only(end: 12),
               alignment: AlignmentDirectional.centerEnd,
               elevation: 0,
               icon: Padding(

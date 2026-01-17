@@ -50,7 +50,7 @@ dependencies:
   lottie: ^3.3.2
   pinput: ^6.0.1
   pretty_dio_logger: ^1.4.0
-  retrofit: ^4.9.1
+  retrofit: ^4.9.2
   shared_preferences: ^2.5.4
   shimmer: ^3.0.0
   toastification: ^3.0.3
@@ -63,7 +63,9 @@ dev_dependencies:
   injectable_generator: ^2.9.1
   json_serializable: ^6.9.0
   mockito: ^5.5.1
-  retrofit_generator: 10.0.6
+  retrofit_generator: ^10.2.1
+  bloc_test: ^10.0.0
+
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 # The following section is specific to Flutter packages.
@@ -113,21 +115,21 @@ flutter:
 #   field_prefix: null
 #   classname: AppAnimations
 #!=======================ICONS========================
-# flutter_assets:
-#   assets_path: assets/icons
-#   output_path: lib/core/theme
-#   filename: app_icons.dart
-#   ignore_comments: true
-#   field_prefix: null
-#   classname: AppIcons
-#!=======================IMAGES========================
 flutter_assets:
-  assets_path: assets/images
+  assets_path: assets/icons
   output_path: lib/core/theme
-  filename: app_images.dart
+  filename: app_icons.dart
   ignore_comments: true
   field_prefix: null
-  classname: AppImages
+  classname: AppIcons
+#!=======================IMAGES========================
+# flutter_assets:
+#   assets_path: assets/images
+#   output_path: lib/core/theme
+#   filename: app_images.dart
+#   ignore_comments: true
+#   field_prefix: null
+#   classname: AppImages
 #!=======================IMAGES========================
 
 

@@ -6,6 +6,10 @@ class AppIcons {
 
   static const String iconsCalendar = "assets/icons/calendar.svg";
 
+  static const String iconsCart = "assets/icons/cart.svg";
+
+  static const String iconsCategory = "assets/icons/category.svg";
+
   static const String iconsCheckCircle = "assets/icons/check_circle.svg";
 
   static const String iconsCheckmark = "assets/icons/checkmark.svg";
@@ -22,6 +26,8 @@ class AppIcons {
 
   static const String iconsError = "assets/icons/error.svg";
 
+  static const String iconsFilter = "assets/icons/filter.svg";
+
   static const String iconsHome = "assets/icons/home.svg";
 
   static const String iconsLock = "assets/icons/lock.svg";
@@ -35,6 +41,8 @@ class AppIcons {
   static const String iconsOpenEye = "assets/icons/open_eye.svg";
 
   static const String iconsPhone = "assets/icons/phone.svg";
+
+  static const String iconsProfile = "assets/icons/profile.svg";
 
   static const String iconsSearch = "assets/icons/search.svg";
 

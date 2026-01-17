@@ -42,7 +42,7 @@ class ErrorPage extends StatelessWidget {
                 ? const AlwaysScrollableScrollPhysics(
                     parent: BouncingScrollPhysics(),
                   )
-                : NeverScrollableScrollPhysics(),
+                : const NeverScrollableScrollPhysics(),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -59,6 +59,7 @@ class ErrorPage extends StatelessWidget {
                           ? LocaleKeys.error_api_failure_unknown.tr()
                           : LocaleKeys.error_api_failure_unexpected_error.tr()),
                   style: 20.regular.copyWith(color: AppColors.grayA6),
+                  textAlign: TextAlign.center,
                 ),
               ],
             ),

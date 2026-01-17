@@ -70,21 +70,21 @@ class _SearchWidgetState extends State<SearchWidget> {
                   child: CustomTextField(
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(999),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: AppColors.primerColor,
                         width: 1,
                       ),
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(999),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: AppColors.primerColor,
                         width: 1,
                       ),
                     ),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(999),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: AppColors.primerColor,
                         width: 1,
                       ),
@@ -141,7 +141,7 @@ class _SearchWidgetState extends State<SearchWidget> {
                           AppIcons.iconsCalendar,
                           width: 20,
                           height: 20,
-                          colorFilter: ColorFilter.mode(
+                          colorFilter: const ColorFilter.mode(
                             AppColors.primerColor,
                             BlendMode.srcIn,
                           ),
@@ -149,7 +149,7 @@ class _SearchWidgetState extends State<SearchWidget> {
                       ),
                     ),
                     if (widget.dateRange != null) ...[
-                      Gap(8),
+                      const Gap(8),
                       InkWell(
                         onTap: () {
                           widget.onClearDateRange?.call(null);
@@ -167,7 +167,7 @@ class _SearchWidgetState extends State<SearchWidget> {
                             borderRadius: BorderRadius.circular(6),
                             color: AppColors.pinkF9,
                           ),
-                          child: Icon(
+                          child: const Icon(
                             Icons.close,
                             color: AppColors.primerColor,
                           ),

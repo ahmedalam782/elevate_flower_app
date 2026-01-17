@@ -164,130 +164,123 @@ class _PassTextFieldState extends State<PassTextField> {
             );
           },
           child: widget.isErrorEnabled && _focusNode!.hasFocus
-              ? Row(
+              ? Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Expanded(
-                      child: ListView.separated(
-                        itemCount: 3,
-                        shrinkWrap: true,
-                        padding: EdgeInsets.zero,
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemBuilder: (context, index) => Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            AnimatedSwitcher(
-                              duration: const Duration(milliseconds: 500),
-                              switchInCurve: Curves.easeInOut,
-                              switchOutCurve: Curves.easeInOut,
-                              transitionBuilder: (child, animation) {
-                                return ClipRect(
-                                  child: SlideTransition(
-                                    position:
-                                        Tween<Offset>(
-                                          begin: const Offset(1, 0),
-                                          end: Offset.zero,
-                                        ).animate(
-                                          CurvedAnimation(
-                                            parent: animation,
-                                            curve: Curves.easeInOut,
-                                          ),
+                    ListView.separated(
+                      itemCount: 3,
+                      shrinkWrap: true,
+                      padding: EdgeInsets.zero,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemBuilder: (context, index) => Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          AnimatedSwitcher(
+                            duration: const Duration(milliseconds: 500),
+                            switchInCurve: Curves.easeInOut,
+                            switchOutCurve: Curves.easeInOut,
+                            transitionBuilder: (child, animation) {
+                              return ClipRect(
+                                child: SlideTransition(
+                                  position:
+                                      Tween<Offset>(
+                                        begin: const Offset(1, 0),
+                                        end: Offset.zero,
+                                      ).animate(
+                                        CurvedAnimation(
+                                          parent: animation,
+                                          curve: Curves.easeInOut,
                                         ),
-                                    child: child,
-                                  ),
-                                );
-                              },
-                              child: SvgPicture.asset(
-                                passwordConditionsState[index]
-                                    ? AppIcons.iconsCheckCircle
-                                    : AppIcons.iconsCloseCircle,
-                                key: ValueKey<bool>(
-                                  passwordConditionsState[index],
+                                      ),
+                                  child: child,
                                 ),
-                                height: 15,
-                                fit: BoxFit.scaleDown,
+                              );
+                            },
+                            child: SvgPicture.asset(
+                              passwordConditionsState[index]
+                                  ? AppIcons.iconsCheckCircle
+                                  : AppIcons.iconsCloseCircle,
+                              key: ValueKey<bool>(
+                                passwordConditionsState[index],
                               ),
+                              height: 15,
+                              fit: BoxFit.scaleDown,
                             ),
-                            const SizedBox(width: 10),
-                            Flexible(
-                              child: AnimatedDefaultTextStyle(
-                                duration: const Duration(milliseconds: 500),
-                                curve: Curves.easeInOut,
-                                style: !passwordConditionsState[index]
-                                    ? 12.regular.copyWith(
-                                        color: AppColors.redCC,
-                                      )
-                                    : 12.regular,
-                                child: Text(passwordConditions[index].tr()),
-                              ),
+                          ),
+                          const SizedBox(width: 10),
+                          Flexible(
+                            child: AnimatedDefaultTextStyle(
+                              duration: const Duration(milliseconds: 500),
+                              curve: Curves.easeInOut,
+                              style: !passwordConditionsState[index]
+                                  ? 12.regular.copyWith(color: AppColors.redCC)
+                                  : 12.regular,
+                              child: Text(passwordConditions[index].tr()),
                             ),
-                          ],
-                        ),
-                        separatorBuilder: (BuildContext context, int index) =>
-                            SizedBox(height: 6),
+                          ),
+                        ],
                       ),
+                      separatorBuilder: (BuildContext context, int index) =>
+                          const SizedBox(height: 6),
                     ),
-                    Expanded(
-                      child: ListView.separated(
-                        itemCount: 2,
-                        shrinkWrap: true,
-                        padding: EdgeInsets.zero,
+                    const SizedBox(height: 6),
+                    ListView.separated(
+                      itemCount: 2,
+                      shrinkWrap: true,
+                      padding: EdgeInsets.zero,
 
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemBuilder: (context, index) => Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            AnimatedSwitcher(
-                              duration: const Duration(milliseconds: 500),
-                              switchInCurve: Curves.easeInOut,
-                              switchOutCurve: Curves.easeInOut,
-                              transitionBuilder: (child, animation) {
-                                return ClipRect(
-                                  child: SlideTransition(
-                                    position:
-                                        Tween<Offset>(
-                                          begin: const Offset(1, 0),
-                                          end: Offset.zero,
-                                        ).animate(
-                                          CurvedAnimation(
-                                            parent: animation,
-                                            curve: Curves.easeInOut,
-                                          ),
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemBuilder: (context, index) => Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          AnimatedSwitcher(
+                            duration: const Duration(milliseconds: 500),
+                            switchInCurve: Curves.easeInOut,
+                            switchOutCurve: Curves.easeInOut,
+                            transitionBuilder: (child, animation) {
+                              return ClipRect(
+                                child: SlideTransition(
+                                  position:
+                                      Tween<Offset>(
+                                        begin: const Offset(1, 0),
+                                        end: Offset.zero,
+                                      ).animate(
+                                        CurvedAnimation(
+                                          parent: animation,
+                                          curve: Curves.easeInOut,
                                         ),
-                                    child: child,
-                                  ),
-                                );
-                              },
-                              child: SvgPicture.asset(
-                                passwordConditionsState[index + 3]
-                                    ? AppIcons.iconsCheckCircle
-                                    : AppIcons.iconsCloseCircle,
-                                key: ValueKey<bool>(
-                                  passwordConditionsState[index + 3],
+                                      ),
+                                  child: child,
                                 ),
-                                height: 15,
-                                fit: BoxFit.scaleDown,
+                              );
+                            },
+                            child: SvgPicture.asset(
+                              passwordConditionsState[index + 3]
+                                  ? AppIcons.iconsCheckCircle
+                                  : AppIcons.iconsCloseCircle,
+                              key: ValueKey<bool>(
+                                passwordConditionsState[index + 3],
                               ),
+                              height: 15,
+                              fit: BoxFit.scaleDown,
                             ),
-                            const SizedBox(width: 10),
-                            Flexible(
-                              child: AnimatedDefaultTextStyle(
-                                duration: const Duration(milliseconds: 500),
-                                curve: Curves.easeInOut,
-                                style: !passwordConditionsState[index + 3]
-                                    ? 12.regular.copyWith(
-                                        color: AppColors.redCC,
-                                      )
-                                    : 12.regular,
-                                child: Text(passwordConditions[index + 3].tr()),
-                              ),
+                          ),
+                          const SizedBox(width: 10),
+                          Flexible(
+                            child: AnimatedDefaultTextStyle(
+                              duration: const Duration(milliseconds: 500),
+                              curve: Curves.easeInOut,
+                              style: !passwordConditionsState[index + 3]
+                                  ? 12.regular.copyWith(color: AppColors.redCC)
+                                  : 12.regular,
+                              child: Text(passwordConditions[index + 3].tr()),
                             ),
-                          ],
-                        ),
-                        separatorBuilder: (BuildContext context, int index) =>
-                            SizedBox(height: 6),
+                          ),
+                        ],
                       ),
+                      separatorBuilder: (BuildContext context, int index) =>
+                          const SizedBox(height: 6),
                     ),
                   ],
                 )
@@ -314,7 +307,7 @@ class _PassTextFieldState extends State<PassTextField> {
         child: SvgPicture.asset(
           _isPasswordVisible ? AppIcons.iconsOpenEye : AppIcons.iconsClosedEye,
           key: ValueKey<bool>(_isPasswordVisible),
-          colorFilter: ColorFilter.mode(AppColors.grayA6, BlendMode.srcIn),
+          colorFilter: const ColorFilter.mode(AppColors.grayA6, BlendMode.srcIn),
         ),
       ),
     );
@@ -349,7 +342,7 @@ class _PassTextFieldState extends State<PassTextField> {
     } else {
       passwordConditionsState[3] = false;
     }
-    if (value != null && value.length > 6 && value.length < 30) {
+    if (value != null && value.length > 8 && value.length < 30) {
       passwordConditionsState[4] = true;
     } else {
       passwordConditionsState[4] = false;

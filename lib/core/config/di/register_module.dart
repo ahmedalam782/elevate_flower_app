@@ -25,8 +25,8 @@ abstract class CoreInjectableModule {
     final dio = Dio(
       BaseOptions(
         baseUrl: EndPoints.baseUrl,
-        sendTimeout: Duration(seconds: 45),
-        connectTimeout: Duration(seconds: 45),
+        sendTimeout: const Duration(seconds: 45),
+        connectTimeout: const Duration(seconds: 45),
       ),
     );
     dio.interceptors.add(AppInterceptors(dio: dio, fss: secureStorage()));

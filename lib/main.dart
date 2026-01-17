@@ -13,9 +13,19 @@ import 'core/routes/url_strategy.dart';
 const bool runLocal = false;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  // Set the status bar color to transparent and icons to white
+  SystemChrome.setSystemUIOverlayStyle(
+    const SystemUiOverlayStyle(
+      statusBarColor: AppColors.black,
+      statusBarIconBrightness: Brightness.light,
+      statusBarBrightness: Brightness.light,
+    ),
+  );
+
+ 
   runApp(
     EasyLocalization(
-      supportedLocales: [arabicLocale, englishLocale],
+      supportedLocales: const [arabicLocale, englishLocale],
       fallbackLocale: englishLocale,
       startLocale: englishLocale,
       path: assetsLocalization,

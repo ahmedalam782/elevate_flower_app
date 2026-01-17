@@ -68,7 +68,7 @@ class CustomToast {
       applyBlurEffect: true,
       borderRadius: BorderRadius.circular(12),
       borderSide: BorderSide.none,
-      closeButton: ToastCloseButton(showType: CloseButtonShowType.none),
+      closeButton: const ToastCloseButton(showType: CloseButtonShowType.none),
       title: icon != null
           ? Center(
               child: Container(
@@ -83,7 +83,7 @@ class CustomToast {
                     icon,
                     width: 24,
                     height: 24,
-                    colorFilter: ColorFilter.mode(
+                    colorFilter: const ColorFilter.mode(
                       AppColors.whiteF9,
                       BlendMode.srcIn,
                     ),
@@ -96,8 +96,16 @@ class CustomToast {
         mainAxisSize: MainAxisSize.min,
         spacing: 8,
         children: [
-          Text(title ?? "", textAlign: TextAlign.center, style: 20.bold),
-          Text(message ?? "", textAlign: TextAlign.center, style: 16.regular),
+          Text(
+            title ?? "",
+            textAlign: TextAlign.center,
+            style: 20.bold.copyWith(color: AppColors.whiteF9),
+          ),
+          Text(
+            message ?? "",
+            textAlign: TextAlign.center,
+            style: 16.regular.copyWith(color: AppColors.whiteF9),
+          ),
         ],
       ),
       autoCloseDuration: const Duration(seconds: 5),
