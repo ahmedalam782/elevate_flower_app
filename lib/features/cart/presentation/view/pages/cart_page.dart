@@ -29,7 +29,7 @@ class _CartPageState extends State<CartPage> {
   late CartCubit vm;
   @override
   void initState() {
-    vm = getIt<CartCubit>()..doIntent(GetCartData());
+    vm = getIt<CartCubit>()..doIntent(GetCartDataEvent());
     super.initState();
   }
 
@@ -73,7 +73,18 @@ class _CartPageState extends State<CartPage> {
                                   print(vm.state.currentActedUponItemIndex);
                                   if (vm.state.currentActedUponItemIndex ==
                                       -1) {
-                                    vm.doIntent(AddProductToCart(index: index));
+                                    vm.doIntent(
+                                      AddProductToCartEvent(index: index),
+                                    );
+                                  }
+                                },
+                                onRemoveFunction: () {
+                                  // if(vm.)
+                                  if (vm.state.currentActedUponItemIndex ==
+                                      -1) {
+                                    vm.doIntent(
+                                      RemoveProductFromCartEvent(index: index),
+                                    );
                                   }
                                 },
                                 isAdding:

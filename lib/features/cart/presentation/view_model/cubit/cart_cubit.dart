@@ -1,13 +1,17 @@
 // TODO: presentation CartCubit
 
+import 'dart:developer';
+
 import 'package:elevate_flower_app/core/config/base_response/result.dart';
 import 'package:elevate_flower_app/core/config/base_state/base_state.dart';
 import 'package:elevate_flower_app/features/cart/data/models/post/cart_product_post_data.dart';
 import 'package:elevate_flower_app/features/cart/domain/entities/cart_entity.dart';
 import 'package:elevate_flower_app/features/cart/domain/use_cases/add_product_to_cart_use_case.dart';
 import 'package:elevate_flower_app/features/cart/domain/use_cases/get_cart_data_use_case.dart';
+import 'package:elevate_flower_app/features/cart/domain/use_cases/remove_product_from_cart_use_case.dart';
 import 'package:elevate_flower_app/features/cart/presentation/view_model/cubit/cart_events.dart';
 import 'package:elevate_flower_app/features/cart/presentation/view_model/cubit/cart_states.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
@@ -16,8 +20,10 @@ class CartCubit extends Cubit<CartStates> {
   CartCubit({
     required GetCartDataUseCase getSpeceficProduct,
     required AddProductToCartUseCase addProductToCart,
+    required RemoveProductFromCartUseCase removeProductFromCart,
   }) : _getCartDataUseCase = getSpeceficProduct,
-       _addProductToCart = addProductToCart,
+       _addProductToCartUseCase = addProductToCart,
+       _removeProductFromCartUseCase = removeProductFromCart,
        super(
          CartStates(
            state: const BaseState<CartEntity>.initial(),
@@ -28,12 +34,13 @@ class CartCubit extends Cubit<CartStates> {
          ),
        );
   final GetCartDataUseCase _getCartDataUseCase;
-  final AddProductToCartUseCase _addProductToCart;
+  final AddProductToCartUseCase _addProductToCartUseCase;
+  final RemoveProductFromCartUseCase _removeProductFromCartUseCase;
 
   Future<void> doIntent(CartEvents event) async => switch (event) {
-    GetCartData() => getCartData(),
-    // TODO: Handle this case.
-    AddProductToCart() => addOneItemToCart(event.index),
+    GetCartDataEvent() => getCartData(),
+    AddProductToCartEvent() => addOneItemToCart(event.index),
+    RemoveProductFromCartEvent() => _removeItemFromCartApICall(event.index),
   };
 
   Future<void> getCartData() async {
@@ -66,7 +73,7 @@ class CartCubit extends Cubit<CartStates> {
         currentActedUponItemIndex: index,
       ),
     );
-    final response = await _addProductToCart.call(
+    final response = await _addProductToCartUseCase.call(
       CartProductPostData(
         product: state.state.data?.cartProducts[index].id ?? "",
       ),
@@ -93,10 +100,56 @@ class CartCubit extends Cubit<CartStates> {
     }
   }
 
+  Future<void> _removeItemFromCartApICall(int index) async {
+    debugPrint("THIS IS AN INDEX${index}");
+    emit(
+      state.copyWith(
+        isAddingItem: false,
+        isRemovingItem: true,
+        isDecrementingItem: false,
+        currentActedUponItemIndex: index,
+      ),
+    );
+    final response = await _removeProductFromCartUseCase.call(
+      state.state.data?.cartProducts[index].id ?? "",
+    );
+    switch (response) {
+      case Success<void>():
+        log("LAST INDEX${index}");
+        final cartEntity = _updateDateAfterRemoving(index);
+        emit(
+          state.copyWith(
+            isRemovingItem: false,
+            currentActedUponItemIndex: -1,
+            state: BaseState<CartEntity>.success(cartEntity),
+            totalPrice: cartEntity?.totalPrice,
+          ),
+        );
+
+      case Error<void>():
+        emit(
+          state.copyWith(
+            state: BaseState<CartEntity>.error(response.exception),
+          ),
+        );
+    }
+  }
+
   CartEntity? _updateDataAfterIncrement(int index) {
     final newData = state.state.data;
     newData?.cartProducts[index].productQuantityInCart++;
     newData?.totalPrice += newData.cartProducts[index].productPrice;
+
+    // print(newData?.totalPrice);
+    return newData;
+  }
+
+  CartEntity? _updateDateAfterRemoving(int index) {
+    final newData = state.state.data;
+    newData?.cartProducts.removeAt(index);
+    newData?.totalPrice -=
+        newData.cartProducts[index].productPrice *
+        newData.cartProducts[index].productQuantityInCart;
 
     // print(newData?.totalPrice);
     return newData;

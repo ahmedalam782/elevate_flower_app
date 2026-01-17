@@ -26,4 +26,12 @@ class CartRemoteDataSourceImpl implements CartRemoteDataSourceContract {
       return response;
     });
   }
+
+  @override
+  Future<Result<void>> removeProductFromCart(String productId) async {
+    return await executeApi<void>(() async {
+      final response = await cartApiClient.removeItemFromCart(productId);
+      return response;
+    });
+  }
 }

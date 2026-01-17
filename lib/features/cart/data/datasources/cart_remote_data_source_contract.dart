@@ -7,4 +7,5 @@ import 'package:elevate_flower_app/features/cart/data/models/post/cart_product_p
 abstract class CartRemoteDataSourceContract {
   Future<Result<CartResponse>> getCartData();
   Future<Result<void>> addProductToCart(CartProductPostData data);
+  Future<Result<void>> removeProductFromCart(String productId);
 }

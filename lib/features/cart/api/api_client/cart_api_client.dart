@@ -15,8 +15,10 @@ abstract class CartApiClient {
   @factoryMethod
   factory CartApiClient(Dio dio) = _CartApiClient;
 
-  @GET(EndPoints.getCartEndPoint)
+  @GET(EndPoints.cartEndPoint)
   Future<CartResponse> getCartData();
-  @POST(EndPoints.getCartEndPoint)
+  @POST(EndPoints.cartEndPoint)
   Future<void> addItemToCart(@Body() CartProductPostData data);
+  @DELETE("${EndPoints.cartEndPoint}/{id}")
+  Future<void> removeItemFromCart(@Path() String id);
 }

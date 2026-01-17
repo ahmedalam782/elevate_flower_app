@@ -7,4 +7,5 @@ import 'package:elevate_flower_app/features/cart/domain/entities/cart_entity.dar
 abstract class CartRepository {
   Future<Result<CartEntity>> getCartData();
   Future<Result<void>> addProductToCart(CartProductPostData data);
+  Future<Result<void>> removeProductFromCart(String id);
 }

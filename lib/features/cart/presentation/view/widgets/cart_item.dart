@@ -15,6 +15,7 @@ class CartItem extends StatelessWidget {
   final bool? isAdding;
   final bool? isDecremnting;
   final Function() onAddFunction;
+  final Function() onRemoveFunction;
   const CartItem({
     super.key,
     required this.cartProduct,
@@ -22,6 +23,7 @@ class CartItem extends StatelessWidget {
     this.isAdding,
     this.isDecremnting,
     required this.onAddFunction,
+    required this.onRemoveFunction,
   });
 
   @override
@@ -79,10 +81,13 @@ class CartItem extends StatelessWidget {
                         ),
                       ),
                       if (isDeleting != true)
-                        SizedBox(
-                          width: 18.w,
-                          height: 18.w,
-                          child: SvgPicture.asset(AppImages.deleteTrash),
+                        InkWell(
+                          onTap: onRemoveFunction,
+                          child: SizedBox(
+                            width: 18.w,
+                            height: 18.w,
+                            child: SvgPicture.asset(AppImages.deleteTrash),
+                          ),
                         ),
                       if (isDeleting == true)
                         SizedBox(

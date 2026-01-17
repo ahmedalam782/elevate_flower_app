@@ -14,7 +14,7 @@ class EndPoints {
   static const String getAllProducts = "/products";
 
   // CART
-  static const String getCartEndPoint = "/cart";
+  static const String cartEndPoint = "/cart";
 }
 
 class Apikeys {

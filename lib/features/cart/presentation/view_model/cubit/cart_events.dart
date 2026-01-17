@@ -2,12 +2,18 @@
 
 sealed class CartEvents {}
 
-class GetCartData extends CartEvents {
-  GetCartData();
+class GetCartDataEvent extends CartEvents {
+  GetCartDataEvent();
 }
 
-class AddProductToCart extends CartEvents {
+class AddProductToCartEvent extends CartEvents {
   final int index;
 
-  AddProductToCart({required this.index});
+  AddProductToCartEvent({required this.index});
+}
+
+class RemoveProductFromCartEvent extends CartEvents {
+  final int index;
+
+  RemoveProductFromCartEvent({required this.index});
 }
