@@ -7,9 +7,10 @@ class GetCartDataEvent extends CartEvents {
 }
 
 class AddProductToCartEvent extends CartEvents {
-  final int index;
+  final int? index;
+  final String productId;
 
-  AddProductToCartEvent({required this.index});
+  AddProductToCartEvent({this.index, required this.productId});
 }
 
 class RemoveProductFromCartEvent extends CartEvents {

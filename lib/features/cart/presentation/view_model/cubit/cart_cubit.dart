@@ -42,7 +42,10 @@ class CartCubit extends Cubit<CartStates> {
 
   Future<void> doIntent(CartEvents event) async => switch (event) {
     GetCartDataEvent() => getCartData(),
-    AddProductToCartEvent() => addOneItemToCart(event.index),
+    AddProductToCartEvent() => addOneItemToCart(
+      productId: event.productId,
+      index: event.index,
+    ),
     RemoveProductFromCartEvent() => _removeItemFromCartApICall(event.index),
     ClearUserCartEvent() => _clearUserCart(),
   };
@@ -68,40 +71,73 @@ class CartCubit extends Cubit<CartStates> {
     }
   }
 
-  Future<void> addOneItemToCart(int index) async {
-    emit(
-      state.copyWith(
-        isAddingItem: true,
-        isRemovingItem: false,
-        isDecrementingItem: false,
-        currentActedUponItemIndex: index,
-      ),
+  Future<Result<void>> addOneItemToCart({
+    required String productId,
+    int? index,
+  }) async {
+    emit(state.copyWith(isAddingItem: true, currentActedUponItemIndex: index));
+
+    final response = await _addProductToCartUseCase(
+      CartProductPostData(product: productId),
     );
-    final response = await _addProductToCartUseCase.call(
-      CartProductPostData(
-        product: state.state.data?.cartProducts[index].id ?? "",
-      ),
-    );
+
     switch (response) {
       case Success<void>():
-        final cartEntity = _updateDataAfterIncrement(index);
+        final updatedCart = _updateDataAfterIncrement(index);
         emit(
           state.copyWith(
             isAddingItem: false,
+            state: BaseState.success(updatedCart),
+            totalPrice: updatedCart?.totalPrice,
             currentActedUponItemIndex: -1,
-            state: BaseState<CartEntity>.success(cartEntity),
-            totalPrice: cartEntity?.totalPrice,
           ),
         );
+        return response;
 
       case Error<void>():
         emit(
           state.copyWith(
-            state: BaseState<CartEntity>.error(response.exception),
+            isAddingItem: false,
+            state: BaseState.error(response.exception),
           ),
         );
+        return response;
     }
   }
+  // Future<void> addOneItemToCart(int index) async {
+  //   emit(
+  //     state.copyWith(
+  //       isAddingItem: true,
+  //       isRemovingItem: false,
+  //       isDecrementingItem: false,
+  //       currentActedUponItemIndex: index,
+  //     ),
+  //   );
+  //   final response = await _addProductToCartUseCase.call(
+  //     CartProductPostData(
+  //       product: state.state.data?.cartProducts[index].id ?? "",
+  //     ),
+  //   );
+  //   switch (response) {
+  //     case Success<void>():
+  //       final cartEntity = _updateDataAfterIncrement(index);
+  //       emit(
+  //         state.copyWith(
+  //           isAddingItem: false,
+  //           currentActedUponItemIndex: -1,
+  //           state: BaseState<CartEntity>.success(cartEntity),
+  //           totalPrice: cartEntity?.totalPrice,
+  //         ),
+  //       );
+
+  //     case Error<void>():
+  //       emit(
+  //         state.copyWith(
+  //           state: BaseState<CartEntity>.error(response.exception),
+  //         ),
+  //       );
+  //   }
+  // }
 
   Future<void> _removeItemFromCartApICall(int index) async {
     emit(
@@ -153,12 +189,14 @@ class CartCubit extends Cubit<CartStates> {
     }
   }
 
-  CartEntity? _updateDataAfterIncrement(int index) {
-    final newData = state.state.data;
-    newData?.cartProducts[index].productQuantityInCart++;
-    newData?.totalPrice += newData.cartProducts[index].productPrice;
+  CartEntity? _updateDataAfterIncrement(int? index) {
+    if (index != null) {
+      final newData = state.state.data;
+      newData?.cartProducts[index].productQuantityInCart++;
+      newData?.totalPrice += newData.cartProducts[index].productPrice;
 
-    return newData;
+      return newData;
+    }
   }
 
   CartEntity? _updateDateAfterRemoving(int index) {

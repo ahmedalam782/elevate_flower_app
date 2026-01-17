@@ -53,7 +53,17 @@ class CartPageWithData extends StatelessWidget {
                       // if(vm.)
                       if (cartViewModel.state.currentActedUponItemIndex == -1) {
                         cartViewModel.doIntent(
-                          AddProductToCartEvent(index: index),
+                          AddProductToCartEvent(
+                            index: index,
+                            productId:
+                                cartViewModel
+                                    .state
+                                    .state
+                                    .data
+                                    ?.cartProducts[index]
+                                    .id ??
+                                "",
+                          ),
                         );
                       }
                     },
