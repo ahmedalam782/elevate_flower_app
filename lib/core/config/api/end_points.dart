@@ -27,3 +27,7 @@ class Apikeys {
 class QueryParameter {
   static const String categoryQuery = 'category';
 }
+
+class QueryParameter {
+  static const String categoryQuery = 'category';
+}

@@ -8,7 +8,9 @@ import 'package:elevate_flower_app/features/register/presentation/view/pages/reg
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../features/forget_password/presentation/view/pages/forgetPassword_page.dart';
+import '../../features/forget_password/presentation/view/pages/forgetPassword_page.dart';
 import '../../features/login/presentation/view/pages/login_page.dart';
+import '../../features/main_layout/presentation/view/pages/main_layout_page.dart';
 import '../../features/main_layout/presentation/view/pages/main_layout_page.dart';
 import '../../features/splash/presentation/view/pages/splash_page.dart';
 import 'routes.dart';
