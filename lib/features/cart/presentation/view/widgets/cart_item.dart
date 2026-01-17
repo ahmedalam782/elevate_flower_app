@@ -4,12 +4,25 @@ import 'package:elevate_flower_app/core/shared/widgets/optimized_cached_image.da
 import 'package:elevate_flower_app/core/theme/app_colors.dart';
 import 'package:elevate_flower_app/core/theme/app_images.dart';
 import 'package:elevate_flower_app/core/theme/app_typography.dart';
+import 'package:elevate_flower_app/features/cart/domain/entities/cart_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class CartItem extends StatelessWidget {
-  const CartItem({super.key});
+  final CartProductEntity cartProduct;
+  final bool? isDeleting;
+  final bool? isAdding;
+  final bool? isDecremnting;
+  final Function() onAddFunction;
+  const CartItem({
+    super.key,
+    required this.cartProduct,
+    this.isDeleting,
+    this.isAdding,
+    this.isDecremnting,
+    required this.onAddFunction,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +42,7 @@ class CartItem extends StatelessWidget {
               borderRadius: BorderRadius.circular(8.r),
             ),
             child: OptimizedCachedImage(
-              imageUrl: "https://placehold.co/600x400",
+              imageUrl: cartProduct.productImage,
               width: 100.w,
               height: 100.w,
             ),
@@ -49,13 +62,13 @@ class CartItem extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "Red roses",
+                              cartProduct.productName,
                               style: 16.medium,
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
                             ),
                             Text(
-                              "15 Pink Rose Bouquet",
+                              cartProduct.productDescription,
                               style: 13.medium.copyWith(
                                 color: AppColors.gray53,
                               ),
@@ -65,7 +78,18 @@ class CartItem extends StatelessWidget {
                           ],
                         ),
                       ),
-                      SvgPicture.asset(AppImages.deleteTrash),
+                      if (isDeleting != true)
+                        SizedBox(
+                          width: 18.w,
+                          height: 18.w,
+                          child: SvgPicture.asset(AppImages.deleteTrash),
+                        ),
+                      if (isDeleting == true)
+                        SizedBox(
+                          width: 18.w,
+                          height: 18.w,
+                          child: CircularProgressIndicator(),
+                        ),
                       // Icon(Icons.delete_outline, color: AppColors.redCC),
                     ],
                   ),
@@ -73,19 +97,46 @@ class CartItem extends StatelessWidget {
                     children: [
                       Expanded(
                         child: Text(
-                          "${LocaleKeys.products_EGP.tr()}",
+                          "${cartProduct.productPrice} ${LocaleKeys.products_EGP.tr()}",
                           style: 14.semiBold,
                         ),
                       ),
 
                       Row(
                         children: [
-                          Icon(Icons.remove_rounded),
+                          if (isDecremnting != true)
+                            SizedBox(
+                              width: 20.w,
+                              height: 20.w,
+                              child: Icon(Icons.remove_rounded),
+                            ),
+                          if (isDecremnting == true)
+                            SizedBox(
+                              width: 20.w,
+                              height: 20.w,
+                              child: CircularProgressIndicator(),
+                            ),
                           SizedBox(width: 5.w),
-                          Text("1", style: 14.semiBold),
+                          Text(
+                            cartProduct.productQuantityInCart.toString(),
+                            style: 14.semiBold,
+                          ),
                           SizedBox(width: 5.w),
-
-                          Icon(Icons.add_rounded),
+                          if (isAdding != true)
+                            InkWell(
+                              onTap: onAddFunction,
+                              child: SizedBox(
+                                width: 20.w,
+                                height: 20.w,
+                                child: Icon(Icons.add_rounded),
+                              ),
+                            ),
+                          if (isAdding == true)
+                            SizedBox(
+                              width: 20.w,
+                              height: 20.w,
+                              child: CircularProgressIndicator(),
+                            ),
                         ],
                       ),
                     ],

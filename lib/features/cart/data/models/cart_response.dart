@@ -25,7 +25,7 @@ class CartResponse {
       totalPrice: cart?.totalPrice?.toDouble() ?? 0,
       cartProducts:
           cart?.cartItems?.map((value) {
-            return value.cartProduct!.toCartProductEntity();
+            return value.toCartProductEntity();
           }).toList() ??
           [],
     );
@@ -69,7 +69,7 @@ class CartItem {
     required this.id,
   });
 
-  @JsonKey(name: 'CartProduct')
+  @JsonKey(name: 'product')
   final CartProduct? cartProduct;
   final num? price;
   final num? quantity;
@@ -79,6 +79,15 @@ class CartItem {
 
   factory CartItem.fromJson(Map<String, dynamic> json) =>
       _$CartItemFromJson(json);
+  CartProductEntity toCartProductEntity() {
+    return CartProductEntity(
+      productName: cartProduct?.title ?? "",
+      productDescription: cartProduct?.description ?? "",
+      productPrice: price?.toDouble() ?? 0,
+      productImage: cartProduct?.imgCover ?? "",
+      productQuantityInCart: quantity?.toInt() ?? 0,
+    );
+  }
 }
 
 @JsonSerializable(createToJson: false)
@@ -130,14 +139,4 @@ class CartProduct {
 
   factory CartProduct.fromJson(Map<String, dynamic> json) =>
       _$CartProductFromJson(json);
-
-  CartProductEntity toCartProductEntity() {
-    return CartProductEntity(
-      productName: title ?? "",
-      productDescription: description ?? "",
-      productPrice: price?.toDouble() ?? 0,
-      productImage: imgCover ?? "",
-      productQuantityInCart: quantity?.toInt() ?? 0,
-    );
-  }
 }
