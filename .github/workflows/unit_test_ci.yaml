@@ -1,10 +1,8 @@
-name: Flutter Testing
+name: Flutter Unit Testing CI
 on:
   push:
-    branches: [main, development]
   pull_request:
     types: [opened, synchronize, reopened, edited]
-    branches: [main, development]
 jobs:
   test:
     runs-on: ubuntu-latest
