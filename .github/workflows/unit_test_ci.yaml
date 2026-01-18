@@ -1,0 +1,25 @@
+name: Flutter Testing
+on:
+  push:
+    branches: [main, development]
+  pull_request:
+    types: [opened, synchronize, reopened, edited]
+    branches: [main, development]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: 3.38.5
+          channel: stable
+          cache: true
+      - name: Install packages
+        run: flutter pub get
+      - name: Run generator
+        run: flutter pub run build_runner build
+      - name: Generate localizations
+        run: flutter pub run easy_localization:generate -S assets/localization -O lib/core/languages -f keys -o locale_keys.g.dart
+      - name: Run test
+        run: flutter test test
