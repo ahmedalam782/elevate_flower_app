@@ -34,7 +34,6 @@ class ProductDetailsCubit extends Cubit<ProductDetailsStates> {
   }
 
   Future<void> getSpeceficProduct(String productId) async {
-    // print("PRODUCT ID ${productId}");
     emit(state.copyWith(state: BaseState<SpeceficProductEntity>.loading()));
     final response = await _getSpeceficProductUseCase.call(productId);
     switch (response) {
@@ -44,7 +43,6 @@ class ProductDetailsCubit extends Cubit<ProductDetailsStates> {
         emit(state.copyWith(state: BaseState.error(response.exception)));
         if (response.exception is Failures) {
           final ex = response.exception as Failures;
-          print(ex.errorMessage);
         }
     }
   }

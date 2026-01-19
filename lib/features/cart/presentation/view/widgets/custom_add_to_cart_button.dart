@@ -51,7 +51,6 @@ Future<void> addToCart(BuildContext context, String productId) async {
           AddProductToCartEvent(productId: productId, fromCartScreen: false),
         )
         .then((value) {
-          print(value);
           if (value == true) {
             CustomToast(
               context: context,

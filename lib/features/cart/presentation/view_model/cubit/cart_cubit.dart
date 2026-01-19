@@ -229,7 +229,6 @@ class CartCubit extends Cubit<CartStates> {
     String productId, {
     bool fromCartScreen = true,
   }) {
-    print(fromCartScreen);
     if (!fromCartScreen) return null;
     final cart = state.state.data!;
     final updatedProducts = cart.cartProducts.map((item) {
