@@ -6,36 +6,45 @@ import 'package:elevate_flower_app/features/cart/domain/entities/cart_entity.dar
 
 class CartStates {
   final BaseState<CartEntity> state;
-  bool isAddingItem;
-  bool isDecrementingItem;
-  bool isRemovingItem;
-  int? currentActedUponItemIndex;
-  double? totalPrice;
+  final bool isAddingItem;
+  final bool isRemovingItem;
+  final bool isDecrementingItem;
+  final String currentActedUponProductId;
+  final double totalPrice;
 
-  CartStates({
+  const CartStates({
     required this.state,
     required this.isAddingItem,
-    required this.isDecrementingItem,
     required this.isRemovingItem,
-    this.currentActedUponItemIndex,
-    this.totalPrice,
+    required this.isDecrementingItem,
+    required this.totalPrice,
+    required this.currentActedUponProductId,
   });
+
+  factory CartStates.initial() => CartStates(
+    state: const BaseState.initial(),
+    isAddingItem: false,
+    isRemovingItem: false,
+    isDecrementingItem: false,
+    totalPrice: 0,
+    currentActedUponProductId: "",
+  );
 
   CartStates copyWith({
     BaseState<CartEntity>? state,
     bool? isAddingItem,
-    bool? isDecrementingItem,
     bool? isRemovingItem,
-    int? currentActedUponItemIndex,
+    bool? isDecrementingItem,
+    String? currentActedUponProductId,
     double? totalPrice,
   }) {
     return CartStates(
       state: state ?? this.state,
       isAddingItem: isAddingItem ?? this.isAddingItem,
-      isDecrementingItem: isDecrementingItem ?? this.isDecrementingItem,
       isRemovingItem: isRemovingItem ?? this.isRemovingItem,
-      currentActedUponItemIndex:
-          currentActedUponItemIndex ?? this.currentActedUponItemIndex,
+      isDecrementingItem: isDecrementingItem ?? this.isDecrementingItem,
+      currentActedUponProductId:
+          currentActedUponProductId ?? this.currentActedUponProductId,
       totalPrice: totalPrice ?? this.totalPrice,
     );
   }

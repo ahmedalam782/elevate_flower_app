@@ -48,12 +48,15 @@ class CartPageWithData extends StatelessWidget {
             builder: (context, state) {
               return ListView.separated(
                 itemBuilder: (context, index) {
+                  final currentProduct =
+                      cartViewModel.state.state.data?.cartProducts[index];
                   return CartItemWidget(
                     onAddFunction: () {
                       // if(vm.)
-                      if (cartViewModel.state.currentActedUponItemIndex == -1) {
+                      if (cartViewModel.state.currentActedUponProductId == "") {
                         cartViewModel.doIntent(
                           AddProductToCartEvent(
+                            fromCartScreen: true,
                             index: index,
                             productId:
                                 cartViewModel
@@ -69,21 +72,26 @@ class CartPageWithData extends StatelessWidget {
                     },
                     onRemoveFunction: () {
                       // if(vm.)
-                      if (cartViewModel.state.currentActedUponItemIndex == -1) {
+                      if (cartViewModel.state.currentActedUponProductId == "") {
                         cartViewModel.doIntent(
-                          RemoveProductFromCartEvent(index: index),
+                          RemoveProductFromCartEvent(
+                            productId: currentProduct?.id ?? "",
+                          ),
                         );
                       }
                     },
                     isAdding:
                         cartViewModel.state.isAddingItem &&
-                        cartViewModel.state.currentActedUponItemIndex == index,
+                        cartViewModel.state.currentActedUponProductId ==
+                            currentProduct?.id,
                     isDecremnting:
                         cartViewModel.state.isDecrementingItem &&
-                        cartViewModel.state.currentActedUponItemIndex == index,
+                        cartViewModel.state.currentActedUponProductId ==
+                            currentProduct?.id,
                     isDeleting:
                         cartViewModel.state.isRemovingItem &&
-                        cartViewModel.state.currentActedUponItemIndex == index,
+                        cartViewModel.state.currentActedUponProductId ==
+                            currentProduct?.id,
                     cartProduct:
                         cartViewModel.state.state.data!.cartProducts[index],
                   );

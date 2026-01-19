@@ -4,6 +4,7 @@ import 'dart:developer';
 
 import 'package:elevate_flower_app/core/config/base_response/result.dart';
 import 'package:elevate_flower_app/core/config/base_state/base_state.dart';
+import 'package:elevate_flower_app/core/errors/failures.dart';
 import 'package:elevate_flower_app/features/cart/data/models/post/cart_product_post_data.dart';
 import 'package:elevate_flower_app/features/cart/domain/entities/cart_entity.dart';
 import 'package:elevate_flower_app/features/cart/domain/use_cases/add_product_to_cart_use_case.dart';
@@ -15,212 +16,197 @@ import 'package:elevate_flower_app/features/cart/presentation/view_model/cubit/c
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
-@injectable
+@lazySingleton
 class CartCubit extends Cubit<CartStates> {
   CartCubit({
-    required GetCartDataUseCase getSpeceficProductUsecase,
-    required AddProductToCartUseCase addProductToCartUsecase,
-    required RemoveProductFromCartUseCase removeProductFromCartUsecase,
-    required ClearUserCartUseCase clearProductFromCartUsecase,
-  }) : _getCartDataUseCase = getSpeceficProductUsecase,
-       _addProductToCartUseCase = addProductToCartUsecase,
-       _removeProductFromCartUseCase = removeProductFromCartUsecase,
-       _clearProductFromCartUseCase = clearProductFromCartUsecase,
-       super(
-         CartStates(
-           state: const BaseState<CartEntity>.initial(),
-           isAddingItem: false,
-           isDecrementingItem: false,
-           isRemovingItem: false,
-           currentActedUponItemIndex: -1,
-         ),
-       );
+    required GetCartDataUseCase getCartDataUseCase,
+    required AddProductToCartUseCase addProductToCartUseCase,
+    required RemoveProductFromCartUseCase removeProductFromCartUseCase,
+    required ClearUserCartUseCase clearUserCartUseCase,
+  }) : _getCartDataUseCase = getCartDataUseCase,
+       _addProductToCartUseCase = addProductToCartUseCase,
+       _removeProductFromCartUseCase = removeProductFromCartUseCase,
+       _clearUserCartUseCase = clearUserCartUseCase,
+       super(CartStates.initial());
+
   final GetCartDataUseCase _getCartDataUseCase;
   final AddProductToCartUseCase _addProductToCartUseCase;
   final RemoveProductFromCartUseCase _removeProductFromCartUseCase;
-  final ClearUserCartUseCase _clearProductFromCartUseCase;
+  final ClearUserCartUseCase _clearUserCartUseCase;
 
-  Future<void> doIntent(CartEvents event) async => switch (event) {
-    GetCartDataEvent() => getCartData(),
-    AddProductToCartEvent() => addOneItemToCart(
-      productId: event.productId,
-      index: event.index,
-    ),
-    RemoveProductFromCartEvent() => _removeItemFromCartApICall(event.index),
-    ClearUserCartEvent() => _clearUserCart(),
-  };
+  // ======================
+  // MVI ENTRY POINT
+  // ======================
+  Future<dynamic> doIntent(CartEvents event) async {
+    switch (event) {
+      case GetCartDataEvent():
+        await _loadCart();
 
-  Future<void> getCartData() async {
-    emit(state.copyWith(state: BaseState<CartEntity>.loading()));
-    final response = await _getCartDataUseCase.call();
-    switch (response) {
+      case AddProductToCartEvent():
+        return await _addProduct(
+          productId: event.productId,
+          fromCartScreen: event.fromCartScreen,
+        );
+
+      case RemoveProductFromCartEvent():
+        await _removeProduct(productId: event.productId);
+
+      case ClearUserCartEvent():
+        await _clearCart();
+    }
+  }
+
+  // ======================
+  // ACTIONS
+  // ======================
+
+  Future<void> _loadCart() async {
+    emit(state.copyWith(state: const BaseState.loading()));
+
+    final result = await _getCartDataUseCase();
+
+    switch (result) {
       case Success<CartEntity>():
         emit(
           state.copyWith(
-            state: BaseState<CartEntity>.success(response.data),
-            totalPrice: response.data?.totalPrice.toDouble() ?? 0,
+            state: BaseState.success(result.data),
+            totalPrice: result.data?.totalPrice ?? 0,
           ),
         );
 
       case Error<CartEntity>():
-        emit(
-          state.copyWith(
-            state: BaseState<CartEntity>.error(response.exception),
-          ),
-        );
+        emit(state.copyWith(state: BaseState.error(result.exception)));
     }
   }
 
-  Future<Result<void>> addOneItemToCart({
+  Future<dynamic> _addProduct({
     required String productId,
-    int? index,
+    bool fromCartScreen = true,
   }) async {
-    emit(state.copyWith(isAddingItem: true, currentActedUponItemIndex: index));
+    CartEntity? updatedCart;
+    emit(
+      state.copyWith(isAddingItem: true, currentActedUponProductId: productId),
+    );
 
-    final response = await _addProductToCartUseCase(
+    final result = await _addProductToCartUseCase(
       CartProductPostData(product: productId),
     );
 
-    switch (response) {
+    switch (result) {
       case Success<void>():
-        final updatedCart = _updateDataAfterIncrement(index);
+        updatedCart = _reduceAddProduct(
+          productId,
+          fromCartScreen: fromCartScreen,
+        );
         emit(
           state.copyWith(
             isAddingItem: false,
             state: BaseState.success(updatedCart),
-            totalPrice: updatedCart?.totalPrice,
-            currentActedUponItemIndex: -1,
+            totalPrice: updatedCart?.totalPrice ?? 0,
+            currentActedUponProductId: "",
           ),
         );
-        return response;
+        return true;
 
       case Error<void>():
         emit(
           state.copyWith(
             isAddingItem: false,
-            state: BaseState.error(response.exception),
+            state: BaseState.error(result.exception),
+            currentActedUponProductId: "",
           ),
         );
-        return response;
+        return result.exception;
+      // return true;
     }
   }
-  // Future<void> addOneItemToCart(int index) async {
-  //   emit(
-  //     state.copyWith(
-  //       isAddingItem: true,
-  //       isRemovingItem: false,
-  //       isDecrementingItem: false,
-  //       currentActedUponItemIndex: index,
-  //     ),
-  //   );
-  //   final response = await _addProductToCartUseCase.call(
-  //     CartProductPostData(
-  //       product: state.state.data?.cartProducts[index].id ?? "",
-  //     ),
-  //   );
-  //   switch (response) {
-  //     case Success<void>():
-  //       final cartEntity = _updateDataAfterIncrement(index);
-  //       emit(
-  //         state.copyWith(
-  //           isAddingItem: false,
-  //           currentActedUponItemIndex: -1,
-  //           state: BaseState<CartEntity>.success(cartEntity),
-  //           totalPrice: cartEntity?.totalPrice,
-  //         ),
-  //       );
 
-  //     case Error<void>():
-  //       emit(
-  //         state.copyWith(
-  //           state: BaseState<CartEntity>.error(response.exception),
-  //         ),
-  //       );
-  //   }
-  // }
-
-  Future<void> _removeItemFromCartApICall(int index) async {
+  Future<void> _removeProduct({required String productId}) async {
     emit(
       state.copyWith(
-        isAddingItem: false,
         isRemovingItem: true,
-        isDecrementingItem: false,
-        currentActedUponItemIndex: index,
+        currentActedUponProductId: productId,
       ),
     );
-    final response = await _removeProductFromCartUseCase.call(
-      state.state.data?.cartProducts[index].id ?? "",
-    );
-    switch (response) {
+
+    final result = await _removeProductFromCartUseCase(productId);
+
+    switch (result) {
       case Success<void>():
-        log("LAST INDEX${index}");
-        final cartEntity = _updateDateAfterRemoving(index);
+        final updatedCart = _reduceRemoveProduct(productId);
         emit(
           state.copyWith(
             isRemovingItem: false,
-            currentActedUponItemIndex: -1,
-            state: BaseState<CartEntity>.success(cartEntity),
-            totalPrice: cartEntity?.totalPrice,
+            state: BaseState.success(updatedCart),
+            totalPrice: updatedCart.totalPrice,
+            currentActedUponProductId: "",
           ),
         );
 
       case Error<void>():
         emit(
           state.copyWith(
-            state: BaseState<CartEntity>.error(response.exception),
+            isRemovingItem: false,
+            state: BaseState.error(result.exception),
+            currentActedUponProductId: "",
           ),
         );
     }
   }
 
-  Future<void> _clearUserCart() async {
-    emit(state.copyWith(state: BaseState<CartEntity>.loading()));
-    final response = await _clearProductFromCartUseCase.call();
-    switch (response) {
+  Future<void> _clearCart() async {
+    emit(state.copyWith(state: const BaseState.loading()));
+
+    final result = await _clearUserCartUseCase();
+
+    switch (result) {
       case Success<void>():
-        getCartData();
+        emit(CartStates.initial());
 
       case Error<void>():
-        emit(
-          state.copyWith(
-            state: BaseState<CartEntity>.error(response.exception),
-          ),
+        emit(state.copyWith(state: BaseState.error(result.exception)));
+    }
+  }
+
+  // ======================
+  // REDUCERS (PURE & IMMUTABLE)
+  // ======================
+
+  CartEntity? _reduceAddProduct(
+    String productId, {
+    bool fromCartScreen = true,
+  }) {
+    print(fromCartScreen);
+    if (!fromCartScreen) return null;
+    final cart = state.state.data!;
+    final updatedProducts = cart.cartProducts.map((item) {
+      if (item.id == productId) {
+        return item.copyWith(
+          productQuantityInCart: item.productQuantityInCart + 1,
         );
-    }
-  }
+      }
+      return item;
+    }).toList();
 
-  CartEntity? _updateDataAfterIncrement(int? index) {
-    if (index != null) {
-      final newData = state.state.data;
-      newData?.cartProducts[index].productQuantityInCart++;
-      newData?.totalPrice += newData.cartProducts[index].productPrice;
+    final price = cart.cartProducts
+        .firstWhere((e) => e.id == productId)
+        .productPrice;
 
-      return newData;
-    }
-  }
-
-  CartEntity? _updateDateAfterRemoving(int index) {
-    final oldData = state.state.data;
-    if (oldData == null) return null;
-
-    // 1️⃣ Copy the list (DO NOT mutate state directly)
-    final updatedProducts = List<CartProductEntity>.from(oldData.cartProducts);
-
-    // 2️⃣ Capture the removed item BEFORE removal
-    final removedItem = updatedProducts[index];
-
-    // 3️⃣ Remove item
-    updatedProducts.removeAt(index);
-
-    // 4️⃣ Calculate updated total price
-    final updatedTotalPrice =
-        oldData.totalPrice -
-        (removedItem.productPrice * removedItem.productQuantityInCart);
-
-    // 5️⃣ Return new CartEntity (immutable update)
-    return oldData.copyWith(
+    return cart.copyWith(
       cartProducts: updatedProducts,
-      totalPrice: updatedTotalPrice,
+      totalPrice: cart.totalPrice + price,
+    );
+  }
+
+  CartEntity _reduceRemoveProduct(String productId) {
+    final cart = state.state.data!;
+    final removed = cart.cartProducts.firstWhere((e) => e.id == productId);
+
+    return cart.copyWith(
+      cartProducts: cart.cartProducts.where((e) => e.id != productId).toList(),
+      totalPrice:
+          cart.totalPrice -
+          (removed.productPrice * removed.productQuantityInCart),
     );
   }
 }

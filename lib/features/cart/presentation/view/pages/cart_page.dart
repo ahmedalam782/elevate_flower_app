@@ -29,8 +29,9 @@ class _CartPageState extends State<CartPage> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<CartCubit>(
-      create: (context) => vm,
+    return BlocProvider<CartCubit>.value(
+      // create: (context) => vm,
+      value: vm,
       child: SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 16.w),

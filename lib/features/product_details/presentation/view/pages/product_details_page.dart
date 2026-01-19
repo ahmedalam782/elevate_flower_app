@@ -10,6 +10,7 @@ import 'package:elevate_flower_app/core/shared/widgets/custom_button.dart';
 import 'package:elevate_flower_app/core/shared/widgets/custom_toast.dart';
 import 'package:elevate_flower_app/core/theme/app_colors.dart';
 import 'package:elevate_flower_app/core/theme/app_typography.dart';
+import 'package:elevate_flower_app/features/cart/presentation/view/widgets/custom_add_to_cart_button.dart';
 import 'package:elevate_flower_app/features/product_details/presentation/view/widgets/product_image_slider.dart';
 import 'package:elevate_flower_app/features/product_details/presentation/view_model/cubit/product_details_cubit.dart';
 import 'package:elevate_flower_app/features/product_details/presentation/view_model/cubit/product_details_events.dart';
@@ -236,48 +237,9 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                         bottom: 24.h,
                         left: 16.w,
                         right: 16.w,
-                        child:
-                            BlocSelector<
-                              ProductDetailsCubit,
-                              ProductDetailsStates,
-                              bool
-                            >(
-                              selector: (state) {
-                                return state.isAddingProductToCart;
-                              },
-                              builder: (context, state) {
-                                return CustomButton(
-                                  isLoading: state,
-                                  onPressed: state == true
-                                      ? null
-                                      : () async {
-                                          final token =
-                                              await getIt<
-                                                    FlutterSecureStorage
-                                                  >()
-                                                  .read(
-                                                    key: Apikeys.accessToken,
-                                                  );
-                                          if (token != null &&
-                                              token.isNotEmpty) {
-                                          } else {
-                                            showActionDialog(
-                                              context: context,
-                                              description: "",
-                                              title: LocaleKeys
-                                                  .cart_to_continue_Shopping
-                                                  .tr(),
-                                              onAction: () {
-                                                context.go(Routes.login);
-                                              },
-                                            );
-                                          }
-                                        },
-                                  title: LocaleKeys.product_details_add_to_cart
-                                      .tr(),
-                                );
-                              },
-                            ),
+                        child: CustomAddToCartButton(
+                          productId: widget.productId,
+                        ),
                       ),
                     ],
                   ),

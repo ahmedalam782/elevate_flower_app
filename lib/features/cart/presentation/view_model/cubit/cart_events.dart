@@ -9,14 +9,19 @@ class GetCartDataEvent extends CartEvents {
 class AddProductToCartEvent extends CartEvents {
   final int? index;
   final String productId;
+  final bool fromCartScreen;
 
-  AddProductToCartEvent({this.index, required this.productId});
+  AddProductToCartEvent({
+    this.index,
+    required this.productId,
+    required this.fromCartScreen,
+  });
 }
 
 class RemoveProductFromCartEvent extends CartEvents {
-  final int index;
+  final String productId;
 
-  RemoveProductFromCartEvent({required this.index});
+  RemoveProductFromCartEvent({required this.productId});
 }
 
 class ClearUserCartEvent extends CartEvents {}
