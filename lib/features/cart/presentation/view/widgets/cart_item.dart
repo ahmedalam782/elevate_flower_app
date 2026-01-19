@@ -16,6 +16,7 @@ class CartItemWidget extends StatelessWidget {
   final bool? isDecremnting;
   final Function() onAddFunction;
   final Function() onRemoveFunction;
+  final Function() onDecrementFunction;
   const CartItemWidget({
     super.key,
     required this.cartProduct,
@@ -24,6 +25,7 @@ class CartItemWidget extends StatelessWidget {
     this.isDecremnting,
     required this.onAddFunction,
     required this.onRemoveFunction,
+    required this.onDecrementFunction,
   });
 
   @override
@@ -110,10 +112,13 @@ class CartItemWidget extends StatelessWidget {
                       Row(
                         children: [
                           if (isDecremnting != true)
-                            SizedBox(
-                              width: 20.w,
-                              height: 20.w,
-                              child: Icon(Icons.remove_rounded),
+                            InkWell(
+                              onTap: onDecrementFunction,
+                              child: SizedBox(
+                                width: 20.w,
+                                height: 20.w,
+                                child: Icon(Icons.remove_rounded),
+                              ),
                             ),
                           if (isDecremnting == true)
                             SizedBox(

@@ -3,6 +3,7 @@ import 'package:elevate_flower_app/core/languages/locale_keys.g.dart';
 import 'package:elevate_flower_app/core/shared/widgets/custom_button.dart';
 import 'package:elevate_flower_app/core/theme/app_colors.dart';
 import 'package:elevate_flower_app/core/theme/app_typography.dart';
+import 'package:elevate_flower_app/features/cart/domain/entities/cart_entity.dart';
 import 'package:elevate_flower_app/features/cart/presentation/view/widgets/cart_item.dart';
 import 'package:elevate_flower_app/features/cart/presentation/view/widgets/cart_upper_part.dart';
 import 'package:elevate_flower_app/features/cart/presentation/view_model/cubit/cart_cubit.dart';
@@ -51,6 +52,38 @@ class CartPageWithData extends StatelessWidget {
                   final currentProduct =
                       cartViewModel.state.state.data?.cartProducts[index];
                   return CartItemWidget(
+                    onDecrementFunction: () {
+                      if (cartViewModel.state.currentActedUponProductId == "") {
+                        if (cartViewModel
+                                .state
+                                .state
+                                .data
+                                ?.cartProducts[index]
+                                .productQuantityInCart ==
+                            1) {
+                          removeItemFromCart(currentProduct);
+                        } else {
+                          cartViewModel.doIntent(
+                            UpdateProductInCartEvent(
+                              productId:
+                                  cartViewModel
+                                      .state
+                                      .state
+                                      .data
+                                      ?.cartProducts[index]
+                                      .id ??
+                                  "",
+                              qunatity: cartViewModel
+                                  .state
+                                  .state
+                                  .data!
+                                  .cartProducts[index]
+                                  .productQuantityInCart,
+                            ),
+                          );
+                        }
+                      }
+                    },
                     onAddFunction: () {
                       // if(vm.)
                       if (cartViewModel.state.currentActedUponProductId == "") {
@@ -73,11 +106,7 @@ class CartPageWithData extends StatelessWidget {
                     onRemoveFunction: () {
                       // if(vm.)
                       if (cartViewModel.state.currentActedUponProductId == "") {
-                        cartViewModel.doIntent(
-                          RemoveProductFromCartEvent(
-                            productId: currentProduct?.id ?? "",
-                          ),
-                        );
+                        removeItemFromCart(currentProduct);
                       }
                     },
                     isAdding:
@@ -133,6 +162,12 @@ class CartPageWithData extends StatelessWidget {
         ),
         SizedBox(height: 32.h),
       ],
+    );
+  }
+
+  void removeItemFromCart(CartProductEntity? currentProduct) {
+    cartViewModel.doIntent(
+      RemoveProductFromCartEvent(productId: currentProduct?.id ?? ""),
     );
   }
 }

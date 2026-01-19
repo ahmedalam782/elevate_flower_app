@@ -6,11 +6,13 @@ import 'package:elevate_flower_app/core/config/base_response/result.dart';
 import 'package:elevate_flower_app/core/config/base_state/base_state.dart';
 import 'package:elevate_flower_app/core/errors/failures.dart';
 import 'package:elevate_flower_app/features/cart/data/models/post/cart_product_post_data.dart';
+import 'package:elevate_flower_app/features/cart/data/models/post/cart_update_data.dart';
 import 'package:elevate_flower_app/features/cart/domain/entities/cart_entity.dart';
 import 'package:elevate_flower_app/features/cart/domain/use_cases/add_product_to_cart_use_case.dart';
 import 'package:elevate_flower_app/features/cart/domain/use_cases/clear_user_cart_use_case.dart';
 import 'package:elevate_flower_app/features/cart/domain/use_cases/get_cart_data_use_case.dart';
 import 'package:elevate_flower_app/features/cart/domain/use_cases/remove_product_from_cart_use_case.dart';
+import 'package:elevate_flower_app/features/cart/domain/use_cases/update_product_in_cart_usecase.dart';
 import 'package:elevate_flower_app/features/cart/presentation/view_model/cubit/cart_events.dart';
 import 'package:elevate_flower_app/features/cart/presentation/view_model/cubit/cart_states.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,16 +25,19 @@ class CartCubit extends Cubit<CartStates> {
     required AddProductToCartUseCase addProductToCartUseCase,
     required RemoveProductFromCartUseCase removeProductFromCartUseCase,
     required ClearUserCartUseCase clearUserCartUseCase,
+    required UpdateProductInCartUsecase updateProductInCartUsecase,
   }) : _getCartDataUseCase = getCartDataUseCase,
        _addProductToCartUseCase = addProductToCartUseCase,
        _removeProductFromCartUseCase = removeProductFromCartUseCase,
        _clearUserCartUseCase = clearUserCartUseCase,
+       _updateProductInCartUsecase = updateProductInCartUsecase,
        super(CartStates.initial());
 
   final GetCartDataUseCase _getCartDataUseCase;
   final AddProductToCartUseCase _addProductToCartUseCase;
   final RemoveProductFromCartUseCase _removeProductFromCartUseCase;
   final ClearUserCartUseCase _clearUserCartUseCase;
+  final UpdateProductInCartUsecase _updateProductInCartUsecase;
 
   // ======================
   // MVI ENTRY POINT
@@ -53,6 +58,11 @@ class CartCubit extends Cubit<CartStates> {
 
       case ClearUserCartEvent():
         await _clearCart();
+      case UpdateProductInCartEvent():
+        await _updateQuantity(
+          productId: event.productId,
+          quantity: event.qunatity,
+        );
     }
   }
 
@@ -94,7 +104,7 @@ class CartCubit extends Cubit<CartStates> {
 
     switch (result) {
       case Success<void>():
-        updatedCart = _reduceAddProduct(
+        updatedCart = _updateCartAfterAdding(
           productId,
           fromCartScreen: fromCartScreen,
         );
@@ -112,6 +122,49 @@ class CartCubit extends Cubit<CartStates> {
         emit(
           state.copyWith(
             isAddingItem: false,
+            state: BaseState.error(result.exception),
+            currentActedUponProductId: "",
+          ),
+        );
+        return result.exception;
+      // return true;
+    }
+  }
+
+  Future<dynamic> _updateQuantity({
+    required String productId,
+    required int quantity,
+  }) async {
+    CartEntity? updatedCart;
+    emit(
+      state.copyWith(
+        isDecrementingItem: true,
+        currentActedUponProductId: productId,
+      ),
+    );
+
+    final result = await _updateProductInCartUsecase(
+      productId,
+      CartUpdateDataModel(quantity: --quantity),
+    );
+
+    switch (result) {
+      case Success<void>():
+        updatedCart = _updateCartAfterDecrementing(productId);
+        emit(
+          state.copyWith(
+            isDecrementingItem: false,
+            state: BaseState.success(updatedCart),
+            totalPrice: updatedCart?.totalPrice ?? 0,
+            currentActedUponProductId: "",
+          ),
+        );
+        return true;
+
+      case Error<void>():
+        emit(
+          state.copyWith(
+            isDecrementingItem: false,
             state: BaseState.error(result.exception),
             currentActedUponProductId: "",
           ),
@@ -172,7 +225,7 @@ class CartCubit extends Cubit<CartStates> {
   // REDUCERS (PURE & IMMUTABLE)
   // ======================
 
-  CartEntity? _reduceAddProduct(
+  CartEntity? _updateCartAfterAdding(
     String productId, {
     bool fromCartScreen = true,
   }) {
@@ -195,6 +248,27 @@ class CartCubit extends Cubit<CartStates> {
     return cart.copyWith(
       cartProducts: updatedProducts,
       totalPrice: cart.totalPrice + price,
+    );
+  }
+
+  CartEntity? _updateCartAfterDecrementing(String productId) {
+    final cart = state.state.data!;
+    final updatedProducts = cart.cartProducts.map((item) {
+      if (item.id == productId) {
+        return item.copyWith(
+          productQuantityInCart: item.productQuantityInCart - 1,
+        );
+      }
+      return item;
+    }).toList();
+
+    final price = cart.cartProducts
+        .firstWhere((e) => e.id == productId)
+        .productPrice;
+
+    return cart.copyWith(
+      cartProducts: updatedProducts,
+      totalPrice: cart.totalPrice - price,
     );
   }
 
