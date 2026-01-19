@@ -229,5 +229,10 @@
     "occasion_title": "Occasion",
     "occasion_hint": "Bloom with our exquisite best sellers"
 
+  },
+  "change_language": {
+    "title":"Change Language",
+    "arabic": "Arabic",
+    "english": "English"
   }
 }

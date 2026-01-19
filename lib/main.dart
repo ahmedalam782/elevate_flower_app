@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:elevate_flower_app/features/change_lang/domain/use_cases/get_lang_use_case.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -13,26 +14,24 @@ import 'core/routes/url_strategy.dart';
 const bool runLocal = false;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // Set the status bar color to transparent and icons to white
-  SystemChrome.setSystemUIOverlayStyle(
-    const SystemUiOverlayStyle(
-      statusBarColor: AppColors.black,
-      statusBarIconBrightness: Brightness.light,
-      statusBarBrightness: Brightness.light,
-    ),
-  );
-
- 
+  await configureDependencies(); 
+  final currentLang = await getIt<GetLangUseCase>().call();
   runApp(
     EasyLocalization(
       supportedLocales: const [arabicLocale, englishLocale],
       fallbackLocale: englishLocale,
-      startLocale: englishLocale,
+      startLocale: currentLang.when(
+        success: (data) =>
+            (data ?? "en") == "en" ? englishLocale : arabicLocale,
+        error: (exception) {
+          return englishLocale;
+        },
+      ),
       path: assetsLocalization,
+      saveLocale: true,
       child: const FlowerApp(),
     ),
   );
-  await configureDependencies(); // Set custom Bloc observer for debugging
   Bloc.observer = MyBlocObserver();
   await ScreenUtil.ensureScreenSize();
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);

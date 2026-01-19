@@ -225,5 +225,10 @@
     "occasion_title": "المناسبات",
     "occasion_hint": "ازهر مع أفضل المنتجات المميزة لدينا"
 
+  },
+  "change_language": {
+    "title": "تغيير اللغة",
+    "arabic": "العربية",
+    "english": "الانجليزية"
   }
 }
