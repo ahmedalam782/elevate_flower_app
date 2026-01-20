@@ -1,0 +1,47 @@
+name: Dart Lint
+
+on:
+  pull_request:
+    branches: [ main, master, develop ]
+    paths:
+      - '**.dart'
+      - 'pubspec.yaml'
+      - 'analysis_options.yaml'
+  push:
+    branches: [ main, master, develop ]
+
+jobs:
+  lint:
+    name: Run Dart Analyzer
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Dart
+        uses: dart-lang/setup-dart@v1
+        with:
+          sdk: stable
+
+      # Or use Flutter if it's a Flutter project
+      # - name: Setup Flutter
+      #   uses: subosito/flutter-action@v2
+      #   with:
+      #     flutter-version: 'stable'
+
+      - name: Install dependencies
+        run: dart pub get
+        # For Flutter: flutter pub get
+
+      - name: Verify formatting
+        run: dart format --output=none --set-exit-if-changed .
+        # For Flutter: flutter format --output=none --set-exit-if-changed .
+
+      - name: Analyze code
+        run: dart analyze --fatal-infos
+        # For Flutter: flutter analyze --fatal-infos
+
+      - name: Run custom lint (if using custom_lint package)
+        run: dart run custom_lint
+        continue-on-error: false
