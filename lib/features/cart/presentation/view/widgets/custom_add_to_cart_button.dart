@@ -29,7 +29,7 @@ class CustomAddToCartButton extends StatelessWidget {
         builder: (context, state) {
           return CustomButton(
             // isLoading: state,
-            isLoading: state.isAddingItem,
+            isLoading: false,
             onPressed: () async {
               await addToCart(context, productId);
             },

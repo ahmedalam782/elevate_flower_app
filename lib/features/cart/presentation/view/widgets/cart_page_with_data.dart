@@ -109,18 +109,7 @@ class CartPageWithData extends StatelessWidget {
                         removeItemFromCart(currentProduct);
                       }
                     },
-                    isAdding:
-                        cartViewModel.state.isAddingItem &&
-                        cartViewModel.state.currentActedUponProductId ==
-                            currentProduct?.id,
-                    isDecremnting:
-                        cartViewModel.state.isDecrementingItem &&
-                        cartViewModel.state.currentActedUponProductId ==
-                            currentProduct?.id,
-                    isDeleting:
-                        cartViewModel.state.isRemovingItem &&
-                        cartViewModel.state.currentActedUponProductId ==
-                            currentProduct?.id,
+
                     cartProduct:
                         cartViewModel.state.state.data!.cartProducts[index],
                   );

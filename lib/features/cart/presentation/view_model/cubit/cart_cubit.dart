@@ -5,6 +5,7 @@ import 'dart:developer';
 import 'package:elevate_flower_app/core/config/base_response/result.dart';
 import 'package:elevate_flower_app/core/config/base_state/base_state.dart';
 import 'package:elevate_flower_app/core/errors/failures.dart';
+import 'package:elevate_flower_app/core/shared/widgets/loading_flower_widget.dart';
 import 'package:elevate_flower_app/features/cart/data/models/post/cart_product_post_data.dart';
 import 'package:elevate_flower_app/features/cart/data/models/post/cart_update_data.dart';
 import 'package:elevate_flower_app/features/cart/domain/entities/cart_entity.dart';
@@ -93,6 +94,8 @@ class CartCubit extends Cubit<CartStates> {
     required String productId,
     bool fromCartScreen = true,
   }) async {
+    showOverLayLoading();
+
     CartEntity? updatedCart;
     emit(
       state.copyWith(isAddingItem: true, currentActedUponProductId: productId),
@@ -101,7 +104,7 @@ class CartCubit extends Cubit<CartStates> {
     final result = await _addProductToCartUseCase(
       CartProductPostData(product: productId),
     );
-
+    hideOverlayLoading();
     switch (result) {
       case Success<void>():
         updatedCart = _updateCartAfterAdding(
@@ -135,6 +138,8 @@ class CartCubit extends Cubit<CartStates> {
     required String productId,
     required int quantity,
   }) async {
+    showOverLayLoading();
+
     CartEntity? updatedCart;
     emit(
       state.copyWith(
@@ -147,6 +152,7 @@ class CartCubit extends Cubit<CartStates> {
       productId,
       CartUpdateDataModel(quantity: --quantity),
     );
+    hideOverlayLoading();
 
     switch (result) {
       case Success<void>():
@@ -175,6 +181,8 @@ class CartCubit extends Cubit<CartStates> {
   }
 
   Future<void> _removeProduct({required String productId}) async {
+    showOverLayLoading();
+
     emit(
       state.copyWith(
         isRemovingItem: true,
@@ -183,6 +191,7 @@ class CartCubit extends Cubit<CartStates> {
     );
 
     final result = await _removeProductFromCartUseCase(productId);
+    hideOverlayLoading();
 
     switch (result) {
       case Success<void>():

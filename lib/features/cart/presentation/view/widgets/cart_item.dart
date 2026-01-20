@@ -11,18 +11,14 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 class CartItemWidget extends StatelessWidget {
   final CartProductEntity cartProduct;
-  final bool? isDeleting;
-  final bool? isAdding;
-  final bool? isDecremnting;
+
   final Function() onAddFunction;
   final Function() onRemoveFunction;
   final Function() onDecrementFunction;
   const CartItemWidget({
     super.key,
     required this.cartProduct,
-    this.isDeleting,
-    this.isAdding,
-    this.isDecremnting,
+
     required this.onAddFunction,
     required this.onRemoveFunction,
     required this.onDecrementFunction,
@@ -82,21 +78,15 @@ class CartItemWidget extends StatelessWidget {
                           ],
                         ),
                       ),
-                      if (isDeleting != true)
-                        InkWell(
-                          onTap: onRemoveFunction,
-                          child: SizedBox(
-                            width: 18.w,
-                            height: 18.w,
-                            child: SvgPicture.asset(AppImages.deleteTrash),
-                          ),
-                        ),
-                      if (isDeleting == true)
-                        SizedBox(
+                      InkWell(
+                        onTap: onRemoveFunction,
+                        child: SizedBox(
                           width: 18.w,
                           height: 18.w,
-                          child: CircularProgressIndicator(),
+                          child: SvgPicture.asset(AppImages.deleteTrash),
                         ),
+                      ),
+
                       // Icon(Icons.delete_outline, color: AppColors.redCC),
                     ],
                   ),
@@ -111,42 +101,29 @@ class CartItemWidget extends StatelessWidget {
 
                       Row(
                         children: [
-                          if (isDecremnting != true)
-                            InkWell(
-                              onTap: onDecrementFunction,
-                              child: SizedBox(
-                                width: 20.w,
-                                height: 20.w,
-                                child: Icon(Icons.remove_rounded),
-                              ),
-                            ),
-                          if (isDecremnting == true)
-                            SizedBox(
+                          InkWell(
+                            onTap: onDecrementFunction,
+                            child: SizedBox(
                               width: 20.w,
                               height: 20.w,
-                              child: CircularProgressIndicator(),
+                              child: Icon(Icons.remove_rounded),
                             ),
+                          ),
+
                           SizedBox(width: 5.w),
                           Text(
                             cartProduct.productQuantityInCart.toString(),
                             style: 14.semiBold,
                           ),
                           SizedBox(width: 5.w),
-                          if (isAdding != true)
-                            InkWell(
-                              onTap: onAddFunction,
-                              child: SizedBox(
-                                width: 20.w,
-                                height: 20.w,
-                                child: Icon(Icons.add_rounded),
-                              ),
-                            ),
-                          if (isAdding == true)
-                            SizedBox(
+                          InkWell(
+                            onTap: onAddFunction,
+                            child: SizedBox(
                               width: 20.w,
                               height: 20.w,
-                              child: CircularProgressIndicator(),
+                              child: Icon(Icons.add_rounded),
                             ),
+                          ),
                         ],
                       ),
                     ],
