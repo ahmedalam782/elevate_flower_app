@@ -3,6 +3,7 @@ import 'package:elevate_flower_app/core/languages/locale_keys.g.dart';
 import 'package:elevate_flower_app/core/theme/app_icons.dart';
 import 'package:elevate_flower_app/features/categories/presentation/view/pages/categories_page.dart';
 import 'package:elevate_flower_app/features/home/presentation/view/pages/home_page.dart';
+import 'package:elevate_flower_app/features/profile/presentation/view/pages/profile_page.dart';
 import 'package:elevate_flower_app/features/main_layout/presentation/view/widgets/custom_nav_bar.dart';
 import '../widgets/nav_bar_item.dart';
 import 'package:flutter/material.dart';
@@ -72,7 +73,7 @@ class _MainLayoutState extends State<MainLayoutPage> {
           ),
           CategoriesPage(incomingIndex: _categoryIndex),
           const Center(child: Text("Cart")),
-          const Center(child: Text("Profile")),
+          const ProfilePage(),
         ],
       ),
       bottomNavigationBar: CustomNavBar(
