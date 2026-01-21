@@ -30,7 +30,7 @@ class LocalizationSheetCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              language == LanguageType.english
+              language == LanguageType.arabic
                   ? LocaleKeys.change_language_arabic.tr()
                   : LocaleKeys.change_language_english.tr(),
               style: 16.medium.copyWith(color: AppColors.black0C),
