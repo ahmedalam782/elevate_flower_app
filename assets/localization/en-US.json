@@ -190,7 +190,6 @@
     "try_again": "Try again"
   },
 
-
   "home_screen": {
     "home_title": "Flowery",
     "temp_location": "Deliver to 2XVP+XC - Sheikh Zayed",
@@ -228,6 +227,21 @@
   "occasion": {
     "occasion_title": "Occasion",
     "occasion_hint": "Bloom with our exquisite best sellers"
-
+  },
+  "cart": {
+    "cart": "Cart",
+    "items": "items",
+    "sub_total": "Sub Total",
+    "total": "Total",
+    "check_out": "Checkout",
+    "deliver_to": "Deliver to",
+    "clear": "Clear cart",
+    "no_items_found": "Your cart is empty",
+    "browsing_as_guest": "You are browsing as a guest, please login to view your cart",
+    "confirm": "Confirm",
+    "back": "Back",
+    "you_are_browsing_as_guest": "You are browsing as a guest",
+    "to_continue_Shopping": "To add item to cart please login or create account if you don't have one",
+    "item_added_to_cart": "Item added successfully to your cart"
   }
 }

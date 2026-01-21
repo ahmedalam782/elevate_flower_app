@@ -1,11 +1,15 @@
 // ignore_for_file: prefer_single_quotes
 class AppImages {
   AppImages._();
-  
-  static const String imagesIcLauncherAndroid = "assets/images/ic_launcher_android.png";
+
+  static const String imagesIcLauncherAndroid =
+      "assets/images/ic_launcher_android.png";
 
   static const String imagesIcLauncherIos = "assets/images/ic_launcher_ios.png";
 
   static const String imagesIcLauncherWeb = "assets/images/ic_launcher_web.png";
-}
 
+  static const String deleteTrash = "assets/icons/delete.svg";
+  static const String locationSvg = "assets/icons/location.svg";
+  static const String emptyCartIcon = "assets/icons/no_items_in_cart.svg";
+}
