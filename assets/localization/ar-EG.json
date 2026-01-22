@@ -188,8 +188,6 @@
     "bouqet_include": "محتوي باقة الزهور",
     "add_to_cart": "أضف إلي العربة"
   },
- feature/profile_screen
-evelopment
   "home_screen": {
     "home_title": "زهور",
     "temp_location": "التوصيل إلى 2XVP+XC - الشيخ زايد",
@@ -226,7 +224,6 @@ evelopment
     "occasion_title": "المناسبات",
     "occasion_hint": "ازهر مع أفضل المنتجات المميزة لدينا"
   },
- feature/profile_screen
   "profile": {
     "profile_title": "الملف الشخصي",
     "my_orders": "طلباتي",
@@ -242,7 +239,7 @@ evelopment
     "change_language": "تغيير اللغة",
     "Arabic": "العربية",
     "English": "الإنجليزية"
-  }
+  },
   "cart": {
     "cart": "سلة التسوق",
     "items": "عناصر",
@@ -258,6 +255,5 @@ evelopment
     "you_are_browsing_as_guest": "أنت تتصفح كازائر",
     "to_continue_Shopping": "لإضافة منتج إلي السلة, من فضلك قم بتسجيل الدخول أو إنشاء حساب",
     "item_added_to_cart": "تم إضافة المنتج الي السلة بنجاح"
-
   }
 }
