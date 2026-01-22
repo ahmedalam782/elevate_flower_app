@@ -23,7 +23,17 @@ class RegisterBody extends StatelessWidget {
       children: [
         const RegisterForm(),
         const SizedBox(height: 24.0),
-        const GenderRow(),
+        BlocBuilder<RegisterCubit, RegisterStates>(
+          builder: (context, state) {
+            return GenderRow(
+              selectedGender: state.genderRowState.selectedGender,
+              showError: state.genderRowState.showGenderError,
+              onChanged: (gender) {
+                cubit.doIntent(OnGenderSelectedEvent(gender));
+              },
+            );
+          },
+        ),
         const SizedBox(height: 24.0),
         const TermsConditionsSpan(),
         const SizedBox(height: 50.0),

@@ -226,4 +226,18 @@
     "occasion_hint": "ازهر مع أفضل المنتجات المميزة لدينا"
 
   }
+  ,
+  "edit_profile": {
+    "edit_profile_title": "تعديل الملف الشخصي",
+    "first_name_label": "الاسم الأول",
+    "last_name_label": "اسم العائلة",
+    "email_label": "البريد الإلكتروني",
+    "change": "تغيير",
+    "phone_label": "رقم الهاتف",
+    "update_button": "تحديث",
+    "profile_updated_successfully": "تم تحديث الملف الشخصي بنجاح",
+    "camera_option": "الكاميرا",
+    "gallery_option": "المعرض"
+    
+  }
 }
