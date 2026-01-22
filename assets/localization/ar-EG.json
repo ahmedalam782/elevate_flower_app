@@ -225,5 +225,14 @@
     "occasion_title": "المناسبات",
     "occasion_hint": "ازهر مع أفضل المنتجات المميزة لدينا"
 
-  }
+  },
+  "logout": {
+  "authentication_status": "حالة تسجيل الدخول",
+  "authenticated": "تم تسجيل الدخول",
+  "not_authenticated": "غير مسجل الدخول",
+  "logout_title": "تسجيل الخروج",
+  "logout_confirm": "هل أنتِ متأكدة من تسجيل الخروج؟",
+  "logout_success": "تم تسجيل الخروج بنجاح",
+  "clear_all_tokens": "مسح بيانات تسجيل الدخول"
+}
 }

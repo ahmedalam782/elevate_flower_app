@@ -229,5 +229,14 @@
     "occasion_title": "Occasion",
     "occasion_hint": "Bloom with our exquisite best sellers"
 
-  }
+  },
+  "logout": {
+  "authentication_status": "Authentication Status",
+  "authenticated": "Authenticated",
+  "not_authenticated": "Not Authenticated",
+  "logout_title": "LOGOUT",
+  "logout_confirm": "Confirm logout!!",
+  "logout_success": "Logout Successfully",
+  "clear_all_tokens": "Clear All Tokens"
+}
 }
