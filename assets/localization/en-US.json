@@ -178,7 +178,6 @@
     "cart": "Cart",
     "profile": "Profile"
   },
-
   "product_details": {
     "EGP": "EGP",
     "status": "Status: ",
@@ -198,7 +197,6 @@
     "best_seller_title": "Best seller",
     "occasion_title": "Occasion"
   },
-
   "products": {
     "no_products": "No products found",
     "check_back_later": "Please check back later",
@@ -217,7 +215,6 @@
     "best_seller": "Best Seller",
     "caption": "Bloom with our exquisite best sellers"
   },
-
   "categories": {
     "error_loading_categories": "Error loading categories",
     "select_a_category": "Select a category",
@@ -228,6 +225,23 @@
     "occasion_title": "Occasion",
     "occasion_hint": "Bloom with our exquisite best sellers"
   },
+ feature/profile_screen
+  "profile": {
+    "profile_title": "Profile",
+    "my_orders": "My orders",
+    "saved_address": "Saved address",
+    "notification": "Notification",
+    "language": "Language",
+    "about_us": "About us",
+    "terms_conditions": "Terms & conditions",
+    "logout": "Logout",
+    "edit_profile": "Edit profile",
+    "logout_confirmation": "Are you sure you want to logout?",
+    "logout_success": "Logged out successfully",
+    "change_language": "Change Language",
+    "Arabic":"Arabic",
+    "English":"English"},
+
   "cart": {
     "cart": "Cart",
     "items": "items",
@@ -243,5 +257,6 @@
     "you_are_browsing_as_guest": "You are browsing as a guest",
     "to_continue_Shopping": "To add item to cart please login or create account if you don't have one",
     "item_added_to_cart": "Item added successfully to your cart"
+ development
   }
 }

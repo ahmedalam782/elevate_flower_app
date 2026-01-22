@@ -76,14 +76,20 @@ class CategoriesCubit extends Cubit<CategoriesStates> {
     result.when(
       success: (products) {
         // Map ProductEntity to ProductItemEntity
-        final productItems = products?.map((product) => ProductItemEntity(
-          id: product.id,
-          name: product.title,
-          description: product.description,
-          price: product.price,
-          priceAfterDiscount: product.priceAfterDiscount,
-          imageUrl: product.imgCover,
-        )).toList() ?? [];
+        final productItems =
+            products
+                ?.map(
+                  (product) => ProductItemEntity(
+                    id: product.id,
+                    name: product.title,
+                    description: product.description,
+                    price: product.price,
+                    priceAfterDiscount: product.priceAfterDiscount,
+                    imageUrl: product.imgCover,
+                  ),
+                )
+                .toList() ??
+            [];
 
         emit(
           state.copyWith(
@@ -119,14 +125,20 @@ class CategoriesCubit extends Cubit<CategoriesStates> {
         productsResult.when(
           success: (products) {
             // Map ProductEntity to ProductItemEntity
-            final productItems = products?.map((product) => ProductItemEntity(
-              id: product.id,
-              name: product.title,
-              description: product.description,
-              price: product.price,
-              priceAfterDiscount: product.priceAfterDiscount,
-              imageUrl: product.imgCover,
-            )).toList() ?? [];
+            final productItems =
+                products
+                    ?.map(
+                      (product) => ProductItemEntity(
+                        id: product.id,
+                        name: product.title,
+                        description: product.description,
+                        price: product.price,
+                        priceAfterDiscount: product.priceAfterDiscount,
+                        imageUrl: product.imgCover,
+                      ),
+                    )
+                    .toList() ??
+                [];
 
             emit(
               state.copyWith(
@@ -149,14 +161,20 @@ class CategoriesCubit extends Cubit<CategoriesStates> {
         productsResult.when(
           success: (products) {
             // Map ProductEntity to ProductItemEntity
-            final productItems = products?.map((product) => ProductItemEntity(
-              id: product.id,
-              name: product.title,
-              description: product.description,
-              price: product.price,
-              priceAfterDiscount: product.priceAfterDiscount,
-              imageUrl: product.imgCover,
-            )).toList() ?? [];
+            final productItems =
+                products
+                    ?.map(
+                      (product) => ProductItemEntity(
+                        id: product.id,
+                        name: product.title,
+                        description: product.description,
+                        price: product.price,
+                        priceAfterDiscount: product.priceAfterDiscount,
+                        imageUrl: product.imgCover,
+                      ),
+                    )
+                    .toList() ??
+                [];
 
             emit(
               state.copyWith(
@@ -176,5 +194,11 @@ class CategoriesCubit extends Cubit<CategoriesStates> {
         );
       },
     );
+  }
+
+  @override
+  void emit(CategoriesStates state) {
+    if (isClosed) return;
+    super.emit(state);
   }
 }
