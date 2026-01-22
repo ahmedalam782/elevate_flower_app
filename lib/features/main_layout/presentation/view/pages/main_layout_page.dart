@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:elevate_flower_app/core/languages/locale_keys.g.dart';
 import 'package:elevate_flower_app/core/theme/app_icons.dart';
+import 'package:elevate_flower_app/features/cart/presentation/view/pages/cart_page.dart';
 import 'package:elevate_flower_app/features/categories/presentation/view/pages/categories_page.dart';
 import 'package:elevate_flower_app/features/home/presentation/view/pages/home_page.dart';
 import 'package:elevate_flower_app/features/profile/presentation/view/pages/profile_page.dart';
@@ -72,8 +73,13 @@ class _MainLayoutState extends State<MainLayoutPage> {
             },
           ),
           CategoriesPage(incomingIndex: _categoryIndex),
-          const Center(child: Text("Cart")),
+
+          
           const ProfilePage(),
+
+          CartPage(),
+         
+
         ],
       ),
       bottomNavigationBar: CustomNavBar(
