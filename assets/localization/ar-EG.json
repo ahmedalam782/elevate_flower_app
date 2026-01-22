@@ -187,10 +187,9 @@
     "description": "الوصف",
     "bouqet_include": "محتوي باقة الزهور",
     "add_to_cart": "أضف إلي العربة"
-},
-
+  },
   "home_screen": {
-    "home_title": "فلوري",
+    "home_title": "زهور",
     "temp_location": "التوصيل إلى 2XVP+XC - الشيخ زايد",
     "view_all": "عرض الكل",
     "categories_title": "التصنيفات",
@@ -224,9 +223,40 @@
   "occasion": {
     "occasion_title": "المناسبات",
     "occasion_hint": "ازهر مع أفضل المنتجات المميزة لدينا"
+  },
+  "profile": {
+    "profile_title": "الملف الشخصي",
+    "my_orders": "طلباتي",
+    "saved_address": "العناوين المحفوظة",
+    "notification": "الإشعارات",
+    "language": "اللغة",
+    "about_us": "من نحن",
+    "terms_conditions": "الشروط والأحكام",
+    "logout": "تسجيل الخروج",
+    "edit_profile": "تعديل الملف الشخصي",
+    "logout_confirmation": "هل أنت متأكد من تسجيل الخروج؟",
+    "logout_success": "تم تسجيل الخروج بنجاح",
+    "change_language": "تغيير اللغة",
+    "Arabic": "العربية",
+    "English": "الإنجليزية"
+  },
+  "cart": {
+    "cart": "سلة التسوق",
+    "items": "عناصر",
+    "sub_total": "المجموع الفرعي",
+    "total": "المبلغ الكلي",
+    "check_out": "إتمام الطلب",
+    "deliver_to": "يوصل إلي",
+    "clear": "مسح العربة",
+    "no_items_found": "سلتك فارغة",
+    "browsing_as_guest": "أنت تتصفح كازائر, من فضلك قم بتسجيل الدخول لعرض سلتك",
+    "confirm": "تأكيد",
+    "back": "رجوع",
+    "you_are_browsing_as_guest": "أنت تتصفح كازائر",
+    "to_continue_Shopping": "لإضافة منتج إلي السلة, من فضلك قم بتسجيل الدخول أو إنشاء حساب",
+    "item_added_to_cart": "تم إضافة المنتج الي السلة بنجاح"
 
-  }
-  ,
+  },
   "edit_profile": {
     "edit_profile_title": "تعديل الملف الشخصي",
     "first_name_label": "الاسم الأول",

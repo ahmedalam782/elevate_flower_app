@@ -72,8 +72,6 @@ class HomeCubit extends BaseCubit<HomeStates, HomeEvents, void> {
     }
   }
 
-
-
   // ================== CATEGORIES ==================
 
   Future<void> _getCategories() async {
@@ -133,5 +131,11 @@ class HomeCubit extends BaseCubit<HomeStates, HomeEvents, void> {
         log(res.exception.toString());
         emit(state.copyWith(occasionState: BaseState.error(res.exception)));
     }
+  }
+
+  @override
+  void emit(HomeStates state) {
+    if (isClosed) return;
+    super.emit(state);
   }
 }

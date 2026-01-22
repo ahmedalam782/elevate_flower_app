@@ -66,9 +66,9 @@ class AppTheme {
       shadowColor: AppColors.whiteF9,
       backgroundColor: AppColors.whiteF9,
       systemOverlayStyle: SystemUiOverlayStyle(
-        statusBarColor: AppColors.whiteF9,
-        statusBarIconBrightness: Brightness.dark,
-        statusBarBrightness: Brightness.light,
+        statusBarColor: AppColors.black,
+        statusBarIconBrightness: Brightness.light,
+        statusBarBrightness: Brightness.dark,
       ),
     ),
     useMaterial3: true,
