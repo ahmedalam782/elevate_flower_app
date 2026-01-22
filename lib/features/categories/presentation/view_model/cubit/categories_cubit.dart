@@ -80,14 +80,20 @@ void _safeEmit(CategoriesStates newState) {
     result.when(
       success: (products) {
         // Map ProductEntity to ProductItemEntity
-        final productItems = products?.map((product) => ProductItemEntity(
-          id: product.id,
-          name: product.title,
-          description: product.description,
-          price: product.price,
-          priceAfterDiscount: product.priceAfterDiscount,
-          imageUrl: product.imgCover,
-        )).toList() ?? [];
+        final productItems =
+            products
+                ?.map(
+                  (product) => ProductItemEntity(
+                    id: product.id,
+                    name: product.title,
+                    description: product.description,
+                    price: product.price,
+                    priceAfterDiscount: product.priceAfterDiscount,
+                    imageUrl: product.imgCover,
+                  ),
+                )
+                .toList() ??
+            [];
 
         _safeEmit(
           state.copyWith(
@@ -123,14 +129,20 @@ void _safeEmit(CategoriesStates newState) {
         productsResult.when(
           success: (products) {
             // Map ProductEntity to ProductItemEntity
-            final productItems = products?.map((product) => ProductItemEntity(
-              id: product.id,
-              name: product.title,
-              description: product.description,
-              price: product.price,
-              priceAfterDiscount: product.priceAfterDiscount,
-              imageUrl: product.imgCover,
-            )).toList() ?? [];
+            final productItems =
+                products
+                    ?.map(
+                      (product) => ProductItemEntity(
+                        id: product.id,
+                        name: product.title,
+                        description: product.description,
+                        price: product.price,
+                        priceAfterDiscount: product.priceAfterDiscount,
+                        imageUrl: product.imgCover,
+                      ),
+                    )
+                    .toList() ??
+                [];
 
             _safeEmit(
               state.copyWith(
@@ -153,14 +165,20 @@ void _safeEmit(CategoriesStates newState) {
         productsResult.when(
           success: (products) {
             // Map ProductEntity to ProductItemEntity
-            final productItems = products?.map((product) => ProductItemEntity(
-              id: product.id,
-              name: product.title,
-              description: product.description,
-              price: product.price,
-              priceAfterDiscount: product.priceAfterDiscount,
-              imageUrl: product.imgCover,
-            )).toList() ?? [];
+            final productItems =
+                products
+                    ?.map(
+                      (product) => ProductItemEntity(
+                        id: product.id,
+                        name: product.title,
+                        description: product.description,
+                        price: product.price,
+                        priceAfterDiscount: product.priceAfterDiscount,
+                        imageUrl: product.imgCover,
+                      ),
+                    )
+                    .toList() ??
+                [];
 
             _safeEmit(
               state.copyWith(
@@ -180,5 +198,11 @@ void _safeEmit(CategoriesStates newState) {
         );
       },
     );
+  }
+
+  @override
+  void emit(CategoriesStates state) {
+    if (isClosed) return;
+    super.emit(state);
   }
 }

@@ -3,6 +3,7 @@ import 'package:elevate_flower_app/core/shared/entities/product_item_entity.dart
 import 'package:elevate_flower_app/core/shared/widgets/custom_button.dart';
 import 'package:elevate_flower_app/core/theme/app_colors.dart';
 import 'package:elevate_flower_app/core/theme/app_typography.dart';
+import 'package:elevate_flower_app/features/cart/presentation/view/widgets/custom_add_to_cart_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
@@ -129,7 +130,9 @@ class CustomProductItem extends StatelessWidget {
                     // Add to Cart Button or Quantity Controls
                     quantity == 0
                         ? CustomButton(
-                            onPressed: onAddToCart,
+                            onPressed: () {
+                              addToCart(context, product.id);
+                            },
                             title: LocaleKeys.products_add_to_cart.tr(),
                             titleStyle: 13.medium.copyWith(
                               color: AppColors.whiteF9,

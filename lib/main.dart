@@ -10,10 +10,21 @@ import 'core/config/di/injectable_config.dart';
 import 'core/helper/bloc/bloc_observer.dart';
 import 'core/languages/lang.dart';
 import 'core/routes/url_strategy.dart';
+import 'core/theme/app_colors.dart';
 
 const bool runLocal = false;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // Initialize EasyLocalization BEFORE runApp
+  await EasyLocalization.ensureInitialized();
+
+  // Configure dependencies
+  await configureDependencies();
+
+  // Set custom Bloc observer for debugging
+  Bloc.observer = MyBlocObserver();
+
   // Set the status bar color to transparent and icons to white
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
@@ -23,22 +34,20 @@ void main() async {
     ),
   );
 
- 
+
+  await ScreenUtil.ensureScreenSize();
+  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+
+  //==================FOR WEB=====================
+  GoRouter.optionURLReflectsImperativeAPIs = true;
+  setPathUrlStrategy();
+
   runApp(
     EasyLocalization(
       supportedLocales: const [arabicLocale, englishLocale],
       fallbackLocale: englishLocale,
-      startLocale: englishLocale,
       path: assetsLocalization,
       child: const FlowerApp(),
     ),
   );
-  await configureDependencies(); // Set custom Bloc observer for debugging
-  Bloc.observer = MyBlocObserver();
-  await ScreenUtil.ensureScreenSize();
-  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-  //==================FOR WEB=====================
-  GoRouter.optionURLReflectsImperativeAPIs = true;
-  setPathUrlStrategy();
-  await EasyLocalization.ensureInitialized();
 }

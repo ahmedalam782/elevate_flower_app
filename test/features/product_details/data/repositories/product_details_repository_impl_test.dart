@@ -4,6 +4,7 @@ import 'package:elevate_flower_app/features/product_details/data/models/specefic
 import 'package:elevate_flower_app/features/product_details/data/repositories/product_details_repository_impl.dart';
 import 'package:elevate_flower_app/features/product_details/domain/entities/specefic_product_entity.dart';
 import 'package:flutter_test/flutter_test.dart';
+// ignore: depend_on_referenced_packages
 import 'package:mocktail/mocktail.dart';
 
 class MockProductDetailsRemoteDataSource extends Mock
@@ -32,7 +33,7 @@ void main() {
       imgCover: 'cover.jpg',
     );
 
-    final testSpeceficProductEntity = SpeceficProductEntity(
+    final _ = SpeceficProductEntity(
       productId: testProductId,
       productName: 'Rose Bouquet',
       productDescription: 'Beautiful red roses',

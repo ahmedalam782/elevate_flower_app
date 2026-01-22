@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:elevate_flower_app/features/best_seller/presentation/view/pages/best_seller_page.dart';
+import 'package:elevate_flower_app/features/cart/presentation/view/pages/cart_page.dart';
 import 'package:elevate_flower_app/features/categories/presentation/view/pages/categories_page.dart';
 import 'package:elevate_flower_app/features/occasions/presentation/view/pages/occasions_page.dart';
 import 'package:elevate_flower_app/features/product_details/presentation/view/pages/product_details_page.dart';
@@ -7,7 +8,9 @@ import 'package:elevate_flower_app/features/register/presentation/view/pages/reg
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../features/forget_password/presentation/view/pages/forgetPassword_page.dart';
+import '../../features/forget_password/presentation/view/pages/forgetPassword_page.dart';
 import '../../features/login/presentation/view/pages/login_page.dart';
+import '../../features/main_layout/presentation/view/pages/main_layout_page.dart';
 import '../../features/main_layout/presentation/view/pages/main_layout_page.dart';
 import '../../features/splash/presentation/view/pages/splash_page.dart';
 import 'routes.dart';
@@ -68,6 +71,11 @@ final GoRouter router = GoRouter(
         incomingIndex: (state.extra as int?) ?? 0,
         key: ValueKey(context.locale.languageCode.toString()),
       ),
+    ),
+    _customAnimatedGoRoute(
+      route: Routes.carScreen,
+      page: (state, context) =>
+          CartPage(key: ValueKey(context.locale.languageCode.toString())),
     ),
   ],
 );

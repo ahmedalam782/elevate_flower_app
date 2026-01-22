@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:elevate_flower_app/core/routes/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
@@ -29,17 +30,20 @@ class FlowerLoadingOverlay extends StatelessWidget {
   }
 }
 
-void showOverLayLoading(BuildContext context) {
+void showOverLayLoading() {
   showDialog(
-    context: context,
+    context: navigatorKey.currentContext!,
     barrierDismissible: false,
     barrierColor: Colors.transparent,
     builder: (_) => const FlowerLoadingOverlay(),
   );
 }
 
-void hideOverlayLoading(BuildContext context) {
-  if (Navigator.of(context, rootNavigator: true).canPop()) {
-    Navigator.of(context, rootNavigator: true).pop();
+void hideOverlayLoading() {
+  if (Navigator.of(
+    navigatorKey.currentContext!,
+    rootNavigator: true,
+  ).canPop()) {
+    Navigator.of(navigatorKey.currentContext!, rootNavigator: true).pop();
   }
 }
