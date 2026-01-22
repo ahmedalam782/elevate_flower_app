@@ -225,7 +225,6 @@
     "occasion_title": "Occasion",
     "occasion_hint": "Bloom with our exquisite best sellers"
   },
- feature/profile_screen
   "profile": {
     "profile_title": "Profile",
     "my_orders": "My orders",
@@ -257,6 +256,19 @@
     "you_are_browsing_as_guest": "You are browsing as a guest",
     "to_continue_Shopping": "To add item to cart please login or create account if you don't have one",
     "item_added_to_cart": "Item added successfully to your cart"
- development
+
+  }
+,
+  "edit_profile": {
+    "edit_profile_title": "Edit Profile",
+    "first_name_label": "First Name",
+    "last_name_label": "Last Name",
+    "email_label": "Email",
+    "change": "Change",
+    "phone_label": "Phone",
+    "update_button": "Update",
+    "profile_updated_successfully": "Profile updated successfully",
+    "camera_option": "Camera",
+    "gallery_option": "Gallery"
   }
 }
