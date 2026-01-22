@@ -16,6 +16,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:injectable/injectable.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 @injectable
 class EditProfileCubit extends Cubit<EditProfileStates> {
@@ -84,8 +85,38 @@ class EditProfileCubit extends Cubit<EditProfileStates> {
     passwordController.text = 'randompassword';
   }
 
+  Future<bool> _requestCameraPermission() async {
+    final status = await Permission.camera.request();
+    return status.isGranted;
+  }
+
+  Future<bool> _requestGalleryPermission() async {
+    if (Platform.isAndroid) {
+      // Android 13+
+      final status = await Permission.photos.request();
+      return status.isGranted;
+    } else {
+      final status = await Permission.storage.request();
+      return status.isGranted;
+    }
+  }
+
   // -------------------- Pick Photo --------------------
   Future<void> _pickProfilePhoto(ImageSource source) async {
+    bool hasPermission = false;
+
+    if (source == ImageSource.camera) {
+      hasPermission = await _requestCameraPermission();
+    } else {
+      hasPermission = await _requestGalleryPermission();
+    }
+
+    if (!hasPermission) {
+      _updateResultController.add(
+        EditProfileResult.error('Permission camera or gallery denied'),
+      );
+      return;
+    }
     final XFile? pickedFile = await _picker.pickImage(
       source: source,
       imageQuality: 30,
