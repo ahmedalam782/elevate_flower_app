@@ -12,6 +12,9 @@ class EndPoints {
   static const String homeEndpoint = "/home";
   static const String getAllOccasions = "/occasions";
   static const String getAllProducts = "/products";
+  static const String getUserProfile = "/auth/profile-data";
+  static const String editUserProfile = "/auth/editProfile";
+  static const String updateProfilePhoto = "/auth/upload-photo";
 }
 
 class Apikeys {
