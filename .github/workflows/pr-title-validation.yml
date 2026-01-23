@@ -1,0 +1,36 @@
+name: PR Title Validation
+
+on:
+  pull_request:
+    types: [opened, edited, reopened, synchronize]
+
+jobs:
+  validate-pr-title:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate PR Title
+        if: always()
+        run: |
+          TITLE="${{ github.event.pull_request.title }}"
+          echo "PR Title: $TITLE"
+          
+          # Regex for proper format: type(scope): description
+          # Types: fix, release, feat, hotfix, build, test
+          # Scope: Ticket ID (e.g. ECOM-27), JIRA ID (e.g. JIRA123), or Short ID (e.g. A-1)
+          # Description: Any text
+          
+          # ERE Pattern:
+          # ^(types)\(scope\): .*$
+          PATTERN="^(fix|release|feat|hotfix|build|test)\(([A-Z]+-[0-9]+|JIRA[0-9]+|[A-Z]-[0-9]+)\): .+$"
+          
+          if [[ "$TITLE" =~ $PATTERN ]]; then
+            echo "✅ PR Title is valid."
+            exit 0
+          else
+            echo "❌ Invalid PR Title."
+            echo "The title must match the format: type(scope): description"
+            echo "Allowed types: fix, release, feat, hotfix, build, test"
+            echo "Allowed scopes: PROJ-123, JIRA123, A-1"
+            echo "Example: feat(ECOM-27): Initialize Project"
+            exit 1
+          fi
