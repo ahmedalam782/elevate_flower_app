@@ -21,10 +21,5 @@ class ProductDetailsRemoteDataSourceImpl
       final response = await _apiClient.getSpeceficProduct(productId);
       return response;
     });
-
-    // print("INSIDE ProductDetailsRemoteDataSourceImpl");
-    // return await executeApi<SpeceficProductResponse>(
-    //   () => _apiClient.getSpeceficProduct(productId),
-    // );
   }
 }

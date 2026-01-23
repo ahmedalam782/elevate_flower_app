@@ -1,5 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:elevate_flower_app/features/change_lang/domain/use_cases/get_lang_use_case.dart';
+import 'package:elevate_flower_app/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,29 +14,40 @@ import 'core/routes/url_strategy.dart';
 const bool runLocal = false;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await configureDependencies(); 
-  final currentLang = await getIt<GetLangUseCase>().call();
+
+  // Initialize EasyLocalization BEFORE runApp
+  await EasyLocalization.ensureInitialized();
+
+  // Configure dependencies
+  await configureDependencies();
+
+  // Set custom Bloc observer for debugging
+  Bloc.observer = MyBlocObserver();
+
+  // Set the status bar color to transparent and icons to white
+  SystemChrome.setSystemUIOverlayStyle(
+    const SystemUiOverlayStyle(
+      statusBarColor: AppColors.black,
+      statusBarIconBrightness: Brightness.light,
+      statusBarBrightness: Brightness.light,
+    ),
+  );
+
+
+  await ScreenUtil.ensureScreenSize();
+  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+
+  //==================FOR WEB=====================
+  GoRouter.optionURLReflectsImperativeAPIs = true;
+  setPathUrlStrategy();
+
   runApp(
     EasyLocalization(
       supportedLocales: const [arabicLocale, englishLocale],
       fallbackLocale: englishLocale,
-      startLocale: currentLang.when(
-        success: (data) =>
-            (data ?? "en") == "en" ? englishLocale : arabicLocale,
-        error: (exception) {
-          return englishLocale;
-        },
-      ),
       path: assetsLocalization,
       saveLocale: true,
       child: const FlowerApp(),
     ),
   );
-  Bloc.observer = MyBlocObserver();
-  await ScreenUtil.ensureScreenSize();
-  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-  //==================FOR WEB=====================
-  GoRouter.optionURLReflectsImperativeAPIs = true;
-  setPathUrlStrategy();
-  await EasyLocalization.ensureInitialized();
 }
