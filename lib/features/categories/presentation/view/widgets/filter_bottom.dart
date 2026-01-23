@@ -25,7 +25,7 @@ class _FilterBottomState extends State<FilterBottom> {
             borderRadius: BorderRadius.circular(100),
             boxShadow: [
               BoxShadow(
-                color: AppColors.primerColor.withOpacity(0.6),
+                color: AppColors.primerColor.withValues(alpha: 0.6),
                 blurRadius: 12,
                 offset: const Offset(0, 4),
               ),
@@ -43,10 +43,11 @@ class _FilterBottomState extends State<FilterBottom> {
                       selectedSort = sort;
                     });
                     // Handle filter apply
-                    print('Filter applied: $sort');
+                    // print('Filter applied: $sort');
                   },
                 );
               },
+
               borderRadius: BorderRadius.circular(100),
               child: Container(
                 padding: const EdgeInsets.symmetric(
