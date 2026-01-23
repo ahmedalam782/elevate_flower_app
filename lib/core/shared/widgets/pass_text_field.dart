@@ -222,9 +222,9 @@ class _PassTextFieldState extends State<PassTextField> {
                         ],
                       ),
                       separatorBuilder: (BuildContext context, int index) =>
-                          SizedBox(height: 6),
+                          const SizedBox(height: 6),
                     ),
-                    SizedBox(height: 6),
+                    const SizedBox(height: 6),
                     ListView.separated(
                       itemCount: 2,
                       shrinkWrap: true,
@@ -280,7 +280,7 @@ class _PassTextFieldState extends State<PassTextField> {
                         ],
                       ),
                       separatorBuilder: (BuildContext context, int index) =>
-                          SizedBox(height: 6),
+                          const SizedBox(height: 6),
                     ),
                   ],
                 )
@@ -307,7 +307,10 @@ class _PassTextFieldState extends State<PassTextField> {
         child: SvgPicture.asset(
           _isPasswordVisible ? AppIcons.iconsOpenEye : AppIcons.iconsClosedEye,
           key: ValueKey<bool>(_isPasswordVisible),
-          colorFilter: ColorFilter.mode(AppColors.grayA6, BlendMode.srcIn),
+          colorFilter: const ColorFilter.mode(
+            AppColors.grayA6,
+            BlendMode.srcIn,
+          ),
         ),
       ),
     );

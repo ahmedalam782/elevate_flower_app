@@ -1,7 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
-
 import '../../../../../core/config/base_state/base_state.dart';
 import '../../../domain/use_cases/login_use_case.dart';
 import 'login_events.dart';
@@ -12,47 +11,42 @@ class LoginCubit extends Cubit<LoginStates> {
   LoginCubit(this._loginUserUseCase) : super(LoginStates());
   
   final LoginUseCase _loginUserUseCase;
-  
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
   final formKey = GlobalKey<FormState>();
-  bool isRememberMe = false;
 
   void doIntent(LoginEvents event) {
-    event.when(loginUserEvent: _validateThenLogin);
+    event.when(loginUserEvent: _login);
   }
 
-  void _validateThenLogin() async {
-    if (formKey.currentState != null) {
-      if (formKey.currentState!.validate()) {
-        emit(state.copyWith(loginState: BaseState.loading()));
-        
-        final result = await _loginUserUseCase.call(
-          email: emailController.text.trim(),
-          password: passwordController.text,
-          rememberMe: isRememberMe,
-        );
+  void toggleRememberMe(bool value) {
+    emit(state.copyWith(isRememberMe: value));
+  }
 
-        result.when(
-          success: (data) {
-            emit(state.copyWith(loginState: BaseState.success(data)));
-          },
-          error: (error) {
-            emit(state.copyWith(loginState: BaseState.error(error)));
-          },
-        );
-      }
+  Future<void> _login() async {
+    if (emailController.text.trim().isEmpty || 
+        passwordController.text.isEmpty) {
+      return;
     }
-  }
-
-  void _clearControllers() {
-    emailController.clear();
-    passwordController.clear();
+    
+    emit(state.copyWith(loginState: const BaseState.loading()));
+    final result = await _loginUserUseCase.call(
+      email: emailController.text.trim(),
+      password: passwordController.text,
+      rememberMe: state.isRememberMe,
+    );
+    result.when(
+      success: (data) {
+        emit(state.copyWith(loginState: BaseState.success(data)));
+      },
+      error: (error) {
+        emit(state.copyWith(loginState: BaseState.error(error)));
+      },
+    );
   }
 
   @override
   Future<void> close() {
-    _clearControllers();
     emailController.dispose();
     passwordController.dispose();
     return super.close();

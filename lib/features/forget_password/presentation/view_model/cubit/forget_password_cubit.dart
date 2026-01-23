@@ -30,7 +30,7 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordStates> {
   }) : _sendOtpToEmailUseCase = sendOtpToEmailUseCase,
        _verifyOtpUseCase = verifyOtpUseCase,
        _resetPasswordUseCase = resetPasswordUseCase,
-       super(ForgetPasswordStates(isLoading: false));
+       super(const ForgetPasswordStates(isLoading: false));
 
   Future<void> doIntent(
     ForgetPasswordEvents event,
@@ -51,7 +51,7 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordStates> {
     log("LOADING START");
     emit(state.copyWith(state: StateType.loading, isPasswordReset: false));
     if (showLoading && context != null) {
-      showOverLayLoading(context);
+      showOverLayLoading();
     }
   }
 
@@ -74,7 +74,7 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordStates> {
         );
     }
     if (showLoading && context != null) {
-      hideOverlayLoading(context);
+      hideOverlayLoading();
     }
   }
 
@@ -92,7 +92,7 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordStates> {
         );
     }
     if (showLoading && context != null) {
-      hideOverlayLoading(context);
+      hideOverlayLoading();
     }
   }
 
@@ -114,7 +114,7 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordStates> {
         );
     }
     if (showLoading && context != null) {
-      hideOverlayLoading(context);
+      hideOverlayLoading();
     }
   }
 
@@ -133,7 +133,7 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordStates> {
     pageController.animateToPage(
       page,
       curve: Curves.linear,
-      duration: Duration(milliseconds: 300),
+      duration: const Duration(milliseconds: 300),
     );
   }
 

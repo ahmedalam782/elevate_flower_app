@@ -29,7 +29,7 @@ void main() {
   });
   group("test local data source implementation", () {
     test("saveAuthToken calls _localDataSource.saveAuthToken", () async {
-      final token = "dummyToken";
+      const token = "dummyToken";
       await repository.saveAuthToken(token);
       verify(mockLocalDataSource.saveAuthToken(token)).called(1);
     });
@@ -47,11 +47,11 @@ void main() {
     );
     test("registerUser transforms params into request body", () async {
       provideDummy<Result<RegisterUserResponseDto>>(
-        Success<RegisterUserResponseDto>(),
+        const Success<RegisterUserResponseDto>(),
       );
       when(
         mockRemoteDataSource.registerUser(any),
-      ).thenAnswer((_) async => Success(data: null));
+      ).thenAnswer((_) async => const Success(data: null));
 
       await repository.registerUser(params: params);
       final captured = verify(
@@ -82,7 +82,7 @@ void main() {
         ),
       );
       provideDummy<Result<RegisterUserResponseDto>>(
-        Success<RegisterUserResponseDto>(),
+        const Success<RegisterUserResponseDto>(),
       );
       when(
         mockRemoteDataSource.registerUser(any),
@@ -97,7 +97,7 @@ void main() {
 
     test("test error case of registerUser", () async{
       provideDummy<Result<RegisterUserResponseDto>>(
-        Error<RegisterUserResponseDto>(),
+        const Error<RegisterUserResponseDto>(),
       );
       final dummyException = Exception("dummy exception");
       when(

@@ -17,6 +17,8 @@ class CustomSearchWithFilter extends StatefulWidget {
   /// Hint text displayed in the search field
   final String? hintText;
 
+  final String? labelText;
+
   /// Optional external controller for the search field
   final TextEditingController? controller;
 
@@ -46,6 +48,7 @@ class CustomSearchWithFilter extends StatefulWidget {
     this.debounceDuration = const Duration(milliseconds: 500),
     this.borderRadius,
     this.height,
+    this.labelText,
   });
 
   @override
@@ -120,6 +123,7 @@ class _CustomSearchWithFilterState extends State<CustomSearchWithFilter> {
                 child: CustomTextField(
                   controller: _searchController,
                   hintText: widget.hintText,
+                  labelText: widget.labelText,
                   textStyle: 14.regular,
                   prefixIcon: AppIcons.iconsSearch,
                   suffixWidget: _hasText
@@ -140,21 +144,15 @@ class _CustomSearchWithFilterState extends State<CustomSearchWithFilter> {
                   isDense: true,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(borderRadiusValue),
-                    borderSide: BorderSide(
-                      color: AppColors.grayA6,
-                      width: 1,
-                    ),
+                    borderSide: const BorderSide(color: AppColors.grayA6, width: 1),
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(borderRadiusValue),
-                    borderSide: BorderSide(
-                      color: AppColors.grayA6,
-                      width: 1,
-                    ),
+                    borderSide: const BorderSide(color: AppColors.grayA6, width: 1),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(borderRadiusValue),
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                       color: AppColors.primerColor,
                       width: 1.5,
                     ),
@@ -173,7 +171,7 @@ class _CustomSearchWithFilterState extends State<CustomSearchWithFilter> {
 
             // Filter button (optional)
             if (widget.showFilter) ...[
-              SizedBox(width: 12),
+              const SizedBox(width: 12),
               _FilterButton(
                 onTap: widget.onFilterTap,
                 height: widget.height ?? 48,
@@ -213,15 +211,9 @@ class _FilterButton extends StatelessWidget {
         width: height, // Make it square
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(borderRadius),
-          border: Border.all(
-            color: AppColors.grayA6,
-            width: 1,
-          ),
+          border: Border.all(color: AppColors.grayA6, width: 1),
         ),
-        child: SvgPicture.asset(
-          AppIcons.iconsFilter,
-          fit: BoxFit.scaleDown,
-        ),
+        child: SvgPicture.asset(AppIcons.iconsFilter, fit: BoxFit.scaleDown),
       ),
     );
   }

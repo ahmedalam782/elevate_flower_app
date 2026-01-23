@@ -51,6 +51,7 @@ abstract class AppColors {
   static const Color pinkD9 = Color(0xffD94483);
   static const Color pinkAF = Color(0xffAF1958);
   static const Color pink8C = Color(0xff8C1447);
+  static const Color pink7C = Color(0xffD7397C);
   static const Color pink69 = Color(0xff690F35);
   static const Color pink46 = Color(0xff460A23);
   static const Color pink2A = Color(0xff2A0615);
@@ -71,13 +72,13 @@ abstract class AppColors {
       color: black.withValues(alpha: 0.2),
       blurRadius: 4,
       spreadRadius: 0,
-      offset: Offset(0, 2),
+      offset: const Offset(0, 2),
     ),
     BoxShadow(
       color: black.withValues(alpha: 0.1),
       blurRadius: 1,
       spreadRadius: 0,
-      offset: Offset(0, 0),
+      offset: const Offset(0, 0),
     ),
   ];
 }

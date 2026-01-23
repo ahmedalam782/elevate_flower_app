@@ -300,22 +300,16 @@ class PaginatedProductGridView extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(
-            Icons.local_florist_outlined,
-          ),
-          SizedBox(height: 16),
+          const Icon(Icons.local_florist_outlined),
+          const SizedBox(height: 16),
           Text(
             LocaleKeys.products_no_products.tr(),
-            style: 16.medium.copyWith(
-              color: AppColors.gray7D,
-            ),
+            style: 16.medium.copyWith(color: AppColors.gray7D),
           ),
-          SizedBox(height: 8),
+          const SizedBox(height: 8),
           Text(
             LocaleKeys.products_check_back_later.tr(),
-            style: 14.regular.copyWith(
-              color: AppColors.gray7D,
-            ),
+            style: 14.regular.copyWith(color: AppColors.gray7D),
           ),
         ],
       ),

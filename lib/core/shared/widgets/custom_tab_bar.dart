@@ -110,9 +110,9 @@ class CustomTabBar extends StatelessWidget {
           Container(
             height: 3,
             width: 80,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: AppColors.whiteFF,
-              borderRadius: const BorderRadius.only(
+              borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(100),
                 topRight: Radius.circular(100),
               ),

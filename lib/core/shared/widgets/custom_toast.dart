@@ -68,7 +68,7 @@ class CustomToast {
       applyBlurEffect: true,
       borderRadius: BorderRadius.circular(12),
       borderSide: BorderSide.none,
-      closeButton: ToastCloseButton(showType: CloseButtonShowType.none),
+      closeButton: const ToastCloseButton(showType: CloseButtonShowType.none),
       title: icon != null
           ? Center(
               child: Container(
@@ -83,7 +83,7 @@ class CustomToast {
                     icon,
                     width: 24,
                     height: 24,
-                    colorFilter: ColorFilter.mode(
+                    colorFilter: const ColorFilter.mode(
                       AppColors.whiteF9,
                       BlendMode.srcIn,
                     ),

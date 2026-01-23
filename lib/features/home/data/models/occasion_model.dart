@@ -1,0 +1,33 @@
+import 'package:elevate_flower_app/features/home/domain/entities/occasion_entity.dart';
+import 'package:json_annotation/json_annotation.dart';
+
+part 'occasion_model.g.dart';
+
+@JsonSerializable()
+class OccasionModel {
+  @JsonKey(name: '_id')
+  final String id;
+  final String name;
+  final String? slug;
+  final String image;
+  final String? createdAt;
+  final String? updatedAt;
+  final bool? isSuperAdmin;
+
+  OccasionModel({
+    required this.id,
+    required this.name,
+    this.slug,
+    required this.image,
+    this.createdAt,
+    this.updatedAt,
+    this.isSuperAdmin,
+  });
+
+  factory OccasionModel.fromJson(Map<String, dynamic> json) =>
+      _$OccasionModelFromJson(json);
+
+  Map<String, dynamic> toJson() => _$OccasionModelToJson(this);
+
+  OccasionEntity toDomain() => OccasionEntity(id: id, name: name, image: image);
+}

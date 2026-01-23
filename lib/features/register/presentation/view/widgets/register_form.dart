@@ -52,7 +52,7 @@ class RegisterForm extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(height: formPadding),
+          const SizedBox(height: formPadding),
           CustomTextField(
             controller: cubit.emailController,
             hintText: LocaleKeys.register_email_hint.tr(),
@@ -63,7 +63,7 @@ class RegisterForm extends StatelessWidget {
               return Validations.validateEmail(value);
             },
           ),
-          SizedBox(height: formPadding),
+          const SizedBox(height: formPadding),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -98,7 +98,7 @@ class RegisterForm extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(height: formPadding),
+          const SizedBox(height: formPadding),
           CustomTextField(
             controller: cubit.phoneController,
             hintText: LocaleKeys.register_phone_hint.tr(),

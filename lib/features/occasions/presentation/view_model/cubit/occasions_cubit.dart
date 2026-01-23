@@ -11,6 +11,7 @@ import 'package:injectable/injectable.dart';
 @lazySingleton
 class OccasionsCubit extends Cubit<OccasionsStates> {
   String selectedOccasionId = '';
+  int requestId = 0;
   final GetOccasionsUseCase _getOccasionsUseCase;
   final GetProductsByOccasionUseCase _getProductsByOccasionUseCase;
   OccasionsCubit(this._getOccasionsUseCase, this._getProductsByOccasionUseCase)
@@ -30,9 +31,7 @@ class OccasionsCubit extends Cubit<OccasionsStates> {
     result.when(
       success: (data) {
         emit(state.copyWith(occasions: BaseState.success(data)));
-        if (data != null && data.isNotEmpty) {
-          _getFlowersByOccasion(data.first.id);
-        }
+        _getFlowersByOccasion(data?.first.id ?? '');
       },
       error: (exception) {
         emit(state.copyWith(occasions: BaseState.error(exception)));
@@ -42,8 +41,10 @@ class OccasionsCubit extends Cubit<OccasionsStates> {
 
   Future<void> _getFlowersByOccasion(String occasionId) async {
     selectedOccasionId = occasionId;
+    int currentRequestId = ++requestId;
     emit(state.copyWith(productsByOccasion: const BaseState.loading()));
     final result = await _getProductsByOccasionUseCase.call(occasionId);
+    if (currentRequestId != requestId) return;
     result.when(
       success: (data) {
         emit(state.copyWith(productsByOccasion: BaseState.success(data)));

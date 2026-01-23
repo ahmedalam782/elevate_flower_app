@@ -1,5 +1,5 @@
 import 'package:elevate_flower_app/core/config/base_state/base_state.dart';
-import 'package:elevate_flower_app/core/utils/enums/Gender.dart';
+import 'package:elevate_flower_app/core/utils/enums/gender.dart';
 import 'package:elevate_flower_app/features/register/domain/entities/register_params.dart';
 import 'package:elevate_flower_app/features/register/domain/use_cases/register_user_user_case.dart';
 import 'package:elevate_flower_app/features/register/domain/use_cases/save_token_use_case.dart';
@@ -48,17 +48,13 @@ class RegisterCubit extends Cubit<RegisterStates> {
     );
   }
 
-
-
-
-
   bool _isFormValid() {
     return formValidator?.call() ?? (formKey.currentState?.validate() ?? false);
   }
 
   void _registerUser() async {
     final isGenderSelected = state.genderRowState.selectedGender != null;
-    if (!_isFormValid() || !isGenderSelected ) {
+    if (!_isFormValid() || !isGenderSelected) {
       // Show error message
       if (!isGenderSelected) {
         emit(
@@ -82,7 +78,7 @@ class RegisterCubit extends Cubit<RegisterStates> {
       gender: state.genderRowState.selectedGender!.name,
     );
 
-    emit(state.copyWith(registerState: BaseState.loading()));
+    emit(state.copyWith(registerState: const BaseState.loading()));
     final result = await _registerUserUseCase(params);
     result.when(
       success: (data) async {
@@ -107,6 +103,4 @@ class RegisterCubit extends Cubit<RegisterStates> {
     phoneController.dispose();
     return super.close();
   }
-
-
 }

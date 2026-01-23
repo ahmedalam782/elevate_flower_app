@@ -52,27 +52,28 @@ class AppTheme {
       yearOverlayColor: WidgetStateProperty.all<Color>(
         AppColors.primerColor.withValues(alpha: 0.1),
       ),
-      todayBorder: BorderSide(color: AppColors.primerColor, width: 4),
+      todayBorder: const BorderSide(color: AppColors.primerColor, width: 4),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
     ),
     brightness: Brightness.light,
     scaffoldBackgroundColor: AppColors.whiteF9,
     primaryColor: AppColors.primerColor,
-    appBarTheme: AppBarTheme(
+
+    appBarTheme: const AppBarTheme(
       elevation: 0,
       scrolledUnderElevation: 0,
       centerTitle: false,
-      iconTheme: const IconThemeData(color: AppColors.primerColor),
+      iconTheme: IconThemeData(color: AppColors.primerColor),
       shadowColor: AppColors.whiteF9,
       backgroundColor: AppColors.whiteF9,
       systemOverlayStyle: SystemUiOverlayStyle(
-        statusBarColor: AppColors.whiteF9,
-        statusBarIconBrightness: Brightness.dark,
+        statusBarColor: AppColors.black,
+        statusBarIconBrightness: Brightness.light,
         statusBarBrightness: Brightness.light,
       ),
     ),
     useMaterial3: true,
-    textTheme: TextTheme(
+    textTheme: const TextTheme(
       bodyLarge: TextStyle(
         color: AppColors.black0C,
         fontSize: 16,
@@ -106,7 +107,7 @@ class AppTheme {
       error: AppColors.redCC,
       onError: AppColors.redCC,
     ),
-    textSelectionTheme: TextSelectionThemeData(
+    textSelectionTheme: const TextSelectionThemeData(
       cursorColor: AppColors.primerColor,
       selectionColor: AppColors.primerColor,
       selectionHandleColor: AppColors.primerColor,
@@ -123,19 +124,19 @@ class AppTheme {
       focusColor: AppColors.pinkF9,
       floatingLabelStyle: 18.regular.copyWith(color: AppColors.primerColor),
       enabledBorder: OutlineInputBorder(
-        borderSide: BorderSide(color: AppColors.grayCF, width: 1),
+        borderSide: const BorderSide(color: AppColors.grayCF, width: 1),
         borderRadius: BorderRadius.circular(4),
       ),
       border: OutlineInputBorder(
-        borderSide: BorderSide(width: 1, color: AppColors.primerColor),
+        borderSide: const BorderSide(width: 1, color: AppColors.primerColor),
         borderRadius: BorderRadius.circular(4),
       ),
       focusedBorder: OutlineInputBorder(
-        borderSide: BorderSide(width: 1, color: AppColors.primerColor),
+        borderSide: const BorderSide(width: 1, color: AppColors.primerColor),
         borderRadius: BorderRadius.circular(4),
       ),
       errorBorder: OutlineInputBorder(
-        borderSide: BorderSide(color: AppColors.redCC, width: 1),
+        borderSide: const BorderSide(color: AppColors.redCC, width: 1),
         borderRadius: BorderRadius.circular(4),
       ),
       fillColor: AppColors.whiteF9,
@@ -157,7 +158,7 @@ class AppTheme {
       hoverColor: AppColors.pinkF9,
     ),
     switchTheme: SwitchThemeData(
-      padding: EdgeInsets.symmetric(horizontal: 2, vertical: 0),
+      padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 0),
       splashRadius: 16,
       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
       trackColor: WidgetStateProperty.all<Color>(AppColors.primerColor),
@@ -198,6 +199,7 @@ class AppTheme {
       selectedLabelStyle: 12.regular.copyWith(color: AppColors.primerColor),
       unselectedLabelStyle: 12.regular.copyWith(color: AppColors.gray7D),
     ),
+    tabBarTheme: const TabBarThemeData(indicatorColor: AppColors.primerColor),
   );
 
   static ThemeData darkTheme = ThemeData(
@@ -242,14 +244,14 @@ class AppTheme {
       yearOverlayColor: WidgetStateProperty.all<Color>(
         AppColors.primerColor.withValues(alpha: 0.1),
       ),
-      todayBorder: BorderSide(color: AppColors.primerColor, width: 4),
+      todayBorder: const BorderSide(color: AppColors.primerColor, width: 4),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
     ),
-    appBarTheme: AppBarTheme(
+    appBarTheme: const AppBarTheme(
       elevation: 0,
       scrolledUnderElevation: 0,
       centerTitle: false,
-      iconTheme: const IconThemeData(color: AppColors.primerColor),
+      iconTheme: IconThemeData(color: AppColors.primerColor),
       shadowColor: AppColors.black0C,
       backgroundColor: AppColors.black0C,
       systemOverlayStyle: SystemUiOverlayStyle(
@@ -258,7 +260,7 @@ class AppTheme {
         statusBarBrightness: Brightness.dark,
       ),
     ),
-    textTheme: TextTheme(
+    textTheme: const TextTheme(
       bodyLarge: TextStyle(
         color: AppColors.whiteF9,
         fontSize: 16,
@@ -297,7 +299,7 @@ class AppTheme {
       onError: AppColors.redCC,
     ),
     switchTheme: SwitchThemeData(
-      padding: EdgeInsets.symmetric(horizontal: 2, vertical: 0),
+      padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 0),
       splashRadius: 16,
       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
       trackColor: WidgetStateProperty.all<Color>(AppColors.primerColor),
@@ -310,25 +312,25 @@ class AppTheme {
       hoverColor: AppColors.primerColor.withValues(alpha: 0.2),
       highlightColor: AppColors.primerColor.withValues(alpha: 0.2),
     ),
-    iconTheme: IconThemeData(color: AppColors.whiteF9),
+    iconTheme: const IconThemeData(color: AppColors.whiteF9),
     inputDecorationTheme: InputDecorationTheme(
       isDense: true,
       focusColor: AppColors.pinkF9,
       floatingLabelStyle: 18.regular.copyWith(color: AppColors.primerColor),
       enabledBorder: OutlineInputBorder(
-        borderSide: BorderSide(color: AppColors.black0C, width: 1),
+        borderSide: const BorderSide(color: AppColors.black0C, width: 1),
         borderRadius: BorderRadius.circular(4),
       ),
       border: OutlineInputBorder(
-        borderSide: BorderSide(width: 1, color: AppColors.primerColor),
+        borderSide: const BorderSide(width: 1, color: AppColors.primerColor),
         borderRadius: BorderRadius.circular(4),
       ),
       focusedBorder: OutlineInputBorder(
-        borderSide: BorderSide(width: 1, color: AppColors.primerColor),
+        borderSide: const BorderSide(width: 1, color: AppColors.primerColor),
         borderRadius: BorderRadius.circular(4),
       ),
       errorBorder: OutlineInputBorder(
-        borderSide: BorderSide(color: AppColors.redCC, width: 1),
+        borderSide: const BorderSide(color: AppColors.redCC, width: 1),
         borderRadius: BorderRadius.circular(4),
       ),
       fillColor: AppColors.black0C,

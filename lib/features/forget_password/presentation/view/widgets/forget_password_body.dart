@@ -84,7 +84,7 @@ class _ForgetPasswordBodyState extends State<ForgetPasswordBody> {
                       forgetPasswordCubit: widget.viewModel,
                     );
                 }
-                return SizedBox.shrink();
+                return const SizedBox.shrink();
               },
             ),
           ),
