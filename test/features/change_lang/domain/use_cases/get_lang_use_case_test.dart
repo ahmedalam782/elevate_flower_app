@@ -21,29 +21,28 @@ void main() {
   });
 
   group('call', () {
-    test(
-      'should call repository getCurrentLanguage',
-      () async {
-        // Arrange
-        const languageCode = 'ar';
-        when(mockRepository.getCurrentLanguage())
-            .thenAnswer((_) async => Success(data: languageCode));
+    test('should call repository getCurrentLanguage', () async {
+      // Arrange
+      const languageCode = 'ar';
+      when(
+        mockRepository.getCurrentLanguage(),
+      ).thenAnswer((_) async => const Success(data: languageCode));
 
-        // Act
-        await useCase.call();
+      // Act
+      await useCase.call();
 
-        // Assert
-        verify(mockRepository.getCurrentLanguage()).called(1);
-      },
-    );
+      // Assert
+      verify(mockRepository.getCurrentLanguage()).called(1);
+    });
 
     test(
       'should return Success with language code when repository returns Success',
       () async {
         // Arrange
         const languageCode = 'en';
-        when(mockRepository.getCurrentLanguage())
-            .thenAnswer((_) async => Success(data: languageCode));
+        when(
+          mockRepository.getCurrentLanguage(),
+        ).thenAnswer((_) async => const Success(data: languageCode));
 
         // Act
         final result = await useCase.call();
@@ -56,23 +55,21 @@ void main() {
       },
     );
 
-    test(
-      'should return Error when repository returns Error',
-      () async {
-        // Arrange
-        final exception = Exception('Failed to get language');
-        when(mockRepository.getCurrentLanguage())
-            .thenAnswer((_) async => Error(exception: exception));
+    test('should return Error when repository returns Error', () async {
+      // Arrange
+      final exception = Exception('Failed to get language');
+      when(
+        mockRepository.getCurrentLanguage(),
+      ).thenAnswer((_) async => Error(exception: exception));
 
-        // Act
-        final result = await useCase.call();
+      // Act
+      final result = await useCase.call();
 
-        // Assert
-        expect(result, isA<Error<String>>());
-        final errorResult = result as Error<String>;
-        expect(errorResult.exception, exception);
-        verify(mockRepository.getCurrentLanguage()).called(1);
-      },
-    );
+      // Assert
+      expect(result, isA<Error<String>>());
+      final errorResult = result as Error<String>;
+      expect(errorResult.exception, exception);
+      verify(mockRepository.getCurrentLanguage()).called(1);
+    });
   });
 }
