@@ -42,3 +42,4 @@ jobs:
             echo "  - Task name should use hyphens instead of spaces"
             exit 1
           fi
+          
