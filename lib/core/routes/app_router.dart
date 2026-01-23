@@ -1,6 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:elevate_flower_app/features/best_seller/presentation/view/pages/best_seller_page.dart';
+import 'package:elevate_flower_app/features/cart/presentation/view/pages/cart_page.dart';
 import 'package:elevate_flower_app/features/categories/presentation/view/pages/categories_page.dart';
+import 'package:elevate_flower_app/features/edit_profile/presentation/view/pages/edit_profile_page.dart';
 import 'package:elevate_flower_app/features/occasions/presentation/view/pages/occasions_page.dart';
 import 'package:elevate_flower_app/features/product_details/presentation/view/pages/product_details_page.dart';
 import 'package:elevate_flower_app/features/register/presentation/view/pages/register_page.dart';
@@ -66,6 +68,18 @@ final GoRouter router = GoRouter(
       route: Routes.categories,
       page: (state, context) => CategoriesPage(
         incomingIndex: (state.extra as int?) ?? 0,
+        key: ValueKey(context.locale.languageCode.toString()),
+      ),
+    ),
+    _customAnimatedGoRoute(
+      route: Routes.carScreen,
+      page: (state, context) =>
+          CartPage(key: ValueKey(context.locale.languageCode.toString())),
+    ),
+
+    _customAnimatedGoRoute(
+      route: Routes.editProfile,
+      page: (state, context) => EditProfilePage(
         key: ValueKey(context.locale.languageCode.toString()),
       ),
     ),

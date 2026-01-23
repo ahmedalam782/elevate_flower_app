@@ -1,5 +1,4 @@
 import 'package:elevate_flower_app/core/config/base_response/result.dart';
-import 'package:elevate_flower_app/core/config/di/injectable_config.dart';
 import 'package:elevate_flower_app/features/categories/api/api_client/categories_api_client.dart';
 import 'package:elevate_flower_app/features/categories/api/datasources/categories_remote_data_source_impl.dart';
 import 'package:elevate_flower_app/features/categories/data/models/category_model/category_dto.dart';
@@ -22,20 +21,18 @@ void main() {
   late MockInternetConnection mockInternetConnection;
 
   setUp(() async {
+
     await GetIt.instance.reset();
-    configureDependencies();
+
     mockInternetConnection = MockInternetConnection();
     when(
       mockInternetConnection.hasInternetAccess,
     ).thenAnswer((_) async => true);
 
-    if (GetIt.instance.isRegistered<InternetConnection>()) {
-      GetIt.instance.unregister<InternetConnection>();
-    }
-
     GetIt.instance.registerSingleton<InternetConnection>(
       mockInternetConnection,
     );
+
 
     apiClientMock = MockCategoriesApiClient();
     dataSourceImpl = CategoriesRemoteDataSourceImpl(apiClient: apiClientMock);

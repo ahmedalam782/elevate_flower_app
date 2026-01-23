@@ -1,0 +1,43 @@
+<svg
+  width="120"
+  height="120"
+  viewBox="0 0 120 120"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <!-- Basket -->
+  <path
+    d="M28 44H92L84 80H36L28 44Z"
+    stroke="#D21E6A"
+    stroke-width="4"
+    stroke-linejoin="round"
+  />
+
+  <!-- Basket Handle -->
+  <path
+    d="M44 44C44 28 76 28 76 44"
+    stroke="#D21E6A"
+    stroke-width="4"
+    stroke-linecap="round"
+  />
+
+  <!-- Flower Stem -->
+  <line
+    x1="60"
+    y1="44"
+    x2="60"
+    y2="60"
+    stroke="#D21E6A"
+    stroke-width="3"
+    stroke-linecap="round"
+  />
+
+  <!-- Flower Center -->
+  <circle cx="60" cy="36" r="4" fill="#D21E6A" />
+
+  <!-- Flower Petals -->
+  <circle cx="60" cy="30" r="4" fill="#D21E6A" />
+  <circle cx="60" cy="42" r="4" fill="#D21E6A" />
+  <circle cx="54" cy="36" r="4" fill="#D21E6A" />
+  <circle cx="66" cy="36" r="4" fill="#D21E6A" />
+</svg>

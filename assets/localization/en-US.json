@@ -178,7 +178,6 @@
     "cart": "Cart",
     "profile": "Profile"
   },
-
   "product_details": {
     "EGP": "EGP",
     "status": "Status: ",
@@ -189,8 +188,6 @@
     "add_to_cart": "Add to cart",
     "try_again": "Try again"
   },
-
-
   "home_screen": {
     "home_title": "Flowery",
     "temp_location": "Deliver to 2XVP+XC - Sheikh Zayed",
@@ -199,7 +196,6 @@
     "best_seller_title": "Best seller",
     "occasion_title": "Occasion"
   },
-
   "products": {
     "no_products": "No products found",
     "check_back_later": "Please check back later",
@@ -218,7 +214,6 @@
     "best_seller": "Best Seller",
     "caption": "Bloom with our exquisite best sellers"
   },
-
   "categories": {
     "error_loading_categories": "Error loading categories",
     "select_a_category": "Select a category",
@@ -228,6 +223,65 @@
   "occasion": {
     "occasion_title": "Occasion",
     "occasion_hint": "Bloom with our exquisite best sellers"
-
+  },
+  "change_language": {
+    "title": "Change Language",
+    "arabic": "Arabic",
+    "english": "English"
+  },
+  "profile": {
+    "profile_title": "Profile",
+    "my_orders": "My orders",
+    "saved_address": "Saved address",
+    "notification": "Notification",
+    "language": "Language",
+    "about_us": "About us",
+    "terms_conditions": "Terms & conditions",
+    "logout": "Logout",
+    "edit_profile": "Edit profile",
+    "logout_confirmation": "Are you sure you want to logout?",
+    "logout_success": "Logged out successfully",
+    "change_language": "Change Language",
+    "Arabic": "Arabic",
+    "English": "English"
+  },
+  "logout": {
+    "authentication_status": "Authentication Status",
+    "authenticated": "Authenticated",
+    "not_authenticated": "Not Authenticated",
+    "logout_title": "LOGOUT",
+    "logout_confirm": "Confirm logout!!",
+    "logout_success": "Logout Successfully",
+    "logout_error": "Logout failed. Please try again.",
+    "logout_loading": "Logging out...",
+    "clear_all_tokens": "Clear All Tokens"
+  },
+  "cart": {
+    "cart": "Cart",
+    "items": "items",
+    "sub_total": "Sub Total",
+    "total": "Total",
+    "check_out": "Checkout",
+    "deliver_to": "Deliver to",
+    "clear": "Clear cart",
+    "no_items_found": "Your cart is empty",
+    "browsing_as_guest": "You are browsing as a guest, please login to view your cart",
+    "confirm": "Confirm",
+    "back": "Back",
+    "you_are_browsing_as_guest": "You are browsing as a guest",
+    "to_continue_Shopping": "To add item to cart please login or create account if you don't have one",
+    "item_added_to_cart": "Item added successfully to your cart"
+  },
+  "edit_profile": {
+    "edit_profile_title": "Edit Profile",
+    "first_name_label": "First Name",
+    "last_name_label": "Last Name",
+    "email_label": "Email",
+    "change": "Change",
+    "phone_label": "Phone",
+    "update_button": "Update",
+    "profile_updated_successfully": "Profile updated successfully",
+    "camera_option": "Camera",
+    "gallery_option": "Gallery"
   }
 }

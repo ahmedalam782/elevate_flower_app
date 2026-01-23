@@ -1,5 +1,4 @@
 import 'package:elevate_flower_app/core/config/base_response/result.dart';
-import 'package:elevate_flower_app/core/config/di/injectable_config.dart';
 import 'package:elevate_flower_app/features/register/api/api_client/register_api_client.dart';
 import 'package:elevate_flower_app/features/register/api/datasources/register_remote_data_source_impl.dart';
 import 'package:elevate_flower_app/features/register/data/models/register_request_body.dart';
@@ -20,20 +19,18 @@ void main() {
   late MockRegisterApiClient apiClientMock;
   late MockInternetConnection mockInternetConnection;
   setUp(() async {
+
     await GetIt.instance.reset();
-    configureDependencies();
+
     mockInternetConnection = MockInternetConnection();
     when(
       mockInternetConnection.hasInternetAccess,
     ).thenAnswer((_) async => true);
-    if (GetIt.instance.isRegistered<InternetConnection>()) {
-      GetIt.instance.unregister<InternetConnection>();
-    }
 
-    // Register your mock
     GetIt.instance.registerSingleton<InternetConnection>(
       mockInternetConnection,
     );
+
 
     apiClientMock = MockRegisterApiClient();
     dataSourceImpl = RegisterRemoteDataSourceImpl(apiClientMock);
@@ -73,10 +70,8 @@ void main() {
       verify(apiClientMock.registerUser(requestBody)).called(1);
     });
 
-    test("registerUser returns error when API call fails", ()async {
-      when(
-        apiClientMock.registerUser(requestBody),
-      ).thenThrow(Exception());
+    test("registerUser returns error when API call fails", () async {
+      when(apiClientMock.registerUser(requestBody)).thenThrow(Exception());
       final result = await dataSourceImpl.registerUser(requestBody);
       expect(result, isA<Error<RegisterUserResponseDto>>());
       final errorResult = result as Error<RegisterUserResponseDto>;

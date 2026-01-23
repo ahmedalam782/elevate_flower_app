@@ -1,5 +1,4 @@
 import 'package:elevate_flower_app/core/config/base_response/result.dart';
-import 'package:elevate_flower_app/core/config/di/injectable_config.dart';
 import 'package:elevate_flower_app/features/best_seller/api/api_client/best_seller_api_client.dart';
 import 'package:elevate_flower_app/features/best_seller/api/datasources/best_seller_remote_data_source_impl.dart';
 import 'package:elevate_flower_app/features/best_seller/data/models/best_seller_model.dart';
@@ -20,20 +19,19 @@ void main() {
   late MockInternetConnection mockInternetConnection;
 
   setUp(() async {
+
     await GetIt.instance.reset();
-    configureDependencies();
+
     mockInternetConnection = MockInternetConnection();
     when(
       mockInternetConnection.hasInternetAccess,
     ).thenAnswer((_) async => true);
-    if (GetIt.instance.isRegistered<InternetConnection>()) {
-      GetIt.instance.unregister<InternetConnection>();
-    }
 
-    // Register your mock
     GetIt.instance.registerSingleton<InternetConnection>(
       mockInternetConnection,
     );
+
+
     apiClientMock = MockBestSellerApiClient();
     dataSourceImpl = BestSellerRemoteDataSourceImpl(apiClientMock);
   });
@@ -65,9 +63,7 @@ void main() {
     );
 
     test("test getBestSellerProducts returns Failure on failure", () async {
-      when(
-        apiClientMock.getBestSellerProducts(),
-      ).thenThrow(Exception("error"));
+      when(apiClientMock.getBestSellerProducts()).thenThrow(Exception("error"));
       final result = await dataSourceImpl.getBestSellerProducts();
       expect(result, isA<Error>());
       final error = result as Error;
