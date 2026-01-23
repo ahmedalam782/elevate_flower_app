@@ -255,7 +255,6 @@
     "you_are_browsing_as_guest": "أنت تتصفح كازائر",
     "to_continue_Shopping": "لإضافة منتج إلي السلة, من فضلك قم بتسجيل الدخول أو إنشاء حساب",
     "item_added_to_cart": "تم إضافة المنتج الي السلة بنجاح"
-
   },
   "edit_profile": {
     "edit_profile_title": "تعديل الملف الشخصي",
@@ -268,6 +267,14 @@
     "profile_updated_successfully": "تم تحديث الملف الشخصي بنجاح",
     "camera_option": "الكاميرا",
     "gallery_option": "المعرض"
-    
+  },
+  "logout": {
+    "authentication_status": "حالة تسجيل الدخول",
+    "authenticated": "تم تسجيل الدخول",
+    "not_authenticated": "غير مسجل الدخول",
+    "logout_title": "تسجيل الخروج",
+    "logout_confirm": "هل أنتِ متأكدة من تسجيل الخروج؟",
+    "logout_success": "تم تسجيل الخروج بنجاح",
+    "clear_all_tokens": "مسح بيانات تسجيل الدخول"
   }
 }
