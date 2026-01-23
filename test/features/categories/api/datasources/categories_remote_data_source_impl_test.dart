@@ -11,6 +11,7 @@ import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'categories_remote_data_source_impl_test.mocks.dart';
 
@@ -22,20 +23,24 @@ void main() {
   late MockInternetConnection mockInternetConnection;
 
   setUp(() async {
+    // Mock SharedPreferences to prevent MissingPluginException
+    SharedPreferences.setMockInitialValues({});
+
     await GetIt.instance.reset();
-    configureDependencies();
+
+    // Setup mock InternetConnection BEFORE configureDependencies
     mockInternetConnection = MockInternetConnection();
     when(
       mockInternetConnection.hasInternetAccess,
     ).thenAnswer((_) async => true);
 
-    if (GetIt.instance.isRegistered<InternetConnection>()) {
-      GetIt.instance.unregister<InternetConnection>();
-    }
-
+    // Register mock InternetConnection first
     GetIt.instance.registerSingleton<InternetConnection>(
       mockInternetConnection,
     );
+
+    // Now run configureDependencies
+    configureDependencies();
 
     apiClientMock = MockCategoriesApiClient();
     dataSourceImpl = CategoriesRemoteDataSourceImpl(apiClient: apiClientMock);
