@@ -70,11 +70,14 @@ class ProfileHeader extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(name, style: 18.semiBold.copyWith(color: AppColors.black32)),
-              SizedBox(width: 8.w),
+              const SizedBox(width: 8),
               if (onEditTap != null)
-                SvgPicture.asset(
-                  AppIcons.iconsEditProfile,
-                  fit: BoxFit.scaleDown,
+                InkWell(
+                  onTap: onEditTap,
+                  child: SvgPicture.asset(
+                    AppIcons.iconsEditProfile,
+                    fit: BoxFit.scaleDown,
+                  ),
                 ),
             ],
           ),

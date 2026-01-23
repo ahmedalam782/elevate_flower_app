@@ -28,7 +28,7 @@ class UserDetailBlocListener extends StatelessWidget {
                   ? ToastificationType.success
                   : ToastificationType.error,
             ).showToast();
-            if (result.success) Navigator.pop(context);
+            if (result.success) Navigator.pop(context, true);
           });
         }
         return const SizedBox.shrink();

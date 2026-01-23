@@ -47,7 +47,7 @@ class CartUpperPart extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
               ),
             ),
-            Icon(Icons.keyboard_arrow_down, size: 36, color: AppColors.gray53),
+            const Icon(Icons.keyboard_arrow_down, size: 36, color: AppColors.gray53),
           ],
         ),
       ],
