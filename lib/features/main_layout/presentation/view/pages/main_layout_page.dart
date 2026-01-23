@@ -74,10 +74,9 @@ class _MainLayoutState extends State<MainLayoutPage> {
           ),
           CategoriesPage(incomingIndex: _categoryIndex),
 
-          CartPage(),
+          const CartPage(),
           const ProfilePage(),
 
-          
          
 
         ],

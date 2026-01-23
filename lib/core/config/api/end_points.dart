@@ -20,6 +20,9 @@ class EndPoints {
   // CART
   static const String cartEndPoint = "/cart";
 
+  static const String getUserProfile = "/auth/profile-data";
+  static const String editUserProfile = "/auth/editProfile";
+  static const String updateProfilePhoto = "/auth/upload-photo";
 }
 
 class Apikeys {

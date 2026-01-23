@@ -58,6 +58,7 @@ class AppTheme {
     brightness: Brightness.light,
     scaffoldBackgroundColor: AppColors.whiteF9,
     primaryColor: AppColors.primerColor,
+
     appBarTheme: const AppBarTheme(
       elevation: 0,
       scrolledUnderElevation: 0,
@@ -68,7 +69,7 @@ class AppTheme {
       systemOverlayStyle: SystemUiOverlayStyle(
         statusBarColor: AppColors.black,
         statusBarIconBrightness: Brightness.light,
-        statusBarBrightness: Brightness.dark,
+        statusBarBrightness: Brightness.light,
       ),
     ),
     useMaterial3: true,
@@ -198,6 +199,7 @@ class AppTheme {
       selectedLabelStyle: 12.regular.copyWith(color: AppColors.primerColor),
       unselectedLabelStyle: 12.regular.copyWith(color: AppColors.gray7D),
     ),
+    tabBarTheme: const TabBarThemeData(indicatorColor: AppColors.primerColor),
   );
 
   static ThemeData darkTheme = ThemeData(

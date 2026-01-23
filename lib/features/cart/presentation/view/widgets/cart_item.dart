@@ -106,7 +106,7 @@ class CartItemWidget extends StatelessWidget {
                             child: SizedBox(
                               width: 20.w,
                               height: 20.w,
-                              child: Icon(Icons.remove_rounded),
+                              child: const Icon(Icons.remove_rounded),
                             ),
                           ),
 
@@ -121,7 +121,7 @@ class CartItemWidget extends StatelessWidget {
                             child: SizedBox(
                               width: 20.w,
                               height: 20.w,
-                              child: Icon(Icons.add_rounded),
+                              child: const Icon(Icons.add_rounded),
                             ),
                           ),
                         ],
