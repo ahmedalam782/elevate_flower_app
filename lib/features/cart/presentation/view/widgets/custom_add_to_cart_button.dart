@@ -51,6 +51,7 @@ Future<void> addToCart(BuildContext context, String productId) async {
           AddProductToCartEvent(productId: productId, fromCartScreen: false),
         )
         .then((value) {
+          if (!context.mounted) return;
           if (value == true) {
             CustomToast(
               context: context,
@@ -73,7 +74,9 @@ Future<void> addToCart(BuildContext context, String productId) async {
       description: "",
       title: LocaleKeys.cart_to_continue_Shopping.tr(),
       onAction: () {
-        context.go(Routes.login);
+        if (context.mounted) {
+          context.go(Routes.login);
+        }
       },
     );
   }

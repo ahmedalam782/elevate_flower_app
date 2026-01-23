@@ -24,7 +24,7 @@ class _ProductImageSliderState extends State<ProductImageSlider> {
           child: PageView.builder(
             onPageChanged: (index) {
               currentIndex = index;
-              print(index);
+              // print(index);
               setState(() {});
             },
             itemCount: widget.images.length,

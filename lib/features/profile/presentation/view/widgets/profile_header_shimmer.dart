@@ -15,14 +15,14 @@ class ProfileHeaderShimmer extends StatelessWidget {
         children: [
           // Profile Image Shimmer
           Shimmer.fromColors(
-            baseColor: AppColors.gray53.withOpacity(0.3),
+            baseColor: AppColors.gray53.withValues(alpha: 0.3),
             highlightColor: AppColors.whiteFF,
             child: Container(
               width: 100.w,
               height: 100.h,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: AppColors.gray53.withOpacity(0.3),
+                color: AppColors.gray53.withValues(alpha: 0.3),
               ),
             ),
           ),
@@ -30,13 +30,13 @@ class ProfileHeaderShimmer extends StatelessWidget {
 
           // Name Shimmer
           Shimmer.fromColors(
-            baseColor: AppColors.gray53.withOpacity(0.3),
+            baseColor: AppColors.gray53.withValues(alpha: 0.3),
             highlightColor: AppColors.whiteFF,
             child: Container(
               width: 150.w,
               height: 20.h,
               decoration: BoxDecoration(
-                color: AppColors.gray53.withOpacity(0.3),
+                color: AppColors.gray53.withValues(alpha: 0.3),
                 borderRadius: BorderRadius.circular(4.r),
               ),
             ),
@@ -45,13 +45,13 @@ class ProfileHeaderShimmer extends StatelessWidget {
 
           // Email Shimmer
           Shimmer.fromColors(
-            baseColor: AppColors.gray53.withOpacity(0.3),
+            baseColor: AppColors.gray53.withValues(alpha: 0.3),
             highlightColor: AppColors.whiteFF,
             child: Container(
               width: 200.w,
               height: 16.h,
               decoration: BoxDecoration(
-                color: AppColors.gray53.withOpacity(0.3),
+                color: AppColors.gray53.withValues(alpha: 0.3),
                 borderRadius: BorderRadius.circular(4.r),
               ),
             ),

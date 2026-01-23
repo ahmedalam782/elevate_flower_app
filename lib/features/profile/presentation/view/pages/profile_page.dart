@@ -1,6 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:elevate_flower_app/core/languages/locale_keys.g.dart';
@@ -164,7 +164,9 @@ class _ProfilePageState extends State<ProfilePage> {
                               Icon(
                                 Icons.error_outline,
                                 size: 60.sp,
-                                color: AppColors.primerColor.withOpacity(0.5),
+                                color: AppColors.primerColor.withValues(
+                                  alpha: 0.5,
+                                ),
                               ),
                               SizedBox(height: 16.h),
                               Text(
