@@ -12,7 +12,7 @@ class EndPoints {
   static const String homeEndpoint = "/home";
   static const String getAllOccasions = "/occasions";
   static const String getAllProducts = "/products";
-  static const String changePassword = "/change-password";
+  static const String changePassword = "/auth/changePassword";
 }
 
 class Apikeys {

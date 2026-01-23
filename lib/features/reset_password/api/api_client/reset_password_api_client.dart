@@ -14,5 +14,7 @@ abstract class ResetPasswordApiClient {
   factory ResetPasswordApiClient(Dio dio) = _ResetPasswordApiClient;
 
   @PATCH(EndPoints.changePassword)
-  Future<ChangePasswordRequestModel> changePassword();
+  Future<ChangePasswordRequestModel> changePassword(
+    @Body() Map<String, dynamic> body,
+  );
 }

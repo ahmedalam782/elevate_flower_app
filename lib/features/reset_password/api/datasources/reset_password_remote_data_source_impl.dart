@@ -23,7 +23,7 @@ class ResetPasswordRemoteDataSourceImpl
         newPassword: newPassword,
       );
 
-      final response = await dio.post(
+      final response = await dio.patch(
         EndPoints.changePassword,
         data: requestBody.toJson(),
       );

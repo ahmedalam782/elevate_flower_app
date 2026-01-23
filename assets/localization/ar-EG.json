@@ -187,8 +187,7 @@
     "description": "الوصف",
     "bouqet_include": "محتوي باقة الزهور",
     "add_to_cart": "أضف إلي العربة"
-},
-
+  },
   "home_screen": {
     "home_title": "فلوري",
     "temp_location": "التوصيل إلى 2XVP+XC - الشيخ زايد",
@@ -224,6 +223,12 @@
   "occasion": {
     "occasion_title": "المناسبات",
     "occasion_hint": "ازهر مع أفضل المنتجات المميزة لدينا"
-
+  },
+  "reset_password": {
+    "reset_password": "إعادة تعيين كلمة المرور",
+    "new_password": "كلمة المرور الجديدة",
+    "current_password": "كلمة المرور الحالية",
+    "confirm_password": "تأكيد كلمة المرور",
+    "update_button": "تحديث"
   }
 }
