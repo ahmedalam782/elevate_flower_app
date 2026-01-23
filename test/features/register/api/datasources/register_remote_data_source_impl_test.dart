@@ -1,5 +1,4 @@
 import 'package:elevate_flower_app/core/config/base_response/result.dart';
-import 'package:elevate_flower_app/core/config/di/injectable_config.dart';
 import 'package:elevate_flower_app/features/register/api/api_client/register_api_client.dart';
 import 'package:elevate_flower_app/features/register/api/datasources/register_remote_data_source_impl.dart';
 import 'package:elevate_flower_app/features/register/data/models/register_request_body.dart';
@@ -10,7 +9,6 @@ import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import 'register_remote_data_source_impl_test.mocks.dart';
 
@@ -21,24 +19,18 @@ void main() {
   late MockRegisterApiClient apiClientMock;
   late MockInternetConnection mockInternetConnection;
   setUp(() async {
-    // Mock SharedPreferences to prevent MissingPluginException
-    SharedPreferences.setMockInitialValues({});
 
     await GetIt.instance.reset();
 
-    // Setup mock InternetConnection BEFORE configureDependencies
     mockInternetConnection = MockInternetConnection();
     when(
       mockInternetConnection.hasInternetAccess,
     ).thenAnswer((_) async => true);
 
-    // Register mock InternetConnection first
     GetIt.instance.registerSingleton<InternetConnection>(
       mockInternetConnection,
     );
 
-    // Now run configureDependencies
-    configureDependencies();
 
     apiClientMock = MockRegisterApiClient();
     dataSourceImpl = RegisterRemoteDataSourceImpl(apiClientMock);
