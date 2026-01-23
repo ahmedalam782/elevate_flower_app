@@ -188,7 +188,6 @@
     "add_to_cart": "Add to cart",
     "try_again": "Try again"
   },
-
   "home_screen": {
     "home_title": "Flowery",
     "temp_location": "Deliver to 2XVP+XC - Sheikh Zayed",
@@ -238,20 +237,18 @@
     "logout_confirmation": "Are you sure you want to logout?",
     "logout_success": "Logged out successfully",
     "change_language": "Change Language",
-    "Arabic":"Arabic",
-    "English":"English"},
-
+    "Arabic": "Arabic",
+    "English": "English"
   },
   "logout": {
-  "authentication_status": "Authentication Status",
-  "authenticated": "Authenticated",
-  "not_authenticated": "Not Authenticated",
-  "logout_title": "LOGOUT",
-  "logout_confirm": "Confirm logout!!",
-  "logout_success": "Logout Successfully",
-  "clear_all_tokens": "Clear All Tokens"
-},
-
+    "authentication_status": "Authentication Status",
+    "authenticated": "Authenticated",
+    "not_authenticated": "Not Authenticated",
+    "logout_title": "LOGOUT",
+    "logout_confirm": "Confirm logout!!",
+    "logout_success": "Logout Successfully",
+    "clear_all_tokens": "Clear All Tokens"
+  },
   "cart": {
     "cart": "Cart",
     "items": "items",
@@ -267,6 +264,5 @@
     "you_are_browsing_as_guest": "You are browsing as a guest",
     "to_continue_Shopping": "To add item to cart please login or create account if you don't have one",
     "item_added_to_cart": "Item added successfully to your cart"
- 
   }
 }

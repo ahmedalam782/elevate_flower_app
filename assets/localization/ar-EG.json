@@ -188,8 +188,6 @@
     "bouqet_include": "محتوي باقة الزهور",
     "add_to_cart": "أضف إلي العربة"
   },
- feature/profile_screen
-evelopment
   "home_screen": {
     "home_title": "زهور",
     "temp_location": "التوصيل إلى 2XVP+XC - الشيخ زايد",
@@ -242,7 +240,7 @@ evelopment
     "change_language": "تغيير اللغة",
     "Arabic": "العربية",
     "English": "الإنجليزية"
-  }
+  },
   "cart": {
     "cart": "سلة التسوق",
     "items": "عناصر",
