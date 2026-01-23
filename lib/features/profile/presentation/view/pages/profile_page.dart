@@ -7,7 +7,6 @@ import 'package:elevate_flower_app/core/languages/locale_keys.g.dart';
 import 'package:elevate_flower_app/core/theme/app_colors.dart';
 import 'package:elevate_flower_app/core/theme/app_icons.dart';
 import 'package:elevate_flower_app/core/theme/app_typography.dart';
-import 'package:elevate_flower_app/core/shared/widgets/custom_toast.dart';
 import 'package:elevate_flower_app/features/profile/presentation/view/widgets/profile_header.dart';
 import 'package:elevate_flower_app/features/profile/presentation/view/widgets/profile_list_item.dart';
 import 'package:elevate_flower_app/features/profile/presentation/view/widgets/profile_divider.dart';
@@ -16,7 +15,6 @@ import 'package:elevate_flower_app/features/profile/presentation/view/widgets/lo
 import 'package:elevate_flower_app/features/profile/presentation/view/widgets/profile_header_shimmer.dart';
 import 'package:go_router/go_router.dart';
 import 'package:package_info_plus/package_info_plus.dart';
-import 'package:toastification/toastification.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:elevate_flower_app/core/config/di/injectable_config.dart';
 import 'package:elevate_flower_app/features/profile/presentation/view_model/cubit/profile_cubit.dart';
@@ -65,19 +63,12 @@ class _ProfilePageState extends State<ProfilePage> {
   void _showLogoutDialog() {
     showDialog(
       context: context,
+      barrierDismissible: false, // Prevent dismissing by tapping outside
       builder: (context) => LogoutConfirmationDialog(
         title: LocaleKeys.profile_logout.tr().toUpperCase(),
         message: LocaleKeys.profile_logout_confirmation.tr(),
         confirmText: LocaleKeys.profile_logout.tr(),
         cancelText: LocaleKeys.global_cancel.tr(),
-        onConfirm: () {
-          // TODO: Implement logout logic here
-          CustomToast(
-            context: context,
-            header: LocaleKeys.profile_logout_success.tr(),
-            type: ToastificationType.success,
-          ).showToast();
-        },
       ),
     );
   }
@@ -156,7 +147,9 @@ class _ProfilePageState extends State<ProfilePage> {
                             name: profileData.fullName,
                             email: profileData.email,
                             onEditTap: () async {
-                              final result = await context.push(Routes.editProfile);
+                              final result = await context.push(
+                                Routes.editProfile,
+                              );
                               // Refresh profile data if edit was successful
                               if (result == true && context.mounted) {
                                 context.read<ProfileCubit>().doIntent(
@@ -176,7 +169,9 @@ class _ProfilePageState extends State<ProfilePage> {
                               SizedBox(height: 16.h),
                               Text(
                                 'Unable to load profile',
-                                style: 16.semiBold.copyWith(color: AppColors.black32),
+                                style: 16.semiBold.copyWith(
+                                  color: AppColors.black32,
+                                ),
                               ),
                               SizedBox(height: 8.h),
                               Padding(
@@ -184,7 +179,9 @@ class _ProfilePageState extends State<ProfilePage> {
                                 child: Text(
                                   'Please check your internet connection',
                                   textAlign: TextAlign.center,
-                                  style: 14.regular.copyWith(color: AppColors.gray53),
+                                  style: 14.regular.copyWith(
+                                    color: AppColors.gray53,
+                                  ),
                                 ),
                               ),
                               SizedBox(height: 16.h),
@@ -214,10 +211,10 @@ class _ProfilePageState extends State<ProfilePage> {
                         );
                       },
                     ),
-              
+
                     SizedBox(height: 8.h),
                     const ProfileDivider(),
-              
+
                     // My Orders
                     ProfileListItem(
                       iconPath: AppIcons.iconsTransactionOrder,
@@ -226,9 +223,9 @@ class _ProfilePageState extends State<ProfilePage> {
                         // TODO: Navigate to orders
                       },
                     ),
-              
+
                     const ProfileDivider(),
-              
+
                     // Saved Address
                     ProfileListItem(
                       iconPath: AppIcons.iconsLocation,
@@ -237,10 +234,10 @@ class _ProfilePageState extends State<ProfilePage> {
                         // TODO: Navigate to saved addresses
                       },
                     ),
-              
+
                     const ProfileDivider(),
                     SizedBox(height: 16.h),
-              
+
                     // Notification Toggle
                     ProfileListItem(
                       iconPath: AppIcons.iconsCheckCircle,
@@ -257,7 +254,9 @@ class _ProfilePageState extends State<ProfilePage> {
                         activeTrackColor: AppColors.primerColor,
                         inactiveThumbColor: AppColors.primerColor,
                         inactiveTrackColor: AppColors.pinkF9,
-                        trackOutlineColor: WidgetStateProperty.resolveWith((states) {
+                        trackOutlineColor: WidgetStateProperty.resolveWith((
+                          states,
+                        ) {
                           if (states.contains(WidgetState.selected)) {
                             return Colors.transparent;
                           }
@@ -265,10 +264,10 @@ class _ProfilePageState extends State<ProfilePage> {
                         }),
                       ),
                     ),
-              
+
                     const ProfileDivider(),
                     SizedBox(height: 16.h),
-              
+
                     // Language
                     ProfileListItem(
                       iconPath: AppIcons.iconsTranslateLang,
@@ -278,7 +277,9 @@ class _ProfilePageState extends State<ProfilePage> {
                         children: [
                           Text(
                             _getCurrentLanguage(),
-                            style: 14.medium.copyWith(color: AppColors.primerColor),
+                            style: 14.medium.copyWith(
+                              color: AppColors.primerColor,
+                            ),
                           ),
                           SizedBox(width: 4.w),
                           Icon(
@@ -290,9 +291,9 @@ class _ProfilePageState extends State<ProfilePage> {
                       ),
                       onTap: _showLanguageBottomSheet,
                     ),
-              
+
                     const ProfileDivider(),
-              
+
                     // About Us
                     ProfileListItem(
                       iconPath: AppIcons.iconsCheckCircle,
@@ -301,9 +302,9 @@ class _ProfilePageState extends State<ProfilePage> {
                         // TODO: Navigate to about us
                       },
                     ),
-              
+
                     const ProfileDivider(),
-              
+
                     // Terms & Conditions
                     ProfileListItem(
                       iconPath: AppIcons.iconsWarning,
@@ -312,10 +313,10 @@ class _ProfilePageState extends State<ProfilePage> {
                         // TODO: Navigate to terms & conditions
                       },
                     ),
-              
+
                     const ProfileDivider(),
                     SizedBox(height: 24.h),
-              
+
                     // Logout Button
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 16.w),
@@ -330,7 +331,10 @@ class _ProfilePageState extends State<ProfilePage> {
                                 fit: BoxFit.scaleDown,
                               ),
                               SizedBox(width: 12.w),
-                              Text(LocaleKeys.profile_logout.tr(), style: 14.medium),
+                              Text(
+                                LocaleKeys.profile_logout.tr(),
+                                style: 14.medium,
+                              ),
                               const Spacer(),
                               SvgPicture.asset(AppIcons.iconsLogout),
                             ],
@@ -338,21 +342,21 @@ class _ProfilePageState extends State<ProfilePage> {
                         ),
                       ),
                     ),
-              
+
                     SizedBox(height: 32.h),
-              
+
                     // Version
                     Text(
                       _appVersion,
                       style: 12.regular.copyWith(color: AppColors.black85),
                     ),
-              
+
                     SizedBox(height: 24.h),
                   ],
                 ),
               ),
             );
-          }
+          },
         ),
       ),
     );

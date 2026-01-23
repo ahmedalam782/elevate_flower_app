@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'package:elevate_flower_app/core/config/base_response/result.dart';
 import 'package:elevate_flower_app/core/config/base_state/base_cubit.dart';
 import 'package:elevate_flower_app/core/config/base_state/base_state.dart';
+import 'package:elevate_flower_app/core/helper/user_helper/user_helper.dart';
 import 'package:elevate_flower_app/features/logout/data/models/logout_response_model.dart';
 import 'package:elevate_flower_app/features/logout/domain/use_cases/logout_usecase.dart';
 import 'package:elevate_flower_app/features/logout/presentation/view_model/cubit/logout_events.dart';
@@ -10,7 +11,8 @@ import 'package:elevate_flower_app/features/logout/presentation/view_model/cubit
 import 'package:injectable/injectable.dart';
 
 @injectable
-class LogoutCubit extends BaseCubit<LogoutStates, LogoutEvents, LogoutNavigationAction> {
+class LogoutCubit
+    extends BaseCubit<LogoutStates, LogoutEvents, LogoutNavigationAction> {
   final LogoutUseCase _logoutUseCase;
 
   LogoutCubit(this._logoutUseCase) : super(const LogoutStates.initial());
@@ -37,9 +39,9 @@ class LogoutCubit extends BaseCubit<LogoutStates, LogoutEvents, LogoutNavigation
       case Success<LogoutResponseModel>():
         log('Logout successful: ${res.data?.message}');
         emit(state.copyWith(logoutState: BaseState.success(res.data)));
-        
-        // Navigate to login page
-        doNavigationAction(NavigateToLoginAction());
+
+        // Clear user data and navigate to login page
+        await UserHelper.clearUserData();
 
       case Error<LogoutResponseModel>():
         log('Logout error: ${res.exception.toString()}');

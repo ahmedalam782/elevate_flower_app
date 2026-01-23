@@ -247,6 +247,8 @@
     "logout_title": "LOGOUT",
     "logout_confirm": "Confirm logout!!",
     "logout_success": "Logout Successfully",
+    "logout_error": "Logout failed. Please try again.",
+    "logout_loading": "Logging out...",
     "clear_all_tokens": "Clear All Tokens"
   },
   "cart": {

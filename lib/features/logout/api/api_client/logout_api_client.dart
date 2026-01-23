@@ -14,6 +14,6 @@ abstract class LogoutApiClient {
   @factoryMethod
   factory LogoutApiClient(Dio dio) = _LogoutApiClient;
 
- @POST(EndPoints.logout) 
+ @GET(EndPoints.logout) 
 Future<LogoutResponseModel> logout();
 }

@@ -240,6 +240,17 @@
     "Arabic": "العربية",
     "English": "الإنجليزية"
   },
+  "logout": {
+    "authentication_status": "حالة المصادقة",
+    "authenticated": "مصادق عليه",
+    "not_authenticated": "غير مصادق عليه",
+    "logout_title": "تسجيل الخروج",
+    "logout_confirm": "تأكيد تسجيل الخروج!!",
+    "logout_success": "تم تسجيل الخروج بنجاح",
+    "logout_error": "فشل تسجيل الخروج. يرجى المحاولة مرة أخرى.",
+    "logout_loading": "جارٍ تسجيل الخروج...",
+    "clear_all_tokens": "مسح جميع الرموز"
+  },
   "cart": {
     "cart": "سلة التسوق",
     "items": "عناصر",
@@ -267,14 +278,5 @@
     "profile_updated_successfully": "تم تحديث الملف الشخصي بنجاح",
     "camera_option": "الكاميرا",
     "gallery_option": "المعرض"
-  },
-  "logout": {
-    "authentication_status": "حالة تسجيل الدخول",
-    "authenticated": "تم تسجيل الدخول",
-    "not_authenticated": "غير مسجل الدخول",
-    "logout_title": "تسجيل الخروج",
-    "logout_confirm": "هل أنتِ متأكدة من تسجيل الخروج؟",
-    "logout_success": "تم تسجيل الخروج بنجاح",
-    "clear_all_tokens": "مسح بيانات تسجيل الدخول"
   }
 }
