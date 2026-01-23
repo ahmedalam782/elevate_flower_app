@@ -52,17 +52,6 @@ jobs:
       - name: 🧪 Run unit tests
         run: flutter test --coverage --reporter expanded
         
-      - name: 📊 Upload coverage to Codecov
-        uses: codecov/codecov-action@v4
-        with:
-          files: ./coverage/lcov.info
-          flags: unittests
-          name: codecov-umbrella
-          fail_ci_if_error: false
-          verbose: true
-        env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-          
       - name: 📈 Generate coverage report
         if: always()
         run: |
