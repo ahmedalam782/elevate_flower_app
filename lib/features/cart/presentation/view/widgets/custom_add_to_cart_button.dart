@@ -45,6 +45,7 @@ Future<void> addToCart(BuildContext context, String productId) async {
   final token = await getIt<FlutterSecureStorage>().read(
     key: Apikeys.accessToken,
   );
+  if (!context.mounted) return;
   if (token != null && token.isNotEmpty) {
     getIt<CartCubit>()
         .doIntent(
