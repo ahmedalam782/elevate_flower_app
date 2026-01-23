@@ -30,6 +30,7 @@ class Apikeys {
   static const String refreshToken = 'refreshToken';
   static const String userId = 'userId';
   static const String rememberMe = 'rememberMe';
+  static const String language = 'language';
 }
 
 class QueryParameter {

@@ -278,5 +278,10 @@
     "profile_updated_successfully": "تم تحديث الملف الشخصي بنجاح",
     "camera_option": "الكاميرا",
     "gallery_option": "المعرض"
+  },
+  "change_language": {
+    "title": "تغيير اللغة",
+    "arabic": "العربية",
+    "english": "الانجليزية"
   }
 }

@@ -46,6 +46,7 @@ void main() async {
       supportedLocales: const [arabicLocale, englishLocale],
       fallbackLocale: englishLocale,
       path: assetsLocalization,
+      saveLocale: true,
       child: const FlowerApp(),
     ),
   );
