@@ -9,8 +9,6 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cubit = context.read<LoginCubit>();
-
     return Scaffold(
       body: BlocProvider(
         create: (context) => getIt<LoginCubit>(),
