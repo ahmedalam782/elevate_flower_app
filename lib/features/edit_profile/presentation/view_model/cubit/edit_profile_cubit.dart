@@ -12,11 +12,15 @@ import 'package:elevate_flower_app/features/edit_profile/domain/use_cases/update
 import 'package:elevate_flower_app/features/edit_profile/presentation/view_model/cubit/edit_profile_events.dart';
 import 'package:elevate_flower_app/features/edit_profile/presentation/view_model/cubit/edit_profile_states.dart';
 import 'package:elevate_flower_app/features/register/presentation/view_model/cubit/register_states.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:injectable/injectable.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:path/path.dart' as p;
+import 'package:image/image.dart' as img;
 
 @injectable
 class EditProfileCubit extends Cubit<EditProfileStates> {
@@ -117,14 +121,59 @@ class EditProfileCubit extends Cubit<EditProfileStates> {
       );
       return;
     }
+
     final XFile? pickedFile = await _picker.pickImage(
       source: source,
-      imageQuality: 30,
+      imageQuality: 85,
     );
 
     if (pickedFile != null) {
-      emit(state.copyWith(pickedPhoto: File(pickedFile.path)));
-      _checkFormChanged();
+      // Compress the image
+      final rawBytes = await File(pickedFile.path).readAsBytes();
+      final processedImage = await _processImage(
+        rawBytes,
+        fileName: pickedFile.name,
+      );
+      if (processedImage != null && processedImage['file'] != null) {
+        emit(state.copyWith(pickedPhoto: processedImage['file'] as File));
+        _checkFormChanged();
+      } else {
+        _updateResultController.add(
+          EditProfileResult.error('Failed to compress image'),
+        );
+      }
+    }
+  }
+
+  // -------------------- Process Image --------------------
+  static Future<Map<String, dynamic>?> _processImage(
+    Uint8List rawBytes, {
+    String? fileName,
+  }) async {
+    try {
+      final decoded = img.decodeImage(rawBytes);
+      if (decoded == null) return null;
+
+      // Resize and compress
+      final resized = img.copyResize(decoded, width: 1024); // max width
+      final compressedBytes = Uint8List.fromList(
+        img.encodeJpg(resized, quality: 85),
+      );
+
+      File? tempFile;
+      if (!kIsWeb) {
+        final tempDir = await getTemporaryDirectory();
+        final tempPath = p.join(
+          tempDir.path,
+          fileName ?? "image_${DateTime.now().millisecondsSinceEpoch}.jpg",
+        );
+        tempFile = await File(tempPath).writeAsBytes(compressedBytes);
+      }
+
+      return {'file': tempFile, 'bytes': compressedBytes, 'fileName': fileName};
+    } catch (e) {
+      debugPrint("Image processing error: $e");
+      return null;
     }
   }
 
