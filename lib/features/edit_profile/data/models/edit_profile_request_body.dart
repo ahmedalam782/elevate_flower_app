@@ -2,7 +2,8 @@ import 'package:elevate_flower_app/features/edit_profile/domain/entities/edit_pr
 import 'package:json_annotation/json_annotation.dart';
 
 part 'edit_profile_request_body.g.dart';
-@JsonSerializable(includeIfNull: false)
+
+@JsonSerializable(includeIfNull: false, createFactory: false)
 class EditProfileRequestBody {
   final String? firstName;
   final String? lastName;
@@ -19,7 +20,7 @@ class EditProfileRequestBody {
     this.phone,
     this.password,
     this.gender,
-    this.photo
+    this.photo,
   });
 
   Map<String, dynamic> toJson() => _$EditProfileRequestBodyToJson(this);
