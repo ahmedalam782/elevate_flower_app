@@ -307,7 +307,10 @@ class _PassTextFieldState extends State<PassTextField> {
         child: SvgPicture.asset(
           _isPasswordVisible ? AppIcons.iconsOpenEye : AppIcons.iconsClosedEye,
           key: ValueKey<bool>(_isPasswordVisible),
-          colorFilter: const ColorFilter.mode(AppColors.grayA6, BlendMode.srcIn),
+          colorFilter: const ColorFilter.mode(
+            AppColors.grayA6,
+            BlendMode.srcIn,
+          ),
         ),
       ),
     );

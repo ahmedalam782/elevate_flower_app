@@ -16,7 +16,6 @@ class EndPoints {
 
   static const String profileData = "/auth/profile-data";
 
-
   // CART
   static const String cartEndPoint = "/cart";
 

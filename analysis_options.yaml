@@ -6,13 +6,13 @@ analyzer:
   errors:
     unused_element: ignore
     deprecated_member_use: ignore
-    
+
 linter:
   rules:
     prefer_const_constructors: true
     prefer_const_literals_to_create_immutables: true
     prefer_const_declarations: true
-    
+
     # Disabled rules
     file_names: false
     unnecessary_underscores: false
