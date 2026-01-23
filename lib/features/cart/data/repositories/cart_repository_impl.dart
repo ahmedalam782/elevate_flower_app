@@ -30,7 +30,7 @@ class CartRepositoryImpl implements CartRepository {
     final response = await carRemoteDataSourceContract.addProductToCart(data);
     switch (response) {
       case Success<void>():
-        return Success<void>();
+        return const Success<void>();
       case Error<void>():
         return Error<void>(exception: response.exception);
     }
@@ -43,7 +43,7 @@ class CartRepositoryImpl implements CartRepository {
     );
     switch (response) {
       case Success<void>():
-        return Success<void>();
+        return const Success<void>();
       case Error<void>():
         return Error<void>(exception: response.exception);
     }
@@ -54,7 +54,7 @@ class CartRepositoryImpl implements CartRepository {
     final response = await carRemoteDataSourceContract.clearUserCart();
     switch (response) {
       case Success<void>():
-        return Success<void>();
+        return const Success<void>();
       case Error<void>():
         return Error<void>(exception: response.exception);
     }
@@ -71,7 +71,7 @@ class CartRepositoryImpl implements CartRepository {
     );
     switch (response) {
       case Success<void>():
-        return Success<void>();
+        return const Success<void>();
       case Error<void>():
         return Error<void>(exception: response.exception);
     }

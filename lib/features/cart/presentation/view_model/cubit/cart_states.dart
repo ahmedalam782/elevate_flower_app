@@ -21,8 +21,8 @@ class CartStates {
     required this.currentActedUponProductId,
   });
 
-  factory CartStates.initial() => CartStates(
-    state: const BaseState.initial(),
+  factory CartStates.initial() => const CartStates(
+    state: BaseState.initial(),
     isAddingItem: false,
     isRemovingItem: false,
     isDecrementingItem: false,

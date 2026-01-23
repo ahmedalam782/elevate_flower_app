@@ -99,7 +99,7 @@ void main() {
     });
 
     test('addProductToCart returns Success on remote success', () async {
-      fakeRemote.addProductHandler = (_) => Future.value(Success<void>());
+      fakeRemote.addProductHandler = (_) => Future.value(const Success<void>());
 
       final result = await repository.addProductToCart(
         CartProductPostData(product: 'p1', quantity: 1),
@@ -120,7 +120,7 @@ void main() {
     });
 
     test('removeProductFromCart returns Success on remote success', () async {
-      fakeRemote.removeProductHandler = (_) => Future.value(Success<void>());
+      fakeRemote.removeProductHandler = (_) => Future.value(const Success<void>());
 
       final result = await repository.removeProductFromCart('id1');
 
@@ -137,7 +137,7 @@ void main() {
     });
 
     test('clearUserCart returns Success on remote success', () async {
-      fakeRemote.clearCartHandler = () => Future.value(Success<void>());
+      fakeRemote.clearCartHandler = () => Future.value(const Success<void>());
 
       final result = await repository.clearUserCart();
 
@@ -155,7 +155,7 @@ void main() {
 
     test('updateCartQuantity returns Success on remote success', () async {
       fakeRemote.updateQuantityHandler = (_, __) =>
-          Future.value(Success<void>());
+          Future.value(const Success<void>());
 
       final result = await repository.updateCartQuantity(
         'id1',

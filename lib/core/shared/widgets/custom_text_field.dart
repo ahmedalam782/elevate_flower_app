@@ -163,7 +163,7 @@ class _CustomTextFormFieldState extends State<CustomTextField> {
         if (widget.title != null && widget.title!.isNotEmpty)
           Text(widget.title ?? "", style: 14.light),
         TextFormField(
-          enabled: !widget.isReadOnly,
+          enabled: true,
           textDirection: widget.textDirection,
           obscuringCharacter: "*",
           textCapitalization:
@@ -201,9 +201,7 @@ class _CustomTextFormFieldState extends State<CustomTextField> {
                 )
               : null,
           decoration: InputDecoration(
-            fillColor: !widget.isReadOnly
-                ? widget.fillColor
-                : AppColors.black0C,
+            fillColor: !widget.isReadOnly ? widget.fillColor : AppColors.grayCF,
             filled: widget.enableFill,
             isDense: widget.isDense,
             hintText: _animatedHintText.isEmpty

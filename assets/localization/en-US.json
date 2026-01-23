@@ -237,9 +237,9 @@
     "logout_confirmation": "Are you sure you want to logout?",
     "logout_success": "Logged out successfully",
     "change_language": "Change Language",
-    "Arabic": "Arabic",
-    "English": "English"
-  },
+    "Arabic":"Arabic",
+    "English":"English"},
+
   "cart": {
     "cart": "Cart",
     "items": "items",
@@ -255,5 +255,19 @@
     "you_are_browsing_as_guest": "You are browsing as a guest",
     "to_continue_Shopping": "To add item to cart please login or create account if you don't have one",
     "item_added_to_cart": "Item added successfully to your cart"
+
+  }
+,
+  "edit_profile": {
+    "edit_profile_title": "Edit Profile",
+    "first_name_label": "First Name",
+    "last_name_label": "Last Name",
+    "email_label": "Email",
+    "change": "Change",
+    "phone_label": "Phone",
+    "update_button": "Update",
+    "profile_updated_successfully": "Profile updated successfully",
+    "camera_option": "Camera",
+    "gallery_option": "Gallery"
   }
 }

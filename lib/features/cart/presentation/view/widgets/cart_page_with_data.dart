@@ -22,7 +22,7 @@ class CartPageWithData extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        CartUpperPart(),
+        const CartUpperPart(),
         SizedBox(height: 12.h),
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
@@ -124,7 +124,7 @@ class CartPageWithData extends StatelessWidget {
           ),
         ),
         SizedBox(height: 32.h),
-        Divider(color: AppColors.grayA6, thickness: 0.5),
+        const Divider(color: AppColors.grayA6, thickness: 0.5),
         BlocSelector<CartCubit, CartStates, double?>(
           selector: (state) {
             return state.totalPrice;

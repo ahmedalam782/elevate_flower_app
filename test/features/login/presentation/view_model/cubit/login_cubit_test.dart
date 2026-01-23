@@ -59,8 +59,12 @@ void main() {
       test("does not login if form is invalid", () async {
         final invalidCubit = LoginCubit(mockLoginUseCase);
 
+        invalidCubit.emailController.text = '';
+        invalidCubit.passwordController.text = '';
+
         // Act
         invalidCubit.doIntent(LoginEvents.loginUserEvent());
+
         // Assert
         await Future.delayed(const Duration(milliseconds: 100));
 

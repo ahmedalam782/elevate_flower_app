@@ -255,5 +255,19 @@
     "you_are_browsing_as_guest": "أنت تتصفح كازائر",
     "to_continue_Shopping": "لإضافة منتج إلي السلة, من فضلك قم بتسجيل الدخول أو إنشاء حساب",
     "item_added_to_cart": "تم إضافة المنتج الي السلة بنجاح"
+
+  },
+  "edit_profile": {
+    "edit_profile_title": "تعديل الملف الشخصي",
+    "first_name_label": "الاسم الأول",
+    "last_name_label": "اسم العائلة",
+    "email_label": "البريد الإلكتروني",
+    "change": "تغيير",
+    "phone_label": "رقم الهاتف",
+    "update_button": "تحديث",
+    "profile_updated_successfully": "تم تحديث الملف الشخصي بنجاح",
+    "camera_option": "الكاميرا",
+    "gallery_option": "المعرض"
+    
   }
 }
