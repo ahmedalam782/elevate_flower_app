@@ -1,6 +1,6 @@
 import 'package:elevate_flower_app/core/config/base_response/result.dart';
 import 'package:elevate_flower_app/core/config/base_state/base_state.dart';
-import 'package:elevate_flower_app/core/utils/enums/Gender.dart';
+import 'package:elevate_flower_app/core/utils/enums/gender.dart';
 import 'package:elevate_flower_app/features/register/domain/entities/register_user_response.dart';
 import 'package:elevate_flower_app/features/register/domain/use_cases/register_user_user_case.dart';
 import 'package:elevate_flower_app/features/register/domain/use_cases/save_token_use_case.dart';

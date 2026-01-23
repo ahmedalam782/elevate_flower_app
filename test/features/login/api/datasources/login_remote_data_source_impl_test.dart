@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:elevate_flower_app/core/config/base_response/result.dart';
-import 'package:elevate_flower_app/core/config/di/injectable_config.dart';
 import 'package:elevate_flower_app/core/errors/failures.dart';
 import 'package:elevate_flower_app/features/login/api/api_client/login_api_client.dart';
 import 'package:elevate_flower_app/features/login/api/datasources/login_remote_data_source_impl.dart';
@@ -23,21 +22,18 @@ void main() {
   late MockInternetConnection mockInternetConnection;
 
   setUp(() async {
+
     await GetIt.instance.reset();
-    configureDependencies();
 
     mockInternetConnection = MockInternetConnection();
     when(
       mockInternetConnection.hasInternetAccess,
     ).thenAnswer((_) async => true);
 
-    if (GetIt.instance.isRegistered<InternetConnection>()) {
-      GetIt.instance.unregister<InternetConnection>();
-    }
-
     GetIt.instance.registerSingleton<InternetConnection>(
       mockInternetConnection,
     );
+
 
     apiClientMock = MockLoginApiClient();
     dataSourceImpl = LoginRemoteDataSourceImpl(apiClient: apiClientMock);
