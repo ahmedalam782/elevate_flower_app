@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:io';
 import 'package:elevate_flower_app/core/config/base_state/base_state.dart';
 import 'package:elevate_flower_app/core/errors/handle_errors/handle_errors.dart';
-import 'package:elevate_flower_app/core/utils/enums/Gender.dart';
+import 'package:elevate_flower_app/core/utils/enums/gender.dart';
 import 'package:elevate_flower_app/features/edit_profile/domain/entities/edit_profile_params.dart';
 import 'package:elevate_flower_app/features/edit_profile/domain/entities/edit_profile_result.dart';
 import 'package:elevate_flower_app/features/edit_profile/domain/entities/edit_profile_user_entity.dart';
