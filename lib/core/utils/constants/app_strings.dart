@@ -8,8 +8,7 @@ class AppStrings {
   static const String userModel = 'user';
   static const String langCode = 'lang_code';
   static const String countryCode = 'country_code';
-
+  static const String inValidToken = 'invalid token .. login again';
 
   // ************ keys ****************//
- 
 }

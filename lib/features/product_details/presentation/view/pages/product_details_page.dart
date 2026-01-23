@@ -6,6 +6,7 @@ import 'package:elevate_flower_app/core/languages/locale_keys.g.dart';
 import 'package:elevate_flower_app/core/shared/widgets/custom_button.dart';
 import 'package:elevate_flower_app/core/theme/app_colors.dart';
 import 'package:elevate_flower_app/core/theme/app_typography.dart';
+import 'package:elevate_flower_app/features/cart/presentation/view/widgets/custom_add_to_cart_button.dart';
 import 'package:elevate_flower_app/features/product_details/presentation/view/widgets/product_image_slider.dart';
 import 'package:elevate_flower_app/features/product_details/presentation/view_model/cubit/product_details_cubit.dart';
 import 'package:elevate_flower_app/features/product_details/presentation/view_model/cubit/product_details_events.dart';
@@ -229,9 +230,8 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                         bottom: 24.h,
                         left: 16.w,
                         right: 16.w,
-                        child: CustomButton(
-                          onPressed: () {},
-                          title: LocaleKeys.product_details_add_to_cart.tr(),
+                        child: CustomAddToCartButton(
+                          productId: widget.productId,
                         ),
                       ),
                     ],

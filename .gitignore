@@ -45,3 +45,4 @@ app.*.map.json
 /android/app/release
 lib/core/config/di/injectable_config.config.dart
 *.g.dart
+*.mocks.dart
