@@ -9,6 +9,7 @@ import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../../register/api/datasources/register_remote_data_source_impl_test.mocks.dart';
 import 'best_seller_remote_data_source_impl_test.mocks.dart';
 
@@ -20,20 +21,25 @@ void main() {
   late MockInternetConnection mockInternetConnection;
 
   setUp(() async {
+    // Mock SharedPreferences to prevent MissingPluginException
+    SharedPreferences.setMockInitialValues({});
+
     await GetIt.instance.reset();
-    configureDependencies();
+
+    // Setup mock InternetConnection BEFORE configureDependencies
     mockInternetConnection = MockInternetConnection();
     when(
       mockInternetConnection.hasInternetAccess,
     ).thenAnswer((_) async => true);
-    if (GetIt.instance.isRegistered<InternetConnection>()) {
-      GetIt.instance.unregister<InternetConnection>();
-    }
 
-    // Register your mock
+    // Register mock InternetConnection first
     GetIt.instance.registerSingleton<InternetConnection>(
       mockInternetConnection,
     );
+
+    // Now run configureDependencies
+    configureDependencies();
+
     apiClientMock = MockBestSellerApiClient();
     dataSourceImpl = BestSellerRemoteDataSourceImpl(apiClientMock);
   });
@@ -65,9 +71,7 @@ void main() {
     );
 
     test("test getBestSellerProducts returns Failure on failure", () async {
-      when(
-        apiClientMock.getBestSellerProducts(),
-      ).thenThrow(Exception("error"));
+      when(apiClientMock.getBestSellerProducts()).thenThrow(Exception("error"));
       final result = await dataSourceImpl.getBestSellerProducts();
       expect(result, isA<Error>());
       final error = result as Error;
