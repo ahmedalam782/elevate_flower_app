@@ -233,7 +233,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       iconPath: AppIcons.iconsLocation,
                       title: LocaleKeys.profile_saved_address.tr(),
                       onTap: () {
-                        // TODO: Navigate to saved addresses
+                        context.push(Routes.addressDetails);
                       },
                     ),
 

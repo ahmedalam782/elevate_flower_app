@@ -283,5 +283,9 @@
     "title": "تغيير اللغة",
     "arabic": "العربية",
     "english": "الانجليزية"
+  },
+  "address_details": {
+    "for_better_experience": "لتجربة أفضل, من فضلك قم بتفعيل الموقع",
+    "allow": "تفعيل"
   }
 }

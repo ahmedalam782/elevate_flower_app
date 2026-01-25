@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:elevate_flower_app/features/address_details/presentation/view/pages/address_details_page.dart';
 import 'package:elevate_flower_app/features/best_seller/presentation/view/pages/best_seller_page.dart';
 import 'package:elevate_flower_app/features/cart/presentation/view/pages/cart_page.dart';
 import 'package:elevate_flower_app/features/categories/presentation/view/pages/categories_page.dart';
@@ -80,6 +81,12 @@ final GoRouter router = GoRouter(
     _customAnimatedGoRoute(
       route: Routes.editProfile,
       page: (state, context) => EditProfilePage(
+        key: ValueKey(context.locale.languageCode.toString()),
+      ),
+    ),
+    _customAnimatedGoRoute(
+      route: Routes.addressDetails,
+      page: (state, context) => AddressDetailsPage(
         key: ValueKey(context.locale.languageCode.toString()),
       ),
     ),
