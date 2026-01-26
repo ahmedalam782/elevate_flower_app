@@ -11,4 +11,9 @@ class AppStrings {
   static const String inValidToken = 'invalid token .. login again';
 
   // ************ keys ****************//
+
+  //
+  static const String cititesJsonpath = 'assets/json/cities.json';
+  static const String statesJsonPath = 'assets/json/states.json';
+  static const String citiesKey = 'cities';
 }

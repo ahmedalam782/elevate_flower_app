@@ -86,7 +86,7 @@ flutter:
   assets:
     - assets/images/
     - assets/icons/
-    # - assets/json/
+    - assets/json/
     - assets/animations/
     - assets/localization/ar-EG.json
     - assets/localization/en-US.json

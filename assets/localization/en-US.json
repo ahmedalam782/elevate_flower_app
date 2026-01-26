@@ -294,6 +294,7 @@
     "rec_name": "Recipient name",
     "enter_rec_name": "Enter the recipient name",
     "area": "Area",
-    "city": "City"
+    "city": "City",
+    "get_location": "Get location"
   }
 }
