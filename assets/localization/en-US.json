@@ -283,5 +283,9 @@
     "profile_updated_successfully": "Profile updated successfully",
     "camera_option": "Camera",
     "gallery_option": "Gallery"
+  },
+  "address": {
+    "address_title": "Saved Addresses",
+    "add_new_address": "Add new address"
   }
 }

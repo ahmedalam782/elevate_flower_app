@@ -61,5 +61,7 @@ class AppIcons {
   static const String iconsTranslateLang = "assets/icons/translate_lang.svg";
 
   static const String iconsWarning = "assets/icons/warning.svg";
+
+  static const String iconsDelete = "assets/icons/delete.svg";
 }
 
