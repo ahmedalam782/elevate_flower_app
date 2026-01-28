@@ -83,6 +83,13 @@ final GoRouter router = GoRouter(
         key: ValueKey(context.locale.languageCode.toString()),
       ),
     ),
+
+    _customAnimatedGoRoute(
+      route: Routes.checkOutPage,
+      page: (state, context) => CartPage(
+        key: ValueKey(context.locale.languageCode.toString()),
+      ),
+    ),
   ],
 );
 
