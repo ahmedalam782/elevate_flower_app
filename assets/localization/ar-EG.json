@@ -284,6 +284,14 @@
     "arabic": "العربية",
     "english": "الانجليزية"
   },
+  "address": {
+    "address_title": "العناوين المحفوظة",
+    "add_new_address": "إضافة عنوان جديد",
+    "delete_address": "حذف",
+    "cancel": "إلغاء",
+    "deletion_confirmation": "هل أنت متأكد أنك تريد حذف هذا العنوان؟"
+  },
+
   "address_details": {
     "for_better_experience": "لتحسين تجربتك، يرجى السماح لنا بالوصول إلى موقعك",
     "allow": "سماح",

@@ -232,7 +232,10 @@ class _ProfilePageState extends State<ProfilePage> {
                     ProfileListItem(
                       iconPath: AppIcons.iconsLocation,
                       title: LocaleKeys.profile_saved_address.tr(),
-                      onTap: () {},
+                      onTap: () {
+                        // TODO: Navigate to saved addresses
+                        context.push(Routes.userAddresses);
+                      },
                     ),
 
                     const ProfileDivider(),

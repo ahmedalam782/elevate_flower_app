@@ -284,6 +284,14 @@
     "camera_option": "Camera",
     "gallery_option": "Gallery"
   },
+  "address": {
+    "address_title": "Saved Addresses",
+    "add_new_address": "Add new address",
+    "delete_address": "Delete",
+    "cancel": "Cancel",
+    "deletion_confirmation": "Are you sure you want to delete this address?"
+  },
+
   "address_details": {
     "for_better_experience": "For better experience, please allow us access to your location",
     "allow": "Allow",
