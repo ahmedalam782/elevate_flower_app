@@ -31,6 +31,7 @@ class FlowerLoadingOverlay extends StatelessWidget {
 }
 
 void showOverLayLoading() {
+  if (navigatorKey.currentContext == null) return;
   showDialog(
     context: navigatorKey.currentContext!,
     barrierDismissible: false,
@@ -40,6 +41,7 @@ void showOverLayLoading() {
 }
 
 void hideOverlayLoading() {
+  if (navigatorKey.currentContext == null) return;
   if (Navigator.of(
     navigatorKey.currentContext!,
     rootNavigator: true,

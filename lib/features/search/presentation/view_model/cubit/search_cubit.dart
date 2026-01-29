@@ -11,18 +11,18 @@ import 'package:injectable/injectable.dart';
 class SearchCubit extends Cubit<SearchStates> {
   final SearchProductsUseCase _searchProductsUseCase;
 
-  SearchCubit(this._searchProductsUseCase) : super(SearchStates());
+  SearchCubit(this._searchProductsUseCase) : super(const SearchStates());
 
   SearchParams _currentParams = const SearchParams(keyword: '');
   List<ProductItemEntity> _currentProducts = [];
 
-  void doIntent(SearchEvents event) {
+  Future<void> doIntent(SearchEvents event) async {
     event.when(search: _search, loadMore: _loadMore);
   }
 
   Future<void> _search(String keyword, int limit) async {
     if (keyword.trim().isEmpty) {
-      emit(SearchStates());
+      emit(const SearchStates());
       return;
     }
 
@@ -94,7 +94,7 @@ class SearchCubit extends Cubit<SearchStates> {
             ),
           );
         } else {
-          _currentProducts.addAll(newProducts);
+          _currentProducts = List.from(_currentProducts)..addAll(newProducts);
           final isLast = newProducts.length < _currentParams.limit;
           emit(
             state.copyWith(
