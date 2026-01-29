@@ -6,6 +6,7 @@ import 'package:elevate_flower_app/features/edit_profile/presentation/view/pages
 import 'package:elevate_flower_app/features/occasions/presentation/view/pages/occasions_page.dart';
 import 'package:elevate_flower_app/features/product_details/presentation/view/pages/product_details_page.dart';
 import 'package:elevate_flower_app/features/register/presentation/view/pages/register_page.dart';
+import 'package:elevate_flower_app/features/user_addresses/presentation/view/pages/user_addresses_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../features/forget_password/presentation/view/pages/forgetPassword_page.dart';
@@ -80,6 +81,12 @@ final GoRouter router = GoRouter(
     _customAnimatedGoRoute(
       route: Routes.editProfile,
       page: (state, context) => EditProfilePage(
+        key: ValueKey(context.locale.languageCode.toString()),
+      ),
+    ),
+    _customAnimatedGoRoute(
+      route: Routes.userAddresses,
+      page: (state, context) => UserAddressesPage(
         key: ValueKey(context.locale.languageCode.toString()),
       ),
     ),
