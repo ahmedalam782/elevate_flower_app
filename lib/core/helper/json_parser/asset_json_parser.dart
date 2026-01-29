@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:injectable/injectable.dart';
 
@@ -15,6 +14,8 @@ class AssetJasonparser {
 
       return decoded;
       // return dataList.map((e) => fromJson(e as Map<String, dynamic>)).toList();
-    } catch (e) {}
+    } catch (e) {
+      rethrow;
+    }
   }
 }

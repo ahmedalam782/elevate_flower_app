@@ -22,5 +22,5 @@ class PermissionPermanentlyDeniedException extends LocationException {
 }
 
 class LocationUnknownException extends LocationException {
-  const LocationUnknownException(String message) : super(message);
+  const LocationUnknownException(super.message);
 }

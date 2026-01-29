@@ -1,5 +1,4 @@
 import 'package:elevate_flower_app/core/helper/location/location_exceptions.dart';
-import 'package:flutter/widgets.dart';
 import 'package:location/location.dart';
 import 'package:permission_handler/permission_handler.dart' as ph;
 

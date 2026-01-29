@@ -23,6 +23,7 @@ class AddressDetailsRepositoryImpl implements AddressDetailsRepository {
     return addressDetailsLocalDataSource.getAllStates();
   }
 
+  @override
   Future<List<CityModel>> getAllCities() async {
     return addressDetailsLocalDataSource.getAllCitites();
   }

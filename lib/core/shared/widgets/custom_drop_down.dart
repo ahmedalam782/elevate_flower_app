@@ -142,11 +142,11 @@ class _SearchSheetState<T> extends State<_SearchSheet<T>> {
             TextFormField(
               controller: controller,
               onChanged: _filter,
-              style: TextStyle(color: Colors.white),
+              style: const TextStyle(color: Colors.white),
               decoration: InputDecoration(
                 hintText: '',
                 // hintStyle: Colors.white70,
-                prefixIcon: Icon(Icons.search, color: Colors.white),
+                prefixIcon: const Icon(Icons.search, color: Colors.white),
                 filled: true,
                 fillColor: Colors.white.withOpacity(0.15),
                 border: OutlineInputBorder(

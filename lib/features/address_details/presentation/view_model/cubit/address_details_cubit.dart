@@ -1,6 +1,5 @@
 // TODO: presentation Address_detailsCubit
 
-import 'package:elevate_flower_app/core/config/base_response/result.dart';
 import 'package:elevate_flower_app/core/config/base_state/base_state.dart';
 import 'package:elevate_flower_app/core/helper/location/location_helper.dart';
 import 'package:elevate_flower_app/features/address_details/data/models/address_details_data.dart';
@@ -110,7 +109,9 @@ class AddressDetailsCubit extends Cubit<AddressDetailsStates> {
     try {
       final data = await _getStatesUseCase.call();
       emit(state.copyWith(states: data));
-    } catch (e) {}
+    } catch (e) {
+      // Handle error silently
+    }
   }
 
   Future<void> _getCities() async {
@@ -129,26 +130,24 @@ class AddressDetailsCubit extends Cubit<AddressDetailsStates> {
   Future<void> _addAddress() async {
     emit(state.copyWith(state: const BaseState.loading()));
 
-    final result = await _addAddressUseCase.call(state.addressDetails!);
-    switch (result) {
-      case Success<void>():
-        emit(state.copyWith(state: BaseState<void>.success(result)));
-
-      case Error<void>():
-        emit(state.copyWith(state: BaseState<void>.error(result.exception)));
+    try {
+      await _addAddressUseCase.call(state.addressDetails!);
+      emit(state.copyWith(state: const BaseState.success(null)));
+    } catch (e) {
+      final error = e is Exception ? e : Exception(e.toString());
+      emit(state.copyWith(state: BaseState.error(error)));
     }
   }
 
   Future<void> _updateAddress(String id) async {
     emit(state.copyWith(state: const BaseState.loading()));
 
-    final result = await _updateAddressUseCase.call(state.addressDetails!, id);
-    switch (result) {
-      case Success<void>():
-        emit(state.copyWith(state: BaseState<void>.success(result)));
-
-      case Error<void>():
-        emit(state.copyWith(state: BaseState<void>.error(result.exception)));
+    try {
+      await _updateAddressUseCase.call(state.addressDetails!, id);
+      emit(state.copyWith(state: const BaseState.success(null)));
+    } catch (e) {
+      final error = e is Exception ? e : Exception(e.toString());
+      emit(state.copyWith(state: BaseState.error(error)));
     }
   }
 

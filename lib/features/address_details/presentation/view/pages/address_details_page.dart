@@ -53,9 +53,9 @@ class _AddressDetailsPageState extends State<AddressDetailsPage> {
       cubit.phoneNumberController.text = widget.addressDetailsData?.phone ?? "";
 
       final locationSplitted = widget.addressDetailsData?.city?.split(",");
-      if (locationSplitted?.length == 2) {
-        currentCity = locationSplitted![0];
-        currentState = locationSplitted![1];
+      if (locationSplitted != null && locationSplitted.length == 2) {
+        currentCity = locationSplitted[0];
+        currentState = locationSplitted[1];
       }
     }
   }
@@ -84,7 +84,7 @@ class _AddressDetailsPageState extends State<AddressDetailsPage> {
                   return Center(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: [CircularProgressIndicator()],
+                      children: const [CircularProgressIndicator()],
                     ),
                   );
                 } else {
@@ -177,9 +177,8 @@ class _AddressDetailsPageState extends State<AddressDetailsPage> {
                                         );
                                       },
                                       builder: (context, state) {
-                                        List<CityModel> cities = [];
                                         if (cubit.state.selectedState == null) {
-                                          cities = state.cities;
+                                          // cities would be state.cities
                                         } else {
                                           cubit.state.selectedCity = state
                                               .cities
@@ -199,12 +198,12 @@ class _AddressDetailsPageState extends State<AddressDetailsPage> {
                                           value: cubit.state.selectedCity,
                                           items: cubit.state.cities,
                                           itemLabelBuilder: (e) {
-                                            if (context.locale.languageCode ==
-                                                "ar") {
-                                              return e.nameAr ?? "";
-                                            } else {
-                                              return e.nameEn ?? "";
-                                            }
+                                            return context
+                                                        .locale
+                                                        .languageCode ==
+                                                    "ar"
+                                                ? e.nameAr
+                                                : e.nameEn;
                                           },
                                           onChanged: (v) {
                                             if (v.id !=
