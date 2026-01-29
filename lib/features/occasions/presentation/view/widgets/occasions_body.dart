@@ -13,6 +13,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:toastification/toastification.dart';
 
+import 'package:elevate_flower_app/features/cart/presentation/view/widgets/custom_add_to_cart_button.dart';
+import 'package:elevate_flower_app/features/cart/presentation/view_model/cubit/cart_cubit.dart';
+import 'package:elevate_flower_app/features/cart/presentation/view_model/cubit/cart_events.dart';
+import 'package:elevate_flower_app/features/cart/presentation/view_model/cubit/cart_states.dart';
+
 class OccasionsBody extends StatefulWidget {
   const OccasionsBody({super.key, this.selectedIndex});
   final int? selectedIndex;
@@ -89,16 +94,64 @@ class _OccasionsBodyState extends State<OccasionsBody> {
               },
               selectedIndex: _selectedTabIndex,
             ),
+
             Expanded(
-              child: PaginatedProductGridView(
-                onProductTap: (product) {
-                  context.push(Routes.productDetails, extra: product.id);
+              child: BlocBuilder<CartCubit, CartStates>(
+                builder: (context, cartState) {
+                  return PaginatedProductGridView(
+                    onProductTap: (product) {
+                      context.push(Routes.productDetails, extra: product.id);
+                    },
+                    onAddToCart: (product) {
+                      addToCart(context, product.id);
+                    },
+                    onIncrement: (product) {
+                      addToCart(context, product.id);
+                    },
+                    onDecrement: (product) {
+                      final cartProducts =
+                          cartState.state.data?.cartProducts ?? [];
+                      final itemIndex = cartProducts.indexWhere(
+                        (e) => e.id == product.id,
+                      );
+                      if (itemIndex != -1) {
+                        final item = cartProducts[itemIndex];
+                        if (item.productQuantityInCart > 1) {
+                          context.read<CartCubit>().doIntent(
+                            UpdateProductInCartEvent(
+                              productId: product.id,
+                              qunatity: item.productQuantityInCart,
+                            ),
+                          );
+                        } else {
+                          context.read<CartCubit>().doIntent(
+                            RemoveProductFromCartEvent(productId: product.id),
+                          );
+                        }
+                      }
+                    },
+                    onRemove: (product) {
+                      context.read<CartCubit>().doIntent(
+                        RemoveProductFromCartEvent(productId: product.id),
+                      );
+                    },
+                    getQuantity: (productId) {
+                      final cartProducts =
+                          cartState.state.data?.cartProducts ?? [];
+                      final itemIndex = cartProducts.indexWhere(
+                        (e) => e.id == productId,
+                      );
+                      return itemIndex != -1
+                          ? cartProducts[itemIndex].productQuantityInCart
+                          : 0;
+                    },
+                    key: ValueKey(_selectedTabIndex),
+                    isLoading:
+                        state.productsByOccasion.state == StateType.loading ||
+                        state.occasions.state == StateType.loading,
+                    products: state.productsByOccasion.data ?? [],
+                  );
                 },
-                key: ValueKey(_selectedTabIndex),
-                isLoading:
-                    state.productsByOccasion.state == StateType.loading ||
-                    state.occasions.state == StateType.loading,
-                products: state.productsByOccasion.data ?? [],
               ),
             ),
           ],

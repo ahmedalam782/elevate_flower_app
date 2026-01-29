@@ -208,7 +208,8 @@
     "highest_price": "السعر الأعلى",
     "new": "جديد",
     "old": "قديم",
-    "discount": "خصم"
+    "discount": "خصم",
+    "search_for_product": "ابحث عن أي منتج تريده"
   },
   "best_seller": {
     "best_seller": "المنتجات المميزة",
@@ -291,7 +292,6 @@
     "cancel": "إلغاء",
     "deletion_confirmation": "هل أنت متأكد أنك تريد حذف هذا العنوان؟"
   },
-
   "address_details": {
     "for_better_experience": "لتحسين تجربتك، يرجى السماح لنا بالوصول إلى موقعك",
     "allow": "سماح",

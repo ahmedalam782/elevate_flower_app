@@ -16,4 +16,5 @@ class Routes {
   static const String userAddresses = "/user-addresses";
 
   static const String addressDetails = "/address-details";
+  static const String search = "/search";
 }

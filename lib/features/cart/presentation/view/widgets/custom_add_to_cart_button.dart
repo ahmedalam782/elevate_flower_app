@@ -16,6 +16,9 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:go_router/go_router.dart';
 import 'package:toastification/toastification.dart';
 
+import 'package:elevate_flower_app/core/theme/app_colors.dart';
+import 'package:elevate_flower_app/core/theme/app_typography.dart';
+
 class CustomAddToCartButton extends StatelessWidget {
   final String productId;
   const CustomAddToCartButton({super.key, required this.productId});
@@ -23,13 +26,82 @@ class CustomAddToCartButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider.value(
-      // create: (context) => SubjectBloc(),
       value: getIt<CartCubit>(),
       child: BlocBuilder<CartCubit, CartStates>(
         builder: (context, state) {
+          final cartProducts = state.state.data?.cartProducts ?? [];
+          final itemIndex = cartProducts.indexWhere((e) => e.id == productId);
+          final quantity = itemIndex != -1
+              ? cartProducts[itemIndex].productQuantityInCart
+              : 0;
+
+          if (quantity > 0) {
+            return Container(
+              height: 50,
+              decoration: BoxDecoration(
+                color: AppColors.primerColor,
+                borderRadius: BorderRadius.circular(25),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  // Decrement Button
+                  GestureDetector(
+                    onTap: () async {
+                      if (quantity == 1) {
+                        getIt<CartCubit>().doIntent(
+                          RemoveProductFromCartEvent(productId: productId),
+                        );
+                      } else {
+                        getIt<CartCubit>().doIntent(
+                          UpdateProductInCartEvent(
+                            productId: productId,
+                            qunatity: quantity - 1,
+                          ),
+                        );
+                      }
+                    },
+                    child: Container(
+                      width: 50,
+                      height: 50,
+                      decoration: BoxDecoration(
+                        color: Colors.white.withOpacity(0.2),
+                        shape: BoxShape.circle,
+                      ),
+                      child: const Icon(Icons.remove, color: Colors.white),
+                    ),
+                  ),
+
+                  // Quantity
+                  Text(
+                    '$quantity',
+                    style: 18.semiBold.copyWith(color: Colors.white),
+                  ),
+
+                  // Increment Button
+                  GestureDetector(
+                    onTap: () async {
+                      await addToCart(context, productId);
+                    },
+                    child: Container(
+                      width: 50,
+                      height: 50,
+                      decoration: BoxDecoration(
+                        color: Colors.white.withOpacity(0.2),
+                        shape: BoxShape.circle,
+                      ),
+                      child: const Icon(Icons.add, color: Colors.white),
+                    ),
+                  ),
+                ],
+              ),
+            );
+          }
+
           return CustomButton(
-            // isLoading: state,
-            isLoading: false,
+            isLoading:
+                state.isAddingItem &&
+                state.currentActedUponProductId == productId,
             onPressed: () async {
               await addToCart(context, productId);
             },

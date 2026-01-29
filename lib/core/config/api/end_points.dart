@@ -35,4 +35,7 @@ class Apikeys {
 
 class QueryParameter {
   static const String categoryQuery = 'category';
+  static const String keyword = 'keyword';
+  static const String page = 'page';
+  static const String limit = 'limit';
 }

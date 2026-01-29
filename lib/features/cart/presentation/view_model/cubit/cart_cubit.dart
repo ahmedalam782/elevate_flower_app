@@ -1,6 +1,5 @@
 // TODO: presentation CartCubit
 
-
 import 'package:elevate_flower_app/core/config/base_response/result.dart';
 import 'package:elevate_flower_app/core/config/base_state/base_state.dart';
 import 'package:elevate_flower_app/core/shared/widgets/loading_flower_widget.dart';
@@ -109,14 +108,23 @@ class CartCubit extends Cubit<CartStates> {
           productId,
           fromCartScreen: fromCartScreen,
         );
-        emit(
-          state.copyWith(
-            isAddingItem: false,
-            state: BaseState.success(updatedCart),
-            totalPrice: updatedCart?.totalPrice ?? 0,
-            currentActedUponProductId: "",
-          ),
-        );
+
+        if (updatedCart != null) {
+          emit(
+            state.copyWith(
+              isAddingItem: false,
+              state: BaseState.success(updatedCart),
+              totalPrice: updatedCart.totalPrice,
+              currentActedUponProductId: "",
+            ),
+          );
+        } else {
+          // Refresh cart data if local update is not possible
+          await _loadCart();
+          emit(
+            state.copyWith(isAddingItem: false, currentActedUponProductId: ""),
+          );
+        }
         return true;
 
       case Error<void>():
@@ -221,7 +229,9 @@ class CartCubit extends Cubit<CartStates> {
 
     switch (result) {
       case Success<void>():
-        emit(CartStates.initial());
+        emit(
+          state.copyWith(state: const BaseState.success(null), totalPrice: 0),
+        );
 
       case Error<void>():
         emit(state.copyWith(state: BaseState.error(result.exception)));
