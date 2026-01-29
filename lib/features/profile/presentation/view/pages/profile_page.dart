@@ -234,7 +234,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       title: LocaleKeys.profile_saved_address.tr(),
                       onTap: () {
                         // TODO: Navigate to saved addresses
-                        context.push(Routes.userAdresses);
+                        context.push(Routes.userAddresses);
                       },
                     ),
 

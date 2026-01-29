@@ -1,13 +1,20 @@
 import 'package:elevate_flower_app/core/theme/app_colors.dart';
 import 'package:elevate_flower_app/core/theme/app_icons.dart';
+import 'package:elevate_flower_app/features/user_addresses/domain/entities/user_address_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class AddressCell extends StatelessWidget {
-  const AddressCell({super.key, required this.onEdit, required this.onDelete});
+  const AddressCell({
+    super.key,
+    required this.onEdit,
+    required this.onDelete,
+    this.address,
+  });
   final VoidCallback onEdit;
   final VoidCallback onDelete;
+  final UserAddressEntity? address;
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +43,10 @@ class AddressCell extends StatelessWidget {
                 height: 20.h,
               ),
               const SizedBox(width: 4),
-              Text('Cairo', style: Theme.of(context).textTheme.bodyLarge),
+              Text(
+                address?.city ?? '',
+                style: Theme.of(context).textTheme.bodyLarge,
+              ),
               const Spacer(),
               GestureDetector(
                 onTap: onDelete,
@@ -59,7 +69,7 @@ class AddressCell extends StatelessWidget {
           ),
           SizedBox(height: 16.h),
           Text(
-            '123 Main St, City, Country',
+            "${address?.street} - ${address?.city}",
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
               color: AppColors.gray53,
               fontWeight: FontWeight.w400,
@@ -71,3 +81,4 @@ class AddressCell extends StatelessWidget {
     );
   }
 }
+
