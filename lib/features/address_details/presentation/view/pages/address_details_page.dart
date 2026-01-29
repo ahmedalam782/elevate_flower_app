@@ -84,7 +84,12 @@ class _AddressDetailsPageState extends State<AddressDetailsPage> {
                   return Center(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [CircularProgressIndicator()],
+                      children: [
+                        SizedBox(height: 0.5.sh),
+                        Center(child: CircularProgressIndicator()),
+                        SizedBox(height: 0.5.sh),
+                        // Spacer(),
+                      ],
                     ),
                   );
                 } else {

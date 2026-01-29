@@ -2,6 +2,7 @@
 
 import 'package:elevate_flower_app/core/config/base_state/base_state.dart';
 import 'package:elevate_flower_app/core/helper/location/location_helper.dart';
+import 'package:elevate_flower_app/core/routes/app_router.dart';
 import 'package:elevate_flower_app/features/address_details/data/models/address_details_data.dart';
 import 'package:elevate_flower_app/features/address_details/data/models/cities_model.dart';
 import 'package:elevate_flower_app/features/address_details/data/models/states_model.dart';
@@ -13,6 +14,7 @@ import 'package:elevate_flower_app/features/address_details/presentation/view_mo
 import 'package:elevate_flower_app/features/address_details/presentation/view_model/cubit/address_details_states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
@@ -133,6 +135,7 @@ class AddressDetailsCubit extends Cubit<AddressDetailsStates> {
     try {
       await _addAddressUseCase.call(state.addressDetails!);
       emit(state.copyWith(state: const BaseState.success(null)));
+      navigatorKey.currentContext!.pop(true);
     } catch (e) {
       final error = e is Exception ? e : Exception(e.toString());
       emit(state.copyWith(state: BaseState.error(error)));
@@ -145,6 +148,7 @@ class AddressDetailsCubit extends Cubit<AddressDetailsStates> {
     try {
       await _updateAddressUseCase.call(state.addressDetails!, id);
       emit(state.copyWith(state: const BaseState.success(null)));
+      navigatorKey.currentContext!.pop(true);
     } catch (e) {
       final error = e is Exception ? e : Exception(e.toString());
       emit(state.copyWith(state: BaseState.error(error)));

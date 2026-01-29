@@ -6,10 +6,11 @@ part 'address_details_data.g.dart';
 @JsonSerializable()
 class AddressDetailsData {
   @JsonKey(includeToJson: false, includeFromJson: false)
-  final String? addressId;
   final String? street;
-  final String? username;
   final String? city;
+  final String? addressId;
+
+  final String? username;
   final String? lat;
   final String? long;
   final String? phone;

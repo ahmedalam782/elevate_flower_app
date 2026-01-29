@@ -5,14 +5,15 @@ import 'package:elevate_flower_app/features/user_addresses/data/models/remove_ad
 import 'package:injectable/injectable.dart';
 import 'package:retrofit/retrofit.dart';
 part 'user_addresses_api_client.g.dart';
+
 @injectable
 @RestApi(baseUrl: EndPoints.baseUrl)
 abstract class UserAddressesApiClient {
   @factoryMethod
   factory UserAddressesApiClient(Dio dio) = _UserAddressesApiClient;
-  @GET(EndPoints.userAddresses)
+  @GET(EndPoints.addressEndPoint)
   Future<GetAllAddressesResponse> getAllAddresses();
 
-  @DELETE("${EndPoints.userAddresses}/{id}")
+  @DELETE("${EndPoints.addressEndPoint}/{id}")
   Future<RemoveAddressResponse> deleteAddress(@Path("id") String id);
 }

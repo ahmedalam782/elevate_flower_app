@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:elevate_flower_app/core/errors/handle_errors/handle_errors.dart';
 import 'package:elevate_flower_app/core/languages/locale_keys.g.dart';
+import 'package:elevate_flower_app/core/routes/routes.dart';
 import 'package:elevate_flower_app/core/shared/widgets/custom_button.dart';
 import 'package:elevate_flower_app/features/user_addresses/presentation/view/widgets/deletable_adress_cell.dart';
 import 'package:elevate_flower_app/features/user_addresses/presentation/view/widgets/loading_shimmer.dart';
@@ -10,6 +11,7 @@ import 'package:elevate_flower_app/features/user_addresses/presentation/view_mod
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 class UserAddressesBody extends StatelessWidget {
   const UserAddressesBody({super.key});
@@ -44,8 +46,14 @@ class UserAddressesBody extends StatelessWidget {
                           return DeletableAddressCell(
                             key: ValueKey(data[index].id),
                             address: data[index],
-                            onEdit: () {
-                              // TODO GO TO EDIT ADDRESS SCREEN
+                            onEdit: () async {
+                              final didAdd = await context.push(
+                                Routes.addressDetails,
+                                extra: data[index].toAddressDetailsData(),
+                              );
+                              if (didAdd == true) {
+                                cubit.doIntent(const GetAllAddressesEvent());
+                              }
                             },
                             onDeleteConfirmed: () {
                               if (data[index].id == null) return;
@@ -68,8 +76,12 @@ class UserAddressesBody extends StatelessWidget {
             ),
             SizedBox(height: 24.h),
             CustomButton(
-              onPressed: () {
+              onPressed: () async {
                 // TODO GO TO ADD NEW ADDRESS SCREEN
+                final didAdd = await context.push(Routes.addressDetails);
+                if (didAdd == true) {
+                  cubit.doIntent(const GetAllAddressesEvent());
+                }
               },
               title: LocaleKeys.address_add_new_address.tr(),
             ),
