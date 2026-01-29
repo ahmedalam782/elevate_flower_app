@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 // TODO: presentation Address_detailsStates
+import 'package:elevate_flower_app/core/config/base_state/base_state.dart';
 import 'package:elevate_flower_app/features/address_details/data/models/address_details_data.dart';
 import 'package:elevate_flower_app/features/address_details/data/models/cities_model.dart';
 import 'package:elevate_flower_app/features/address_details/data/models/states_model.dart';
@@ -17,6 +18,8 @@ class AddressDetailsStates {
   List<CityModel> cities;
   CityModel? selectedCity;
 
+  final BaseState? state;
+
   AddressDetailsStates({
     this.isFetchingLocation = false,
     required this.fetchingLocalData,
@@ -27,6 +30,7 @@ class AddressDetailsStates {
     this.selectedState,
     required this.cities,
     this.selectedCity,
+    this.state,
   });
 
   AddressDetailsStates copyWith({
@@ -39,6 +43,7 @@ class AddressDetailsStates {
     StatesModel? selectedState,
     List<CityModel>? cities,
     CityModel? selectedCity,
+    BaseState? state,
   }) {
     return AddressDetailsStates(
       isFetchingLocation: isFetchingLocation ?? this.isFetchingLocation,
@@ -50,6 +55,7 @@ class AddressDetailsStates {
       selectedState: selectedState ?? this.selectedState,
       cities: cities ?? this.cities,
       selectedCity: selectedCity ?? this.selectedCity,
+      state: state ?? this.state,
     );
   }
 }

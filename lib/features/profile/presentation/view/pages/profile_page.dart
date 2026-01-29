@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:elevate_flower_app/features/address_details/data/models/address_details_data.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -232,9 +233,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     ProfileListItem(
                       iconPath: AppIcons.iconsLocation,
                       title: LocaleKeys.profile_saved_address.tr(),
-                      onTap: () {
-                        context.push(Routes.addressDetails);
-                      },
+                      onTap: () {},
                     ),
 
                     const ProfileDivider(),

@@ -22,6 +22,7 @@ class EndPoints {
   static const String getUserProfile = "/auth/profile-data";
   static const String editUserProfile = "/auth/editProfile";
   static const String updateProfilePhoto = "/auth/upload-photo";
+  static const String addressEndPoint = "/addresses";
 }
 
 class Apikeys {

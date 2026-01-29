@@ -15,8 +15,6 @@ class AssetJasonparser {
 
       return decoded;
       // return dataList.map((e) => fromJson(e as Map<String, dynamic>)).toList();
-    } catch (e) {
-      print("SOME ERROR${e}");
-    }
+    } catch (e) {}
   }
 }

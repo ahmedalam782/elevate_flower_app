@@ -295,6 +295,8 @@
     "enter_rec_name": "Enter the recipient name",
     "area": "Area",
     "city": "City",
-    "get_location": "Get location"
+    "get_location": "Get location",
+    "add_address": "Add address",
+    "update_address": "Update Address"
   }
 }

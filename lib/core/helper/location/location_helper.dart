@@ -36,7 +36,6 @@ class LocationHelper {
 
   Future<void> _checkPermissionGranted() async {
     PermissionStatus permission = await _location.hasPermission();
-    debugPrint(permission.name);
     if (permission == PermissionStatus.denied) {
       permission = await _location.requestPermission();
     }

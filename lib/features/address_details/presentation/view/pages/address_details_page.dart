@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:elevate_flower_app/core/config/base_state/base_state.dart';
 import 'package:elevate_flower_app/core/config/di/injectable_config.dart';
 import 'package:elevate_flower_app/core/helper/classes/debounce.dart';
 import 'package:elevate_flower_app/core/languages/locale_keys.g.dart';
@@ -7,10 +8,12 @@ import 'package:elevate_flower_app/core/shared/widgets/custom_drop_down.dart';
 import 'package:elevate_flower_app/core/shared/widgets/custom_text_field.dart';
 import 'package:elevate_flower_app/core/theme/app_animations.dart';
 import 'package:elevate_flower_app/core/theme/app_images.dart';
+import 'package:elevate_flower_app/features/address_details/data/models/address_details_data.dart';
 import 'package:elevate_flower_app/features/address_details/data/models/cities_model.dart';
 import 'package:elevate_flower_app/features/address_details/data/models/states_model.dart';
 import 'package:elevate_flower_app/features/address_details/presentation/view/widgets/address_detail_map.dart';
 import 'package:elevate_flower_app/features/address_details/presentation/view_model/cubit/address_details_cubit.dart';
+import 'package:elevate_flower_app/features/address_details/presentation/view_model/cubit/address_details_events.dart';
 import 'package:elevate_flower_app/features/address_details/presentation/view_model/cubit/address_details_states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -20,7 +23,8 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:lottie/lottie.dart';
 
 class AddressDetailsPage extends StatefulWidget {
-  const AddressDetailsPage({super.key});
+  final AddressDetailsData? addressDetailsData;
+  const AddressDetailsPage({super.key, this.addressDetailsData});
 
   @override
   State<AddressDetailsPage> createState() => _AddressDetailsPageState();
@@ -28,10 +32,43 @@ class AddressDetailsPage extends StatefulWidget {
 
 class _AddressDetailsPageState extends State<AddressDetailsPage> {
   final cubit = getIt<AddressDetailsCubit>();
+  String? currentState;
+  String? currentCity;
+
+  @override
+  void initState() {
+    fillDataInCaseOfEdit();
+    super.initState();
+  }
+
+  void fillDataInCaseOfEdit() {
+    if (widget.addressDetailsData != null) {
+      cubit.state.addressDetails = widget.addressDetailsData;
+      cubit.state.currentLat = double.tryParse(
+        widget.addressDetailsData?.lat ?? "",
+      );
+      cubit.state.currentLat = double.tryParse(
+        widget.addressDetailsData?.long ?? "",
+      );
+      cubit.locationNameController.text =
+          widget.addressDetailsData?.street ?? "";
+      cubit.recepiantNameController.text =
+          widget.addressDetailsData?.username ?? "";
+      cubit.phoneNumberController.text = widget.addressDetailsData?.phone ?? "";
+
+      final locationSplitted = widget.addressDetailsData?.city?.split(",");
+      if (locationSplitted?.length == 2) {
+        currentCity = locationSplitted![0];
+        currentState = locationSplitted![1];
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider<AddressDetailsCubit>(
-      create: (context) => cubit..getCurrentLocation(),
+      create: (context) => cubit
+        ..getCurrentLocation(currentCity: currentCity, stateName: currentState),
       child: Scaffold(
         body: SingleChildScrollView(
           child: SafeArea(
@@ -40,6 +77,13 @@ class _AddressDetailsPageState extends State<AddressDetailsPage> {
                 return state.isFetchingLocation;
               },
               builder: (context, state) {
+                double? oldAddressStarterLat = double.tryParse(
+                  widget.addressDetailsData?.lat ?? "",
+                );
+                double? oldAddressStarterLng = double.tryParse(
+                  widget.addressDetailsData?.long ?? "",
+                );
+
                 if (state) {
                   return Center(
                     child: Column(
@@ -76,14 +120,17 @@ class _AddressDetailsPageState extends State<AddressDetailsPage> {
                         children: [
                           SizedBox(height: 16.h),
                           AddressDetailMap(
-                            lat: cubit.state.currentLat!,
-                            lng: cubit.state.currentLng!,
+                            lat:
+                                oldAddressStarterLat ?? cubit.state.currentLat!,
+                            lng:
+                                oldAddressStarterLng ?? cubit.state.currentLng!,
                             onMapChanged: (lat, lng, locationName) {
                               cubit.locationNameController.text = locationName;
+
                               cubit.state.addressDetails?.copyWith(
                                 lat: lat.toString(),
                                 lng: lng.toString(),
-                                locationName: locationName,
+                                street: locationName,
                               );
                             },
                           ),
@@ -150,7 +197,8 @@ class _AddressDetailsPageState extends State<AddressDetailsPage> {
                                         }
 
                                         return AppSearchableDropdown<CityModel>(
-                                          label: 'City',
+                                          label: LocaleKeys.address_details_city
+                                              .tr(),
                                           hintText: 'Cairo',
                                           value: cubit.state.selectedCity,
                                           items: cubit.state.cities,
@@ -162,9 +210,14 @@ class _AddressDetailsPageState extends State<AddressDetailsPage> {
                                               return e.nameEn ?? "";
                                             }
                                           },
-                                          onChanged: (v) => {
-                                            cubit.selectCity(v),
+                                          onChanged: (v) {
+                                            if (v.id !=
+                                                cubit.state.selectedCity?.id) {
+                                              cubit.state.selectedState = null;
+                                              cubit.selectCity(v);
+                                            }
                                           },
+
                                           // setState(() => selectedCity = v),
                                         );
                                       },
@@ -202,7 +255,8 @@ class _AddressDetailsPageState extends State<AddressDetailsPage> {
                                         return AppSearchableDropdown<
                                           StatesModel
                                         >(
-                                          label: 'Area',
+                                          label: LocaleKeys.address_details_area
+                                              .tr(),
                                           hintText: 'Cairo',
                                           value: cubit.state.selectedState,
                                           // value: "Cairo",
@@ -224,7 +278,45 @@ class _AddressDetailsPageState extends State<AddressDetailsPage> {
                                       },
                                     ),
                               ),
+                              SizedBox(height: 16.h),
                             ],
+                          ),
+                          SizedBox(height: 16.w),
+
+                          BlocSelector<
+                            AddressDetailsCubit,
+                            AddressDetailsStates,
+                            BaseState<void>?
+                          >(
+                            selector: (state) {
+                              return state.state;
+                            },
+                            builder: (context, state) {
+                              return CustomButton(
+                                isLoading: state == BaseState.loading(),
+                                title: widget.addressDetailsData == null
+                                    ? LocaleKeys.address_details_add_address
+                                          .tr()
+                                    : LocaleKeys.address_details_update_address
+                                          .tr(),
+                                onPressed: () {
+                                  cubit.fillState();
+                                  if (widget.addressDetailsData == null) {
+                                    cubit.doIntent(AdddAddressEvent());
+                                  } else {
+                                    cubit.doIntent(
+                                      UpdateAddressEvent(
+                                        id:
+                                            widget
+                                                .addressDetailsData
+                                                ?.addressId ??
+                                            "",
+                                      ),
+                                    );
+                                  }
+                                },
+                              );
+                            },
                           ),
                         ],
                       ),

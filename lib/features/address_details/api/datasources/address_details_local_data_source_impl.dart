@@ -21,8 +21,6 @@ class AddressDetailsLocalDataSourceImpl
     );
 
     for (var item in decodedData[2]["data"]) {
-      // print("MAP DATA${item.runtimeType}");
-
       data.add(StatesModel.fromJson(item));
     }
 
@@ -37,8 +35,6 @@ class AddressDetailsLocalDataSourceImpl
     );
 
     for (var item in decodedData[2]["data"]) {
-      // print("MAP DATA${item.runtimeType}");
-
       data.add(CityModel.fromJson(item));
     }
 

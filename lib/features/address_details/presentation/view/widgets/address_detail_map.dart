@@ -55,7 +55,6 @@ class _AddressDetailMapState extends State<AddressDetailMap> {
               googleMapController = controller;
             },
             onCameraMove: (position) async {
-              print(position);
               debounce.call(() async {
                 List<Placemark> placemarks = await placemarkFromCoordinates(
                   position.target.latitude,
