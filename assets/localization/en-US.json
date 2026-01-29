@@ -290,5 +290,21 @@
     "delete_address": "Delete",
     "cancel": "Cancel",
     "deletion_confirmation": "Are you sure you want to delete this address?"
+  },
+
+  "address_details": {
+    "for_better_experience": "For better experience, please allow us access to your location",
+    "allow": "Allow",
+    "address": "Address",
+    "enter_your_address": "Enter your address",
+    "phone_number": "Phone number",
+    "please_enter_phone_number": "Please enter your phone number",
+    "rec_name": "Recipient name",
+    "enter_rec_name": "Enter the recipient name",
+    "area": "Area",
+    "city": "City",
+    "get_location": "Get location",
+    "add_address": "Add address",
+    "update_address": "Update Address"
   }
 }

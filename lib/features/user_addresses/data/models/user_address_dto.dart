@@ -1,6 +1,7 @@
 import 'package:elevate_flower_app/features/user_addresses/domain/entities/user_address_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
 part 'user_address_dto.g.dart';
+
 @JsonSerializable()
 class UserAddressDto {
   String? street;
@@ -13,13 +14,13 @@ class UserAddressDto {
   String? id;
 
   UserAddressDto({
-   this.street,
-   this.phone,
-   this.city,
-   this.lat,
-   this.long,
-   this.username,
-   this.id,
+    this.street,
+    this.phone,
+    this.city,
+    this.lat,
+    this.long,
+    this.username,
+    this.id,
   });
 
   UserAddressEntity toEntity() {
@@ -27,6 +28,10 @@ class UserAddressDto {
       street: street,
       city: city,
       id: id,
+      lat: lat,
+      long: long,
+      phone: phone,
+      username: username,
     );
   }
 

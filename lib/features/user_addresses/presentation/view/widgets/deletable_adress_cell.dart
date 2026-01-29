@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 class DeletableAddressCell extends StatefulWidget {
   final UserAddressEntity address;
   final VoidCallback onEdit;
-  final VoidCallback onDeleteConfirmed; 
+  final VoidCallback onDeleteConfirmed;
 
   const DeletableAddressCell({
     super.key,
@@ -33,9 +33,8 @@ class _DeletableAddressCellState extends State<DeletableAddressCell>
     );
   }
 
-
   Future<void> deleteWithAnimation() async {
-    await _controller.reverse(); 
+    await _controller.reverse();
     widget.onDeleteConfirmed();
   }
 
