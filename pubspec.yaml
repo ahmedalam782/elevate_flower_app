@@ -87,7 +87,6 @@ flutter:
   assets:
     - assets/images/
     - assets/icons/
-    - assets/json/Flowery About Section JSON with Expanded Content.json
     - assets/json/
     - assets/animations/
     - assets/localization/ar-EG.json

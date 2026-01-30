@@ -1,5 +1,3 @@
-import 'package:easy_localization/easy_localization.dart';
-import 'package:elevate_flower_app/core/languages/locale_keys.g.dart';
 import 'package:elevate_flower_app/core/theme/app_colors.dart';
 import 'package:elevate_flower_app/features/categories/data/models/product_model/product_dto.dart';
 import 'package:elevate_flower_app/features/filter/presentation/view_model/cubit/filter_cubit.dart';
