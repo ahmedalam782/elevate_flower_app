@@ -21,36 +21,33 @@ class OccasionsAppBar extends StatelessWidget {
         left: 14,
         right: 14,
       ),
-      child: SizedBox(
-        height: 44,
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            InkWell(
-              onTap: () => context.pop(),
-              child: const Icon(
-                Icons.arrow_back_ios_new,
-                size: 22,
-                fontWeight: FontWeight.w500,
-              ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          InkWell(
+            onTap: () => context.pop(),
+            child: const Icon(
+              Icons.arrow_back_ios_new,
+              size: 22,
+              fontWeight: FontWeight.w500,
             ),
-            const SizedBox(width: 8),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(title, style: 20.medium.copyWith(height: 1.2)),
-                const SizedBox(height: 4),
-                Text(
-                  subTitle,
-                  style: 13.regular.copyWith(
-                    color: AppColors.gray53,
-                    height: 1.2,
-                  ),
+          ),
+          const SizedBox(width: 8),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(title, style: 20.medium.copyWith(height: 1.2)),
+              const SizedBox(height: 4),
+              Text(
+                subTitle,
+                style: 13.regular.copyWith(
+                  color: AppColors.gray53,
+                  height: 1.2,
                 ),
-              ],
-            ),
-          ],
-        ),
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }

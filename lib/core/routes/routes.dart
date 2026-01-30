@@ -13,8 +13,11 @@ class Routes {
   static const String occasions = "/occasions";
   static const String carScreen = "/car-screen";
   static const String editProfile = "/edit-profile";
+  static const String userAddresses = "/user-addresses";
 
   static const String checkOut = "/check-out";
 
   static const String webPay = "/web-pay";
+  static const String addressDetails = "/address-details";
+  static const String search = "/search";
 }

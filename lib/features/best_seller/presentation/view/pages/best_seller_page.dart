@@ -8,6 +8,8 @@ import 'package:elevate_flower_app/features/best_seller/presentation/view_model/
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'package:elevate_flower_app/features/cart/presentation/view_model/cubit/cart_cubit.dart';
+
 class BestSellerPage extends StatelessWidget {
   BestSellerPage({super.key});
   final cubit = getIt<BestSellerCubit>();
@@ -18,7 +20,10 @@ class BestSellerPage extends StatelessWidget {
       body: BlocProvider<BestSellerCubit>(
         create: (context) =>
             cubit..doIntent(BestSellerEvents.getBestSellerProducts()),
-        child: const BestSellerBody(),
+        child: BlocProvider.value(
+          value: getIt<CartCubit>(),
+          child: const BestSellerBody(),
+        ),
       ),
     );
   }

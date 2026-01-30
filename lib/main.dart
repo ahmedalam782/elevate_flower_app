@@ -20,6 +20,7 @@ void main() async {
 
   // Configure dependencies
   await configureDependencies();
+  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
   // Set custom Bloc observer for debugging
   Bloc.observer = MyBlocObserver();
@@ -33,9 +34,7 @@ void main() async {
     ),
   );
 
-
   await ScreenUtil.ensureScreenSize();
-  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
   //==================FOR WEB=====================
   GoRouter.optionURLReflectsImperativeAPIs = true;

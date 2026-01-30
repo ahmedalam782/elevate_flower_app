@@ -18,6 +18,10 @@ class PaginatedProductGridView extends StatelessWidget {
   final Function(int)? onPageChanged;
   final Function(ProductItemEntity)? onProductTap;
   final Function(ProductItemEntity)? onAddToCart;
+  final Function(ProductItemEntity)? onIncrement;
+  final Function(ProductItemEntity)? onDecrement;
+  final Function(ProductItemEntity)? onRemove;
+  final int Function(String productId)? getQuantity;
 
   const PaginatedProductGridView({
     super.key,
@@ -28,6 +32,10 @@ class PaginatedProductGridView extends StatelessWidget {
     this.onPageChanged,
     this.onProductTap,
     this.onAddToCart,
+    this.onIncrement,
+    this.onDecrement,
+    this.onRemove,
+    this.getQuantity,
   });
 
   int _getCrossAxisCount(BuildContext context) {
@@ -82,10 +90,15 @@ class PaginatedProductGridView extends StatelessWidget {
                   itemCount: products.length,
                   itemBuilder: (context, index) {
                     final product = products[index];
+                    final quantity = getQuantity?.call(product.id) ?? 0;
                     return CustomProductItem(
                       product: product,
+                      quantity: quantity,
                       onTap: () => onProductTap?.call(product),
                       onAddToCart: () => onAddToCart?.call(product),
+                      onIncrement: () => onIncrement?.call(product),
+                      onDecrement: () => onDecrement?.call(product),
+                      onRemove: () => onRemove?.call(product),
                     );
                   },
                 ),

@@ -1,4 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:elevate_flower_app/features/address_details/data/models/address_details_data.dart';
+import 'package:elevate_flower_app/features/address_details/presentation/view/pages/address_details_page.dart';
 import 'package:elevate_flower_app/features/best_seller/presentation/view/pages/best_seller_page.dart';
 import 'package:elevate_flower_app/features/cart/presentation/view/pages/cart_page.dart';
 import 'package:elevate_flower_app/features/categories/presentation/view/pages/categories_page.dart';
@@ -8,6 +10,8 @@ import 'package:elevate_flower_app/features/edit_profile/presentation/view/pages
 import 'package:elevate_flower_app/features/occasions/presentation/view/pages/occasions_page.dart';
 import 'package:elevate_flower_app/features/product_details/presentation/view/pages/product_details_page.dart';
 import 'package:elevate_flower_app/features/register/presentation/view/pages/register_page.dart';
+import 'package:elevate_flower_app/features/search/presentation/view/pages/search_screen.dart';
+import 'package:elevate_flower_app/features/user_addresses/presentation/view/pages/user_addresses_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../features/forget_password/presentation/view/pages/forgetPassword_page.dart';
@@ -99,6 +103,24 @@ final GoRouter router = GoRouter(
         key: ValueKey(context.locale.languageCode.toString()),
         paymentUrl: state.extra as String,
       ),
+    ),
+    _customAnimatedGoRoute(
+      route: Routes.userAddresses,
+      page: (state, context) => UserAddressesPage(
+        key: ValueKey(context.locale.languageCode.toString()),
+      ),
+    ),
+    _customAnimatedGoRoute(
+      route: Routes.addressDetails,
+      page: (state, context) => AddressDetailsPage(
+        addressDetailsData: state.extra as AddressDetailsData?,
+        key: ValueKey(context.locale.languageCode.toString()),
+      ),
+    ),
+    _customAnimatedGoRoute(
+      route: Routes.search,
+      page: (state, context) =>
+          SearchScreen(key: ValueKey(context.locale.languageCode.toString())),
     ),
   ],
 );
