@@ -5,15 +5,15 @@ sealed class SearchEvents {
       SearchEvent(keyword: keyword, limit: limit ?? 20);
   factory SearchEvents.loadMore() = LoadMoreEvent;
 
-  void when({
-    required Function(String keyword, int limit) search,
-    required Function() loadMore,
-  }) {
+  Future<void> when({
+    required Future<void> Function(String keyword, int limit) search,
+    required Future<void> Function() loadMore,
+  }) async {
     if (this is SearchEvent) {
       final event = this as SearchEvent;
-      search(event.keyword, event.limit);
+      await search(event.keyword, event.limit);
     } else if (this is LoadMoreEvent) {
-      loadMore();
+      await loadMore();
     }
   }
 }
