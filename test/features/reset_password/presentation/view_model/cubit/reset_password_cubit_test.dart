@@ -14,16 +14,15 @@ import 'reset_password_cubit_test.mocks.dart';
 
 @GenerateMocks([ChangePasswordUseCase])
 void main() {
-  late ResetPasswordCubit cubit;
   late MockChangePasswordUseCase mockUseCase;
 
   setUp(() {
     mockUseCase = MockChangePasswordUseCase();
-    cubit = ResetPasswordCubit(mockUseCase);
-  });
-
-  tearDown(() {
-    cubit.close();
+    provideDummy<Result<ChangePasswordEntity>>(
+      Success(
+        data: ChangePasswordEntity(message: '', token: ''),
+      ),
+    );
   });
 
   group('ResetPasswordCubit', () {
@@ -43,12 +42,14 @@ void main() {
     final tEntity = ChangePasswordEntity(message: 'Success', token: 'token');
 
     test('initial state should be ResetPasswordStates()', () {
+      final cubit = ResetPasswordCubit(mockUseCase);
       expect(cubit.state, const ResetPasswordStates());
+      cubit.close();
     });
 
     blocTest<ResetPasswordCubit, ResetPasswordStates>(
       'should emit [error] when passwords do not match',
-      build: () => cubit,
+      build: () => ResetPasswordCubit(mockUseCase),
       act: (cubit) => cubit.doIntent(
         ResetPasswordEvents.changePassword(
           currentPassword: tCurrentPassword,
@@ -67,7 +68,7 @@ void main() {
 
     blocTest<ResetPasswordCubit, ResetPasswordStates>(
       'should emit [error] when password is too short',
-      build: () => cubit,
+      build: () => ResetPasswordCubit(mockUseCase),
       act: (cubit) => cubit.doIntent(
         ResetPasswordEvents.changePassword(
           currentPassword: tCurrentPassword,
@@ -93,7 +94,7 @@ void main() {
             newPassword: anyNamed('newPassword'),
           ),
         ).thenAnswer((_) async => Success(data: tEntity));
-        return cubit;
+        return ResetPasswordCubit(mockUseCase);
       },
       act: (cubit) => cubit.doIntent(
         ResetPasswordEvents.changePassword(
@@ -126,7 +127,7 @@ void main() {
             newPassword: anyNamed('newPassword'),
           ),
         ).thenAnswer((_) async => Error(exception: Exception('Error')));
-        return cubit;
+        return ResetPasswordCubit(mockUseCase);
       },
       act: (cubit) => cubit.doIntent(
         ResetPasswordEvents.changePassword(
