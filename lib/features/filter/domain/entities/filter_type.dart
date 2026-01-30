@@ -1,11 +1,4 @@
-
-enum FilterType {
-  lowestPrice,
-  highestPrice,
-  newest,
-  oldest,
-  discount,
-}
+enum FilterType { lowestPrice, highestPrice, newest, oldest, discount }
 
 extension FilterTypeExtension on FilterType {
   // القيم اللي هتروح للـ API

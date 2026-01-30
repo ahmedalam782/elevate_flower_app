@@ -1,4 +1,5 @@
 import 'package:elevate_flower_app/core/config/di/injectable_config.dart';
+import 'package:elevate_flower_app/features/filter/presentation/view_model/cubit/filter_cubit.dart';
 import 'package:elevate_flower_app/features/categories/presentation/view/widgets/categories_body.dart';
 import 'package:elevate_flower_app/features/categories/presentation/view_model/cubit/categories_cubit.dart';
 import 'package:elevate_flower_app/features/categories/presentation/view_model/cubit/categories_events.dart';
@@ -13,13 +14,16 @@ class CategoriesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocProvider(
-        create: (context) =>
-            getIt<CategoriesCubit>()..onEvent(GetAllDataEvent()),
-        child: BlocProvider.value(
-          value: getIt<CartCubit>(),
-          child: CategoriesBody(incomingIndex: incomingIndex),
-        ),
+      body: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) =>
+                getIt<CategoriesCubit>()..onEvent(GetAllDataEvent()),
+          ),
+          BlocProvider(create: (context) => getIt<FilterCubit>()),
+          BlocProvider.value(value: getIt<CartCubit>()),
+        ],
+        child: CategoriesBody(incomingIndex: incomingIndex),
       ),
     );
   }

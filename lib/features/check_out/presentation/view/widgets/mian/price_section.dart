@@ -112,7 +112,7 @@ class _PriceSectionState extends State<PriceSection> {
                   await context.read<CartCubit>().doIntent(
                     ClearUserCartEvent(),
                   );
-                  if (mounted) {
+                  if (context.mounted) {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
                         content: Text(
@@ -129,7 +129,7 @@ class _PriceSectionState extends State<PriceSection> {
                     Routes.webPay,
                     extra: paymentUrl,
                   );
-                  if (mounted) {
+                  if (context.mounted) {
                     await handlePaymentCompletion(result, context);
                   }
                 }

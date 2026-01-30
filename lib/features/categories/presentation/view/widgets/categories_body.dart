@@ -8,6 +8,7 @@ import 'package:elevate_flower_app/features/categories/presentation/view_model/c
 import 'package:elevate_flower_app/features/filter/presentation/view/widgets/filter_card_builder.dart';
 import 'package:elevate_flower_app/features/filter/presentation/view_model/cubit/filter_cubit.dart';
 import 'package:elevate_flower_app/features/filter/presentation/view_model/cubit/filter_states.dart';
+import 'package:elevate_flower_app/features/categories/presentation/view_model/cubit/categories_states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -45,35 +46,57 @@ class _CategoriesBodyState extends State<CategoriesBody> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Stack(
-        children: [
-          Column(
-            children: [
-              const SearchBarWithFiltter(),
-              CategoryTabBuilder(incomingIndex: widget.incomingIndex),
-              const SizedBox(height: 10),
-              
-              // ✅ نعرض المنتجات بناءً على حالة الفلتر
-              Expanded(
-                child: BlocBuilder<FilterCubit, FilterState>(
-                  builder: (context, filterState) {
-                    // إذا كان هناك فلتر نشط
-                    if (filterState is FilterLoaded && 
-                        filterState.appliedFilter != null) {
-                      // ✅ اعرض المنتجات المفلترة باستخدام FilterCardBuilder
-                      return const FilterCardBuilder();
-                    }
-                    
-                    // ✅ إذا لم يكن هناك فلتر، اعرض المنتجات العادية
-                    return const ProductCardBuilder();
-                  },
+    return BlocListener<CategoriesCubit, CategoriesStates>(
+      listenWhen: (previous, current) {
+        // Listen to changes in products state (which happens when category changes)
+        return previous.productsOfCategory != current.productsOfCategory;
+      },
+      listener: (context, state) {
+        // If products are loading (category changed), clear the filter
+        state.productsOfCategory.when(
+          initial: () {},
+          loading: () {
+            if (selectedSort != null) {
+              setState(() {
+                selectedSort = null;
+              });
+              context.read<FilterCubit>().loadProducts(); // Or clearFilter()
+            }
+          },
+          success: (_) {},
+          error: (_) {},
+        );
+      },
+      child: SafeArea(
+        child: Stack(
+          children: [
+            Column(
+              children: [
+                SearchBarWithFiltter(onFilterTap: _showFilterSheet),
+                CategoryTabBuilder(incomingIndex: widget.incomingIndex),
+                const SizedBox(height: 10),
+
+                // ✅ نعرض المنتجات بناءً على حالة الفلتر
+                Expanded(
+                  child: BlocBuilder<FilterCubit, FilterState>(
+                    builder: (context, filterState) {
+                      // إذا كان هناك فلتر نشط
+                      if (filterState is FilterLoaded &&
+                          filterState.appliedFilter != null) {
+                        // ✅ اعرض المنتجات المفلترة باستخدام FilterCardBuilder
+                        return const FilterCardBuilder();
+                      }
+
+                      // ✅ إذا لم يكن هناك فلتر، اعرض المنتجات العادية
+                      return const ProductCardBuilder();
+                    },
+                  ),
                 ),
-              ),
-            ],
-          ),
-          FilterBottom(selectedSort: selectedSort, onTap: _showFilterSheet),
-        ],
+              ],
+            ),
+            FilterBottom(selectedSort: selectedSort, onTap: _showFilterSheet),
+          ],
+        ),
       ),
     );
   }
