@@ -1,8 +1,11 @@
+import 'dart:developer';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:elevate_flower_app/core/config/di/injectable_config.dart';
 import 'package:elevate_flower_app/core/languages/locale_keys.g.dart';
 import 'package:elevate_flower_app/core/routes/routes.dart';
 import 'package:elevate_flower_app/core/shared/widgets/custom_button.dart';
+import 'package:elevate_flower_app/core/shared/widgets/custom_toast.dart';
 import 'package:elevate_flower_app/core/theme/app_colors.dart';
 import 'package:elevate_flower_app/core/theme/app_typography.dart';
 import 'package:elevate_flower_app/features/cart/presentation/view_model/cubit/cart_cubit.dart';
@@ -14,6 +17,7 @@ import 'package:elevate_flower_app/features/check_out/presentation/view_model/pa
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:toastification/toastification.dart';
 
 class PriceSection extends StatefulWidget {
   const PriceSection({super.key, required this.totalPrice});
@@ -79,15 +83,26 @@ class _PriceSectionState extends State<PriceSection> {
               listenWhen: (previous, current) =>
                   previous.paymentResult != current.paymentResult,
               buildWhen: (previous, current) =>
-                  previous.isLoading != current.isLoading,
+                  current.isLoading != previous.isLoading ||
+                  current.selectedAddress != previous.selectedAddress,
               builder: (BuildContext context, CheckOutState state) {
+                log("refresh not nedded");
                 return SizedBox(
                   width: double.infinity,
                   child: CustomButton(
                     title: LocaleKeys.checkout_place_order.tr(),
                     isLoading: state.isLoading!,
                     onPressed: () {
-                      context.read<CheckOutCubit>().doIntent(CheckOutEvent());
+                      if (state.selectedAddress == null) {
+                        log("Address not selected${state.selectedAddress}");
+                        CustomToast(
+                          context: context,
+                          description: LocaleKeys.checkout_select_address.tr(),
+                          type: ToastificationType.info,
+                        ).showToast();
+                      } else {
+                        context.read<CheckOutCubit>().doIntent(CheckOutEvent());
+                      }
                     },
                   ),
                 );

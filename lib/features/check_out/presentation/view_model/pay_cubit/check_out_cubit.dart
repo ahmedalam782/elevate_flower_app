@@ -82,10 +82,11 @@ class CheckOutCubit extends Cubit<CheckOutState> {
       success: (addresses) {
         emit(
           state.copyWith(
-            userAddressesState: BaseState.success(addresses),
-            selectedAddress: addresses?.first,
+            userAddressesState: BaseState.success(addresses ?? []),
+            selectedAddress: (addresses!.isEmpty) ? null : addresses.first,
           ),
         );
+        log("${state.selectedAddress}");
       },
       error: (error) {
         emit(state.copyWith(userAddressesState: BaseState.error(error)));
