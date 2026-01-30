@@ -63,6 +63,7 @@ dependencies:
   shared_preferences: ^2.5.4
   shimmer: ^3.0.0
   toastification: ^3.0.3
+  webview_flutter: ^4.13.1
 dev_dependencies:
   bloc_test: ^10.0.0
   build_runner: ^2.10.4

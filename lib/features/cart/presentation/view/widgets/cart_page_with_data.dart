@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:elevate_flower_app/core/languages/locale_keys.g.dart';
+import 'package:elevate_flower_app/core/routes/routes.dart';
 import 'package:elevate_flower_app/core/shared/widgets/custom_button.dart';
 import 'package:elevate_flower_app/core/theme/app_colors.dart';
 import 'package:elevate_flower_app/core/theme/app_typography.dart';
@@ -12,6 +13,7 @@ import 'package:elevate_flower_app/features/cart/presentation/view_model/cubit/c
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 class CartPageWithData extends StatelessWidget {
   const CartPageWithData({super.key, required this.cartViewModel});
@@ -147,7 +149,12 @@ class CartPageWithData extends StatelessWidget {
           radius: 20.r,
           title: LocaleKeys.cart_check_out.tr(),
           borderColor: Colors.transparent,
-          onPressed: () {},
+          onPressed: () {
+            context.push(
+              Routes.checkOut,
+              extra: cartViewModel.state.state.data?.totalPrice ?? 0,
+            );
+          },
         ),
         SizedBox(height: 32.h),
       ],
