@@ -41,19 +41,20 @@ class _DeliveryAddressesSectionState extends State<DeliveryAddressesSection> {
             CheckOutState,
             BaseState<List<AddressEntity>>?
           >(
+            bloc: context.read<CheckOutCubit>()
+              ..doIntent(GetUserAddressesEvent()),
             selector: (state) => state.userAddressesState,
             builder: (context, userAddressesState) {
               if (userAddressesState == null) {
-                context.read<CheckOutCubit>().doIntent(GetUserAddressesEvent());
                 return SizedBox(
                   width: MediaQuery.of(context).size.width,
                   height: 100,
-                  child: const Center(child: CircularProgressIndicator()),
+                  child: const Center(child: Text("No addresses available")),
                 );
               } else if (userAddressesState.state == StateType.loading) {
                 return SizedBox(
                   width: MediaQuery.of(context).size.width,
-                  height: 350,
+                  height: 100,
                   child: const Center(child: CircularProgressIndicator()),
                 );
               } else if (userAddressesState.state == StateType.success) {
@@ -61,9 +62,7 @@ class _DeliveryAddressesSectionState extends State<DeliveryAddressesSection> {
                 return Column(
                   spacing: 16,
                   children: addresses.map((address) {
-                    return DeliveryAddressCard(
-                      address: address,
-                    );
+                    return DeliveryAddressCard(address: address);
                   }).toList(),
                 );
               } else {

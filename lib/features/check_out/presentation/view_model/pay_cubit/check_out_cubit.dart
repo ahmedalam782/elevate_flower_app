@@ -54,11 +54,9 @@ class CheckOutCubit extends Cubit<CheckOutState> {
     );
     result.when(
       success: (paymentResult) {
-        log('Payment Success: $paymentResult');
         emit(state.copyWith(isLoading: false, paymentResult: paymentResult));
       },
       error: (error) {
-        log('Payment Error: $error');
         emit(state.copyWith(isLoading: false, error: error));
       },
     );
@@ -82,10 +80,11 @@ class CheckOutCubit extends Cubit<CheckOutState> {
       success: (addresses) {
         emit(
           state.copyWith(
-            userAddressesState: BaseState.success(addresses),
-            selectedAddress: addresses?.first,
+            userAddressesState: BaseState.success(addresses ?? []),
+            selectedAddress: (addresses!.isEmpty) ? null : addresses.first,
           ),
         );
+        log("${state.selectedAddress}");
       },
       error: (error) {
         emit(state.copyWith(userAddressesState: BaseState.error(error)));
