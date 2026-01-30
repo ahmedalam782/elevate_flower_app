@@ -11,15 +11,17 @@ class ResetPasswordCubit extends Cubit<ResetPasswordStates> {
   final ChangePasswordUseCase _changePasswordUseCase;
 
   ResetPasswordCubit(this._changePasswordUseCase)
-      : super(const ResetPasswordStates());
+    : super(const ResetPasswordStates());
 
   // ✅ Form Key
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   // ✅ Controllers
-  final TextEditingController currentPasswordController = TextEditingController();
+  final TextEditingController currentPasswordController =
+      TextEditingController();
   final TextEditingController newPasswordController = TextEditingController();
-  final TextEditingController confirmPasswordController = TextEditingController();
+  final TextEditingController confirmPasswordController =
+      TextEditingController();
 
   // ✅ Dispose Controllers
   @override
@@ -30,11 +32,11 @@ class ResetPasswordCubit extends Cubit<ResetPasswordStates> {
     return super.close();
   }
 
-  void doIntent(ResetPasswordEvents event) {
-    event.when(changePassword: _changePassword);
+  Future<void> doIntent(ResetPasswordEvents event) async {
+    await event.when(changePassword: _changePassword);
   }
 
-  void _changePassword(
+  Future<void> _changePassword(
     String currentPassword,
     String newPassword,
     String confirmPassword,

@@ -1,5 +1,4 @@
-import 'package:dio/dio.dart';
-import 'package:elevate_flower_app/core/config/api/end_points.dart';
+import 'package:elevate_flower_app/features/reset_password/api/api_client/reset_password_api_client.dart';
 import 'package:elevate_flower_app/features/reset_password/data/datasources/reset_password_remote_data_source_contract.dart';
 import 'package:elevate_flower_app/features/reset_password/data/models/change_password_request_model.dart';
 import 'package:elevate_flower_app/features/reset_password/data/models/change_password_response_model.dart';
@@ -8,9 +7,9 @@ import 'package:injectable/injectable.dart';
 @LazySingleton(as: ResetPasswordRemoteDataSource)
 class ResetPasswordRemoteDataSourceImpl
     implements ResetPasswordRemoteDataSource {
-  final Dio dio;
+  final ResetPasswordApiClient _apiClient;
 
-  ResetPasswordRemoteDataSourceImpl({required this.dio});
+  ResetPasswordRemoteDataSourceImpl(this._apiClient);
 
   @override
   Future<ChangePasswordResponseModel> changePassword({
@@ -23,21 +22,9 @@ class ResetPasswordRemoteDataSourceImpl
         newPassword: newPassword,
       );
 
-      final response = await dio.patch(
-        EndPoints.changePassword,
-        data: requestBody.toJson(),
-      );
-
-      return ChangePasswordResponseModel.fromJson(response.data);
-    } on DioException catch (e) {
-      if (e.response != null) {
-        throw Exception(
-          e.response?.data['message'] ?? 'Failed to change password',
-        );
-      }
-      throw Exception('Network error: ${e.message}');
+      return await _apiClient.changePassword(requestBody);
     } catch (e) {
-      throw Exception('Unexpected error: $e');
+      throw Exception(e);
     }
   }
 }

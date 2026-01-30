@@ -17,6 +17,7 @@ import 'package:go_router/go_router.dart';
 import '../../features/forget_password/presentation/view/pages/forgetPassword_page.dart';
 import '../../features/login/presentation/view/pages/login_page.dart';
 import '../../features/main_layout/presentation/view/pages/main_layout_page.dart';
+import '../../features/reset_password/presentation/view/pages/reset_password_page.dart';
 import '../../features/splash/presentation/view/pages/splash_page.dart';
 import 'routes.dart';
 
@@ -121,6 +122,12 @@ final GoRouter router = GoRouter(
       route: Routes.search,
       page: (state, context) =>
           SearchScreen(key: ValueKey(context.locale.languageCode.toString())),
+    ),
+    _customAnimatedGoRoute(
+      route: Routes.resetPassword,
+      page: (state, context) => ResetPasswordPage(
+        key: ValueKey(context.locale.languageCode.toString()),
+      ),
     ),
   ],
 );

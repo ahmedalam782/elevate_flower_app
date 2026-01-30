@@ -7,8 +7,8 @@ sealed class ResetPasswordEvents {
     required String confirmPassword,
   }) = ChangePasswordEvent;
 
-  void when({
-    required void Function(
+  R when<R>({
+    required R Function(
       String currentPassword,
       String newPassword,
       String confirmPassword,
@@ -17,12 +17,13 @@ sealed class ResetPasswordEvents {
   }) {
     if (this is ChangePasswordEvent) {
       final event = this as ChangePasswordEvent;
-      changePassword(
+      return changePassword(
         event.currentPassword,
         event.newPassword,
         event.confirmPassword,
       );
     }
+    throw Exception('Unknown event type');
   }
 }
 

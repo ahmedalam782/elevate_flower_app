@@ -29,7 +29,7 @@ class EndPoints {
   static const String cashCheckOut = "/orders";
   static const String userAddresses = "/addresses";
   static const String addressEndPoint = "/addresses";
-  static const String changePassword = "/auth/changePassword";
+  static const String changePassword = "/auth/change-password";
 }
 
 class Apikeys {
