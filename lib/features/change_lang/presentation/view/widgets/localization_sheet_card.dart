@@ -35,7 +35,7 @@ class LocalizationSheetCard extends StatelessWidget {
                   : LocaleKeys.change_language_english.tr(),
               style: 16.medium.copyWith(color: AppColors.black0C),
             ),
-            _selectionIndicator(isSelected),
+            selectionIndicator(isSelected),
           ],
         ),
       ),
@@ -43,7 +43,7 @@ class LocalizationSheetCard extends StatelessWidget {
   }
 }
 
-Widget _selectionIndicator(bool isSelected) {
+Widget selectionIndicator(bool isSelected) {
   return AnimatedContainer(
     duration: const Duration(milliseconds: 300),
     curve: Curves.easeInOut,

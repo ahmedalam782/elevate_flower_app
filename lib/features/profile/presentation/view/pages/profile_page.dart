@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:elevate_flower_app/features/change_lang/presentation/view/widgets/localization_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -234,6 +235,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       title: LocaleKeys.profile_saved_address.tr(),
                       onTap: () {
                         // TODO: Navigate to saved addresses
+                        context.push(Routes.userAddresses);
                       },
                     ),
 
@@ -291,7 +293,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           ),
                         ],
                       ),
-                      onTap: _showLanguageBottomSheet,
+                      onTap: () => showLocalizationBottomSheet(context),
                     ),
 
                     const ProfileDivider(),

@@ -57,8 +57,6 @@ jobs:
         run: |
           if [ -f coverage/lcov.info ]; then
             echo "✅ Coverage file generated successfully"
-            echo "Coverage Report:"
-            flutter test --coverage
           else
             echo "⚠️ No coverage file found"
           fi
