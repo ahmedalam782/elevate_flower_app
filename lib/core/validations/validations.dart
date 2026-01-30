@@ -41,6 +41,13 @@ class Validations {
     return null;
   }
 
+  static String? validateCurrentPassword(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'validations.password_required'.tr();
+    }
+    return null;
+  }
+
   static String? validateEmail(String? value) {
     if (value == null || value.isEmpty) {
       return "validations.email_required".tr();

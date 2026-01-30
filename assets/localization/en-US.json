@@ -318,7 +318,6 @@
     "cancel": "Cancel",
     "deletion_confirmation": "Are you sure you want to delete this address?"
   },
-
   "address_details": {
     "for_better_experience": "For better experience, please allow us access to your location",
     "allow": "Allow",
@@ -333,5 +332,12 @@
     "get_location": "Get location",
     "add_address": "Add address",
     "update_address": "Update Address"
+  },
+  "reset_password": {
+    "reset_password": "Reset Password",
+    "new_password": "New Password",
+    "current_password": "Current Password",
+    "confirm_password": "Confirm Password",
+    "update_button": "Update"
   }
 }

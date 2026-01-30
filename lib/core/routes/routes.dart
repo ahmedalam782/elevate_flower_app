@@ -21,4 +21,5 @@ class Routes {
   static const String webPay = "/web-pay";
   static const String addressDetails = "/address-details";
   static const String search = "/search";
+  static const String resetPassword = "/reset-password";
 }

@@ -7,6 +7,9 @@ import 'package:elevate_flower_app/features/edit_profile/presentation/view_model
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+
+import '../../../../../core/routes/routes.dart' show Routes;
 
 class EditProfileForm extends StatelessWidget {
   EditProfileForm({super.key});
@@ -100,7 +103,7 @@ class EditProfileForm extends StatelessWidget {
                   alignment: Alignment.centerRight,
                   child: GestureDetector(
                     onTap: () {
-                      // todo: implement change password functionality;
+                      context.push(Routes.resetPassword);
                     },
                     child: Text(
                       LocaleKeys.edit_profile_change.tr(),
