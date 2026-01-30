@@ -48,7 +48,7 @@ class DeliveryAddressCard extends StatelessWidget {
                     children: [
                       selectionIndicator(isSelected),
                       Text(
-                        address.city ?? "Location",
+                        address.city!,
                         style: 16.medium.copyWith(color: AppColors.black0C),
                       ),
                     ],

@@ -1,3 +1,5 @@
+import 'package:easy_localization/easy_localization.dart';
+import 'package:elevate_flower_app/core/languages/locale_keys.g.dart';
 import 'package:elevate_flower_app/core/theme/app_colors.dart';
 import 'package:elevate_flower_app/core/theme/app_typography.dart';
 import 'package:elevate_flower_app/features/change_lang/presentation/view/widgets/localization_sheet_card.dart';
@@ -39,7 +41,7 @@ class PaymentTypeCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              paymentStrategy == PaymentStrategy.cash ? "Cash" : "Credit Card",
+              paymentStrategy == PaymentStrategy.cash ? LocaleKeys.checkout_cash.tr() : LocaleKeys.checkout_credit_card.tr(),
               style: 16.medium.copyWith(color: AppColors.black0C),
             ),
             selectionIndicator(isSelected),

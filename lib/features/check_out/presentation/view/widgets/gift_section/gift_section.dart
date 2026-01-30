@@ -1,3 +1,5 @@
+import 'package:easy_localization/easy_localization.dart';
+import 'package:elevate_flower_app/core/languages/locale_keys.g.dart';
 import 'package:elevate_flower_app/core/shared/widgets/custom_text_field.dart';
 import 'package:elevate_flower_app/core/theme/app_colors.dart';
 import 'package:elevate_flower_app/core/theme/app_typography.dart';
@@ -45,19 +47,19 @@ class _GiftSectionState extends State<GiftSection> {
                   },
                 ),
                 Text(
-                  'It\'s a gift',
+                  LocaleKeys.checkout_gift_section.tr(),
                   style: 18.medium.copyWith(color: AppColors.black0C),
                 ),
               ],
             ),
-            const CustomTextField(
-              labelText: 'Name',
-              hintText: "Enter the name",
+             CustomTextField(
+              labelText: LocaleKeys.checkout_gift_name.tr(),
+              hintText: LocaleKeys.checkout_gift_name_hint.tr(),
               floatingLabelBehavior: FloatingLabelBehavior.always,
             ),
-            const CustomTextField(
-              labelText: 'Phone Number',
-              hintText: "Enter the phone number",
+             CustomTextField(
+              labelText: LocaleKeys.checkout_gift_phone.tr(),
+              hintText: LocaleKeys.checkout_gift_phone_hint.tr(),
               floatingLabelBehavior: FloatingLabelBehavior.always,
             ),
           ],

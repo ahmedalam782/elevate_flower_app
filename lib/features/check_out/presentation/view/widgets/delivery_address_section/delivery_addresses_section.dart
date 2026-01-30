@@ -1,4 +1,6 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:elevate_flower_app/core/config/base_state/base_state.dart';
+import 'package:elevate_flower_app/core/languages/locale_keys.g.dart';
 import 'package:elevate_flower_app/core/theme/app_colors.dart';
 import 'package:elevate_flower_app/core/theme/app_typography.dart';
 import 'package:elevate_flower_app/features/check_out/domain/entities/address_entity.dart';
@@ -29,7 +31,7 @@ class _DeliveryAddressesSectionState extends State<DeliveryAddressesSection> {
         spacing: 16,
         children: [
           Text(
-            'Delivery Address',
+            LocaleKeys.checkout_delivery_address.tr(),
             style: 18.medium.copyWith(color: AppColors.black0C),
           ),
           BlocSelector<
@@ -64,7 +66,7 @@ class _DeliveryAddressesSectionState extends State<DeliveryAddressesSection> {
                 );
               } else {
                 return Text(
-                  "Could not load addresses",
+                  LocaleKeys.checkout_checkout_addresses_loading_error.tr(),
                   style: 16.medium.copyWith(color: AppColors.gray53),
                 );
               }
@@ -81,7 +83,7 @@ class _DeliveryAddressesSectionState extends State<DeliveryAddressesSection> {
               children: [
                 const Icon(Icons.add, size: 24, color: AppColors.primerColor),
                 Text(
-                  "Add New",
+                  LocaleKeys.checkout_add_new_address.tr(),
                   style: 14.medium.copyWith(color: AppColors.primerColor),
                 ),
               ],

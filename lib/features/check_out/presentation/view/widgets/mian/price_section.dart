@@ -1,5 +1,5 @@
-import 'dart:developer';
-
+import 'package:easy_localization/easy_localization.dart';
+import 'package:elevate_flower_app/core/languages/locale_keys.g.dart';
 import 'package:elevate_flower_app/core/routes/routes.dart';
 import 'package:elevate_flower_app/core/shared/widgets/custom_button.dart';
 import 'package:elevate_flower_app/core/theme/app_colors.dart';
@@ -32,7 +32,7 @@ class _PriceSectionState extends State<PriceSection> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'Sub Total',
+                LocaleKeys.checkout_sub_total.tr(),
                 style: 16.regular.copyWith(color: AppColors.gray53),
               ),
               Text(
@@ -45,7 +45,7 @@ class _PriceSectionState extends State<PriceSection> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'Delivery Fee',
+                LocaleKeys.checkout_delivery_fee.tr(),
                 style: 16.regular.copyWith(color: AppColors.gray53),
               ),
               Text(
@@ -59,7 +59,7 @@ class _PriceSectionState extends State<PriceSection> {
           Row(
             children: [
               Text(
-                'Total',
+                LocaleKeys.checkout_total.tr(),
                 style: 18.medium.copyWith(color: AppColors.black0C),
               ),
               const Spacer(),
@@ -76,13 +76,10 @@ class _PriceSectionState extends State<PriceSection> {
             buildWhen: (previous, current) =>
                 previous.isLoading != current.isLoading,
             builder: (BuildContext context, CheckOutState state) {
-              log(
-                "rebuilding place order button with isLoading: ${state.isLoading}",
-              );
               return SizedBox(
                 width: double.infinity,
                 child: CustomButton(
-                  title: 'Place Order',
+                  title: LocaleKeys.checkout_place_order.tr(),
                   isLoading: state.isLoading!,
                   onPressed: () {
                     context.read<CheckOutCubit>().doIntent(CheckOutEvent());
@@ -93,7 +90,9 @@ class _PriceSectionState extends State<PriceSection> {
             listener: (BuildContext context, CheckOutState state) async {
               if (state.paymentResult is PaymentSuccess) {
                 ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Payment Successful!')),
+                  SnackBar(
+                    content: Text(LocaleKeys.checkout_payment_successful.tr()),
+                  ),
                 );
                 context.pop();
               } else if (state.paymentResult is PaymentRedirect) {
@@ -103,9 +102,7 @@ class _PriceSectionState extends State<PriceSection> {
                   Routes.webPay,
                   extra: paymentUrl,
                 );
-                if (!mounted) {
-                  return;
-                } else {
+                if (mounted) {
                   handlePaymentCompletion(result, context);
                 }
               }
@@ -120,12 +117,12 @@ class _PriceSectionState extends State<PriceSection> {
   void handlePaymentCompletion(Object? result, BuildContext context) {
     if (result == true) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Payment Successful!')),
+        SnackBar(content: Text(LocaleKeys.checkout_payment_successful.tr())),
       );
       context.pop();
     } else if (result == false) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Payment Failed!')),
+        SnackBar(content: Text(LocaleKeys.checkout_payment_failed.tr())),
       );
     }
   }

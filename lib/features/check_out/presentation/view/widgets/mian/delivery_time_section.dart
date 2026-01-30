@@ -1,3 +1,5 @@
+import 'package:easy_localization/easy_localization.dart';
+import 'package:elevate_flower_app/core/languages/locale_keys.g.dart';
 import 'package:elevate_flower_app/core/theme/app_colors.dart';
 import 'package:elevate_flower_app/core/theme/app_typography.dart';
 import 'package:flutter/material.dart';
@@ -17,11 +19,11 @@ class DelieveryTimeSection extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'Delivery Time',
+                LocaleKeys.checkout_delivery_time.tr(),
                 style: 18.medium.copyWith(color: AppColors.black0C),
               ),
               Text(
-                "Schedule",
+                LocaleKeys.checkout_schedule.tr(),
                 style: 18.medium.copyWith(color: AppColors.primerColor),
               ),
             ],
@@ -34,11 +36,11 @@ class DelieveryTimeSection extends StatelessWidget {
                 text: TextSpan(
                   children: [
                     TextSpan(
-                      text: 'Instant, ',
+                      text: '${LocaleKeys.checkout_instant.tr()}, ',
                       style: 14.medium.copyWith(color: AppColors.black0C),
                     ),
                     TextSpan(
-                      text: 'Arrive by 03 Sep 2024, 11:00 AM',
+                      text: '${LocaleKeys.checkout_arrive_by.tr()} 03 Sep 2024, 11:00 AM',
                       style: 14.medium.copyWith(color: AppColors.green0C),
                     ),
                   ],

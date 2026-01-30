@@ -1,3 +1,5 @@
+import 'package:easy_localization/easy_localization.dart';
+import 'package:elevate_flower_app/core/languages/locale_keys.g.dart';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:webview_flutter/webview_flutter.dart'
@@ -34,7 +36,7 @@ class WebPayPage extends StatelessWidget {
       )
       ..loadRequest(Uri.parse(paymentUrl));
     return Scaffold(
-      appBar: AppBar(title: const Text('Payment')),
+      appBar: AppBar(title:  Text(LocaleKeys.checkout_payment.tr())),
       body: WebViewWidget(controller: controller),
     );
   }

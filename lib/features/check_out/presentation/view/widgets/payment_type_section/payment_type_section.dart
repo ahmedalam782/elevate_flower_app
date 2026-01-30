@@ -1,3 +1,5 @@
+import 'package:easy_localization/easy_localization.dart';
+import 'package:elevate_flower_app/core/languages/locale_keys.g.dart';
 import 'package:elevate_flower_app/core/theme/app_colors.dart';
 import 'package:elevate_flower_app/core/theme/app_typography.dart';
 import 'package:elevate_flower_app/features/check_out/domain/repositories/payment_repository.dart';
@@ -23,7 +25,7 @@ class _PaymentTypeSectionState extends State<PaymentTypeSection> {
         spacing: 16,
         children: [
           Text(
-            'Payment method',
+            LocaleKeys.checkout_payment_method.tr(),
             style: 18.medium.copyWith(color: AppColors.black0C),
           ),
           const PaymentTypeCard(paymentStrategy: PaymentStrategy.cash),
