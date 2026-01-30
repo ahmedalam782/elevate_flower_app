@@ -2,13 +2,39 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:elevate_flower_app/core/shared/widgets/custom_button.dart';
 import 'package:elevate_flower_app/core/theme/app_colors.dart';
 import 'package:elevate_flower_app/core/theme/app_typography.dart';
+import 'package:elevate_flower_app/features/filter/domain/entities/filter_type.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
 import '../../languages/locale_keys.g.dart';
 
-enum SortOption { lowestPrice, highestPrice, newest, oldest, discount }
+enum SortOption {
+  lowestPrice,
+  highestPrice,
+  newest,
+  oldest,
+  discount;
+
+  void toApiValue() {}
+}
+
+extension SortOptionExtension on SortOption {
+  FilterType toFilterType() {
+    switch (this) {
+      case SortOption.lowestPrice:
+        return FilterType.lowestPrice;
+      case SortOption.highestPrice:
+        return FilterType.highestPrice;
+      case SortOption.newest:
+        return FilterType.newest;
+      case SortOption.oldest:
+        return FilterType.oldest;
+      case SortOption.discount:
+        return FilterType.discount;
+    }
+  }
+}
 
 class FilterBottomSheet extends StatefulWidget {
   final SortOption? selectedSort;
@@ -50,7 +76,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
       mainAxisSize: MainAxisSize.min,
       children: [
         Gap(24.h),
-    
+
         // Title
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 24.w),
@@ -62,9 +88,9 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
             ),
           ),
         ),
-    
+
         Gap(20.h),
-    
+
         // Sort Options
         ...SortOption.values.map((option) {
           final isSelected = _selectedSort == option;
@@ -81,14 +107,14 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
               decoration: BoxDecoration(
                 color: AppColors.whiteFF,
                 borderRadius: BorderRadius.circular(12.r),
-                boxShadow:[
+                boxShadow: [
                   BoxShadow(
-                    color: AppColors.black0C.withValues(alpha:0.10),
+                    color: AppColors.black0C.withValues(alpha: 0.10),
                     blurRadius: 5.r,
                     offset: const Offset(0, 0),
                     spreadRadius: 0,
                   ),
-                ]
+                ],
               ),
               padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 16.h),
               child: Row(
@@ -130,9 +156,9 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
             ),
           );
         }),
-    
+
         Gap(32.h),
-    
+
         // Filter Button
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 24.w),
@@ -147,7 +173,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
             leading: Icon(Icons.tune, color: AppColors.whiteFF, size: 20.sp),
           ),
         ),
-    
+
         Gap(32.h),
       ],
     );

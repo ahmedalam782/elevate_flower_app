@@ -40,6 +40,7 @@ final GoRouter router = GoRouter(
       page: (state, context) =>
           RegisterPage(key: ValueKey(context.locale.languageCode.toString())),
     ),
+ 
     _customAnimatedGoRoute(
       route: Routes.forgetPassword,
       page: (state, context) => ForgetPasswordPage(
