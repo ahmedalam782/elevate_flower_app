@@ -15,24 +15,21 @@ class ProductCardBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: BlocBuilder<CategoriesCubit, CategoriesStates>(
-        builder: (context, state) {
-          return state.productsOfCategory.when(
-            initial: () => Center(
-              child: Text(LocaleKeys.categories_select_a_category.tr()),
+    return BlocBuilder<CategoriesCubit, CategoriesStates>(
+      builder: (context, state) {
+        return state.productsOfCategory.when(
+          initial: () =>
+              Center(child: Text(LocaleKeys.categories_select_a_category.tr())),
+          loading: () => _buildLoadingGrid(),
+          success: (products) => _buildProductsGrid(products),
+          error: (exception) => Center(
+            child: Text(
+              LocaleKeys.categories_error_loading_products.tr(),
+              style: const TextStyle(color: AppColors.redCC),
             ),
-            loading: () => _buildLoadingGrid(),
-            success: (products) => _buildProductsGrid(products),
-            error: (exception) => Center(
-              child: Text(
-                LocaleKeys.categories_error_loading_products.tr(),
-                style: const TextStyle(color: AppColors.redCC),
-              ),
-            ),
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 
@@ -76,7 +73,7 @@ class ProductCardBuilder extends StatelessWidget {
           onAddToCart: () {
             //! Add to cart logic
           },
-          quantity: 0, 
+          quantity: 0,
         );
       },
     );

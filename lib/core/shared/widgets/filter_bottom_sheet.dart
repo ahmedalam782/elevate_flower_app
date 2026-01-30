@@ -2,14 +2,32 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:elevate_flower_app/core/shared/widgets/custom_button.dart';
 import 'package:elevate_flower_app/core/theme/app_colors.dart';
 import 'package:elevate_flower_app/core/theme/app_typography.dart';
+import 'package:elevate_flower_app/features/filter/domain/entities/filter_type.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
 import '../../languages/locale_keys.g.dart';
 
-enum SortOption { lowestPrice, highestPrice, newest, oldest, discount }
+enum SortOption { lowestPrice, highestPrice, newest, oldest, discount;
 
+  toApiValue() {} }
+  extension SortOptionExtension on SortOption {
+  FilterType toFilterType() {
+    switch (this) {
+      case SortOption.lowestPrice:
+        return FilterType.lowestPrice;
+      case SortOption.highestPrice:
+        return FilterType.highestPrice;
+      case SortOption.newest:
+        return FilterType.newest;
+      case SortOption.oldest:
+        return FilterType.oldest;
+      case SortOption.discount:
+        return FilterType.discount;
+    }
+  }
+  }
 class FilterBottomSheet extends StatefulWidget {
   final SortOption? selectedSort;
   final Function(SortOption?)? onApplyFilter;
@@ -42,7 +60,9 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
       case SortOption.discount:
         return LocaleKeys.products_discount.tr();
     }
+    
   }
+  
 
   @override
   Widget build(BuildContext context) {

@@ -5,14 +5,20 @@ import 'package:elevate_flower_app/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class FilterBottom extends StatefulWidget {
-  const FilterBottom({super.key});
+  final SortOption? selectedSort;
+  final VoidCallback onTap;
+
+  const FilterBottom({
+    super.key,
+    this.selectedSort,
+    required this.onTap,
+  });
 
   @override
   State<FilterBottom> createState() => _FilterBottomState();
 }
 
 class _FilterBottomState extends State<FilterBottom> {
-  SortOption? selectedSort;
   @override
   Widget build(BuildContext context) {
     return Positioned(
@@ -34,20 +40,7 @@ class _FilterBottomState extends State<FilterBottom> {
           child: Material(
             color: AppColors.transparent,
             child: InkWell(
-              onTap: () {
-                showFilterBottomSheet(
-                  context: context,
-                  selectedSort: selectedSort,
-                  onApplyFilter: (sort) {
-                    setState(() {
-                      selectedSort = sort;
-                    });
-                    // Handle filter apply
-                    // print('Filter applied: $sort');
-                  },
-                );
-              },
-
+              onTap: widget.onTap,
               borderRadius: BorderRadius.circular(100),
               child: Container(
                 padding: const EdgeInsets.symmetric(
