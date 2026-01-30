@@ -10,6 +10,8 @@ import 'package:elevate_flower_app/features/occasions/presentation/view_model/cu
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'package:elevate_flower_app/features/cart/presentation/view_model/cubit/cart_cubit.dart';
+
 class OccasionsPage extends StatefulWidget {
   const OccasionsPage({super.key, this.selectedIndex});
   final int? selectedIndex;
@@ -23,21 +25,26 @@ class _OccasionsPageState extends State<OccasionsPage> {
   Widget build(BuildContext context) {
     return BlocProvider.value(
       value: _viewModel..doIntent(OccasionsEvents.getOccasions()),
-      child: BlocBuilder<OccasionsCubit, OccasionsStates>(
-        builder: (context, state) {
-          return Scaffold(
-            backgroundColor: AppColors.whiteF9,
-            body: Column(
-              children: [
-                OccasionsAppBar(
-                  title: LocaleKeys.occasion_occasion_title.tr(),
-                  subTitle: LocaleKeys.occasion_occasion_hint.tr(),
-                ),
-                Expanded(child: OccasionsBody(selectedIndex: widget.selectedIndex)),
-              ],
-            ),
-          );
-        },
+      child: BlocProvider.value(
+        value: getIt<CartCubit>(),
+        child: BlocBuilder<OccasionsCubit, OccasionsStates>(
+          builder: (context, state) {
+            return Scaffold(
+              backgroundColor: AppColors.whiteF9,
+              body: Column(
+                children: [
+                  OccasionsAppBar(
+                    title: LocaleKeys.occasion_occasion_title.tr(),
+                    subTitle: LocaleKeys.occasion_occasion_hint.tr(),
+                  ),
+                  Expanded(
+                    child: OccasionsBody(selectedIndex: widget.selectedIndex),
+                  ),
+                ],
+              ),
+            );
+          },
+        ),
       ),
     );
   }

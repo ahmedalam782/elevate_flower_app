@@ -12,6 +12,23 @@ class EndPoints {
   static const String homeEndpoint = "/home";
   static const String getAllOccasions = "/occasions";
   static const String getAllProducts = "/products";
+  static const String logout = "/auth/logout";
+
+  static const String profileData = "/auth/profile-data";
+
+  // CART
+  static const String cartEndPoint = "/cart";
+
+  static const String getUserProfile = "/auth/profile-data";
+  static const String editUserProfile = "/auth/editProfile";
+  static const String updateProfilePhoto = "/auth/upload-photo";
+
+  // CHECKOUT
+  static const String creditCheckOut =
+      "/orders/checkout?url=http://localhost:3000";
+  static const String cashCheckOut = "/orders";
+  static const String userAddresses = "/addresses";
+  static const String addressEndPoint = "/addresses";
   static const String changePassword = "/auth/changePassword";
 }
 
@@ -20,8 +37,12 @@ class Apikeys {
   static const String refreshToken = 'refreshToken';
   static const String userId = 'userId';
   static const String rememberMe = 'rememberMe';
+  static const String language = 'language';
 }
 
 class QueryParameter {
   static const String categoryQuery = 'category';
+  static const String keyword = 'keyword';
+  static const String page = 'page';
+  static const String limit = 'limit';
 }

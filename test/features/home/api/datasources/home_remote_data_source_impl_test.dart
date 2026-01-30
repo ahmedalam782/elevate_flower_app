@@ -1,5 +1,4 @@
 import 'package:elevate_flower_app/core/config/base_response/result.dart';
-import 'package:elevate_flower_app/core/config/di/injectable_config.dart';
 import 'package:elevate_flower_app/features/home/api/api_client/home_api_client.dart';
 import 'package:elevate_flower_app/features/home/api/datasources/home_remote_data_source_impl.dart';
 import 'package:elevate_flower_app/features/home/data/models/category_model.dart';
@@ -23,19 +22,17 @@ void main() {
 
   setUp(() async {
     await GetIt.instance.reset();
-    configureDependencies();
+
+    // Setup and register mock InternetConnection
     mockInternetConnection = MockInternetConnection();
     when(
       mockInternetConnection.hasInternetAccess,
     ).thenAnswer((_) async => true);
-    if (GetIt.instance.isRegistered<InternetConnection>()) {
-      GetIt.instance.unregister<InternetConnection>();
-    }
 
-    // Register your mock
     GetIt.instance.registerSingleton<InternetConnection>(
       mockInternetConnection,
     );
+
     apiClientMock = MockHomeApiClient();
     dataSourceImpl = HomeRemoteDatasourceImpl(apiClientMock);
   });

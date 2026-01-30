@@ -32,6 +32,7 @@ abstract class AppColors {
   static const Color grayCF = Color(0xffCFCFCF);
   static const Color grayA6 = Color(0xffA6A6A6);
   static const Color gray7D = Color(0xff7D7D7D);
+  static const Color grayEA = Color(0xffEAEAEA);
 
   //transparent
   static const Color transparent = Color(0x00000000);
@@ -51,6 +52,7 @@ abstract class AppColors {
   static const Color pinkD9 = Color(0xffD94483);
   static const Color pinkAF = Color(0xffAF1958);
   static const Color pink8C = Color(0xff8C1447);
+  static const Color pink7C = Color(0xffD7397C);
   static const Color pink69 = Color(0xff690F35);
   static const Color pink46 = Color(0xff460A23);
   static const Color pink2A = Color(0xff2A0615);

@@ -1,0 +1,86 @@
+name: Unit Test CI
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches:
+      - main
+      - development
+  push:
+    branches:
+      - main
+      - development
+
+jobs:
+  unit-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: read
+      pull-requests: write
+      issues: write
+      checks: write
+    
+    steps:
+      - name: 📚 Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: ☕ Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+          
+      - name: 🐦 Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.38.6'
+          channel: 'stable'
+          cache: true
+          
+      - name: 📦 Get dependencies
+        run: flutter pub get
+        
+      - name: 🔍 Verify Flutter installation
+        run: flutter doctor -v
+        
+      - name: 🔧 Run code generation
+        run: |
+          flutter pub run easy_localization:generate -S assets/localization -O lib/core/languages -f keys -o locale_keys.g.dart
+          dart run build_runner build --delete-conflicting-outputs
+        
+      - name: 🧪 Run unit tests
+        run: flutter test --coverage --reporter expanded
+        
+      - name: 📈 Generate coverage report
+        if: always()
+        run: |
+          if [ -f coverage/lcov.info ]; then
+            echo "✅ Coverage file generated successfully"
+          else
+            echo "⚠️ No coverage file found"
+          fi
+          
+      - name: 💬 Comment test results on PR
+        if: github.event_name == 'pull_request' && always()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            let comment = '## 🧪 Unit Test Results\n\n';
+            
+            if (fs.existsSync('coverage/lcov.info')) {
+              comment += '✅ All tests passed!\n\n';
+              comment += '📊 Coverage report has been generated.\n';
+            } else {
+              comment += '❌ Tests failed or coverage not generated.\n';
+            }
+            
+            comment += '\nCheck the Actions tab for detailed results.';
+            
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: comment
+            });

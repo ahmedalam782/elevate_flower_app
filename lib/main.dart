@@ -14,6 +14,17 @@ import 'core/routes/url_strategy.dart';
 const bool runLocal = false;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // Initialize EasyLocalization BEFORE runApp
+  await EasyLocalization.ensureInitialized();
+
+  // Configure dependencies
+  await configureDependencies();
+  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+
+  // Set custom Bloc observer for debugging
+  Bloc.observer = MyBlocObserver();
+
   // Set the status bar color to transparent and icons to white
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
@@ -23,22 +34,19 @@ void main() async {
     ),
   );
 
- 
+  await ScreenUtil.ensureScreenSize();
+
+  //==================FOR WEB=====================
+  GoRouter.optionURLReflectsImperativeAPIs = true;
+  setPathUrlStrategy();
+
   runApp(
     EasyLocalization(
       supportedLocales: const [arabicLocale, englishLocale],
       fallbackLocale: englishLocale,
-      startLocale: englishLocale,
       path: assetsLocalization,
+      saveLocale: true,
       child: const FlowerApp(),
     ),
   );
-  await configureDependencies(); // Set custom Bloc observer for debugging
-  Bloc.observer = MyBlocObserver();
-  await ScreenUtil.ensureScreenSize();
-  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-  //==================FOR WEB=====================
-  GoRouter.optionURLReflectsImperativeAPIs = true;
-  setPathUrlStrategy();
-  await EasyLocalization.ensureInitialized();
 }

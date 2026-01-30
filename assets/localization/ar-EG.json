@@ -189,7 +189,7 @@
     "add_to_cart": "أضف إلي العربة"
   },
   "home_screen": {
-    "home_title": "فلوري",
+    "home_title": "زهور",
     "temp_location": "التوصيل إلى 2XVP+XC - الشيخ زايد",
     "view_all": "عرض الكل",
     "categories_title": "التصنيفات",
@@ -208,7 +208,8 @@
     "highest_price": "السعر الأعلى",
     "new": "جديد",
     "old": "قديم",
-    "discount": "خصم"
+    "discount": "خصم",
+    "search_for_product": "ابحث عن أي منتج تريده"
   },
   "best_seller": {
     "best_seller": "المنتجات المميزة",
@@ -223,6 +224,114 @@
   "occasion": {
     "occasion_title": "المناسبات",
     "occasion_hint": "ازهر مع أفضل المنتجات المميزة لدينا"
+  },
+  "profile": {
+    "profile_title": "الملف الشخصي",
+    "my_orders": "طلباتي",
+    "saved_address": "العناوين المحفوظة",
+    "notification": "الإشعارات",
+    "language": "اللغة",
+    "about_us": "من نحن",
+    "terms_conditions": "الشروط والأحكام",
+    "logout": "تسجيل الخروج",
+    "edit_profile": "تعديل الملف الشخصي",
+    "logout_confirmation": "هل أنت متأكد من تسجيل الخروج؟",
+    "logout_success": "تم تسجيل الخروج بنجاح",
+    "change_language": "تغيير اللغة",
+    "Arabic": "العربية",
+    "English": "الإنجليزية"
+  },
+  "logout": {
+    "authentication_status": "حالة المصادقة",
+    "authenticated": "مصادق عليه",
+    "not_authenticated": "غير مصادق عليه",
+    "logout_title": "تسجيل الخروج",
+    "logout_confirm": "تأكيد تسجيل الخروج!!",
+    "logout_success": "تم تسجيل الخروج بنجاح",
+    "logout_error": "فشل تسجيل الخروج. يرجى المحاولة مرة أخرى.",
+    "logout_loading": "جارٍ تسجيل الخروج...",
+    "clear_all_tokens": "مسح جميع الرموز"
+  },
+  "cart": {
+    "cart": "سلة التسوق",
+    "items": "عناصر",
+    "sub_total": "المجموع الفرعي",
+    "total": "المبلغ الكلي",
+    "check_out": "إتمام الطلب",
+    "deliver_to": "يوصل إلي",
+    "clear": "مسح العربة",
+    "no_items_found": "سلتك فارغة",
+    "browsing_as_guest": "أنت تتصفح كازائر, من فضلك قم بتسجيل الدخول لعرض سلتك",
+    "confirm": "تأكيد",
+    "back": "رجوع",
+    "you_are_browsing_as_guest": "أنت تتصفح كازائر",
+    "to_continue_Shopping": "لإضافة منتج إلي السلة, من فضلك قم بتسجيل الدخول أو إنشاء حساب",
+    "item_added_to_cart": "تم إضافة المنتج الي السلة بنجاح"
+  },
+  "edit_profile": {
+    "edit_profile_title": "تعديل الملف الشخصي",
+    "first_name_label": "الاسم الأول",
+    "last_name_label": "اسم العائلة",
+    "email_label": "البريد الإلكتروني",
+    "change": "تغيير",
+    "phone_label": "رقم الهاتف",
+    "update_button": "تحديث",
+    "profile_updated_successfully": "تم تحديث الملف الشخصي بنجاح",
+    "camera_option": "الكاميرا",
+    "gallery_option": "المعرض"
+  },
+  "checkout": {
+    "checkout": "الدفع",
+    "delivery_time": "وقت التسليم",
+    "schedule": "جدول زمني",
+    "instant": "فوري، ",
+    "arrive_by": "التسليم في",
+    "sub_total": "المجموع الجزئي",
+    "delivery_fee": "رسوم التسليم",
+    "total": "المجموع",
+    "place_order": "تأكيد الطلب",
+    "payment_successful": "تم الدفع بنجاح!",
+    "payment_failed": "فشل الدفع!",
+    "payment_method": "طريقة الدفع",
+    "cash": "نقداً",
+    "credit_card": "بطاقة ائتمان",
+    "gift_section": "إنها هدية",
+    "gift_name": "الاسم",
+    "gift_name_hint": "أدخل الاسم",
+    "gift_phone": "رقم الهاتف",
+    "gift_phone_hint": "أدخل رقم الهاتف",
+    "delivery_address": "عنوان التسليم",
+    "checkout_addresses_loading_error": "خطاء في تحميل العناوين",
+    "select_address": "اختر العنوان",
+    "add_new_address": "إضافة عنوان جديد",
+    "payment": "الدفع"
+  },
+  "change_language": {
+    "title": "تغيير اللغة",
+    "arabic": "العربية",
+    "english": "الانجليزية"
+  },
+  "address": {
+    "address_title": "العناوين المحفوظة",
+    "add_new_address": "إضافة عنوان جديد",
+    "delete_address": "حذف",
+    "cancel": "إلغاء",
+    "deletion_confirmation": "هل أنت متأكد أنك تريد حذف هذا العنوان؟"
+  },
+  "address_details": {
+    "for_better_experience": "لتحسين تجربتك، يرجى السماح لنا بالوصول إلى موقعك",
+    "allow": "سماح",
+    "address": "العنوان",
+    "enter_your_address": "أدخل عنوانك",
+    "phone_number": "رقم الهاتف",
+    "please_enter_phone_number": "يرجى إدخال رقم هاتفك",
+    "rec_name": "اسم المستلم",
+    "enter_rec_name": "أدخل اسم المستلم",
+    "area": "المنطقة",
+    "city": "المدينة",
+    "get_location": "تفعيل الموقع",
+    "add_address": "Add address",
+    "update_address": "Update Address"
   },
   "reset_password": {
     "reset_password": "إعادة تعيين كلمة المرور",

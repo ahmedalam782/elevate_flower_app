@@ -3,6 +3,7 @@ import 'package:elevate_flower_app/core/shared/entities/product_item_entity.dart
 import 'package:elevate_flower_app/core/shared/widgets/custom_button.dart';
 import 'package:elevate_flower_app/core/theme/app_colors.dart';
 import 'package:elevate_flower_app/core/theme/app_typography.dart';
+import 'package:elevate_flower_app/features/cart/presentation/view/widgets/custom_add_to_cart_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
@@ -65,22 +66,26 @@ class CustomProductItem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Image Container
-            AnimatedContainer(
-              duration: const Duration(milliseconds: 500),
-              curve: Curves.easeInOut,
-              margin: const EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                color: AppColors.pinkF9,
-                borderRadius: BorderRadius.circular(16),
-              ),
-              child: CustomCachedImage(
-                imagePath: product.imageUrl ?? '',
-                height: 160,
+            Expanded(
+              flex: 6,
+              child: AnimatedContainer(
+                duration: const Duration(milliseconds: 500),
+                curve: Curves.easeInOut,
+                margin: const EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  color: AppColors.pinkF9,
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                child: CustomCachedImage(
+                  imagePath: product.imageUrl ?? '',
+                  fit: BoxFit.contain,
+                ),
               ),
             ),
 
             // Product Details
             Expanded(
+              flex: 5,
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 12),
                 child: Column(
@@ -129,24 +134,26 @@ class CustomProductItem extends StatelessWidget {
                     // Add to Cart Button or Quantity Controls
                     quantity == 0
                         ? CustomButton(
-                            onPressed: onAddToCart,
+                            onPressed: () {
+                              addToCart(context, product.id);
+                            },
                             title: LocaleKeys.products_add_to_cart.tr(),
                             titleStyle: 13.medium.copyWith(
                               color: AppColors.whiteF9,
                             ),
-                            height: 30,
+                            height: 28,
                             padding: const EdgeInsets.symmetric(
                               vertical: 0,
                               horizontal: 0,
                             ),
                             leading: const Icon(
                               Icons.shopping_cart_outlined,
-                              size: 16,
+                              size: 14,
                               color: AppColors.whiteF9,
                             ),
                           )
                         : _buildQuantityControls(),
-                    const Gap(12),
+                    const Gap(8),
                   ],
                 ),
               ),
