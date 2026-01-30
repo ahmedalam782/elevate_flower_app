@@ -86,7 +86,7 @@ class _AddressDetailsPageState extends State<AddressDetailsPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         SizedBox(height: 0.5.sh),
-                        Center(child: CircularProgressIndicator()),
+                        const Center(child: CircularProgressIndicator()),
                         SizedBox(height: 0.5.sh),
                         // Spacer(),
                       ],
@@ -293,7 +293,7 @@ class _AddressDetailsPageState extends State<AddressDetailsPage> {
                             },
                             builder: (context, state) {
                               return CustomButton(
-                                isLoading: state == BaseState.loading(),
+                                isLoading: state == const BaseState.loading(),
                                 title: widget.addressDetailsData == null
                                     ? LocaleKeys.address_details_add_address
                                           .tr()

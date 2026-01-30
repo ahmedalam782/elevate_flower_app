@@ -38,10 +38,10 @@ class AddressDetailsData {
   }) {
     return AddressDetailsData(
       street: street ?? this.street,
-      username: userName ?? this.username,
+      username: userName ?? username,
       city: city ?? this.city,
       lat: lat ?? this.lat,
-      long: lng ?? this.long,
+      long: lng ?? long,
       phone: phone ?? this.phone,
     );
   }

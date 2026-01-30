@@ -8,6 +8,7 @@ import 'package:elevate_flower_app/features/edit_profile/presentation/view/pages
 import 'package:elevate_flower_app/features/occasions/presentation/view/pages/occasions_page.dart';
 import 'package:elevate_flower_app/features/product_details/presentation/view/pages/product_details_page.dart';
 import 'package:elevate_flower_app/features/register/presentation/view/pages/register_page.dart';
+import 'package:elevate_flower_app/features/search/presentation/view/pages/search_screen.dart';
 import 'package:elevate_flower_app/features/user_addresses/presentation/view/pages/user_addresses_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -98,6 +99,11 @@ final GoRouter router = GoRouter(
         addressDetailsData: state.extra as AddressDetailsData?,
         key: ValueKey(context.locale.languageCode.toString()),
       ),
+    ),
+    _customAnimatedGoRoute(
+      route: Routes.search,
+      page: (state, context) =>
+          SearchScreen(key: ValueKey(context.locale.languageCode.toString())),
     ),
   ],
 );
