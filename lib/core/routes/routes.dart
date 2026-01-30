@@ -7,6 +7,7 @@ class Routes {
   static const String appLayout = "/app-layout";
 
   static const String productDetails = "/product-details";
+  static const String aboutApp = "/about_app";
 
   static const String bestSellers = "/best-sellers";
   static const String categories = "/categories";
