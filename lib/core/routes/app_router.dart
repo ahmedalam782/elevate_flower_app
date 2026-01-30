@@ -2,6 +2,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:elevate_flower_app/features/best_seller/presentation/view/pages/best_seller_page.dart';
 import 'package:elevate_flower_app/features/cart/presentation/view/pages/cart_page.dart';
 import 'package:elevate_flower_app/features/categories/presentation/view/pages/categories_page.dart';
+import 'package:elevate_flower_app/features/check_out/presentation/view/pages/check_out_page.dart';
+import 'package:elevate_flower_app/features/check_out/presentation/view/pages/web_pay_page.dart';
 import 'package:elevate_flower_app/features/edit_profile/presentation/view/pages/edit_profile_page.dart';
 import 'package:elevate_flower_app/features/occasions/presentation/view/pages/occasions_page.dart';
 import 'package:elevate_flower_app/features/product_details/presentation/view/pages/product_details_page.dart';
@@ -85,9 +87,17 @@ final GoRouter router = GoRouter(
     ),
 
     _customAnimatedGoRoute(
-      route: Routes.checkOutPage,
-      page: (state, context) => CartPage(
+      route: Routes.checkOut,
+      page: (state, context) => CheckOutPage(
         key: ValueKey(context.locale.languageCode.toString()),
+        totalPrice: state.extra as double,
+      ),
+    ),
+    _customAnimatedGoRoute(
+      route: Routes.webPay,
+      page: (state, context) => WebPayPage(
+        key: ValueKey(context.locale.languageCode.toString()),
+        paymentUrl: state.extra as String,
       ),
     ),
   ],

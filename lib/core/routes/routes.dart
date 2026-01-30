@@ -14,6 +14,7 @@ class Routes {
   static const String carScreen = "/car-screen";
   static const String editProfile = "/edit-profile";
 
-  static const String checkOutPage = "/check-out";
+  static const String checkOut = "/check-out";
 
+  static const String webPay = "/web-pay";
 }

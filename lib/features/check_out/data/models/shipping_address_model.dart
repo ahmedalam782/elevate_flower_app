@@ -4,13 +4,14 @@ class ShippingAddressModel {
   final String city;
   final String lat;
   final String long;
+  final String? id;
 
   ShippingAddressModel({
     required this.street,
     required this.phone,
     required this.city,
     required this.lat,
-    required this.long,
+    required this.long, this.id,
   });
 
   Map<String, dynamic> toJson() {

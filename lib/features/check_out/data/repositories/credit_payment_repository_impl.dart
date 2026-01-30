@@ -4,8 +4,9 @@ import 'package:elevate_flower_app/features/check_out/data/models/shipping_addre
 import 'package:elevate_flower_app/features/check_out/domain/entities/payment_result.dart';
 import 'package:elevate_flower_app/features/check_out/domain/repositories/payment_repository.dart';
 import 'package:injectable/injectable.dart';
-@LazySingleton(as: PaymentRepository)
+
 @Named('Credit')
+@LazySingleton(as: PaymentRepository)
 class CreditPaymentRepositoryImpl implements PaymentRepository {
   final PaymentDataSourceContract _dataSource;
 
