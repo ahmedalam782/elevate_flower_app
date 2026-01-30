@@ -303,7 +303,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       iconPath: AppIcons.iconsCheckCircle,
                       title: LocaleKeys.profile_about_us.tr(),
                       onTap: () {
-                        // TODO: Navigate to about us
+                        context.go(Routes.aboutApp);
                       },
                     ),
 
