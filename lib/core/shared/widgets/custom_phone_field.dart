@@ -1,5 +1,5 @@
 import 'package:easy_localization/easy_localization.dart' as ez;
-import 'package:elevate_flower_app/core/languages/lang.dart';
+import '../../languages/lang.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

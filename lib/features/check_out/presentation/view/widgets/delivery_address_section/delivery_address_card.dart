@@ -1,9 +1,10 @@
-import 'package:elevate_flower_app/core/theme/app_colors.dart';
-import 'package:elevate_flower_app/core/theme/app_typography.dart';
-import 'package:elevate_flower_app/features/change_lang/presentation/view/widgets/localization_sheet_card.dart';
-import 'package:elevate_flower_app/features/check_out/domain/entities/address_entity.dart';
-import 'package:elevate_flower_app/features/check_out/presentation/view_model/pay_cubit/check_out_cubit.dart';
-import 'package:elevate_flower_app/features/check_out/presentation/view_model/pay_cubit/check_out_events.dart';
+import '../../../../../../core/config/di/injectable_config.dart';
+import '../../../../../../core/theme/app_colors.dart';
+import '../../../../../../core/theme/app_typography.dart';
+import '../../../../../change_lang/presentation/view/widgets/localization_sheet_card.dart';
+import '../../../../domain/entities/address_entity.dart';
+import '../../../view_model/pay_cubit/check_out_cubit.dart';
+import '../../../view_model/pay_cubit/check_out_events.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -16,13 +17,14 @@ class DeliveryAddressCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-   final bool isSelected=context.select(
+    CheckOutCubit checkoutCubit = getIt<CheckOutCubit>();
+    final bool isSelected=context.select(
       (CheckOutCubit cubit) => cubit.state.selectedAddress?.id == address.id,
     );
     return InkWell(
       enableFeedback: true,
       onTap: () {
-        context.read<CheckOutCubit>().doIntent(
+        checkoutCubit.doIntent(
           SelectAddressEvent(address: address),
         );
       },
@@ -48,7 +50,7 @@ class DeliveryAddressCard extends StatelessWidget {
                     children: [
                       selectionIndicator(isSelected),
                       Text(
-                        address.city!,
+                        address.city?? '',
                         style: 16.medium.copyWith(color: AppColors.black0C),
                       ),
                     ],

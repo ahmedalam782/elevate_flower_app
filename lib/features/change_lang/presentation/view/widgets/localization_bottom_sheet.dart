@@ -1,11 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:elevate_flower_app/core/config/di/injectable_config.dart';
-import 'package:elevate_flower_app/core/languages/lang.dart';
-import 'package:elevate_flower_app/core/languages/locale_keys.g.dart';
-import 'package:elevate_flower_app/core/theme/app_colors.dart';
-import 'package:elevate_flower_app/core/theme/app_typography.dart';
-import 'package:elevate_flower_app/features/change_lang/domain/use_cases/change_lang_use_case.dart';
-import 'package:elevate_flower_app/features/change_lang/presentation/view/widgets/localization_sheet_card.dart';
+import '../../../../../core/config/di/injectable_config.dart';
+import '../../../../../core/languages/lang.dart';
+import '../../../../../core/languages/locale_keys.g.dart';
+import '../../../../../core/theme/app_colors.dart';
+import '../../../../../core/theme/app_typography.dart';
+import '../../../domain/use_cases/change_lang_use_case.dart';
+import 'localization_sheet_card.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 

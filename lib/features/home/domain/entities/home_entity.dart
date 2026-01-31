@@ -1,6 +1,6 @@
-import 'package:elevate_flower_app/features/home/domain/entities/category_entity.dart';
-import 'package:elevate_flower_app/features/home/domain/entities/occasion_entity.dart';
-import 'package:elevate_flower_app/features/home/domain/entities/product_entity.dart';
+import 'category_entity.dart';
+import 'occasion_entity.dart';
+import 'product_entity.dart';
 
 
 class HomeEntity {

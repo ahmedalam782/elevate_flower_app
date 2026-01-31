@@ -1,5 +1,5 @@
-import 'package:elevate_flower_app/core/config/base_response/result.dart';
-import 'package:elevate_flower_app/features/change_lang/domain/repositories/change_lang_repo.dart';
+import '../../../../core/config/base_response/result.dart';
+import '../repositories/change_lang_repo.dart';
 import 'package:injectable/injectable.dart';
 @lazySingleton
 class GetLangUseCase {

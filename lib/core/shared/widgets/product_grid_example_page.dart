@@ -1,7 +1,7 @@
-import 'package:elevate_flower_app/core/shared/entities/product_item_entity.dart';
-import 'package:elevate_flower_app/core/shared/widgets/custom_product_grid_view.dart';
-import 'package:elevate_flower_app/core/shared/widgets/paginated_product_grid_view.dart';
-import 'package:elevate_flower_app/core/theme/app_colors.dart';
+import '../entities/product_item_entity.dart';
+import 'custom_product_grid_view.dart';
+import 'paginated_product_grid_view.dart';
+import '../../theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
 /// Example page demonstrating how to use the custom product grid widgets

@@ -1,4 +1,4 @@
-import 'package:elevate_flower_app/features/categories/domain/entities/product_entity.dart';
+import '../../../domain/entities/product_entity.dart';
 import 'product_dto.dart';
 import 'products_response_models.dart';
 

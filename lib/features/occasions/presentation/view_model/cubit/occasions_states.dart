@@ -1,6 +1,6 @@
-import 'package:elevate_flower_app/core/config/base_state/base_state.dart';
-import 'package:elevate_flower_app/core/shared/entities/product_item_entity.dart';
-import 'package:elevate_flower_app/features/occasions/domain/entities/occasion_card_entity.dart';
+import '../../../../../core/config/base_state/base_state.dart';
+import '../../../../../core/shared/entities/product_item_entity.dart';
+import '../../../domain/entities/occasion_card_entity.dart';
 import 'package:equatable/equatable.dart';
 
 class OccasionsStates extends Equatable {

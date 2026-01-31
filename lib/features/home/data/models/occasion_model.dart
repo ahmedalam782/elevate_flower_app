@@ -1,4 +1,4 @@
-import 'package:elevate_flower_app/features/home/domain/entities/occasion_entity.dart';
+import '../../domain/entities/occasion_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'occasion_model.g.dart';

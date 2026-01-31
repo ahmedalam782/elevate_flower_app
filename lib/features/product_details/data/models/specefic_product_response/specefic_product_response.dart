@@ -1,4 +1,4 @@
-import 'package:elevate_flower_app/features/product_details/domain/entities/specefic_product_entity.dart';
+import '../../../domain/entities/specefic_product_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
 part 'specefic_product_response.g.dart';
 

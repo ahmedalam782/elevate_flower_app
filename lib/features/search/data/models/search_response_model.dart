@@ -1,4 +1,4 @@
-import 'package:elevate_flower_app/features/search/data/models/search_product_model.dart';
+import 'search_product_model.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'search_response_model.g.dart';

@@ -1,7 +1,7 @@
-import 'package:elevate_flower_app/core/config/base_response/result.dart';
-import 'package:elevate_flower_app/features/address_details/data/models/address_details_data.dart';
-import 'package:elevate_flower_app/features/address_details/data/models/cities_model.dart';
-import 'package:elevate_flower_app/features/address_details/data/models/states_model.dart';
+import '../../../../core/config/base_response/result.dart';
+import '../../data/models/address_details_data.dart';
+import '../../data/models/cities_model.dart';
+import '../../data/models/states_model.dart';
 
 abstract class AddressDetailsRepository {
   Future<List<StatesModel>> getStates();

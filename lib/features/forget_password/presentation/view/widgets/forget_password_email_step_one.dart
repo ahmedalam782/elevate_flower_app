@@ -1,10 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:elevate_flower_app/core/languages/locale_keys.g.dart';
-import 'package:elevate_flower_app/core/shared/widgets/custom_button.dart';
-import 'package:elevate_flower_app/core/shared/widgets/custom_text_field.dart';
-import 'package:elevate_flower_app/core/theme/app_colors.dart';
-import 'package:elevate_flower_app/core/validations/validations.dart';
-import 'package:elevate_flower_app/features/forget_password/presentation/view_model/cubit/forget_password_cubit.dart';
+import '../../../../../core/languages/locale_keys.g.dart';
+import '../../../../../core/shared/widgets/custom_button.dart';
+import '../../../../../core/shared/widgets/custom_text_field.dart';
+import '../../../../../core/theme/app_colors.dart';
+import '../../../../../core/validations/validations.dart';
+import '../../view_model/cubit/forget_password_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

@@ -1,8 +1,9 @@
-import 'package:elevate_flower_app/core/helper/user_helper/user_helper.dart';
-import 'package:elevate_flower_app/features/logout/presentation/view_model/token_manager/token_manager.dart';
-import 'package:elevate_flower_app/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:elevate_flower_app/core/config/di/injectable_config.dart';
+
+import '../../../../../core/config/di/injectable_config.dart';
+import '../../../../../core/helper/user_helper/user_helper.dart';
+import '../../../../../core/theme/app_colors.dart';
+import '../../view_model/token_manager/token_manager.dart';
 
 /// Screen for debugging token status
 /// استخدمه للتأكد إن الـ tokens اتمسحت

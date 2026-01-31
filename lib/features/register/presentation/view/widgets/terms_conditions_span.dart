@@ -1,5 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:elevate_flower_app/core/languages/locale_keys.g.dart';
+import '../../../../../core/languages/locale_keys.g.dart';
 import 'package:flutter/material.dart';
 
 class TermsConditionsSpan extends StatelessWidget {

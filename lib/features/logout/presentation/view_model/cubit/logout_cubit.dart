@@ -1,13 +1,13 @@
 import 'dart:developer';
-import 'package:elevate_flower_app/core/config/base_response/result.dart';
-import 'package:elevate_flower_app/core/config/base_state/base_cubit.dart';
-import 'package:elevate_flower_app/core/config/base_state/base_state.dart';
-import 'package:elevate_flower_app/core/helper/user_helper/user_helper.dart';
-import 'package:elevate_flower_app/features/logout/data/models/logout_response_model.dart';
-import 'package:elevate_flower_app/features/logout/domain/use_cases/logout_usecase.dart';
-import 'package:elevate_flower_app/features/logout/presentation/view_model/cubit/logout_events.dart';
-import 'package:elevate_flower_app/features/logout/presentation/view_model/cubit/logout_navigation.dart';
-import 'package:elevate_flower_app/features/logout/presentation/view_model/cubit/logout_states.dart';
+import '../../../../../core/config/base_response/result.dart';
+import '../../../../../core/config/base_state/base_cubit.dart';
+import '../../../../../core/config/base_state/base_state.dart';
+import '../../../../../core/helper/user_helper/user_helper.dart';
+import '../../../data/models/logout_response_model.dart';
+import '../../../domain/use_cases/logout_usecase.dart';
+import 'logout_events.dart';
+import 'logout_navigation.dart';
+import 'logout_states.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable

@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
-import 'package:elevate_flower_app/core/config/api/end_points.dart';
-import 'package:elevate_flower_app/features/forget_password/data/models/forget_password_response/forget_password_response.dart';
-import 'package:elevate_flower_app/features/forget_password/data/models/reset_password_dto/reset_password_dto.dart';
+import '../../../../core/config/api/end_points.dart';
+import '../../data/models/forget_password_response/forget_password_response.dart';
+import '../../data/models/reset_password_dto/reset_password_dto.dart';
 import 'package:injectable/injectable.dart';
 import 'package:retrofit/retrofit.dart';
 part 'forget_Password_api_client.g.dart';

@@ -1,6 +1,8 @@
+import 'dart:convert';
+
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'dart:convert';
+
 import '../../data/datasources/profile_local_data_source_contract.dart';
 import '../../domain/entities/profile_data_entity.dart';
 

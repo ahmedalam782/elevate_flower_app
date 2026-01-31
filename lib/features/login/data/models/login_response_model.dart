@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+
 import 'login_user_dto.dart';
 
 part 'login_response_model.g.dart';

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+
 import '../../helper/classes/debounce.dart';
 import '../../theme/app_colors.dart';
 import '../../theme/app_icons.dart';

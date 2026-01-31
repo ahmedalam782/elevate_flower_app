@@ -1,4 +1,4 @@
-import 'package:elevate_flower_app/core/theme/app_colors.dart';
+import '../../../../../core/theme/app_colors.dart';
 
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
