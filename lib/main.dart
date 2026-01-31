@@ -15,17 +15,17 @@ const bool runLocal = false;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // Initialize EasyLocalization BEFORE runApp
+  //! Initialize EasyLocalization BEFORE runApp
   await EasyLocalization.ensureInitialized();
 
-  // Configure dependencies
+  //! Configure dependencies
   await configureDependencies();
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
-  // Set custom Bloc observer for debugging
+  //! Set custom Bloc observer for debugging
   Bloc.observer = MyBlocObserver();
 
-  // Set the status bar color to transparent and icons to white
+  //! Set the status bar color to transparent and icons to white
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
       statusBarColor: AppColors.black,
@@ -36,7 +36,7 @@ void main() async {
 
   await ScreenUtil.ensureScreenSize();
 
-  //==================FOR WEB=====================
+  //!==================FOR WEB=====================
   GoRouter.optionURLReflectsImperativeAPIs = true;
   setPathUrlStrategy();
 
