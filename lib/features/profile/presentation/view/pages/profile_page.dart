@@ -314,7 +314,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       iconPath: AppIcons.iconsWarning,
                       title: LocaleKeys.profile_terms_conditions.tr(),
                       onTap: () {
-                        // TODO: Navigate to terms & conditions
+                        context.go(Routes.termsAndConditions);
                       },
                     ),
 

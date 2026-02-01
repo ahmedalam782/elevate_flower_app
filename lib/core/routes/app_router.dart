@@ -11,6 +11,7 @@ import 'package:elevate_flower_app/features/occasions/presentation/view/pages/oc
 import 'package:elevate_flower_app/features/product_details/presentation/view/pages/product_details_page.dart';
 import 'package:elevate_flower_app/features/register/presentation/view/pages/register_page.dart';
 import 'package:elevate_flower_app/features/search/presentation/view/pages/search_screen.dart';
+import 'package:elevate_flower_app/features/terms_and_conditions/presentation/view/pages/terms_and_conditions_page.dart';
 import 'package:elevate_flower_app/features/user_addresses/presentation/view/pages/user_addresses_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -127,6 +128,18 @@ final GoRouter router = GoRouter(
     _customAnimatedGoRoute(
       route: Routes.resetPassword,
       page: (state, context) => ResetPasswordPage(
+        key: ValueKey(context.locale.languageCode.toString()),
+      ),
+    ),
+    // _customAnimatedGoRoute(
+    //   route: Routes.aboutApp,
+    //   page: (state, context) => AboutAppPage(
+    //     key: ValueKey(context.locale.languageCode.toString()),
+    //   ),
+    // ),
+    _customAnimatedGoRoute(
+      route: Routes.termsAndConditions,
+      page: (state, context) => TermsAndConditionsPage(
         key: ValueKey(context.locale.languageCode.toString()),
       ),
     ),
