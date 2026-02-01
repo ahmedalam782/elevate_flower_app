@@ -11,15 +11,18 @@ class SearchBarWithFiltter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    FocusNode focusNode = FocusNode();
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: CustomSearchWithFilter(
+        focusNode: focusNode,
         hintText: LocaleKeys.custom_widgets_search.tr(),
         labelText: LocaleKeys.custom_widgets_search.tr(),
-        readOnly: true,
         onTap: () {
+          focusNode.unfocus();
           context.push(Routes.search);
         },
+
         onFilterTap: onFilterTap,
       ),
     );
