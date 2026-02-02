@@ -5,13 +5,30 @@ import '../../../../../core/shared/widgets/custom_search_with_filter.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class SearchBarWithFiltter extends StatelessWidget {
+class SearchBarWithFiltter extends StatefulWidget {
   const SearchBarWithFiltter({super.key, this.onFilterTap});
   final VoidCallback? onFilterTap;
 
   @override
+  State<SearchBarWithFiltter> createState() => _SearchBarWithFiltterState();
+}
+
+class _SearchBarWithFiltterState extends State<SearchBarWithFiltter> {
+  late FocusNode focusNode;
+  @override
+  initState() {
+    focusNode = FocusNode();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    focusNode.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    FocusNode focusNode = FocusNode();
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: CustomSearchWithFilter(
@@ -23,7 +40,7 @@ class SearchBarWithFiltter extends StatelessWidget {
           context.push(Routes.search);
         },
 
-        onFilterTap: onFilterTap,
+        onFilterTap: widget.onFilterTap,
       ),
     );
   }
