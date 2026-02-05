@@ -1,4 +1,4 @@
-import 'package:elevate_flower_app/features/reset_password/domain/use_cases/change_password_usecase.dart';
+import '../../../domain/use_cases/change_password_usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';

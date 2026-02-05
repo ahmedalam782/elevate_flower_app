@@ -1,18 +1,18 @@
-import 'package:elevate_flower_app/core/errors/handle_errors/handle_errors.dart';
-import 'package:elevate_flower_app/core/routes/routes.dart';
-import 'package:elevate_flower_app/core/shared/widgets/custom_shimmer_grid.dart';
-import 'package:elevate_flower_app/core/shared/widgets/error_page.dart';
-import 'package:elevate_flower_app/core/shared/widgets/paginated_product_grid_view.dart';
-import 'package:elevate_flower_app/features/best_seller/presentation/view_model/cubit/best_seller_cubit.dart';
-import 'package:elevate_flower_app/features/best_seller/presentation/view_model/cubit/best_seller_states.dart';
+import '../../../../../core/errors/handle_errors/handle_errors.dart';
+import '../../../../../core/routes/routes.dart';
+import '../../../../../core/shared/widgets/custom_shimmer_grid.dart';
+import '../../../../../core/shared/widgets/error_page.dart';
+import '../../../../../core/shared/widgets/paginated_product_grid_view.dart';
+import '../../view_model/cubit/best_seller_cubit.dart';
+import '../../view_model/cubit/best_seller_states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-import 'package:elevate_flower_app/features/cart/presentation/view/widgets/custom_add_to_cart_button.dart';
-import 'package:elevate_flower_app/features/cart/presentation/view_model/cubit/cart_cubit.dart';
-import 'package:elevate_flower_app/features/cart/presentation/view_model/cubit/cart_events.dart';
-import 'package:elevate_flower_app/features/cart/presentation/view_model/cubit/cart_states.dart';
+import '../../../../cart/presentation/view/widgets/custom_add_to_cart_button.dart';
+import '../../../../cart/presentation/view_model/cubit/cart_cubit.dart';
+import '../../../../cart/presentation/view_model/cubit/cart_events.dart';
+import '../../../../cart/presentation/view_model/cubit/cart_states.dart';
 
 class BestSellerBlocBuilder extends StatelessWidget {
   const BestSellerBlocBuilder({super.key});

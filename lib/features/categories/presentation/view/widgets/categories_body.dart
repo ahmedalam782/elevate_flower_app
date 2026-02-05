@@ -1,14 +1,14 @@
-import 'package:elevate_flower_app/core/shared/widgets/filter_bottom_sheet.dart';
-import 'package:elevate_flower_app/features/categories/presentation/view/widgets/category_tab_builder.dart';
-import 'package:elevate_flower_app/features/categories/presentation/view/widgets/filter_bottom.dart';
-import 'package:elevate_flower_app/features/categories/presentation/view/widgets/product_card_builder.dart';
-import 'package:elevate_flower_app/features/categories/presentation/view/widgets/search_bar_with_filtter.dart';
-import 'package:elevate_flower_app/features/categories/presentation/view_model/cubit/categories_cubit.dart';
-import 'package:elevate_flower_app/features/categories/presentation/view_model/cubit/categories_events.dart';
-import 'package:elevate_flower_app/features/filter/presentation/view/widgets/filter_card_builder.dart';
-import 'package:elevate_flower_app/features/filter/presentation/view_model/cubit/filter_cubit.dart';
-import 'package:elevate_flower_app/features/filter/presentation/view_model/cubit/filter_states.dart';
-import 'package:elevate_flower_app/features/categories/presentation/view_model/cubit/categories_states.dart';
+import '../../../../../core/shared/widgets/filter_bottom_sheet.dart';
+import 'category_tab_builder.dart';
+import 'filter_bottom.dart';
+import 'product_card_builder.dart';
+import 'search_bar_with_filtter.dart';
+import '../../view_model/cubit/categories_cubit.dart';
+import '../../view_model/cubit/categories_events.dart';
+import '../../../../filter/presentation/view/widgets/filter_card_builder.dart';
+import '../../../../filter/presentation/view_model/cubit/filter_cubit.dart';
+import '../../../../filter/presentation/view_model/cubit/filter_states.dart';
+import '../../view_model/cubit/categories_states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

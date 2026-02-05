@@ -1,6 +1,6 @@
-import 'package:elevate_flower_app/core/config/base_response/result.dart';
-import 'package:elevate_flower_app/features/categories/domain/entities/category_entity.dart';
-import 'package:elevate_flower_app/features/categories/domain/entities/product_entity.dart';
+import '../../../../core/config/base_response/result.dart';
+import '../entities/category_entity.dart';
+import '../entities/product_entity.dart';
 
 abstract class CategoriesRepository {
   Future<Result<List<CategoryEntity>>> getAllCategories();

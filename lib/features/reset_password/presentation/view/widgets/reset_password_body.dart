@@ -1,10 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:elevate_flower_app/core/config/base_state/base_state.dart';
-import 'package:elevate_flower_app/core/languages/locale_keys.g.dart';
-import 'package:elevate_flower_app/core/shared/widgets/custom_button.dart';
-import 'package:elevate_flower_app/features/reset_password/presentation/view_model/cubit/reset_password_cubit.dart';
-import 'package:elevate_flower_app/features/reset_password/presentation/view_model/cubit/reset_password_events.dart';
-import 'package:elevate_flower_app/features/reset_password/presentation/view_model/cubit/reset_password_states.dart';
+import '../../../../../core/config/base_state/base_state.dart';
+import '../../../../../core/languages/locale_keys.g.dart';
+import '../../../../../core/shared/widgets/custom_button.dart';
+import '../../view_model/cubit/reset_password_cubit.dart';
+import '../../view_model/cubit/reset_password_events.dart';
+import '../../view_model/cubit/reset_password_states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'reset_password_bloc_listener.dart';

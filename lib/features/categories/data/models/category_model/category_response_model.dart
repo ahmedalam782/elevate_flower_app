@@ -1,5 +1,5 @@
-import 'package:elevate_flower_app/features/categories/data/models/category_model/category_dto.dart';
-import 'package:elevate_flower_app/features/categories/data/models/category_model/metadata_model.dart';
+import 'category_dto.dart';
+import 'metadata_model.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'category_response_model.g.dart';

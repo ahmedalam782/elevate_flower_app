@@ -1,5 +1,5 @@
-import 'package:elevate_flower_app/features/login/presentation/view/widgets/login_body.dart';
-import 'package:elevate_flower_app/features/login/presentation/view_model/cubit/login_cubit.dart';
+import '../widgets/login_body.dart';
+import '../../view_model/cubit/login_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/config/di/injectable_config.dart';

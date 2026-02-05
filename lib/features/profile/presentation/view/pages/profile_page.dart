@@ -1,26 +1,26 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:elevate_flower_app/features/change_lang/presentation/view/widgets/localization_bottom_sheet.dart';
+import '../../../../change_lang/presentation/view/widgets/localization_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:elevate_flower_app/core/languages/locale_keys.g.dart';
-import 'package:elevate_flower_app/core/theme/app_colors.dart';
-import 'package:elevate_flower_app/core/theme/app_icons.dart';
-import 'package:elevate_flower_app/core/theme/app_typography.dart';
-import 'package:elevate_flower_app/features/profile/presentation/view/widgets/profile_header.dart';
-import 'package:elevate_flower_app/features/profile/presentation/view/widgets/profile_list_item.dart';
-import 'package:elevate_flower_app/features/profile/presentation/view/widgets/profile_divider.dart';
-import 'package:elevate_flower_app/features/profile/presentation/view/widgets/language_bottom_sheet.dart';
-import 'package:elevate_flower_app/features/profile/presentation/view/widgets/logout_confirmation_dialog.dart';
-import 'package:elevate_flower_app/features/profile/presentation/view/widgets/profile_header_shimmer.dart';
+import '../../../../../core/languages/locale_keys.g.dart';
+import '../../../../../core/theme/app_colors.dart';
+import '../../../../../core/theme/app_icons.dart';
+import '../../../../../core/theme/app_typography.dart';
+import '../widgets/profile_header.dart';
+import '../widgets/profile_list_item.dart';
+import '../widgets/profile_divider.dart';
+import '../widgets/language_bottom_sheet.dart';
+import '../widgets/logout_confirmation_dialog.dart';
+import '../widgets/profile_header_shimmer.dart';
 import 'package:go_router/go_router.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:elevate_flower_app/core/config/di/injectable_config.dart';
-import 'package:elevate_flower_app/features/profile/presentation/view_model/cubit/profile_cubit.dart';
-import 'package:elevate_flower_app/features/profile/presentation/view_model/cubit/profile_states.dart';
-import 'package:elevate_flower_app/features/profile/presentation/view_model/cubit/profile_events.dart';
+import '../../../../../core/config/di/injectable_config.dart';
+import '../../view_model/cubit/profile_cubit.dart';
+import '../../view_model/cubit/profile_states.dart';
+import '../../view_model/cubit/profile_events.dart';
 
 import '../../../../../core/routes/routes.dart';
 
@@ -31,7 +31,7 @@ class ProfilePage extends StatefulWidget {
   State<ProfilePage> createState() => _ProfilePageState();
 }
 
-class _ProfilePageState extends State<ProfilePage> {
+class _ProfilePageState extends State<ProfilePage> with AutomaticKeepAliveClientMixin{
   bool _notificationEnabled = true;
   String _appVersion = '';
   final int _notificationCount = 3; // Badge count
@@ -80,6 +80,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return BlocProvider(
       create: (context) =>
           getIt<ProfileCubit>()..doIntent(ProfileEvents.loadProfileData()),
@@ -365,4 +366,8 @@ class _ProfilePageState extends State<ProfilePage> {
       ),
     );
   }
+  
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
 }

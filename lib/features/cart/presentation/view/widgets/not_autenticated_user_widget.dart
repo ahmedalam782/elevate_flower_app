@@ -1,9 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:elevate_flower_app/core/languages/locale_keys.g.dart';
-import 'package:elevate_flower_app/core/routes/routes.dart';
-import 'package:elevate_flower_app/core/shared/widgets/custom_button.dart';
-import 'package:elevate_flower_app/core/theme/app_colors.dart';
-import 'package:elevate_flower_app/core/theme/app_typography.dart';
+import '../../../../../core/languages/locale_keys.g.dart';
+import '../../../../../core/routes/routes.dart';
+import '../../../../../core/shared/widgets/custom_button.dart';
+import '../../../../../core/theme/app_colors.dart';
+import '../../../../../core/theme/app_typography.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';

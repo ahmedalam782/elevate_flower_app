@@ -1,5 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:elevate_flower_app/features/product_details/presentation/view/widgets/image_dot_indicator.dart';
+import 'image_dot_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

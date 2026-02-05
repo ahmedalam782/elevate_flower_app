@@ -1,5 +1,5 @@
 import 'dart:ui';
-import 'package:elevate_flower_app/core/routes/app_router.dart';
+import '../../routes/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 

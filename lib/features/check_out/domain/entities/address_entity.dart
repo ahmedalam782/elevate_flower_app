@@ -1,6 +1,8 @@
+
 import 'package:elevate_flower_app/features/address_details/data/models/address_details_data.dart';
 import 'package:elevate_flower_app/features/check_out/data/models/shipping_address_model.dart';
 import 'package:equatable/equatable.dart';
+
 
 class AddressEntity extends Equatable {
   final String? street;

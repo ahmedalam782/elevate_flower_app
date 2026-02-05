@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
-import 'package:elevate_flower_app/core/config/base_state/base_state.dart';
-import 'package:elevate_flower_app/core/shared/entities/product_item_entity.dart';
+import '../../../../../core/config/base_state/base_state.dart';
+import '../../../../../core/shared/entities/product_item_entity.dart';
 
 class SearchStates extends Equatable {
   const SearchStates({

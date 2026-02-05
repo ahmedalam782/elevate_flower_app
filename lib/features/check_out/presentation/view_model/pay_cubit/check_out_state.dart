@@ -1,7 +1,7 @@
-import 'package:elevate_flower_app/core/config/base_state/base_state.dart';
-import 'package:elevate_flower_app/features/check_out/domain/entities/address_entity.dart';
-import 'package:elevate_flower_app/features/check_out/domain/entities/payment_result.dart';
-import 'package:elevate_flower_app/features/check_out/domain/repositories/payment_repository.dart';
+import '../../../../../core/config/base_state/base_state.dart';
+import '../../../domain/entities/address_entity.dart';
+import '../../../domain/entities/payment_result.dart';
+import '../../../domain/repositories/payment_repository.dart';
 import 'package:equatable/equatable.dart';
 
 class CheckOutState extends Equatable {

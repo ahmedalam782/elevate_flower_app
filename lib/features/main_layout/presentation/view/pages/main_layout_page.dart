@@ -1,11 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:elevate_flower_app/core/languages/locale_keys.g.dart';
-import 'package:elevate_flower_app/core/theme/app_icons.dart';
-import 'package:elevate_flower_app/features/cart/presentation/view/pages/cart_page.dart';
-import 'package:elevate_flower_app/features/categories/presentation/view/pages/categories_page.dart';
-import 'package:elevate_flower_app/features/home/presentation/view/pages/home_page.dart';
-import 'package:elevate_flower_app/features/profile/presentation/view/pages/profile_page.dart';
-import 'package:elevate_flower_app/features/main_layout/presentation/view/widgets/custom_nav_bar.dart';
+import '../../../../../core/languages/locale_keys.g.dart';
+import '../../../../../core/theme/app_icons.dart';
+import '../../../../cart/presentation/view/pages/cart_page.dart';
+import '../../../../categories/presentation/view/pages/categories_page.dart';
+import '../../../../home/presentation/view/pages/home_page.dart';
+import '../../../../profile/presentation/view/pages/profile_page.dart';
+import '../widgets/custom_nav_bar.dart';
 import '../widgets/nav_bar_item.dart';
 import 'package:flutter/material.dart';
 
@@ -20,8 +20,6 @@ class _MainLayoutState extends State<MainLayoutPage> {
   late PageController _pageController;
   int selectedIndex = 0;
   int _categoryIndex = 0;
-
-  late final List<Widget> tabs;
   @override
   void initState() {
     _pageController = PageController(initialPage: selectedIndex);

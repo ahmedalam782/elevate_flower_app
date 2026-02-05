@@ -1,5 +1,6 @@
-import 'package:elevate_flower_app/core/shared/widgets/horizontal_shimmer_list.dart';
 import 'package:flutter/material.dart';
+
+import '../../../../../core/shared/widgets/horizontal_shimmer_list.dart';
 
 class ProductHomeShimmer extends StatelessWidget {
   const ProductHomeShimmer({super.key});

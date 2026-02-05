@@ -1,7 +1,7 @@
-import 'package:elevate_flower_app/core/config/base_state/base_state.dart';
-import 'package:elevate_flower_app/features/home/domain/entities/category_entity.dart';
-import 'package:elevate_flower_app/features/home/domain/entities/occasion_entity.dart';
-import 'package:elevate_flower_app/features/home/domain/entities/product_entity.dart';
+import '../../../../../core/config/base_state/base_state.dart';
+import '../../../domain/entities/category_entity.dart';
+import '../../../domain/entities/occasion_entity.dart';
+import '../../../domain/entities/product_entity.dart';
 
 class HomeStates {
   final BaseState<List<CategoryEntity>> categoryState;

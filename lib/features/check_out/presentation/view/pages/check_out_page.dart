@@ -1,10 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:elevate_flower_app/core/config/di/injectable_config.dart';
-import 'package:elevate_flower_app/core/languages/locale_keys.g.dart';
-import 'package:elevate_flower_app/core/theme/app_colors.dart';
-import 'package:elevate_flower_app/features/check_out/presentation/view/widgets/mian/check_out_body.dart';
-import 'package:elevate_flower_app/features/check_out/presentation/view/widgets/mian/checkout_app_bar.dart';
-import 'package:elevate_flower_app/features/check_out/presentation/view_model/pay_cubit/check_out_cubit.dart';
+import '../../../../../core/config/di/injectable_config.dart';
+import '../../../../../core/languages/locale_keys.g.dart';
+import '../../../../../core/theme/app_colors.dart';
+import '../widgets/mian/check_out_body.dart';
+import '../widgets/mian/checkout_app_bar.dart';
+import '../../view_model/pay_cubit/check_out_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

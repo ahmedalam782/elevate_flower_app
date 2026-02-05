@@ -1,7 +1,7 @@
-import 'package:elevate_flower_app/features/edit_profile/presentation/view_model/cubit/edit_profile_cubit.dart';
-import 'package:elevate_flower_app/features/edit_profile/presentation/view_model/cubit/edit_profile_events.dart';
-import 'package:elevate_flower_app/features/edit_profile/presentation/view_model/cubit/edit_profile_states.dart';
-import 'package:elevate_flower_app/features/register/presentation/view/widgets/gender_row.dart';
+import '../../view_model/cubit/edit_profile_cubit.dart';
+import '../../view_model/cubit/edit_profile_events.dart';
+import '../../view_model/cubit/edit_profile_states.dart';
+import '../../../../register/presentation/view/widgets/gender_row.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

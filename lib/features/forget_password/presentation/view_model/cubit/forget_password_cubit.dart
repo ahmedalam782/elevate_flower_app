@@ -1,7 +1,7 @@
 import 'dart:developer';
-import 'package:elevate_flower_app/core/config/base_response/result.dart';
-import 'package:elevate_flower_app/core/config/base_state/base_state.dart';
-import 'package:elevate_flower_app/core/shared/widgets/loading_flower_widget.dart';
+import '../../../../../core/config/base_response/result.dart';
+import '../../../../../core/config/base_state/base_state.dart';
+import '../../../../../core/shared/widgets/loading_flower_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';

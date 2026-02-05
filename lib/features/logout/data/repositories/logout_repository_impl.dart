@@ -1,9 +1,9 @@
 import 'dart:developer';
 import 'package:dio/dio.dart';
-import 'package:elevate_flower_app/core/config/base_response/result.dart';
-import 'package:elevate_flower_app/features/logout/data/datasources/logout_remote_data_source_contract.dart';
-import 'package:elevate_flower_app/features/logout/data/models/logout_response_model.dart';
-import 'package:elevate_flower_app/features/logout/domain/repositories/logout_repository.dart';
+import '../../../../core/config/base_response/result.dart';
+import '../datasources/logout_remote_data_source_contract.dart';
+import '../models/logout_response_model.dart';
+import '../../domain/repositories/logout_repository.dart';
 import 'package:injectable/injectable.dart';
 
 @Injectable(as: LogoutRepository)

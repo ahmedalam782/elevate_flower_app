@@ -1,10 +1,10 @@
-import 'package:elevate_flower_app/core/config/base_response/result.dart';
-import 'package:elevate_flower_app/features/register/data/datasources/register_local_data_source_contract.dart';
-import 'package:elevate_flower_app/features/register/data/datasources/register_remote_data_source_contract.dart';
-import 'package:elevate_flower_app/features/register/data/models/register_request_body.dart';
-import 'package:elevate_flower_app/features/register/domain/entities/register_params.dart';
-import 'package:elevate_flower_app/features/register/domain/entities/register_user_response.dart';
-import 'package:elevate_flower_app/features/register/domain/repositories/register_repository.dart';
+import '../../../../core/config/base_response/result.dart';
+import '../datasources/register_local_data_source_contract.dart';
+import '../datasources/register_remote_data_source_contract.dart';
+import '../models/register_request_body.dart';
+import '../../domain/entities/register_params.dart';
+import '../../domain/entities/register_user_response.dart';
+import '../../domain/repositories/register_repository.dart';
 import 'package:injectable/injectable.dart';
 
 @Injectable(as: RegisterRepository)

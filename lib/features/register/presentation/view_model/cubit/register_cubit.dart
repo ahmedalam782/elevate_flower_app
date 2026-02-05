@@ -1,10 +1,10 @@
-import 'package:elevate_flower_app/core/config/base_state/base_state.dart';
-import 'package:elevate_flower_app/core/utils/enums/gender.dart';
-import 'package:elevate_flower_app/features/register/domain/entities/register_params.dart';
-import 'package:elevate_flower_app/features/register/domain/use_cases/register_user_user_case.dart';
-import 'package:elevate_flower_app/features/register/domain/use_cases/save_token_use_case.dart';
-import 'package:elevate_flower_app/features/register/presentation/view_model/cubit/register_events.dart';
-import 'package:elevate_flower_app/features/register/presentation/view_model/cubit/register_states.dart';
+import '../../../../../core/config/base_state/base_state.dart';
+import '../../../../../core/utils/enums/gender.dart';
+import '../../../domain/entities/register_params.dart';
+import '../../../domain/use_cases/register_user_user_case.dart';
+import '../../../domain/use_cases/save_token_use_case.dart';
+import 'register_events.dart';
+import 'register_states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
