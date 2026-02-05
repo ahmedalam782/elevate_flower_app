@@ -1,7 +1,7 @@
-import 'package:elevate_flower_app/features/reset_password/api/api_client/reset_password_api_client.dart';
-import 'package:elevate_flower_app/features/reset_password/data/datasources/reset_password_remote_data_source_contract.dart';
-import 'package:elevate_flower_app/features/reset_password/data/models/change_password_request_model.dart';
-import 'package:elevate_flower_app/features/reset_password/data/models/change_password_response_model.dart';
+import '../api_client/reset_password_api_client.dart';
+import '../../data/datasources/reset_password_remote_data_source_contract.dart';
+import '../../data/models/change_password_request_model.dart';
+import '../../data/models/change_password_response_model.dart';
 import 'package:injectable/injectable.dart';
 
 @LazySingleton(as: ResetPasswordRemoteDataSource)

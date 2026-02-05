@@ -1,8 +1,8 @@
-import 'package:elevate_flower_app/core/config/api/api_executer.dart';
-import 'package:elevate_flower_app/core/config/base_response/result.dart';
-import 'package:elevate_flower_app/features/best_seller/api/api_client/best_seller_api_client.dart';
-import 'package:elevate_flower_app/features/best_seller/data/datasources/best_seller_remote_data_source_contract.dart';
-import 'package:elevate_flower_app/features/best_seller/data/models/best_seller_response_model.dart';
+import '../../../../core/config/api/api_executer.dart';
+import '../../../../core/config/base_response/result.dart';
+import '../api_client/best_seller_api_client.dart';
+import '../../data/datasources/best_seller_remote_data_source_contract.dart';
+import '../../data/models/best_seller_response_model.dart';
 import 'package:injectable/injectable.dart';
 
 @Injectable(as: BestSellerRemoteDataSourceContract)

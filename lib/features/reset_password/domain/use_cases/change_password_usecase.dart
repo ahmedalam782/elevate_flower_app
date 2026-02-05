@@ -1,4 +1,4 @@
-import 'package:elevate_flower_app/core/config/base_response/result.dart';
+import '../../../../core/config/base_response/result.dart';
 import 'package:injectable/injectable.dart';
 import '../entities/change_password_entity.dart';
 import '../repositories/reset_password_repository.dart';

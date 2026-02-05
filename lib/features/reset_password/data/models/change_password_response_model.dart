@@ -1,4 +1,4 @@
-import 'package:elevate_flower_app/features/reset_password/domain/entities/change_password_entity.dart';
+import '../../domain/entities/change_password_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'change_password_response_model.g.dart';

@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
-import 'package:elevate_flower_app/core/config/api/end_points.dart';
-import 'package:elevate_flower_app/features/edit_profile/data/models/edit_profile_request_body.dart';
-import 'package:elevate_flower_app/features/edit_profile/data/models/edit_profile_response_dto.dart';
+import '../../../../core/config/api/end_points.dart';
+import '../../data/models/edit_profile_request_body.dart';
+import '../../data/models/edit_profile_response_dto.dart';
 import 'package:injectable/injectable.dart';
 import 'package:retrofit/retrofit.dart';
 

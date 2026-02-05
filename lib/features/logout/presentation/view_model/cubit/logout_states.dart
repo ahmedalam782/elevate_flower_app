@@ -1,5 +1,5 @@
-import 'package:elevate_flower_app/core/config/base_state/base_state.dart';
-import 'package:elevate_flower_app/features/logout/data/models/logout_response_model.dart';
+import '../../../../../core/config/base_state/base_state.dart';
+import '../../../data/models/logout_response_model.dart';
 import 'package:equatable/equatable.dart';
 
 class LogoutStates extends Equatable {

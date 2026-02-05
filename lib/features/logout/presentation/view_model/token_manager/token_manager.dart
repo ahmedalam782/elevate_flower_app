@@ -1,7 +1,7 @@
 import 'dart:core';
 import 'dart:developer';
 
-import 'package:elevate_flower_app/core/config/api/end_points.dart';
+import '../../../../../core/config/api/end_points.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:injectable/injectable.dart';
 

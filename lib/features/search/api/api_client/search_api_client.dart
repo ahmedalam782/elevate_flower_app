@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:elevate_flower_app/core/config/api/end_points.dart';
-import 'package:elevate_flower_app/features/search/data/models/search_response_model.dart';
+import '../../../../core/config/api/end_points.dart';
+import '../../data/models/search_response_model.dart';
 import 'package:injectable/injectable.dart';
 import 'package:retrofit/retrofit.dart';
 

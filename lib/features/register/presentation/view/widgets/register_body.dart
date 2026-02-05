@@ -1,13 +1,13 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:elevate_flower_app/core/languages/locale_keys.g.dart';
-import 'package:elevate_flower_app/core/shared/widgets/custom_button.dart';
-import 'package:elevate_flower_app/features/register/presentation/view/widgets/already_have_account.dart';
-import 'package:elevate_flower_app/features/register/presentation/view/widgets/gender_row.dart';
-import 'package:elevate_flower_app/features/register/presentation/view/widgets/register_bloc_listner.dart';
-import 'package:elevate_flower_app/features/register/presentation/view/widgets/register_form.dart';
-import 'package:elevate_flower_app/features/register/presentation/view/widgets/terms_conditions_span.dart';
-import 'package:elevate_flower_app/features/register/presentation/view_model/cubit/register_cubit.dart';
-import 'package:elevate_flower_app/features/register/presentation/view_model/cubit/register_events.dart';
+import '../../../../../core/languages/locale_keys.g.dart';
+import '../../../../../core/shared/widgets/custom_button.dart';
+import 'already_have_account.dart';
+import 'gender_row.dart';
+import 'register_bloc_listner.dart';
+import 'register_form.dart';
+import 'terms_conditions_span.dart';
+import '../../view_model/cubit/register_cubit.dart';
+import '../../view_model/cubit/register_events.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

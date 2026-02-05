@@ -1,4 +1,4 @@
-import 'package:elevate_flower_app/features/check_out/domain/entities/address_entity.dart';
+import '../../domain/entities/address_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
 part 'user_addresses_response.g.dart';
 

@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:elevate_flower_app/core/config/api/end_points.dart';
-import 'package:elevate_flower_app/core/config/base_response/result.dart';
-import 'package:elevate_flower_app/features/change_lang/data/datasources/local_data_source.dart';
+import '../../../../core/config/api/end_points.dart';
+import '../../../../core/config/base_response/result.dart';
+import 'local_data_source.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';

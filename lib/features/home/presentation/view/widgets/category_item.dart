@@ -1,4 +1,4 @@
-import 'package:elevate_flower_app/core/shared/widgets/optimized_cached_image.dart';
+import '../../../../../core/shared/widgets/optimized_cached_image.dart';
 import 'package:flutter/material.dart';
 
 class CategoryItem extends StatelessWidget {

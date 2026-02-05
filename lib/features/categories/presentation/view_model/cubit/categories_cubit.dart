@@ -1,9 +1,9 @@
-import 'package:elevate_flower_app/core/config/base_state/base_state.dart';
-import 'package:elevate_flower_app/core/shared/entities/product_item_entity.dart';
-import 'package:elevate_flower_app/features/categories/domain/use_cases/get_categories_use_case.dart';
-import 'package:elevate_flower_app/features/categories/domain/use_cases/get_products_use_case.dart';
-import 'package:elevate_flower_app/features/categories/presentation/view_model/cubit/categories_events.dart';
-import 'package:elevate_flower_app/features/categories/presentation/view_model/cubit/categories_states.dart';
+import '../../../../../core/config/base_state/base_state.dart';
+import '../../../../../core/shared/entities/product_item_entity.dart';
+import '../../../domain/use_cases/get_categories_use_case.dart';
+import '../../../domain/use_cases/get_products_use_case.dart';
+import 'categories_events.dart';
+import 'categories_states.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 

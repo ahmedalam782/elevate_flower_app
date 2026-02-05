@@ -1,11 +1,11 @@
 import 'dart:io';
 import 'package:dio/dio.dart';
-import 'package:elevate_flower_app/core/config/base_response/result.dart';
-import 'package:elevate_flower_app/features/edit_profile/data/datasources/edit_profile_remote_data_source_contract.dart';
-import 'package:elevate_flower_app/features/edit_profile/data/models/edit_profile_request_body.dart';
-import 'package:elevate_flower_app/features/edit_profile/domain/entities/edit_profile_params.dart';
-import 'package:elevate_flower_app/features/edit_profile/domain/entities/edit_profile_user_entity.dart';
-import 'package:elevate_flower_app/features/edit_profile/domain/repositories/edit_profile_repository.dart';
+import '../../../../core/config/base_response/result.dart';
+import '../datasources/edit_profile_remote_data_source_contract.dart';
+import '../models/edit_profile_request_body.dart';
+import '../../domain/entities/edit_profile_params.dart';
+import '../../domain/entities/edit_profile_user_entity.dart';
+import '../../domain/repositories/edit_profile_repository.dart';
 import 'package:injectable/injectable.dart';
 
 @Injectable(as: EditProfileRepository)

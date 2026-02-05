@@ -1,5 +1,5 @@
-import 'package:elevate_flower_app/core/config/base_state/base_state.dart';
-import 'package:elevate_flower_app/features/login/domain/entities/login_response_entity.dart';
+import '../../../../../core/config/base_state/base_state.dart';
+import '../../../domain/entities/login_response_entity.dart';
 
 class LoginStates {
   LoginStates({

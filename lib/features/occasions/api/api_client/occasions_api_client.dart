@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
-import 'package:elevate_flower_app/core/config/api/end_points.dart';
-import 'package:elevate_flower_app/features/occasions/data/models/occasions_model.dart';
-import 'package:elevate_flower_app/features/occasions/data/models/product_model.dart';
+import '../../../../core/config/api/end_points.dart';
+import '../../data/models/occasions_model.dart';
+import '../../data/models/product_model.dart';
 import 'package:injectable/injectable.dart';
 import 'package:retrofit/retrofit.dart';
 

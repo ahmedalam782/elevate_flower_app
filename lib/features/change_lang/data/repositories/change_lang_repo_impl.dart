@@ -1,6 +1,6 @@
-import 'package:elevate_flower_app/core/config/base_response/result.dart';
-import 'package:elevate_flower_app/features/change_lang/data/datasources/local_data_source.dart';
-import 'package:elevate_flower_app/features/change_lang/domain/repositories/change_lang_repo.dart';
+import '../../../../core/config/base_response/result.dart';
+import '../datasources/local_data_source.dart';
+import '../../domain/repositories/change_lang_repo.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 

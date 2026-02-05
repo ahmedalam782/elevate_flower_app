@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+
 import '../../languages/locale_keys.g.dart';
 import '../../theme/app_animations.dart';
 import '../../theme/app_colors.dart';

@@ -1,5 +1,5 @@
-import 'package:elevate_flower_app/core/helper/classes/debounce.dart';
-import 'package:elevate_flower_app/core/theme/app_images.dart';
+import '../../../../../core/helper/classes/debounce.dart';
+import '../../../../../core/theme/app_images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:geocoding/geocoding.dart';

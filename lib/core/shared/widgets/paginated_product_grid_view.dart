@@ -1,9 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:elevate_flower_app/core/shared/entities/product_item_entity.dart';
-import 'package:elevate_flower_app/core/shared/widgets/custom_product_item.dart';
+import '../entities/product_item_entity.dart';
+import 'custom_product_item.dart';
 
-import 'package:elevate_flower_app/core/theme/app_colors.dart';
-import 'package:elevate_flower_app/core/theme/app_typography.dart';
+import '../../theme/app_colors.dart';
+import '../../theme/app_typography.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';

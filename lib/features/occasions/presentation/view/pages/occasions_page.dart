@@ -1,16 +1,16 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:elevate_flower_app/core/config/di/injectable_config.dart';
-import 'package:elevate_flower_app/core/languages/locale_keys.g.dart';
-import 'package:elevate_flower_app/core/theme/app_colors.dart';
-import 'package:elevate_flower_app/features/occasions/presentation/view/widgets/occasions_app_bar.dart';
-import 'package:elevate_flower_app/features/occasions/presentation/view/widgets/occasions_body.dart';
-import 'package:elevate_flower_app/features/occasions/presentation/view_model/cubit/occasions_cubit.dart';
-import 'package:elevate_flower_app/features/occasions/presentation/view_model/cubit/occasions_events.dart';
-import 'package:elevate_flower_app/features/occasions/presentation/view_model/cubit/occasions_states.dart';
+import '../../../../../core/config/di/injectable_config.dart';
+import '../../../../../core/languages/locale_keys.g.dart';
+import '../../../../../core/theme/app_colors.dart';
+import '../widgets/occasions_app_bar.dart';
+import '../widgets/occasions_body.dart';
+import '../../view_model/cubit/occasions_cubit.dart';
+import '../../view_model/cubit/occasions_events.dart';
+import '../../view_model/cubit/occasions_states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:elevate_flower_app/features/cart/presentation/view_model/cubit/cart_cubit.dart';
+import '../../../../cart/presentation/view_model/cubit/cart_cubit.dart';
 
 class OccasionsPage extends StatefulWidget {
   const OccasionsPage({super.key, this.selectedIndex});

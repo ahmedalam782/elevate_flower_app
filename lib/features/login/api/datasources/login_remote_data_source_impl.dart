@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
-import 'package:elevate_flower_app/features/login/data/datasources/login_remote_data_source_contract.dart';
-import 'package:elevate_flower_app/features/login/data/models/login_request_model.dart';
-import 'package:elevate_flower_app/features/login/data/models/login_response_model.dart';
+import '../../data/datasources/login_remote_data_source_contract.dart';
+import '../../data/models/login_request_model.dart';
+import '../../data/models/login_response_model.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../core/config/base_response/result.dart';

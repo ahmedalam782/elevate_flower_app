@@ -1,4 +1,4 @@
-import 'package:elevate_flower_app/core/config/base_response/result.dart';
+import '../../../../core/config/base_response/result.dart';
 
 import '../models/forget_password_response/forget_password_response.dart';
 import '../models/reset_password_dto/reset_password_dto.dart';
