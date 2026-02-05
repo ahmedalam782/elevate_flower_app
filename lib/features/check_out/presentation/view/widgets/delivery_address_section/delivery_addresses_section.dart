@@ -1,35 +1,31 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:elevate_flower_app/core/config/base_state/base_state.dart';
-import 'package:elevate_flower_app/core/languages/locale_keys.g.dart';
-import 'package:elevate_flower_app/core/routes/routes.dart';
-import 'package:elevate_flower_app/core/theme/app_colors.dart';
-import 'package:elevate_flower_app/core/theme/app_typography.dart';
-import 'package:elevate_flower_app/features/check_out/domain/entities/address_entity.dart';
-import 'package:elevate_flower_app/features/check_out/presentation/view/widgets/delivery_address_section/delivery_address_card.dart';
-import 'package:elevate_flower_app/features/check_out/presentation/view_model/pay_cubit/check_out_cubit.dart';
-import 'package:elevate_flower_app/features/check_out/presentation/view_model/pay_cubit/check_out_events.dart';
-import 'package:elevate_flower_app/features/check_out/presentation/view_model/pay_cubit/check_out_state.dart';
+import '../../../../../../core/config/base_state/base_state.dart';
+import '../../../../../../core/config/di/injectable_config.dart';
+import '../../../../../../core/languages/locale_keys.g.dart';
+import '../../../../../../core/routes/routes.dart';
+import '../../../../../../core/theme/app_colors.dart';
+import '../../../../../../core/theme/app_typography.dart';
+import '../../../../domain/entities/address_entity.dart';
+import 'delivery_address_card.dart';
+import '../../../view_model/pay_cubit/check_out_cubit.dart';
+import '../../../view_model/pay_cubit/check_out_events.dart';
+import '../../../view_model/pay_cubit/check_out_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-class DeliveryAddressesSection extends StatefulWidget {
+class DeliveryAddressesSection extends StatelessWidget {
   const DeliveryAddressesSection({super.key});
-
-  @override
-  State<DeliveryAddressesSection> createState() =>
-      _DeliveryAddressesSectionState();
-}
-
-class _DeliveryAddressesSectionState extends State<DeliveryAddressesSection> {
+  
   @override
   Widget build(BuildContext context) {
+    CheckOutCubit checkoutCubit = getIt<CheckOutCubit>()
+      ..doIntent(GetUserAddressesEvent());
     return Container(
       padding: const EdgeInsets.all(16),
       color: AppColors.whiteF9,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-
         spacing: 16,
         children: [
           Text(
@@ -44,17 +40,14 @@ class _DeliveryAddressesSectionState extends State<DeliveryAddressesSection> {
             selector: (state) => state.userAddressesState,
             builder: (context, userAddressesState) {
               if (userAddressesState == null) {
-                context.read<CheckOutCubit>().doIntent(GetUserAddressesEvent());
-                return SizedBox(
-                  width: MediaQuery.of(context).size.width,
+                return const SizedBox(
                   height: 100,
-                  child: const Center(child: CircularProgressIndicator()),
+                  child: Center(child: Text("No addresses available")),
                 );
               } else if (userAddressesState.state == StateType.loading) {
-                return SizedBox(
-                  width: MediaQuery.of(context).size.width,
-                  height: 350,
-                  child: const Center(child: CircularProgressIndicator()),
+                return const SizedBox(
+                  height: 100,
+                  child: Center(child: CircularProgressIndicator()),
                 );
               } else if (userAddressesState.state == StateType.success) {
                 final addresses = userAddressesState.data!;
@@ -63,6 +56,19 @@ class _DeliveryAddressesSectionState extends State<DeliveryAddressesSection> {
                   children: addresses.map((address) {
                     return DeliveryAddressCard(
                       address: address,
+                      onEdit: () async {
+                        final updated =
+                            await context.push(
+                                  Routes.addressDetails,
+                                  extra: address.toAddressDetailsData(),
+                                )
+                                as bool;
+                        if (updated && context.mounted) {
+                          context.read<CheckOutCubit>().doIntent(
+                            GetUserAddressesEvent(),
+                          );
+                        }
+                      },
                     );
                   }).toList(),
                 );
@@ -75,8 +81,11 @@ class _DeliveryAddressesSectionState extends State<DeliveryAddressesSection> {
             },
           ),
           OutlinedButton(
-            onPressed: () {
-              context.push(Routes.addressDetails);
+            onPressed: () async {
+              final added = await context.push(Routes.addressDetails) as bool;
+              if (added && context.mounted) {
+                checkoutCubit.doIntent(GetUserAddressesEvent());
+              }
             },
             style: OutlinedButton.styleFrom(
               side: const BorderSide(color: AppColors.grayA6),

@@ -1,4 +1,5 @@
 import 'package:injectable/injectable.dart';
+
 import '../../../../core/config/base_response/result.dart';
 import '../../data/datasources/profile_remote_data_source_contract.dart';
 import '../../data/models/profile_response_model.dart';

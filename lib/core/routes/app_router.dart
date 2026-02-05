@@ -1,22 +1,23 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:elevate_flower_app/features/address_details/data/models/address_details_data.dart';
-import 'package:elevate_flower_app/features/address_details/presentation/view/pages/address_details_page.dart';
-import 'package:elevate_flower_app/features/best_seller/presentation/view/pages/best_seller_page.dart';
-import 'package:elevate_flower_app/features/cart/presentation/view/pages/cart_page.dart';
-import 'package:elevate_flower_app/features/categories/presentation/view/pages/categories_page.dart';
-import 'package:elevate_flower_app/features/check_out/presentation/view/pages/check_out_page.dart';
-import 'package:elevate_flower_app/features/check_out/presentation/view/pages/web_pay_page.dart';
-import 'package:elevate_flower_app/features/edit_profile/presentation/view/pages/edit_profile_page.dart';
-import 'package:elevate_flower_app/features/occasions/presentation/view/pages/occasions_page.dart';
-import 'package:elevate_flower_app/features/product_details/presentation/view/pages/product_details_page.dart';
-import 'package:elevate_flower_app/features/register/presentation/view/pages/register_page.dart';
-import 'package:elevate_flower_app/features/search/presentation/view/pages/search_screen.dart';
-import 'package:elevate_flower_app/features/user_addresses/presentation/view/pages/user_addresses_page.dart';
+import '../../features/address_details/data/models/address_details_data.dart';
+import '../../features/address_details/presentation/view/pages/address_details_page.dart';
+import '../../features/best_seller/presentation/view/pages/best_seller_page.dart';
+import '../../features/cart/presentation/view/pages/cart_page.dart';
+import '../../features/categories/presentation/view/pages/categories_page.dart';
+import '../../features/check_out/presentation/view/pages/check_out_page.dart';
+import '../../features/check_out/presentation/view/pages/web_pay_page.dart';
+import '../../features/edit_profile/presentation/view/pages/edit_profile_page.dart';
+import '../../features/occasions/presentation/view/pages/occasions_page.dart';
+import '../../features/product_details/presentation/view/pages/product_details_page.dart';
+import '../../features/register/presentation/view/pages/register_page.dart';
+import '../../features/search/presentation/view/pages/search_screen.dart';
+import '../../features/user_addresses/presentation/view/pages/user_addresses_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../features/forget_password/presentation/view/pages/forgetPassword_page.dart';
 import '../../features/login/presentation/view/pages/login_page.dart';
 import '../../features/main_layout/presentation/view/pages/main_layout_page.dart';
+import '../../features/reset_password/presentation/view/pages/reset_password_page.dart';
 import '../../features/splash/presentation/view/pages/splash_page.dart';
 import 'routes.dart';
 
@@ -122,6 +123,12 @@ final GoRouter router = GoRouter(
       route: Routes.search,
       page: (state, context) =>
           SearchScreen(key: ValueKey(context.locale.languageCode.toString())),
+    ),
+    _customAnimatedGoRoute(
+      route: Routes.resetPassword,
+      page: (state, context) => ResetPasswordPage(
+        key: ValueKey(context.locale.languageCode.toString()),
+      ),
     ),
   ],
 );

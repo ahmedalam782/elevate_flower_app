@@ -1,5 +1,5 @@
 
-import 'package:elevate_flower_app/core/config/base_response/result.dart';
+import '../../../../core/config/base_response/result.dart';
 import 'package:injectable/injectable.dart';
 import '../../domain/entities/forget_password_entity/forget_password_entity.dart';
 import '../../domain/repositories/forget_Password_repository.dart';

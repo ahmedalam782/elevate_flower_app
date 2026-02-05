@@ -1,5 +1,7 @@
 import 'dart:io';
+
 import 'package:easy_localization/easy_localization.dart';
+
 import '../helper/phone_helper/phone_length_helper.dart';
 
 class Validations {
@@ -37,6 +39,13 @@ class Validations {
       return 'validations.confirm_password_required'.tr();
     } else if (value != password) {
       return 'validations.confirm_password_mismatch'.tr();
+    }
+    return null;
+  }
+
+  static String? validateCurrentPassword(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'validations.password_required'.tr();
     }
     return null;
   }

@@ -1,7 +1,7 @@
-import 'package:elevate_flower_app/features/search/api/api_client/search_api_client.dart';
-import 'package:elevate_flower_app/features/search/data/datasources/search_remote_data_source_contract.dart';
-import 'package:elevate_flower_app/features/search/data/models/search_response_model.dart';
-import 'package:elevate_flower_app/features/search/domain/entities/search_params.dart';
+import '../api_client/search_api_client.dart';
+import '../../data/datasources/search_remote_data_source_contract.dart';
+import '../../data/models/search_response_model.dart';
+import '../../domain/entities/search_params.dart';
 import 'package:injectable/injectable.dart';
 
 @Injectable(as: SearchRemoteDataSourceContract)

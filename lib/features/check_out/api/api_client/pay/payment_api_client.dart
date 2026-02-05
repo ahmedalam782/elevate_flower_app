@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
-import 'package:elevate_flower_app/core/config/api/end_points.dart';
-import 'package:elevate_flower_app/features/check_out/data/models/cash_payment_response.dart';
-import 'package:elevate_flower_app/features/check_out/data/models/credit_payment_response.dart';
-import 'package:elevate_flower_app/features/check_out/data/models/shipping_address_model.dart';
+import '../../../../../core/config/api/end_points.dart';
+import '../../../data/models/cash_payment_response.dart';
+import '../../../data/models/credit_payment_response.dart';
+import '../../../data/models/shipping_address_model.dart';
 import 'package:injectable/injectable.dart';
 import 'package:retrofit/retrofit.dart';
 part 'payment_api_client.g.dart';

@@ -1,5 +1,5 @@
 
-import 'package:elevate_flower_app/features/register/domain/entities/register_params.dart';
+import '../../domain/entities/register_params.dart';
 import 'package:json_annotation/json_annotation.dart';
 part 'register_request_body.g.dart';
 

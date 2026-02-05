@@ -1,9 +1,9 @@
-import 'package:elevate_flower_app/core/config/base_state/base_state.dart';
-import 'package:elevate_flower_app/core/shared/entities/product_item_entity.dart';
-import 'package:elevate_flower_app/features/search/domain/entities/search_params.dart';
-import 'package:elevate_flower_app/features/search/domain/use_cases/search_products_usecase.dart';
-import 'package:elevate_flower_app/features/search/presentation/view_model/cubit/search_events.dart';
-import 'package:elevate_flower_app/features/search/presentation/view_model/cubit/search_states.dart';
+import '../../../../../core/config/base_state/base_state.dart';
+import '../../../../../core/shared/entities/product_item_entity.dart';
+import '../../../domain/entities/search_params.dart';
+import '../../../domain/use_cases/search_products_usecase.dart';
+import 'search_events.dart';
+import 'search_states.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 

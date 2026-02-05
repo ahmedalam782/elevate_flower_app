@@ -1,10 +1,10 @@
-import 'package:elevate_flower_app/core/config/base_response/result.dart';
-import 'package:elevate_flower_app/core/shared/entities/product_item_entity.dart';
-import 'package:elevate_flower_app/features/occasions/data/datasources/occasions_remote_data_source_contract.dart';
-import 'package:elevate_flower_app/features/occasions/data/models/occasions_mapper.dart';
-import 'package:elevate_flower_app/features/occasions/data/models/product_mapper.dart';
-import 'package:elevate_flower_app/features/occasions/domain/entities/occasion_card_entity.dart';
-import 'package:elevate_flower_app/features/occasions/domain/repositories/occasions_repository.dart';
+import '../../../../core/config/base_response/result.dart';
+import '../../../../core/shared/entities/product_item_entity.dart';
+import '../datasources/occasions_remote_data_source_contract.dart';
+import '../models/occasions_mapper.dart';
+import '../models/product_mapper.dart';
+import '../../domain/entities/occasion_card_entity.dart';
+import '../../domain/repositories/occasions_repository.dart';
 import 'package:injectable/injectable.dart';
 
 @LazySingleton(as: OccasionsRepository)

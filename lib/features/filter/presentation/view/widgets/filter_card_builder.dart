@@ -1,9 +1,18 @@
-import 'package:elevate_flower_app/core/theme/app_colors.dart';
-import 'package:elevate_flower_app/features/categories/data/models/product_model/product_dto.dart';
-import 'package:elevate_flower_app/features/filter/presentation/view_model/cubit/filter_cubit.dart';
-import 'package:elevate_flower_app/features/filter/presentation/view_model/cubit/filter_states.dart';
+import 'package:easy_localization/easy_localization.dart';
+import '../../../../../core/languages/locale_keys.g.dart';
+import '../../../../../core/routes/routes.dart';
+import '../../../../../core/shared/entities/product_item_entity.dart';
+import '../../../../../core/shared/widgets/custom_product_item.dart';
+import '../../../../../core/theme/app_colors.dart';
+import '../../../../cart/presentation/view/widgets/custom_add_to_cart_button.dart';
+import '../../../../cart/presentation/view_model/cubit/cart_cubit.dart';
+import '../../../../cart/presentation/view_model/cubit/cart_events.dart';
+import '../../../../cart/presentation/view_model/cubit/cart_states.dart';
+import '../../view_model/cubit/filter_cubit.dart';
+import '../../view_model/cubit/filter_states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class FilterCardBuilder extends StatelessWidget {
   const FilterCardBuilder({super.key});
@@ -17,13 +26,28 @@ class FilterCardBuilder extends StatelessWidget {
         }
 
         if (state is FilterLoaded) {
-          final products = state.products.products ?? [];
+          final productsDto = state.products.products ?? [];
 
-          if (products.isEmpty) {
+          if (productsDto.isEmpty) {
             return _buildEmptyState();
           }
 
-          return _buildProductsGrid(products, context);
+          // Convert ProductDto to ProductItemEntity
+          final products = productsDto.map((dto) {
+            return ProductItemEntity(
+              id: dto.id ?? '',
+              name: dto.title,
+              price: dto.price?.toDouble(),
+              imageUrl: dto.imgCover,
+              priceAfterDiscount: dto.priceAfterDiscount?.toDouble(),
+            );
+          }).toList();
+
+          return BlocBuilder<CartCubit, CartStates>(
+            builder: (context, cartState) {
+              return _buildProductsGrid(context, products, cartState);
+            },
+          );
         }
 
         if (state is FilterError) {
@@ -37,238 +61,79 @@ class FilterCardBuilder extends StatelessWidget {
 
   Widget _buildLoadingGrid() {
     return GridView.builder(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.symmetric(horizontal: 16),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
-        childAspectRatio: 0.68,
+        childAspectRatio: 0.7,
         crossAxisSpacing: 16,
         mainAxisSpacing: 16,
       ),
       itemCount: 6,
       itemBuilder: (context, index) {
-        return Card(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(16),
-          ),
-          child: Column(
-            children: [
-              Expanded(
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.grey[300],
-                    borderRadius: const BorderRadius.vertical(
-                      top: Radius.circular(16),
-                    ),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(12),
-                child: Column(
-                  children: [
-                    Container(height: 12, color: Colors.grey[300]),
-                    const SizedBox(height: 8),
-                    Container(height: 12, width: 100, color: Colors.grey[300]),
-                    const SizedBox(height: 12),
-                    Container(
-                      height: 36,
-                      decoration: BoxDecoration(
-                        color: Colors.grey[300],
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
+        return const CustomProductItem(
+          product: ProductItemEntity(id: ''),
+          isLoading: true,
         );
       },
     );
   }
 
-  Widget _buildProductsGrid(List<ProductDto> products, BuildContext context) {
+  Widget _buildProductsGrid(
+    BuildContext context,
+    List<ProductItemEntity> products,
+    CartStates cartState,
+  ) {
     return GridView.builder(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.symmetric(horizontal: 16),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
-        childAspectRatio: 0.68,
+        childAspectRatio: 0.60,
         crossAxisSpacing: 16,
         mainAxisSpacing: 16,
       ),
       itemCount: products.length,
       itemBuilder: (context, index) {
         final product = products[index];
+        final cartProducts = cartState.state.data?.cartProducts ?? [];
+        final itemIndex = cartProducts.indexWhere((e) => e.id == product.id);
+        final quantity = itemIndex != -1
+            ? cartProducts[itemIndex].productQuantityInCart
+            : 0;
 
-        // حساب نسبة الخصم
-        final hasDiscount =
-            product.priceAfterDiscount != null &&
-            product.priceAfterDiscount! < product.price!;
-        final discountPercentage = hasDiscount
-            ? ((product.price! - product.priceAfterDiscount!) /
-                      product.price! *
-                      100)
-                  .toStringAsFixed(0)
-            : '';
-
-        return Card(
-          elevation: 2,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(16),
-          ),
-          clipBehavior: Clip.antiAlias,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              // ✅ صورة المنتج
-              Expanded(
-                flex: 6,
-                child: Container(
-                  color: Colors.grey[100],
-                  child: product.imgCover != null
-                      ? Image.network(
-                          product.imgCover!,
-                          fit: BoxFit.cover,
-                          errorBuilder: (context, error, stackTrace) {
-                            return Center(
-                              child: Icon(
-                                Icons.image_not_supported,
-                                size: 50,
-                                color: Colors.grey[400],
-                              ),
-                            );
-                          },
-                          loadingBuilder: (context, child, loadingProgress) {
-                            if (loadingProgress == null) return child;
-                            return const Center(
-                              child: CircularProgressIndicator(strokeWidth: 2),
-                            );
-                          },
-                        )
-                      : Center(
-                          child: Icon(
-                            Icons.image,
-                            size: 50,
-                            color: Colors.grey[400],
-                          ),
-                        ),
-                ),
-              ),
-
-              // ✅ معلومات المنتج
-
-              // ✅ معلومات المنتج
-              Expanded(
-                flex: 4,
-                child: Container(
-                  color: Colors.white,
-                  padding: const EdgeInsets.all(12),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      // اسم المنتج
-                      Flexible(
-                        child: Text(
-                          product.title ?? '',
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                          style: const TextStyle(
-                            fontSize: 9,
-                            fontWeight: FontWeight.w100,
-                            color: Colors.black87,
-                            height: 1.3,
-                          ),
-                        ),
-                      ),
-
-                      const SizedBox(height: 4),
-
-                      // السعر والخصم
-                      Row(
-                        children: [
-                          // السعر الجديد أو السعر العادي
-                          Flexible(
-                            child: Text(
-                              hasDiscount
-                                  ? '${product.priceAfterDiscount ?? 0} ج.م'
-                                  : '${product.price ?? 0} ج.م',
-                              style: const TextStyle(
-                                fontSize: 9,
-                                fontWeight: FontWeight.w100,
-                                color: Colors.black87,
-                              ),
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ),
-                          // نسبة الخصم
-                          if (hasDiscount)
-                            Text(
-                              '$discountPercentage%',
-                              style: const TextStyle(
-                                fontSize: 9,
-                                fontWeight: FontWeight.w100,
-                                color: Color(0xFF4CAF50),
-                              ),
-                            ),
-
-                          if (hasDiscount) const SizedBox(width: 4),
-
-                          // السعر القديم (مشطوب)
-                          if (hasDiscount)
-                            Text(
-                              '${product.price ?? 0}',
-                              style: const TextStyle(
-                                fontSize: 9,
-                                color: Colors.grey,
-                                decoration: TextDecoration.lineThrough,
-                                decorationThickness: 2,
-                              ),
-                            ),
-
-                          if (hasDiscount) const SizedBox(width: 4),
-                        ],
-                      ),
-
-                      const SizedBox(height: 8),
-
-                      // زر Add to cart
-                      SizedBox(
-                        width: double.infinity,
-                        height: 32,
-                        child: ElevatedButton.icon(
-                          onPressed: () {
-                            // TODO: Add to cart logic
-                          },
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color(0xFFE91E63),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            elevation: 0,
-                            padding: const EdgeInsets.symmetric(horizontal: 6),
-                          ),
-                          icon: const Icon(
-                            Icons.shopping_cart_outlined,
-                            size: 16,
-                            color: Colors.white,
-                          ),
-                          label: const Text(
-                            "Add to cart",
-                            style: TextStyle(
-                              fontSize: 10,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
+        return CustomProductItem(
+          product: product,
+          quantity: quantity,
+          onTap: () {
+            context.push(Routes.productDetails, extra: product.id);
+          },
+          onAddToCart: () {
+            addToCart(context, product.id);
+          },
+          onIncrement: () {
+            addToCart(context, product.id);
+          },
+          onDecrement: () {
+            if (itemIndex != -1) {
+              final item = cartProducts[itemIndex];
+              if (item.productQuantityInCart > 1) {
+                context.read<CartCubit>().doIntent(
+                  UpdateProductInCartEvent(
+                    productId: product.id,
+                    qunatity: item.productQuantityInCart,
                   ),
-                ),
-              ),
-            ],
-          ),
+                );
+              } else {
+                context.read<CartCubit>().doIntent(
+                  RemoveProductFromCartEvent(productId: product.id),
+                );
+              }
+            }
+          },
+          onRemove: () {
+            context.read<CartCubit>().doIntent(
+              RemoveProductFromCartEvent(productId: product.id),
+            );
+          },
         );
       },
     );
@@ -282,8 +147,7 @@ class FilterCardBuilder extends StatelessWidget {
           Icon(Icons.inventory_2_outlined, size: 80, color: Colors.grey[400]),
           const SizedBox(height: 16),
           Text(
-            // LocaleKeys.categories_no_products_found.tr(),
-            "غفلبلرلاانتىمة",
+            LocaleKeys.products_no_products.tr(),
             style: TextStyle(fontSize: 18, color: Colors.grey[600]),
           ),
         ],

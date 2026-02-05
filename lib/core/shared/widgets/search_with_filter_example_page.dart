@@ -1,10 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:elevate_flower_app/core/shared/entities/product_item_entity.dart';
-import 'package:elevate_flower_app/core/shared/widgets/custom_product_grid_view.dart';
-import 'package:elevate_flower_app/core/shared/widgets/custom_search_with_filter.dart';
-import 'package:elevate_flower_app/core/shared/widgets/custom_tab_bar.dart';
-import 'package:elevate_flower_app/core/shared/widgets/filter_bottom_sheet.dart';
-import 'package:elevate_flower_app/core/theme/app_colors.dart';
+import '../entities/product_item_entity.dart';
+import 'custom_product_grid_view.dart';
+import 'custom_search_with_filter.dart';
+import 'custom_tab_bar.dart';
+import 'filter_bottom_sheet.dart';
+import '../../theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';

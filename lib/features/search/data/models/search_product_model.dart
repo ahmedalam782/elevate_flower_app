@@ -1,4 +1,4 @@
-import 'package:elevate_flower_app/core/shared/entities/product_item_entity.dart';
+import '../../../../core/shared/entities/product_item_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'search_product_model.g.dart';
