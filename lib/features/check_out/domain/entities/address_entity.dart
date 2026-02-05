@@ -1,8 +1,8 @@
-
+import 'package:elevate_flower_app/features/address_details/data/models/address_details_data.dart';
 import 'package:elevate_flower_app/features/check_out/data/models/shipping_address_model.dart';
 import 'package:equatable/equatable.dart';
 
-class AddressEntity extends Equatable{
+class AddressEntity extends Equatable {
   final String? street;
   final String? city;
   final String? lat;
@@ -18,18 +18,24 @@ class AddressEntity extends Equatable{
     required this.id,
     required this.phone,
   });
-  
+
   @override
-  List<Object?> get props => [
-    street,
-    city,
-    lat,
-    long,
-    id,
-    phone,
-  ];
+  List<Object?> get props => [street, city, lat, long, id, phone];
 }
+
 extension AddressEntityExtension on AddressEntity {
+  AddressDetailsData toAddressDetailsData() {
+    return AddressDetailsData(
+      street: street ?? '',
+      addressId: id ?? '',
+      username: '',
+      city: city ?? '',
+      lat: lat ?? '',
+      long: long ?? '',
+      phone: phone ?? '',
+    );
+  }
+
   ShippingAddressModel toModel() {
     return ShippingAddressModel(
       street: street ?? '',
@@ -38,7 +44,6 @@ extension AddressEntityExtension on AddressEntity {
       long: long ?? '',
       phone: phone ?? '',
       id: id,
-
     );
   }
 }

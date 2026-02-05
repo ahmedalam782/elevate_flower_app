@@ -10,8 +10,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class DeliveryAddressCard extends StatelessWidget {
   const DeliveryAddressCard({
     super.key,
-    required this.address,
+    required this.address, this.onEdit,
   });
+
+  final void Function()? onEdit;
   final AddressEntity address;
 
   @override
@@ -59,10 +61,13 @@ class DeliveryAddressCard extends StatelessWidget {
                   ),
                 ],
               ),
-              const Icon(
-                Icons.edit_outlined,
-                size: 24,
-                color: AppColors.gray53,
+              IconButton(
+onPressed: onEdit,
+                icon: const Icon(
+                  Icons.edit_outlined,
+                  size: 24,
+                  color: AppColors.gray53,
+                ),
               ),
             ],
           ),

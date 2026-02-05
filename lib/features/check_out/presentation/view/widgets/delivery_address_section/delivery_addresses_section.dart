@@ -23,6 +23,11 @@ class DeliveryAddressesSection extends StatefulWidget {
 
 class _DeliveryAddressesSectionState extends State<DeliveryAddressesSection> {
   @override
+  void didUpdateWidget(covariant DeliveryAddressesSection oldWidget) {
+    super.didUpdateWidget(oldWidget);
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(16),
@@ -62,7 +67,22 @@ class _DeliveryAddressesSectionState extends State<DeliveryAddressesSection> {
                 return Column(
                   spacing: 16,
                   children: addresses.map((address) {
-                    return DeliveryAddressCard(address: address);
+                    return DeliveryAddressCard(
+                      address: address,
+                      onEdit: () async {
+                        final updated =
+                            await context.push(
+                                  Routes.addressDetails,
+                                  extra: address.toAddressDetailsData(),
+                                )
+                                as bool;
+                        if (updated && context.mounted) {
+                          context.read<CheckOutCubit>().doIntent(
+                            GetUserAddressesEvent(),
+                          );
+                        }
+                      },
+                    );
                   }).toList(),
                 );
               } else {
