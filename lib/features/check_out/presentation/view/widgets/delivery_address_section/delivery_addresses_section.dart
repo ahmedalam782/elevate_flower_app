@@ -18,11 +18,6 @@ class DeliveryAddressesSection extends StatelessWidget {
   const DeliveryAddressesSection({super.key});
   
   @override
-  void didUpdateWidget(covariant DeliveryAddressesSection oldWidget) {
-    super.didUpdateWidget(oldWidget);
-  }
-
-  @override
   Widget build(BuildContext context) {
     CheckOutCubit checkoutCubit = getIt<CheckOutCubit>()
       ..doIntent(GetUserAddressesEvent());

@@ -26,6 +26,8 @@ class WebPayPage extends StatelessWidget {
           onNavigationRequest: (NavigationRequest request) {
             if (request.url.contains("allOrders")) {
               context.pop(true);
+            } else if (!context.mounted) {
+              return NavigationDecision.prevent;
             }
             return NavigationDecision.navigate;
           },
