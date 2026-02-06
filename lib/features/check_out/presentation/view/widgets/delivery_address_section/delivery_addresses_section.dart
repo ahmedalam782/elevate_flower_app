@@ -16,7 +16,7 @@ import 'package:go_router/go_router.dart';
 
 class DeliveryAddressesSection extends StatelessWidget {
   const DeliveryAddressesSection({super.key});
-  
+
   @override
   Widget build(BuildContext context) {
     CheckOutCubit checkoutCubit = getIt<CheckOutCubit>()
@@ -57,13 +57,11 @@ class DeliveryAddressesSection extends StatelessWidget {
                     return DeliveryAddressCard(
                       address: address,
                       onEdit: () async {
-                        final updated =
-                            await context.push(
-                                  Routes.addressDetails,
-                                  extra: address.toAddressDetailsData(),
-                                )
-                                as bool;
-                        if (updated && context.mounted) {
+                        bool? updated = await context.push(
+                          Routes.addressDetails,
+                          extra: address.toAddressDetailsData(),
+                        );
+                        if ((updated ?? false) && context.mounted) {
                           context.read<CheckOutCubit>().doIntent(
                             GetUserAddressesEvent(),
                           );
@@ -82,8 +80,8 @@ class DeliveryAddressesSection extends StatelessWidget {
           ),
           OutlinedButton(
             onPressed: () async {
-              final added = await context.push(Routes.addressDetails) as bool;
-              if (added && context.mounted) {
+              bool? added = await context.push(Routes.addressDetails);
+              if ((added ?? false) && context.mounted) {
                 checkoutCubit.doIntent(GetUserAddressesEvent());
               }
             },

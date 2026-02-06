@@ -6,9 +6,10 @@
     android:maxSdkVersion="32" />
 
     <application
-        android:label="Flowers"
+        android:label="Flowers"    
         android:name="${applicationName}"
-        android:icon="@mipmap/launcher_icon">
+        android:icon="@mipmap/launcher_icon"
+        android:enableOnBackInvokedCallback="true">
         <activity
             android:name=".MainActivity"
             android:exported="true"
