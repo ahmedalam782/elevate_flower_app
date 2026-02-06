@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+
 import '../../helper/classes/debounce.dart';
 import '../../theme/app_colors.dart';
 import '../../theme/app_icons.dart';
@@ -10,6 +11,9 @@ import 'custom_text_field.dart';
 class CustomSearchWithFilter extends StatefulWidget {
   /// Callback triggered when search text changes (with debouncing)
   final Function(String?)? onSearchChanged;
+
+  /// Optional focus node for the search field
+  final FocusNode? focusNode;
 
   /// Callback triggered when filter button is tapped
   final VoidCallback? onFilterTap;
@@ -57,6 +61,7 @@ class CustomSearchWithFilter extends StatefulWidget {
     this.borderRadius,
     this.height,
     this.labelText,
+    this.focusNode,
   });
 
   @override
@@ -126,73 +131,67 @@ class _CustomSearchWithFilterState extends State<CustomSearchWithFilter> {
           children: [
             // Search field
             Expanded(
-              child: GestureDetector(
-                onTap: widget.readOnly ? widget.onTap : null,
-                child: SizedBox(
-                  height: widget.height ?? 48,
-                  child: AbsorbPointer(
-                    absorbing: widget.readOnly,
-                    child: CustomTextField(
-                      maxLine: 1,
-                      controller: _searchController,
-                      isReadOnly: widget.readOnly,
-                      hintText: widget.hintText,
-                      labelText: widget.labelText,
-                      textStyle: 14.regular,
-                      prefixIcon: AppIcons.iconsSearch,
-                      suffixWidget: _hasText && !widget.readOnly
-                          ? GestureDetector(
-                              onTap: _clearSearch,
-                              child: Padding(
-                                padding: EdgeInsets.all(8.w),
-                                child: Icon(
-                                  Icons.close,
-                                  size: 18.sp,
-                                  color: AppColors.grayA6,
-                                ),
-                              ),
-                            )
-                          : null,
-                      fillColor: isDarkMode
-                          ? AppColors.black0A
-                          : AppColors.whiteFF,
-                      enableFill: true,
-                      isDense: true,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(borderRadiusValue),
-                        borderSide: const BorderSide(
-                          color: AppColors.grayA6,
-                          width: 1,
-                        ),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(borderRadiusValue),
-                        borderSide: const BorderSide(
-                          color: AppColors.grayA6,
-                          width: 1,
-                        ),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(borderRadiusValue),
-                        borderSide: const BorderSide(
-                          color: AppColors.primerColor,
-                          width: 1.5,
-                        ),
-                      ),
-                      onChanged: widget.readOnly
-                          ? null
-                          : (value) {
-                              _debounce.call(() {
-                                widget.onSearchChanged?.call(value);
-                              });
-                            },
-                      onFieldSubmitted: widget.readOnly
-                          ? null
-                          : (value) {
-                              widget.onSearchChanged?.call(value);
-                            },
+              child: SizedBox(
+                height: widget.height ?? 48,
+                child: CustomTextField(
+                  maxLine: 1,
+                  onTap: widget.onTap,
+                  focusNode: widget.focusNode,
+                  controller: _searchController,
+                  isReadOnly: widget.readOnly,
+                  hintText: widget.hintText,
+                  labelText: widget.labelText,
+                  textStyle: 14.regular,
+                  prefixIcon: AppIcons.iconsSearch,
+                  suffixWidget: _hasText && !widget.readOnly
+                      ? GestureDetector(
+                          onTap: _clearSearch,
+                          child: Padding(
+                            padding: EdgeInsets.all(8.w),
+                            child: Icon(
+                              Icons.close,
+                              size: 18.sp,
+                              color: AppColors.grayA6,
+                            ),
+                          ),
+                        )
+                      : null,
+                  fillColor: isDarkMode ? AppColors.black0A : AppColors.whiteFF,
+                  enableFill: true,
+                  isDense: true,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(borderRadiusValue),
+                    borderSide: const BorderSide(
+                      color: AppColors.grayA6,
+                      width: 1,
                     ),
                   ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(borderRadiusValue),
+                    borderSide: const BorderSide(
+                      color: AppColors.grayA6,
+                      width: 1,
+                    ),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(borderRadiusValue),
+                    borderSide: const BorderSide(
+                      color: AppColors.primerColor,
+                      width: 1.5,
+                    ),
+                  ),
+                  onChanged: widget.readOnly
+                      ? null
+                      : (value) {
+                          _debounce.call(() {
+                            widget.onSearchChanged?.call(value);
+                          });
+                        },
+                  onFieldSubmitted: widget.readOnly
+                      ? null
+                      : (value) {
+                          widget.onSearchChanged?.call(value);
+                        },
                 ),
               ),
             ),

@@ -1,4 +1,4 @@
-import 'package:elevate_flower_app/core/utils/enums/gender.dart';
+import '../../../../../core/utils/enums/gender.dart';
 import 'package:image_picker/image_picker.dart';
 
 sealed class EditProfileEvents {

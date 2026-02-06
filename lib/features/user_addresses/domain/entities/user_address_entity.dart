@@ -1,4 +1,4 @@
-import 'package:elevate_flower_app/features/address_details/data/models/address_details_data.dart';
+import '../../../address_details/data/models/address_details_data.dart';
 
 class UserAddressEntity {
   final String? street;

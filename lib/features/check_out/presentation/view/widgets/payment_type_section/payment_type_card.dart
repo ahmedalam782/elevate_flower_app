@@ -1,11 +1,12 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:elevate_flower_app/core/languages/locale_keys.g.dart';
-import 'package:elevate_flower_app/core/theme/app_colors.dart';
-import 'package:elevate_flower_app/core/theme/app_typography.dart';
-import 'package:elevate_flower_app/features/change_lang/presentation/view/widgets/localization_sheet_card.dart';
-import 'package:elevate_flower_app/features/check_out/domain/repositories/payment_repository.dart';
-import 'package:elevate_flower_app/features/check_out/presentation/view_model/pay_cubit/check_out_cubit.dart';
-import 'package:elevate_flower_app/features/check_out/presentation/view_model/pay_cubit/check_out_events.dart';
+import '../../../../../../core/config/di/injectable_config.dart';
+import '../../../../../../core/languages/locale_keys.g.dart';
+import '../../../../../../core/theme/app_colors.dart';
+import '../../../../../../core/theme/app_typography.dart';
+import '../../../../../change_lang/presentation/view/widgets/localization_sheet_card.dart';
+import '../../../../domain/repositories/payment_repository.dart';
+import '../../../view_model/pay_cubit/check_out_cubit.dart';
+import '../../../view_model/pay_cubit/check_out_events.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -26,7 +27,7 @@ class PaymentTypeCard extends StatelessWidget {
     return InkWell(
       onTap: () {
         if (!isSelected) {
-          context.read<CheckOutCubit>().doIntent(
+          getIt<CheckOutCubit>().doIntent(
             SelectPaymentMethodEvent(paymentMethodType: paymentStrategy),
           );
         }

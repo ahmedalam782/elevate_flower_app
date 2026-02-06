@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+
 import '../../../../../core/languages/locale_keys.g.dart';
 import '../../../../../core/theme/splash_theme.dart';
 import 'animated_progress_bar.dart';

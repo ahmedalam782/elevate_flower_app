@@ -1,8 +1,8 @@
 import 'dart:io';
 
-import 'package:elevate_flower_app/core/config/base_state/base_state.dart';
-import 'package:elevate_flower_app/features/edit_profile/domain/entities/edit_profile_user_entity.dart';
-import 'package:elevate_flower_app/features/register/presentation/view_model/cubit/register_states.dart';
+import '../../../../../core/config/base_state/base_state.dart';
+import '../../../domain/entities/edit_profile_user_entity.dart';
+import '../../../../register/presentation/view_model/cubit/register_states.dart';
 
 class EditProfileStates {
   const EditProfileStates({

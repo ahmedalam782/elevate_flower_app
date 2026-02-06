@@ -1,5 +1,5 @@
-import 'package:elevate_flower_app/features/occasions/data/models/occasions_model.dart';
-import 'package:elevate_flower_app/features/occasions/domain/entities/occasion_card_entity.dart';
+import 'occasions_model.dart';
+import '../../domain/entities/occasion_card_entity.dart';
 
 extension OccasionsMapper on Occasion {
   OccasionCardEntity toEntity() {

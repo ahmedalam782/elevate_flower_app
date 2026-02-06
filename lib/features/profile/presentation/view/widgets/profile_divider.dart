@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:elevate_flower_app/core/theme/app_colors.dart';
+import '../../../../../core/theme/app_colors.dart';
 
 /// Custom divider for profile sections
 class ProfileDivider extends StatelessWidget {

@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'package:elevate_flower_app/core/config/api/end_points.dart';
+import '../../config/api/end_points.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';

@@ -1,7 +1,7 @@
-import 'package:elevate_flower_app/core/config/base_response/result.dart';
-import 'package:elevate_flower_app/features/best_seller/data/datasources/best_seller_remote_data_source_contract.dart';
-import 'package:elevate_flower_app/features/best_seller/domain/entities/best_seller_page_entity.dart';
-import 'package:elevate_flower_app/features/best_seller/domain/repositories/best_seller_repository.dart';
+import '../../../../core/config/base_response/result.dart';
+import '../datasources/best_seller_remote_data_source_contract.dart';
+import '../../domain/entities/best_seller_page_entity.dart';
+import '../../domain/repositories/best_seller_repository.dart';
 import 'package:injectable/injectable.dart';
 
 @Injectable(as: BestSellerRepository)

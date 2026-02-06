@@ -1,5 +1,7 @@
 import 'dart:io';
+
 import 'package:easy_localization/easy_localization.dart';
+
 import '../helper/phone_helper/phone_length_helper.dart';
 
 class Validations {

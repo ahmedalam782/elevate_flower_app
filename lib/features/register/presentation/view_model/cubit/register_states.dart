@@ -1,6 +1,6 @@
-import 'package:elevate_flower_app/core/config/base_state/base_state.dart';
-import 'package:elevate_flower_app/core/utils/enums/gender.dart';
-import 'package:elevate_flower_app/features/register/domain/entities/register_user_response.dart';
+import '../../../../../core/config/base_state/base_state.dart';
+import '../../../../../core/utils/enums/gender.dart';
+import '../../../domain/entities/register_user_response.dart';
 
 class RegisterStates {
   RegisterStates({

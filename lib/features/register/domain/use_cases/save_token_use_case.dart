@@ -1,4 +1,4 @@
-import 'package:elevate_flower_app/features/register/domain/repositories/register_repository.dart';
+import '../repositories/register_repository.dart';
 import 'package:injectable/injectable.dart';
 @injectable
 class SaveTokenUseCase {

@@ -1,4 +1,4 @@
-import 'package:elevate_flower_app/core/shared/entities/product_item_entity.dart';
+import '../../../../core/shared/entities/product_item_entity.dart';
 
 class BestSellerPageEntity {
   final List<ProductItemEntity>? products;

@@ -1,6 +1,6 @@
-import 'package:elevate_flower_app/features/user_addresses/domain/entities/user_address_entity.dart';
-import 'package:elevate_flower_app/features/user_addresses/presentation/view/widgets/address_cell.dart';
-import 'package:elevate_flower_app/features/user_addresses/presentation/view/widgets/delete_address_sheet.dart';
+import '../../../domain/entities/user_address_entity.dart';
+import 'address_cell.dart';
+import 'delete_address_sheet.dart';
 import 'package:flutter/material.dart';
 
 class DeletableAddressCell extends StatefulWidget {

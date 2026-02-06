@@ -1,6 +1,6 @@
-import 'package:elevate_flower_app/core/config/base_response/result.dart';
-import 'package:elevate_flower_app/features/product_details/domain/entities/specefic_product_entity.dart';
-import 'package:elevate_flower_app/features/product_details/domain/repositories/product_details_repository.dart';
+import '../../../../core/config/base_response/result.dart';
+import '../entities/specefic_product_entity.dart';
+import '../repositories/product_details_repository.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
