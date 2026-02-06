@@ -33,10 +33,12 @@ dependencies:
   dio: ^5.9.0
   easy_localization: ^3.0.8
   equatable: ^2.0.8
+  firebase_messaging: ^16.1.1
   flutter:
     sdk: flutter
   flutter_bloc: ^9.1.1
   flutter_cache_manager: ^3.4.1
+  flutter_local_notifications: ^20.0.0
   flutter_screenutil: ^5.9.3
   flutter_secure_storage: ^10.0.0
   flutter_svg: ^2.2.3
@@ -67,6 +69,7 @@ dependencies:
 dev_dependencies:
   bloc_test: ^10.0.0
   build_runner: ^2.10.4
+  firebase_core: null
   flutter_launcher_icons: ^0.13.1
   flutter_lints: ^6.0.0
   flutter_test:
@@ -75,7 +78,6 @@ dev_dependencies:
   json_serializable: ^6.9.0
   mockito: ^5.5.1
   retrofit_generator: ^10.2.1
-  firebase_core:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
