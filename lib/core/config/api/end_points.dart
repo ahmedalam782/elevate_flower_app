@@ -16,20 +16,26 @@ class EndPoints {
 
   static const String profileData = "/auth/profile-data";
 
-  // CART
+  //! CART
   static const String cartEndPoint = "/cart";
 
   static const String getUserProfile = "/auth/profile-data";
   static const String editUserProfile = "/auth/editProfile";
   static const String updateProfilePhoto = "/auth/upload-photo";
 
-  // CHECKOUT
+  //! CHECKOUT
   static const String creditCheckOut =
       "/orders/checkout?url=http://localhost:3000";
   static const String cashCheckOut = "/orders";
   static const String userAddresses = "/addresses";
   static const String addressEndPoint = "/addresses";
   static const String changePassword = "/auth/change-password";
+
+
+  //! About App
+  static const String aboutApp = "/about-app";
+  //! لو عاوزين تغير مكنها  معنديش مشكلة <Kareem>
+  static const String aboutAppPath = 'assets/json/Flowery About Section JSON with Expanded Content.json';
 }
 
 class Apikeys {
