@@ -1,12 +1,12 @@
 import 'dart:developer';
 
-import 'package:elevate_flower_app/core/config/base_state/base_state.dart';
-import 'package:elevate_flower_app/features/check_out/domain/entities/address_entity.dart';
-import 'package:elevate_flower_app/features/check_out/domain/repositories/payment_repository.dart';
-import 'package:elevate_flower_app/features/check_out/domain/use_cases/get_user_addresses_use_case.dart';
-import 'package:elevate_flower_app/features/check_out/domain/use_cases/pay_use_case.dart';
-import 'package:elevate_flower_app/features/check_out/presentation/view_model/pay_cubit/check_out_events.dart';
-import 'package:elevate_flower_app/features/check_out/presentation/view_model/pay_cubit/check_out_state.dart';
+import '../../../../../core/config/base_state/base_state.dart';
+import '../../../domain/entities/address_entity.dart';
+import '../../../domain/repositories/payment_repository.dart';
+import '../../../domain/use_cases/get_user_addresses_use_case.dart';
+import '../../../domain/use_cases/pay_use_case.dart';
+import 'check_out_events.dart';
+import 'check_out_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 

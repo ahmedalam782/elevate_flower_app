@@ -1,4 +1,4 @@
-import 'package:elevate_flower_app/features/login/data/models/login_model_mapper.dart';
+import '../models/login_model_mapper.dart';
 import 'package:injectable/injectable.dart';
 import '../../../../core/config/base_response/result.dart';
 import '../../domain/entities/login_response_entity.dart';

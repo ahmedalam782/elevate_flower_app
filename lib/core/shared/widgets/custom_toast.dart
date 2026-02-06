@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:toastification/toastification.dart';
+
 import '../../theme/app_colors.dart';
 import '../../theme/app_typography.dart';
 

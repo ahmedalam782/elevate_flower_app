@@ -1,5 +1,5 @@
-import 'package:elevate_flower_app/core/config/di/injectable_config.dart';
-import 'package:elevate_flower_app/features/reset_password/presentation/view_model/cubit/reset_password_cubit.dart';
+import '../../../../../core/config/di/injectable_config.dart';
+import '../../view_model/cubit/reset_password_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../widgets/reset_password_body.dart';

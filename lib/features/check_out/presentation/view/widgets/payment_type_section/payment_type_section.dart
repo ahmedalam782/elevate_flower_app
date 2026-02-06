@@ -1,9 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:elevate_flower_app/core/languages/locale_keys.g.dart';
-import 'package:elevate_flower_app/core/theme/app_colors.dart';
-import 'package:elevate_flower_app/core/theme/app_typography.dart';
-import 'package:elevate_flower_app/features/check_out/domain/repositories/payment_repository.dart';
-import 'package:elevate_flower_app/features/check_out/presentation/view/widgets/payment_type_section/payment_type_card.dart';
+import '../../../../../../core/languages/locale_keys.g.dart';
+import '../../../../../../core/theme/app_colors.dart';
+import '../../../../../../core/theme/app_typography.dart';
+import '../../../../domain/repositories/payment_repository.dart';
+import 'payment_type_card.dart';
 import 'package:flutter/material.dart';
 
 class PaymentTypeSection extends StatefulWidget {
@@ -21,7 +21,6 @@ class _PaymentTypeSectionState extends State<PaymentTypeSection> {
       color: AppColors.whiteF9,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-
         spacing: 16,
         children: [
           Text(

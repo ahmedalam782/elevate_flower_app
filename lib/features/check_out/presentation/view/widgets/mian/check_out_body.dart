@@ -1,8 +1,8 @@
-import 'package:elevate_flower_app/features/check_out/presentation/view/widgets/delivery_address_section/delivery_addresses_section.dart';
-import 'package:elevate_flower_app/features/check_out/presentation/view/widgets/mian/delivery_time_section.dart';
-import 'package:elevate_flower_app/features/check_out/presentation/view/widgets/gift_section/gift_section.dart';
-import 'package:elevate_flower_app/features/check_out/presentation/view/widgets/mian/price_section.dart';
-import 'package:elevate_flower_app/features/check_out/presentation/view/widgets/payment_type_section/payment_type_section.dart';
+import '../delivery_address_section/delivery_addresses_section.dart';
+import 'delivery_time_section.dart';
+import '../gift_section/gift_section.dart';
+import 'price_section.dart';
+import '../payment_type_section/payment_type_section.dart';
 import 'package:flutter/material.dart';
 
 class CheckOutBody extends StatelessWidget {

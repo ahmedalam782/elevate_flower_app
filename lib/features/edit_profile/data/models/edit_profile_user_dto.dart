@@ -1,5 +1,5 @@
 
-import 'package:elevate_flower_app/features/edit_profile/domain/entities/edit_profile_user_entity.dart';
+import '../../domain/entities/edit_profile_user_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'edit_profile_user_dto.g.dart';

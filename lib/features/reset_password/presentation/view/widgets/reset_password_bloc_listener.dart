@@ -1,10 +1,10 @@
-import 'package:elevate_flower_app/core/config/api/end_points.dart';
-import 'package:elevate_flower_app/core/config/di/injectable_config.dart';
-import 'package:elevate_flower_app/core/errors/handle_errors/handle_errors.dart';
+import '../../../../../core/config/api/end_points.dart';
+import '../../../../../core/config/di/injectable_config.dart';
+import '../../../../../core/errors/handle_errors/handle_errors.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:elevate_flower_app/core/shared/widgets/custom_toast.dart';
-import 'package:elevate_flower_app/features/reset_password/presentation/view_model/cubit/reset_password_cubit.dart';
-import 'package:elevate_flower_app/features/reset_password/presentation/view_model/cubit/reset_password_states.dart';
+import '../../../../../core/shared/widgets/custom_toast.dart';
+import '../../view_model/cubit/reset_password_cubit.dart';
+import '../../view_model/cubit/reset_password_states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';

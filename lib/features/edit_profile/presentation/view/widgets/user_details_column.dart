@@ -1,8 +1,8 @@
-import 'package:elevate_flower_app/features/edit_profile/presentation/view/widgets/edit_profile_form.dart';
-import 'package:elevate_flower_app/features/edit_profile/presentation/view/widgets/update_button_biulder.dart';
-import 'package:elevate_flower_app/features/edit_profile/presentation/view/widgets/user_detail_bloc_listener.dart';
-import 'package:elevate_flower_app/features/edit_profile/presentation/view/widgets/user_detail_gender_builder.dart';
-import 'package:elevate_flower_app/features/edit_profile/presentation/view/widgets/user_profile_image.dart';
+import 'edit_profile_form.dart';
+import 'update_button_biulder.dart';
+import 'user_detail_bloc_listener.dart';
+import 'user_detail_gender_builder.dart';
+import 'user_profile_image.dart';
 import 'package:flutter/material.dart';
 
 class UserDetailsColumn extends StatelessWidget {

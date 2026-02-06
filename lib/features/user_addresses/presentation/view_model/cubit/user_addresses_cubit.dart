@@ -1,9 +1,9 @@
-import 'package:elevate_flower_app/core/config/base_state/base_state.dart';
-import 'package:elevate_flower_app/features/user_addresses/domain/entities/user_address_entity.dart';
-import 'package:elevate_flower_app/features/user_addresses/domain/use_cases/delete_user_address_usecase.dart';
-import 'package:elevate_flower_app/features/user_addresses/domain/use_cases/get_all_addresses_usecase.dart';
-import 'package:elevate_flower_app/features/user_addresses/presentation/view_model/cubit/user_addresses_events.dart';
-import 'package:elevate_flower_app/features/user_addresses/presentation/view_model/cubit/user_addresses_states.dart';
+import '../../../../../core/config/base_state/base_state.dart';
+import '../../../domain/entities/user_address_entity.dart';
+import '../../../domain/use_cases/delete_user_address_usecase.dart';
+import '../../../domain/use_cases/get_all_addresses_usecase.dart';
+import 'user_addresses_events.dart';
+import 'user_addresses_states.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
