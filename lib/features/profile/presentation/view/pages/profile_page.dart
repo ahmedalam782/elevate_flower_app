@@ -315,7 +315,7 @@ class _ProfilePageState extends State<ProfilePage> with AutomaticKeepAliveClient
                       iconPath: AppIcons.iconsWarning,
                       title: LocaleKeys.profile_terms_conditions.tr(),
                       onTap: () {
-                        // TODO: Navigate to terms & conditions
+                        context.push(Routes.termsAndConditions);
                       },
                     ),
 

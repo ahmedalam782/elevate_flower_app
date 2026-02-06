@@ -1,0 +1,513 @@
+{
+  "terms_and_conditions": [
+    {
+      "section": "title",
+      "content": {
+        "en": "Terms and Conditions for Flowery App",
+        "ar": "الشروط والأحكام لتطبيق فلاوري"
+      },
+      "style": {
+        "fontSize": 24,
+        "fontWeight": "bold",
+        "color": "#D21E6A",
+        "textAlign": {
+          "en": "center",
+          "ar": "center"
+        },
+        "backgroundColor": "#FFFFFF"
+      }
+    },
+    {
+      "section": "last_updated",
+      "content": {
+        "en": "Last Updated: April 18, 2025",
+        "ar": "آخر تحديث: 18 أبريل 2025"
+      },
+      "style": {
+        "fontSize": 16,
+        "fontWeight": "normal",
+        "color": "#666666",
+        "textAlign": {
+          "en": "center",
+          "ar": "center"
+        },
+        "backgroundColor": "#FFFFFF"
+      }
+    },
+    {
+      "section": "introduction",
+      "content": {
+        "en": "Welcome to Flowery, a mobile application operated by Flowery Inc. (\"we,\" \"us,\" or \"our\"). By downloading, accessing, or using the Flowery App, you agree to be bound by these Terms and Conditions (\"Terms\"). If you do not agree with these Terms, please do not use the App.",
+        "ar": "مرحبًا بكم في فلاوري، وهو تطبيق جوال تديره شركة فلاوري إنك (\"نحن\" أو \"لنا\"). بتنزيل التطبيق أو الوصول إليه أو استخدامه، فإنك توافق على الالتزام بهذه الشروط والأحكام (\"الشروط\"). إذا كنت لا توافق على هذه الشروط، يرجى عدم استخدام التطبيق."
+      },
+      "style": {
+        "fontSize": 16,
+        "fontWeight": "normal",
+        "color": "#333333",
+        "textAlign": {
+          "en": "left",
+          "ar": "right"
+        },
+        "backgroundColor": "#FFFFFF"
+      }
+    },
+    {
+      "section": "use_of_app",
+      "title": {
+        "en": "1. Use of the App",
+        "ar": "1. استخدام التطبيق"
+      },
+      "content": {
+        "en": [
+          "You must be at least 18 years old or have the consent of a legal guardian to use the Flowery App.",
+          "You agree to use the App only for lawful purposes and in accordance with these Terms.",
+          "You are responsible for maintaining the confidentiality of your account information, including your username and password."
+        ],
+        "ar": [
+          "يجب أن تكون تبلغ من العمر 18 عامًا على الأقل أو أن تحصل على موافقة ولي أمر قانوني لاستخدام تطبيق فلاوري.",
+          "أنت توافق على استخدام التطبيق لأغراض قانونية فقط ووفقًا لهذه الشروط.",
+          "أنت مسؤول عن الحفاظ على سرية معلومات حسابك، بما في ذلك اسم المستخدم وكلمة المرور."
+        ]
+      },
+      "style": {
+        "title": {
+          "fontSize": 18,
+          "fontWeight": "bold",
+          "color": "#D21E6A",
+          "textAlign": {
+            "en": "left",
+            "ar": "right"
+          },
+          "backgroundColor": "#FFFFFF"
+        },
+        "content": {
+          "fontSize": 16,
+          "fontWeight": "normal",
+          "color": "#333333",
+          "textAlign": {
+            "en": "left",
+            "ar": "right"
+          },
+          "backgroundColor": "#FFFFFF"
+        }
+      }
+    },
+    {
+      "section": "purchases_payments",
+      "title": {
+        "en": "2. Purchases and Payments",
+        "ar": "2. المشتريات والمدفوعات"
+      },
+      "content": {
+        "en": [
+          "All flower orders placed through the Flowery App are subject to availability and acceptance by us.",
+          "Prices displayed in the App are in USD and include applicable taxes unless otherwise stated. Delivery fees may apply.",
+          "Payments are processed through secure third-party payment processors. You agree to provide accurate payment information and authorize us to charge the listed price for your orders.",
+          "All sales are final, except as provided in our Refund Policy (see Section 4)."
+        ],
+        "ar": [
+          "جميع طلبات الزهور التي تتم عبر تطبيق فلاوري تخضع للتوافر وقبولنا.",
+          "الأسعار المعروضة في التطبيق بالدولار الأمريكي وتشمل الضرائب المعمول بها ما لم يُذكر خلاف ذلك. قد يتم تطبيق رسوم التوصيل.",
+          "تتم معالجة المدفوعات من خلال معالجات دفع تابعة لجهات خارجية آمنة. أنت توافق على تقديم معلومات دفع دقيقة وتفوضنا بتحصيل السعر المدرج لطلباتك.",
+          "جميع المبيعات نهائية، باستثناء ما هو منصوص عليه في سياسة الاسترداد الخاصة بنا (انظر القسم 4)."
+        ]
+      },
+      "style": {
+        "title": {
+          "fontSize": 18,
+          "fontWeight": "bold",
+          "color": "#D21E6A",
+          "textAlign": {
+            "en": "left",
+            "ar": "right"
+          },
+          "backgroundColor": "#FFFFFF"
+        },
+        "content": {
+          "fontSize": 16,
+          "fontWeight": "normal",
+          "color": "#333333",
+          "textAlign": {
+            "en": "left",
+            "ar": "right"
+          },
+          "backgroundColor": "#FFFFFF"
+        }
+      }
+    },
+    {
+      "section": "delivery",
+      "title": {
+        "en": "3. Delivery",
+        "ar": "3. التوصيل"
+      },
+      "content": {
+        "en": [
+          "Delivery times and availability depend on your location and the delivery options selected at checkout.",
+          "We are not responsible for delays caused by incorrect delivery information provided by you or circumstances beyond our control (e.g., weather, traffic).",
+          "You must ensure someone is available to receive the delivery at the specified address. We are not liable for damage or loss if flowers are left unattended."
+        ],
+        "ar": [
+          "أوقات التوصيل والتوافر تعتمد على موقعك وخيارات التوصيل المختارة عند الدفع.",
+          "نحن لسنا مسؤولين عن التأخيرات الناتجة عن معلومات توصيل غير صحيحة قدمتها أنت أو ظروف خارجة عن سيطرتنا (مثل الطقس، حركة المرور).",
+          "يجب عليك التأكد من توفر شخص ما لاستلام التوصيل في العنوان المحدد. نحن لسنا مسؤولين عن الأضرار أو الخسائر إذا تُركت الزهور دون مراقبة."
+        ]
+      },
+      "style": {
+        "title": {
+          "fontSize": 18,
+          "fontWeight": "bold",
+          "color": "#D21E6A",
+          "textAlign": {
+            "en": "left",
+            "ar": "right"
+          },
+          "backgroundColor": "#FFFFFF"
+        },
+        "content": {
+          "fontSize": 16,
+          "fontWeight": "normal",
+          "color": "#333333",
+          "textAlign": {
+            "en": "left",
+            "ar": "right"
+          },
+          "backgroundColor": "#FFFFFF"
+        }
+      }
+    },
+    {
+      "section": "refunds_cancellations",
+      "title": {
+        "en": "4. Refunds and Cancellations",
+        "ar": "4. الاسترداد والإلغاء"
+      },
+      "content": {
+        "en": [
+          "Orders may be canceled or refunded only if the request is made within 2 hours of placing the order and before preparation has begun.",
+          "Refunds for defective or incorrect orders may be issued at our discretion. Please contact customer support within 24 hours of delivery with details and photos of the issue.",
+          "Refunds, if approved, will be processed to the original payment method within 5-7 business days."
+        ],
+        "ar": [
+          "يمكن إلغاء الطلبات أو استردادها فقط إذا تم تقديم الطلب خلال ساعتين من تقديم الطلب وقبل البدء في التحضير.",
+          "يمكن إصدار استرداد للطلبات المعيبة أو غير الصحيحة وفقًا لتقديرنا. يرجى التواصل مع دعم العملاء خلال 24 ساعة من التوصيل مع التفاصيل وصور المشكلة.",
+          "الاستردادات، إذا تمت الموافقة عليها، ستُعالج إلى طريقة الدفع الأصلية خلال 5-7 أيام عمل."
+        ]
+      },
+      "style": {
+        "title": {
+          "fontSize": 18,
+          "fontWeight": "bold",
+          "color": "#D21E6A",
+          "textAlign": {
+            "en": "left",
+            "ar": "right"
+          },
+          "backgroundColor": "#FFFFFF"
+        },
+        "content": {
+          "fontSize": 16,
+          "fontWeight": "normal",
+          "color": "#333333",
+          "textAlign": {
+            "en": "left",
+            "ar": "right"
+          },
+          "backgroundColor": "#FFFFFF"
+        }
+      }
+    },
+    {
+      "section": "intellectual_property",
+      "title": {
+        "en": "5. Intellectual Property",
+        "ar": "5. الملكية الفكرية"
+      },
+      "content": {
+        "en": [
+          "All content in the Flowery App, including text, images, logos, and designs, is owned by or licensed to Flowery Inc. and is protected by copyright and trademark laws.",
+          "You may not reproduce, distribute, or modify any content from the App without our prior written consent."
+        ],
+        "ar": [
+          "جميع المحتويات في تطبيق فلاوري، بما في ذلك النصوص والصور والشعارات والتصاميم، مملوكة لشركة فلاوري إنك أو مرخصة لها ومحمية بموجب قوانين حقوق الطبع والنشر والعلامات التجارية.",
+          "لا يجوز لك إعادة إنتاج أو توزيع أو تعديل أي محتوى من التطبيق دون موافقتنا الخطية المسبقة."
+        ]
+      },
+      "style": {
+        "title": {
+          "fontSize": 18,
+          "fontWeight": "bold",
+          "color": "#D21E6A",
+          "textAlign": {
+            "en": "left",
+            "ar": "right"
+          },
+          "backgroundColor": "#FFFFFF"
+        },
+        "content": {
+          "fontSize": 16,
+          "fontWeight": "normal",
+          "color": "#333333",
+          "textAlign": {
+            "en": "left",
+            "ar": "right"
+          },
+          "backgroundColor": "#FFFFFF"
+        }
+      }
+    },
+    {
+      "section": "user_content",
+      "title": {
+        "en": "6. User Content",
+        "ar": "6. محتوى المستخدم"
+      },
+      "content": {
+        "en": [
+          "You may submit reviews, comments, or photos through the App (\"User Content\"). By submitting User Content, you grant us a non-exclusive, royalty-free, worldwide license to use, display, and reproduce it in connection with the App.",
+          "You are responsible for ensuring your User Content does not violate any laws or infringe on third-party rights."
+        ],
+        "ar": [
+          "يمكنك تقديم مراجعات أو تعليقات أو صور عبر التطبيق (\"محتوى المستخدم\"). بتقديم محتوى المستخدم، فإنك تمنحنا ترخيصًا غير حصري وخالٍ من الرسوم وعالمي لاستخدامه وعرضه وإعادة إنتاجه فيما يتعلق بالتطبيق.",
+          "أنت مسؤول عن ضمان ألا ينتهك محتوى المستخدم الخاص بك أي قوانين أو ينتهك حقوق أطراف ثالثة."
+        ]
+      },
+      "style": {
+        "title": {
+          "fontSize": 18,
+          "fontWeight": "bold",
+          "color": "#D21E6A",
+          "textAlign": {
+            "en": "left",
+            "ar": "right"
+          },
+          "backgroundColor": "#FFFFFF"
+        },
+        "content": {
+          "fontSize": 16,
+          "fontWeight": "normal",
+          "color": "#333333",
+          "textAlign": {
+            "en": "left",
+            "ar": "right"
+          },
+          "backgroundColor": "#FFFFFF"
+        }
+      }
+    },
+    {
+      "section": "limitation_liability",
+      "title": {
+        "en": "7. Limitation of Liability",
+        "ar": "7. تحديد المسؤولية"
+      },
+      "content": {
+        "en": [
+          "To the fullest extent permitted by law, Flowery Inc. is not liable for any indirect, incidental, or consequential damages arising from your use of the App or any products purchased.",
+          "Our total liability for any claim related to the App or products will not exceed the amount paid for the order giving rise to the claim."
+        ],
+        "ar": [
+          "إلى أقصى حد يسمح به القانون، شركة فلاوري إنك ليست مسؤولة عن أي أضرار غير مباشرة أو عرضية أو تبعية تنشأ عن استخدامك للتطبيق أو أي منتجات تم شراؤها.",
+          "مسؤوليتنا الإجمالية عن أي مطالبة تتعلق بالتطبيق أو المنتجات لن تتجاوز المبلغ المدفوع للطلب الذي أدى إلى المطالبة."
+        ]
+      },
+      "style": {
+        "title": {
+          "fontSize": 18,
+          "fontWeight": "bold",
+          "color": "#D21E6A",
+          "textAlign": {
+            "en": "left",
+            "ar": "right"
+          },
+          "backgroundColor": "#FFFFFF"
+        },
+        "content": {
+          "fontSize": 16,
+          "fontWeight": "normal",
+          "color": "#333333",
+          "textAlign": {
+            "en": "left",
+            "ar": "right"
+          },
+          "backgroundColor": "#FFFFFF"
+        }
+      }
+    },
+    {
+      "section": "termination",
+      "title": {
+        "en": "8. Termination",
+        "ar": "8. الإنهاء"
+      },
+      "content": {
+        "en": [
+          "We reserve the right to suspend or terminate your access to the App at our discretion, including for violation of these Terms.",
+          "You may stop using the App at any time by uninstalling it or deleting your account."
+        ],
+        "ar": [
+          "نحتفظ بالحق في تعليق أو إنهاء وصولك إلى التطبيق وفقًا لتقديرنا، بما في ذلك لانتهاك هذه الشروط.",
+          "يمكنك التوقف عن استخدام التطبيق في أي وقت عن طريق إلغاء تثبيته أو حذف حسابك."
+        ]
+      },
+      "style": {
+        "title": {
+          "fontSize": 18,
+          "fontWeight": "bold",
+          "color": "#D21E6A",
+          "textAlign": {
+            "en": "left",
+            "ar": "right"
+          },
+          "backgroundColor": "#FFFFFF"
+        },
+        "content": {
+          "fontSize": 16,
+          "fontWeight": "normal",
+          "color": "#333333",
+          "textAlign": {
+            "en": "left",
+            "ar": "right"
+          },
+          "backgroundColor": "#FFFFFF"
+        }
+      }
+    },
+    {
+      "section": "changes_to_terms",
+      "title": {
+        "en": "9. Changes to These Terms",
+        "ar": "9. التغييرات على هذه الشروط"
+      },
+      "content": {
+        "en": [
+          "We may update these Terms from time to time. The updated Terms will be posted in the App with the \"Last Updated\" date. Continued use of the App after changes constitutes your acceptance of the revised Terms."
+        ],
+        "ar": [
+          "قد نقوم بتحديث هذه الشروط من وقت لآخر. سيتم نشر الشروط المحدثة في التطبيق مع تاريخ \"آخر تحديث\". استمرار استخدام التطبيق بعد التغييرات يشكل موافقتك على الشروط المعدلة."
+        ]
+      },
+      "style": {
+        "title": {
+          "fontSize": 18,
+          "fontWeight": "bold",
+          "color": "#D21E6A",
+          "textAlign": {
+            "en": "left",
+            "ar": "right"
+          },
+          "backgroundColor": "#FFFFFF"
+        },
+        "content": {
+          "fontSize": 16,
+          "fontWeight": "normal",
+          "color": "#333333",
+          "textAlign": {
+            "en": "left",
+            "ar": "right"
+          },
+          "backgroundColor": "#FFFFFF"
+        }
+      }
+    },
+    {
+      "section": "governing_law",
+      "title": {
+        "en": "10. Governing Law",
+        "ar": "10. القانون الحاكم"
+      },
+      "content": {
+        "en": [
+          "These Terms are governed by the laws of the State of California, without regard to its conflict of law principles.",
+          "Any disputes arising from these Terms or your use of the App will be resolved in the state or federal courts located in San Francisco, California."
+        ],
+        "ar": [
+          "تخضع هذه الشروط لقوانين ولاية كاليفورنيا، دون النظر إلى مبادئ تعارض القوانين.",
+          "سيتم حل أي نزاعات تنشأ عن هذه الشروط أو استخدامك للتطبيق في المحاكم الحكومية أو الفيدرالية الموجودة في سان فرانسيسكو، كاليفورنيا."
+        ]
+      },
+      "style": {
+        "title": {
+          "fontSize": 18,
+          "fontWeight": "bold",
+          "color": "#D21E6A",
+          "textAlign": {
+            "en": "left",
+            "ar": "right"
+          },
+          "backgroundColor": "#FFFFFF"
+        },
+        "content": {
+          "fontSize": 16,
+          "fontWeight": "normal",
+          "color": "#333333",
+          "textAlign": {
+            "en": "left",
+            "ar": "right"
+          },
+          "backgroundColor": "#FFFFFF"
+        }
+      }
+    },
+    {
+      "section": "contact_us",
+      "title": {
+        "en": "11. Contact Us",
+        "ar": "11. تواصلوا معنا"
+      },
+      "content": {
+        "en": [
+          "If you have questions about these Terms, please contact us at:",
+          "Email: support@floweryapp.com",
+          "Phone: (888) 555-1234",
+          "Address: Flowery Inc., 123 Bloom Street, San Francisco, CA 94105"
+        ],
+        "ar": [
+          "إذا كانت لديك أسئلة حول هذه الشروط، يرجى التواصل معنا على:",
+          "البريد الإلكتروني: support@floweryapp.com",
+          "الهاتف: (888) 555-1234",
+          "العنوان: فلاوري إنك، 123 شارع بلوم، سان فرانسيسكو، كاليفورنيا 94105"
+        ]
+      },
+      "style": {
+        "title": {
+          "fontSize": 18,
+          "fontWeight": "bold",
+          "color": "#D21E6A",
+          "textAlign": {
+            "en": "left",
+            "ar": "right"
+          },
+          "backgroundColor": "#FFFFFF"
+        },
+        "content": {
+          "fontSize": 16,
+          "fontWeight": "normal",
+          "color": "#333333",
+          "textAlign": {
+            "en": "left",
+            "ar": "right"
+          },
+          "backgroundColor": "#FFFFFF"
+        }
+      }
+    },
+    {
+      "section": "acknowledgment",
+      "content": {
+        "en": "By using the Flowery App, you acknowledge that you have read, understood, and agree to be bound by these Terms and Conditions.",
+        "ar": "باستخدام تطبيق فلاوري، فإنك تقر بأنك قد قرأت وفهمت وتوافق على الالتزام بهذه الشروط والأحكام."
+      },
+      "style": {
+        "fontSize": 16,
+        "fontWeight": "normal",
+        "color": "#D21E6A",
+        "textAlign": {
+          "en": "left",
+          "ar": "right"
+        },
+        "backgroundColor": "#FFFFFF"
+      }
+    }
+  ]
+}
