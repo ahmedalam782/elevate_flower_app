@@ -133,12 +133,13 @@ final GoRouter router = GoRouter(
     _customAnimatedGoRoute(
       route: Routes.termsAndConditions,
       page: (state, context) => TermsAndConditionsPage(
-    // ← Add About App Route
-    _customAnimatedGoRoute(
-      route: Routes.aboutApp,
-      page: (state, context) => AboutAppPage(
         key: ValueKey(context.locale.languageCode.toString()),
       ),
+    ),
+    _customAnimatedGoRoute(
+      route: Routes.aboutApp,
+      page: (state, context) =>
+          AboutAppPage(key: ValueKey(context.locale.languageCode.toString())),
     ),
   ],
 );
