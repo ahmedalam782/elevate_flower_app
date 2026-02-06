@@ -240,7 +240,7 @@ class _TermsAndConditionsPageState extends State<TermsAndConditionsPage> {
             locale: currentLocale,
             index: index,
           );
-        }).toList(),
+        }),
 
         // Bottom spacing
         const SizedBox(height: 40),
