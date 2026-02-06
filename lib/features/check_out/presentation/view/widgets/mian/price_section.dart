@@ -94,7 +94,6 @@ class _PriceSectionState extends State<PriceSection> {
                   isLoading: state.isLoading!,
                   onPressed: () {
                     if (state.selectedAddress == null) {
-                      log("Address not selected${state.selectedAddress}");
                       CustomToast(
                         context: context,
                         description: LocaleKeys.checkout_select_address.tr(),

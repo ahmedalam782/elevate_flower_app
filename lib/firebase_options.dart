@@ -65,4 +65,5 @@ class DefaultFirebaseOptions {
     storageBucket: 'flower-store-77567.firebasestorage.app',
     iosBundleId: 'com.example.elevateFlowerApp',
   );
+
 }
