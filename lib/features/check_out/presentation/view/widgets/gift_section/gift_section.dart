@@ -1,10 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:elevate_flower_app/core/languages/locale_keys.g.dart';
-import 'package:elevate_flower_app/core/shared/widgets/custom_text_field.dart';
-import 'package:elevate_flower_app/core/theme/app_colors.dart';
-import 'package:elevate_flower_app/core/theme/app_typography.dart';
-import 'package:elevate_flower_app/features/check_out/domain/repositories/payment_repository.dart';
-import 'package:elevate_flower_app/features/check_out/presentation/view_model/pay_cubit/check_out_cubit.dart';
+import '../../../../../../core/languages/locale_keys.g.dart';
+import '../../../../../../core/shared/widgets/custom_text_field.dart';
+import '../../../../../../core/theme/app_colors.dart';
+import '../../../../../../core/theme/app_typography.dart';
+import '../../../../domain/repositories/payment_repository.dart';
+import '../../../view_model/pay_cubit/check_out_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -16,16 +16,29 @@ class GiftSection extends StatefulWidget {
 }
 
 class _GiftSectionState extends State<GiftSection> {
-  bool isGift = false;
+  late bool isCredit;
+  late bool isEnabled;
+  bool changedOnce = false;
   @override
   Widget build(BuildContext context) {
-    isGift =
+    isCredit =
         context.select(
           (CheckOutCubit cubit) => cubit.state.selectedPaymentStrategy,
         ) ==
         PaymentStrategy.credit;
+        
+    // This to make the gift button enabled when credit is selected for the first time then be able to be changed
+    if (isCredit) {
+      if (!changedOnce) {
+        isEnabled = true;
+        changedOnce = true;
+      }
+    } else {
+      changedOnce = false;
+    }
+
     return AbsorbPointer(
-      absorbing: !isGift,
+      absorbing: !isCredit,
       child: Container(
         padding: const EdgeInsets.all(16),
         color: AppColors.whiteF9,
@@ -39,10 +52,10 @@ class _GiftSectionState extends State<GiftSection> {
                 Switch(
                   inactiveThumbColor: AppColors.primerColor,
                   inactiveTrackColor: AppColors.whiteF9,
-                  value: isGift,
+                  value: isCredit ? isEnabled : false,
                   onChanged: (value) {
                     setState(() {
-                      isGift = value;
+                      isEnabled = value;
                     });
                   },
                 ),
@@ -52,12 +65,12 @@ class _GiftSectionState extends State<GiftSection> {
                 ),
               ],
             ),
-             CustomTextField(
+            CustomTextField(
               labelText: LocaleKeys.checkout_gift_name.tr(),
               hintText: LocaleKeys.checkout_gift_name_hint.tr(),
               floatingLabelBehavior: FloatingLabelBehavior.always,
             ),
-             CustomTextField(
+            CustomTextField(
               labelText: LocaleKeys.checkout_gift_phone.tr(),
               hintText: LocaleKeys.checkout_gift_phone_hint.tr(),
               floatingLabelBehavior: FloatingLabelBehavior.always,

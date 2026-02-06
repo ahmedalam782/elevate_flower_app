@@ -1,4 +1,4 @@
-import 'package:elevate_flower_app/features/edit_profile/domain/entities/edit_profile_params.dart';
+import '../../domain/entities/edit_profile_params.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'edit_profile_request_body.g.dart';

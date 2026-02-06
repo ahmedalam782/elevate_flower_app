@@ -1,11 +1,12 @@
-import 'package:elevate_flower_app/core/routes/routes.dart';
-import 'package:elevate_flower_app/features/home/presentation/view/widgets/category_home_shimmer.dart';
-import 'package:elevate_flower_app/features/home/presentation/view/widgets/product_item.dart';
-import 'package:elevate_flower_app/features/home/presentation/view_model/cubit/home_cubit.dart';
-import 'package:elevate_flower_app/features/home/presentation/view_model/cubit/home_states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+
+import '../../../../../core/routes/routes.dart';
+import '../../view_model/cubit/home_cubit.dart';
+import '../../view_model/cubit/home_states.dart';
+import 'category_home_shimmer.dart';
+import 'product_item.dart';
 
 class OccasionWidget extends StatelessWidget {
   const OccasionWidget({super.key});

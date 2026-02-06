@@ -1,6 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:elevate_flower_app/core/languages/locale_keys.g.dart';
-import 'package:elevate_flower_app/core/theme/app_colors.dart';
+import '../../languages/locale_keys.g.dart';
+import '../../theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class ActionDialog extends StatelessWidget {

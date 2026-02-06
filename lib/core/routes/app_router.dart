@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:elevate_flower_app/features/about_app/presentation/view/pages/about_app_page.dart';
 import 'package:elevate_flower_app/features/address_details/data/models/address_details_data.dart';
 import 'package:elevate_flower_app/features/address_details/presentation/view/pages/address_details_page.dart';
 import 'package:elevate_flower_app/features/best_seller/presentation/view/pages/best_seller_page.dart';
@@ -23,6 +24,7 @@ import '../../features/splash/presentation/view/pages/splash_page.dart';
 import 'routes.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
+
 final GoRouter router = GoRouter(
   initialLocation: Routes.splash,
   navigatorKey: navigatorKey,
@@ -42,7 +44,6 @@ final GoRouter router = GoRouter(
       page: (state, context) =>
           RegisterPage(key: ValueKey(context.locale.languageCode.toString())),
     ),
- 
     _customAnimatedGoRoute(
       route: Routes.forgetPassword,
       page: (state, context) => ForgetPasswordPage(
@@ -85,14 +86,12 @@ final GoRouter router = GoRouter(
       page: (state, context) =>
           CartPage(key: ValueKey(context.locale.languageCode.toString())),
     ),
-
     _customAnimatedGoRoute(
       route: Routes.editProfile,
       page: (state, context) => EditProfilePage(
         key: ValueKey(context.locale.languageCode.toString()),
       ),
     ),
-
     _customAnimatedGoRoute(
       route: Routes.checkOut,
       page: (state, context) => CheckOutPage(
@@ -134,6 +133,10 @@ final GoRouter router = GoRouter(
     _customAnimatedGoRoute(
       route: Routes.termsAndConditions,
       page: (state, context) => TermsAndConditionsPage(
+    // ← Add About App Route
+    _customAnimatedGoRoute(
+      route: Routes.aboutApp,
+      page: (state, context) => AboutAppPage(
         key: ValueKey(context.locale.languageCode.toString()),
       ),
     ),

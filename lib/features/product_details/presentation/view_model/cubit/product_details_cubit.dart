@@ -2,7 +2,6 @@
 
 import 'package:elevate_flower_app/core/config/base_response/result.dart';
 import 'package:elevate_flower_app/core/config/base_state/base_state.dart';
-
 import 'package:elevate_flower_app/features/cart/domain/use_cases/add_product_to_cart_use_case.dart';
 import 'package:elevate_flower_app/features/product_details/domain/entities/specefic_product_entity.dart';
 import 'package:elevate_flower_app/features/product_details/domain/use_cases/get_specefic_product_use_case.dart';

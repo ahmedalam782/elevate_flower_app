@@ -1,7 +1,7 @@
-import 'package:elevate_flower_app/core/config/base_state/base_state.dart';
-import 'package:elevate_flower_app/features/best_seller/domain/use_cases/get_best_seller_products_use_case.dart';
-import 'package:elevate_flower_app/features/best_seller/presentation/view_model/cubit/best_seller_events.dart';
-import 'package:elevate_flower_app/features/best_seller/presentation/view_model/cubit/best_seller_states.dart';
+import '../../../../../core/config/base_state/base_state.dart';
+import '../../../domain/use_cases/get_best_seller_products_use_case.dart';
+import 'best_seller_events.dart';
+import 'best_seller_states.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 

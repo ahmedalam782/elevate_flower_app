@@ -1,9 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:elevate_flower_app/core/config/di/injectable_config.dart';
-import 'package:elevate_flower_app/core/languages/locale_keys.g.dart';
-import 'package:elevate_flower_app/features/user_addresses/presentation/view/widgets/user_addresses_body.dart';
-import 'package:elevate_flower_app/features/user_addresses/presentation/view_model/cubit/user_addresses_cubit.dart';
-import 'package:elevate_flower_app/features/user_addresses/presentation/view_model/cubit/user_addresses_events.dart';
+import '../../../../../core/config/di/injectable_config.dart';
+import '../../../../../core/languages/locale_keys.g.dart';
+import '../widgets/user_addresses_body.dart';
+import '../../view_model/cubit/user_addresses_cubit.dart';
+import '../../view_model/cubit/user_addresses_events.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

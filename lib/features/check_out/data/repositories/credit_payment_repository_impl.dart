@@ -1,8 +1,8 @@
-import 'package:elevate_flower_app/core/config/base_response/result.dart';
-import 'package:elevate_flower_app/features/check_out/data/datasources/payment_data_source_contract.dart';
-import 'package:elevate_flower_app/features/check_out/data/models/shipping_address_model.dart';
-import 'package:elevate_flower_app/features/check_out/domain/entities/payment_result.dart';
-import 'package:elevate_flower_app/features/check_out/domain/repositories/payment_repository.dart';
+import '../../../../core/config/base_response/result.dart';
+import '../datasources/payment_data_source_contract.dart';
+import '../models/shipping_address_model.dart';
+import '../../domain/entities/payment_result.dart';
+import '../../domain/repositories/payment_repository.dart';
 import 'package:injectable/injectable.dart';
 
 @Named('Credit')

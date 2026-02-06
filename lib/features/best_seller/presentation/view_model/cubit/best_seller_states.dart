@@ -1,5 +1,5 @@
-import 'package:elevate_flower_app/core/config/base_state/base_state.dart';
-import 'package:elevate_flower_app/features/best_seller/domain/entities/best_seller_page_entity.dart';
+import '../../../../../core/config/base_state/base_state.dart';
+import '../../../domain/entities/best_seller_page_entity.dart';
 
 class BestSellerStates {
   final BaseState<BestSellerPageEntity> getMostSellerState;

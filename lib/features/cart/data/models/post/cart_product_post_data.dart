@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+
 part "cart_product_post_data.g.dart";
 
 @JsonSerializable()

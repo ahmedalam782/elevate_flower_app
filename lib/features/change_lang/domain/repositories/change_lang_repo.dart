@@ -1,4 +1,4 @@
-import 'package:elevate_flower_app/core/config/base_response/result.dart';
+import '../../../../core/config/base_response/result.dart';
 import 'package:flutter/material.dart';
 
 abstract class ChangeLangRepo {

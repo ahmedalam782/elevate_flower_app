@@ -1,0 +1,66 @@
+name: Build and Upload to Firebase App Distribution
+
+on:
+  pull_request:
+    types: [labeled]
+
+jobs:
+  build-and-distribute:
+    # Only run when the PR is labeled with "ReadyForTesting"
+    if: github.event.label.name == 'ReadyForTesting'
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    
+    steps:
+      - name: 📚 Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: ☕ Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+          
+      - name: 🐦 Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.38.6'
+          channel: 'stable'
+          cache: true
+          
+      - name: 📦 Get dependencies
+        run: flutter pub get
+        
+      - name: 🔧 Run code generation
+        run: |
+          flutter pub run easy_localization:generate -S assets/localization -O lib/core/languages -f keys -o locale_keys.g.dart
+          dart run build_runner build --delete-conflicting-outputs
+          
+      - name: 🔨 Build APK
+        run: flutter build apk --release
+        
+      - name: 🔐 Setup Firebase CLI
+        uses: firebase/firebase-tools@v1
+        
+      - name: 📤 Upload to Firebase App Distribution
+        uses: wzieba/Firebase-Distribution-Github-Action@v1
+        with:
+          appId: ${{ secrets.FIREBASE_APP_ID }}
+          serviceCredentialsFileContent: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          groups: testers
+          file: build/app/outputs/flutter-apk/app-release.apk
+          releaseNotes: |
+            Build from PR #${{ github.event.pull_request.number }}
+            Branch: ${{ github.head_ref }}
+            Commit: ${{ github.sha }}
+            
+      - name: 💬 Comment on PR
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '## 🚀 Firebase App Distribution\n\n✅ Build uploaded successfully!\n\n📱 The APK has been distributed to the **testers** group.\n\nCheck your email or Firebase App Distribution dashboard for the download link.'
+            });

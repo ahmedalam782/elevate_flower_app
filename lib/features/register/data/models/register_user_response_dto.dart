@@ -1,5 +1,5 @@
-import 'package:elevate_flower_app/features/register/data/models/register_user_model.dart';
-import 'package:elevate_flower_app/features/register/domain/entities/register_user_response.dart';
+import 'register_user_model.dart';
+import '../../domain/entities/register_user_response.dart';
 import 'package:json_annotation/json_annotation.dart';
 part 'register_user_response_dto.g.dart';
 

@@ -1,4 +1,4 @@
-import 'package:elevate_flower_app/core/utils/enums/gender.dart';
+import '../../../../../core/utils/enums/gender.dart';
 
 sealed class RegisterEvents {
   const RegisterEvents();

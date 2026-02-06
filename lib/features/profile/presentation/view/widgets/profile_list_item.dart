@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:elevate_flower_app/core/theme/app_colors.dart';
-import 'package:elevate_flower_app/core/theme/app_typography.dart';
+import '../../../../../core/theme/app_colors.dart';
+import '../../../../../core/theme/app_typography.dart';
 
 /// A reusable profile list item widget
 class ProfileListItem extends StatelessWidget {

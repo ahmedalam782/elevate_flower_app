@@ -1,10 +1,10 @@
 import 'dart:developer';
 
-import 'package:elevate_flower_app/core/config/base_state/base_state.dart';
-import 'package:elevate_flower_app/features/occasions/domain/use_cases/get_occasions_use_case.dart';
-import 'package:elevate_flower_app/features/occasions/domain/use_cases/get_products_by_occasion_use_case.dart';
-import 'package:elevate_flower_app/features/occasions/presentation/view_model/cubit/occasions_events.dart';
-import 'package:elevate_flower_app/features/occasions/presentation/view_model/cubit/occasions_states.dart';
+import '../../../../../core/config/base_state/base_state.dart';
+import '../../../domain/use_cases/get_occasions_use_case.dart';
+import '../../../domain/use_cases/get_products_by_occasion_use_case.dart';
+import 'occasions_events.dart';
+import 'occasions_states.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 

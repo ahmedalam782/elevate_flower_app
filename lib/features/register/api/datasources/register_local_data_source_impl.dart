@@ -1,5 +1,5 @@
-import 'package:elevate_flower_app/core/config/api/end_points.dart';
-import 'package:elevate_flower_app/features/register/data/datasources/register_local_data_source_contract.dart';
+import '../../../../core/config/api/end_points.dart';
+import '../../data/datasources/register_local_data_source_contract.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:injectable/injectable.dart';
 @Injectable(as: RegisterLocalDataSourceContract)

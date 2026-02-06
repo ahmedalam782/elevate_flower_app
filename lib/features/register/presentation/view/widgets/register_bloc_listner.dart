@@ -1,8 +1,8 @@
-import 'package:elevate_flower_app/core/errors/handle_errors/handle_errors.dart';
-import 'package:elevate_flower_app/core/routes/routes.dart';
-import 'package:elevate_flower_app/core/shared/widgets/custom_toast.dart';
-import 'package:elevate_flower_app/features/register/presentation/view_model/cubit/register_cubit.dart';
-import 'package:elevate_flower_app/features/register/presentation/view_model/cubit/register_states.dart';
+import '../../../../../core/errors/handle_errors/handle_errors.dart';
+import '../../../../../core/routes/routes.dart';
+import '../../../../../core/shared/widgets/custom_toast.dart';
+import '../../view_model/cubit/register_cubit.dart';
+import '../../view_model/cubit/register_states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';

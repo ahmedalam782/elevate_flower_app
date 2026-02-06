@@ -65,6 +65,7 @@ dev_dependencies:
   json_serializable: ^6.9.0
   mockito: ^5.5.1
   retrofit_generator: ^10.2.1
+  firebase_core:
 
 # ==============================================================
 # Flutter

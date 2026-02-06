@@ -1,0 +1,231 @@
+{
+  "about_app": [
+    {
+      "section": "title",
+      "content": {
+        "en": "About Flowery App",
+        "ar": "عن تطبيق فلاوري"
+      },
+      "style": {
+        "fontSize": 24,
+        "fontWeight": "bold",
+        "color": "#D21E6A",
+        "textAlign": {
+          "en": "center",
+          "ar": "center"
+        },
+        "backgroundColor": "#FFFFFF"
+      }
+    },
+    {
+      "section": "introduction",
+      "content": {
+        "en": "Flowery is more than just a flower delivery app—it's a celebration of beauty, emotion, and connection. Operated by Flowery Inc., we are dedicated to transforming everyday moments into unforgettable experiences with our exquisite floral arrangements. Whether it's a birthday, wedding, apology, or just because, Flowery makes it easy to send fresh, handcrafted bouquets to loved ones, delivered with care and precision to your doorstep.",
+        "ar": "فلاوري ليس مجرد تطبيق لتوصيل الزهور، بل هو احتفال بالجمال والعاطفة والتواصل. تديره شركة فلاوري إنك، ونحن ملتزمون بتحويل اللحظات اليومية إلى تجارب لا تُنسى من خلال تنسيقاتنا الزهرية الرائعة. سواء كان عيد ميلاد، زفاف، اعتذار، أو مجرد لفتة طيبة، يجعل فلاوري من السهل إرسال باقات طازجة مصنوعة يدويًا إلى أحبائك، يتم توصيلها بعناية ودقة إلى عتبة دارك."
+      },
+      "style": {
+        "fontSize": 16,
+        "fontWeight": "normal",
+        "color": "#333333",
+        "textAlign": {
+          "en": "left",
+          "ar": "right"
+        },
+        "backgroundColor": "#FFFFFF"
+      }
+    },
+    {
+      "section": "our_story",
+      "title": {
+        "en": "Our Story",
+        "ar": "قصتنا"
+      },
+      "content": {
+        "en": [
+          "Founded in 2020 in San Francisco, Flowery began with a simple vision: to make the world a brighter place, one flower at a time. Our founders, passionate about nature and design, saw an opportunity to combine technology with the timeless art of floristry.",
+          "From a small startup, we’ve grown into a trusted name, serving thousands of customers across the United States. Our team of florists, designers, and tech experts work together to ensure every order reflects our commitment to quality and creativity.",
+          "Today, Flowery is proud to partner with local growers and artisans, supporting sustainable practices and bringing the freshest blooms to your door."
+        ],
+        "ar": [
+          "تأسست فلاوري في عام 2020 في سان فرانسيسكو، بدأت برؤية بسيطة: جعل العالم مكانًا أكثر إشراقًا، زهرة واحدة في كل مرة. رأى مؤسسونا، المتحمسون للطبيعة والتصميم، فرصة لدمج التكنولوجيا مع فن تنسيق الزهور العريق.",
+          "من شركة ناشئة صغيرة، تطورنا لنصبح اسمًا موثوقًا، نخدم آلاف العملاء في جميع أنحاء الولايات المتحدة. يعمل فريقنا من مُنسقي الزهور والمصممين وخبراء التكنولوجيا معًا لضمان أن يعكس كل طلب التزامنا بالجودة والإبداع.",
+          "اليوم، تفخر فلاوري بالشراكة مع المزارعين والحرفيين المحليين، داعمين الممارسات المستدامة وجالبين أجود الزهور إلى عتبة دارك."
+        ]
+      },
+      "style": {
+        "title": {
+          "fontSize": 18,
+          "fontWeight": "bold",
+          "color": "#D21E6A",
+          "textAlign": {
+            "en": "left",
+            "ar": "right"
+          },
+          "backgroundColor": "#FFFFFF"
+        },
+        "content": {
+          "fontSize": 16,
+          "fontWeight": "normal",
+          "color": "#333333",
+          "textAlign": {
+            "en": "left",
+            "ar": "right"
+          },
+          "backgroundColor": "#FFFFFF"
+        }
+      }
+    },
+    {
+      "section": "features",
+      "title": {
+        "en": "What We Offer",
+        "ar": "ما نقدمه"
+      },
+      "content": {
+        "en": [
+          "Explore a diverse catalog of flowers, from classic roses to exotic orchids, curated for every occasion.",
+          "Personalize your bouquets with add-ons like elegant vases, heartfelt greeting cards, or premium chocolates.",
+          "Enjoy flexible delivery options, including same-day delivery in select cities and scheduled deliveries for future dates.",
+          "Track your order in real-time with updates from our florists to your delivery driver.",
+          "Access exclusive seasonal collections and limited-edition arrangements designed by our expert florists.",
+          "Earn rewards with every purchase through our loyalty program, redeemable for discounts on future orders."
+        ],
+        "ar": [
+          "استكشف كتالوجًا متنوعًا من الزهور، من الورود الكلاسيكية إلى الأوركيد الغريبة، تم تهيئتها لكل مناسبة.",
+          "خصص باقاتك بإضافات مثل المزهريات الأنيقة، بطاقات التهنئة القلبية، أو الشوكولاتة الفاخرة.",
+          "استمتع بخيارات توصيل مرنة، بما في ذلك التوصيل في نفس اليوم في مدن مختارة والتوصيلات المجدولة لتواريخ مستقبلية.",
+          "تتبع طلبك في الوقت الفعلي مع تحديثات من مُنسقي الزهور لدينا إلى سائق التوصيل.",
+          "استفد من المجموعات الموسمية الحصرية والتنسيقات محدودة الإصدار التي صممها مُنسقو الزهور الخبراء لدينا.",
+          "اكسب مكافآت مع كل عملية شراء من خلال برنامج الولاء الخاص بنا، قابلة للاستبدال بخصومات على الطلبات المستقبلية."
+        ]
+      },
+      "style": {
+        "title": {
+          "fontSize": 18,
+          "fontWeight": "bold",
+          "color": "#D21E6A",
+          "textAlign": {
+            "en": "left",
+            "ar": "right"
+          },
+          "backgroundColor": "#FFFFFF"
+        },
+        "content": {
+          "fontSize": 16,
+          "fontWeight": "normal",
+          "color": "#333333",
+          "textAlign": {
+            "en": "left",
+            "ar": "right"
+          },
+          "backgroundColor": "#FFFFFF"
+        }
+      }
+    },
+    {
+      "section": "our_commitment",
+      "title": {
+        "en": "Our Commitment to You",
+        "ar": "التزامنا تجاهك"
+      },
+      "content": {
+        "en": [
+          "We source our flowers from trusted growers who prioritize sustainability and ethical practices, ensuring every bloom is fresh and vibrant.",
+          "Our team is dedicated to crafting arrangements that not only look stunning but also convey the emotions you wish to express.",
+          "Customer satisfaction is at the heart of everything we do. Our support team is available to assist with any questions or concerns, ensuringpiecing together a seamless experience from order to delivery.",
+          "We are committed to environmental responsibility, using eco-friendly packaging and supporting initiatives to reduce our carbon footprint."
+        ],
+        "ar": [
+          "نحصل على زهورنا من مزارعين موثوقين يعطون الأولوية للممارسات المستدامة والأخلاقية، مما يضمن أن تكون كل زهرة طازجة ونابضة بالحياة.",
+          "فريقنا مكرس لصنع تنسيقات لا تبدو مذهلة فحسب، بل تنقل أيضًا المشاعر التي ترغب في التعبير عنها.",
+          "رضا العملاء هو جوهر كل ما نقوم به. فريق الدعم لدينا متاح للمساعدة في أي أسئلة أو مخاوف.",
+          "نحن ملتزمون بالمسؤولية البيئية، باستخدام تغليف صديق للبيئة ودعم المبادرات لتقليل بصمتنا الكربونية."
+        ]
+      },
+      "style": {
+        "title": {
+          "fontSize": 18,
+          "fontWeight": "bold",
+          "color": "#D21E6A",
+          "textAlign": {
+            "en": "left",
+            "ar": "right"
+          },
+          "backgroundColor": "#FFFFFF"
+        },
+        "content": {
+          "fontSize": 16,
+          "fontWeight": "normal",
+          "color": "#333333",
+          "textAlign": {
+            "en": "left",
+            "ar": "right"
+          },
+          "backgroundColor": "#FFFFFF"
+        }
+      }
+    },
+    {
+      "section": "contact_us",
+      "title": {
+        "en": "Get in Touch",
+        "ar": "تواصلوا معنا"
+      },
+      "content": {
+        "en": [
+          "We love hearing from our customers! Whether you have questions, feedback, or need help with an order, our team is here for you.",
+          "Email: support@floweryapp.com",
+          "Phone: (888) 555-1234",
+          "Address: Flowery Inc., 123 Bloom Street, San Francisco, CA 94105",
+          "Follow us on social media for inspiration, promotions, and updates!"
+        ],
+        "ar": [
+          "نحب أن نسمع من عملائنا! سواء كانت لديك أسئلة، تعليقات، أو تحتاج إلى مساعدة بشأن طلب، فريقنا هنا من أجلك.",
+          "البريد الإلكتروني: support@floweryapp.com",
+          "الهاتف: (888) 555-1234",
+          "العنوان: فلاوري إنك، 123 شارع بلوم، سان فرانسيسكو، كاليفورنيا 94105",
+          "تابعنا على وسائل التواصل الاجتماعي للحصول على الإلهام، العروض الترويجية، والتحديثات!"
+        ]
+      },
+      "style": {
+        "title": {
+          "fontSize": 18,
+          "fontWeight": "bold",
+          "color": "#D21E6A",
+          "textAlign": {
+            "en": "left",
+            "ar": "right"
+          },
+          "backgroundColor": "#FFFFFF"
+        },
+        "content": {
+          "fontSize": 16,
+          "fontWeight": "normal",
+          "color": "#333333",
+          "textAlign": {
+            "en": "left",
+            "ar": "right"
+          },
+          "backgroundColor": "#FFFFFF"
+        }
+      }
+    },
+    {
+      "section": "closing",
+      "content": {
+        "en": "At Flowery, we believe flowers have the power to connect people and create lasting memories. Thank you for choosing us to be part of your special moments!",
+        "ar": "في فلاوري، نؤمن أن الزهور لديها القدرة على ربط الناس وخلق ذكريات دائمة. شكرًا لاختيارك لنا لنكون جزءًا من لحظاتك الخاصة!"
+      },
+      "style": {
+        "fontSize": 16,
+        "fontWeight": "normal",
+        "color": "#D21E6A",
+        "textAlign": {
+          "en": "left",
+          "ar": "right"
+        },
+        "backgroundColor": "#FFFFFF"
+      }
+    }
+  ]
+}

@@ -1,7 +1,8 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'product_model.dart';
+
 import 'category_model.dart';
 import 'occasion_model.dart';
+import 'product_model.dart';
 
 part 'home_response.g.dart';
 
