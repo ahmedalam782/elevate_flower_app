@@ -41,7 +41,7 @@ void main() async {
   // Set custom Bloc observer for debugging
   Bloc.observer = MyBlocObserver();
 
-  //==================FOR WEB=====================
+  //!==================FOR WEB=====================
   GoRouter.optionURLReflectsImperativeAPIs = true;
   setPathUrlStrategy();
 
