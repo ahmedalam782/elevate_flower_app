@@ -8,6 +8,7 @@ import 'package:elevate_flower_app/features/categories/presentation/view/pages/c
 import 'package:elevate_flower_app/features/check_out/presentation/view/pages/check_out_page.dart';
 import 'package:elevate_flower_app/features/check_out/presentation/view/pages/web_pay_page.dart';
 import 'package:elevate_flower_app/features/edit_profile/presentation/view/pages/edit_profile_page.dart';
+import 'package:elevate_flower_app/features/notifications_list/presentation/view/pages/notifications_list_page.dart';
 import 'package:elevate_flower_app/features/occasions/presentation/view/pages/occasions_page.dart';
 import 'package:elevate_flower_app/features/product_details/presentation/view/pages/product_details_page.dart';
 import 'package:elevate_flower_app/features/register/presentation/view/pages/register_page.dart';
@@ -133,6 +134,12 @@ final GoRouter router = GoRouter(
     _customAnimatedGoRoute(
       route: Routes.termsAndConditions,
       page: (state, context) => TermsAndConditionsPage(
+        key: ValueKey(context.locale.languageCode.toString()),
+      ),
+    ),
+    _customAnimatedGoRoute(
+      route: Routes.userNotifications,
+      page: (state, context) => NotificationsListPage(
         key: ValueKey(context.locale.languageCode.toString()),
       ),
     ),

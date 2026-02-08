@@ -109,7 +109,7 @@ class _ProfilePageState extends State<ProfilePage> with AutomaticKeepAliveClient
               padding: EdgeInsets.only(right: 16.w, left: 16.w),
               child: InkWell(
                 onTap: () {
-                  // TODO: Navigate to notifications
+                  context.push(Routes.userNotifications);
                 },
                 child: Badge.count(
                   count: _notificationCount,

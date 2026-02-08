@@ -16,6 +16,7 @@ class Routes {
   static const String carScreen = "/car-screen";
   static const String editProfile = "/edit-profile";
   static const String userAddresses = "/user-addresses";
+  static const String userNotifications = "/user-notifications";
 
   static const String checkOut = "/check-out";
 
