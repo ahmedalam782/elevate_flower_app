@@ -3,22 +3,13 @@ import 'dart:developer';
 import 'package:elevate_flower_app/core/theme/app_colors.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:firebase_core/firebase_core.dart';
 
 bool isFCMInitialized = false;
-// This function handles background messages (must be top-level)
+
 @pragma('vm:entry-point')
-Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-  // Initialize Firebase if not already done
-  await Firebase.initializeApp();
-  log('Handling background message: ${message.messageId}');
-  log('Title: ${message.notification?.title}');
-  log('Body: ${message.notification?.body}');
-  log('Data: ${message.data}');
-}
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {}
 
 class FCMService {
-  // Singleton pattern - ensures only one instance exists
   static final FCMService _instance = FCMService._internal();
   factory FCMService() => _instance;
   FCMService._internal();
@@ -27,7 +18,6 @@ class FCMService {
   final FlutterLocalNotificationsPlugin _localNotifications =
       FlutterLocalNotificationsPlugin();
 
-  // Store the FCM token
   String? _fcmToken;
   String? get fcmToken => _fcmToken;
 
@@ -35,17 +25,10 @@ class FCMService {
   Future<void> initialize() async {
     if (isFCMInitialized) return;
     // Request notification permissions (iOS and Android 13+)
-    NotificationSettings settings = await _firebaseMessaging.requestPermission(
-      alert: true, // Show notification banner
-      badge: true, // Update app badge count
-      sound: true, // Play notification sound
-      announcement: false,
-      carPlay: false,
-      criticalAlert: false,
-      provisional: false,
-    );
+    NotificationSettings settings = await _firebaseMessaging
+        .requestPermission();
 
-    print('User granted permission: ${settings.authorizationStatus}');
+    log('User granted permission: ${settings.authorizationStatus}');
 
     // Initialize local notifications for foreground handling
     await _initializeLocalNotifications();
@@ -135,6 +118,9 @@ class FCMService {
           importance: Importance.max,
           priority: Priority.high,
           color: AppColors.primerColor,
+          playSound: true,
+          enableVibration: true,
+          
         );
 
     const DarwinNotificationDetails darwinNotificationDetails =
