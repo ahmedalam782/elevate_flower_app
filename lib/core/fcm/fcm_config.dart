@@ -7,7 +7,9 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 bool isFCMInitialized = false;
 
 @pragma('vm:entry-point')
-Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {}
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+
+}
 
 class FCMService {
   static final FCMService _instance = FCMService._internal();
@@ -47,7 +49,6 @@ class FCMService {
 
     // Set up background message handler
     FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
-
     // Handle notification when app is in FOREGROUND
     FirebaseMessaging.onMessage.listen(_handleForegroundMessage);
 
@@ -91,6 +92,7 @@ class FCMService {
       importance: Importance.high, // Shows as heads-up notification
       playSound: true,
       enableVibration: true,
+
     );
 
     await _localNotifications
@@ -120,7 +122,6 @@ class FCMService {
           color: AppColors.primerColor,
           playSound: true,
           enableVibration: true,
-          
         );
 
     const DarwinNotificationDetails darwinNotificationDetails =
