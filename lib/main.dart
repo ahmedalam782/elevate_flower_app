@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:elevate_flower_app/core/fcm/fcm_config.dart';
 import 'package:elevate_flower_app/firebase_options.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
@@ -26,6 +27,8 @@ void main() async {
     configureDependencies(),
   ]);
 
+  FCMService().initialize();
+
   FlutterError.onError = (errorDetails) {
     FirebaseCrashlytics.instance.recordFlutterFatalError(errorDetails);
   };
@@ -36,7 +39,6 @@ void main() async {
   };
 
   //Disable crashlytics in debug => await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(!kDebugMode);
-
 
   // Set custom Bloc observer for debugging
   Bloc.observer = MyBlocObserver();
