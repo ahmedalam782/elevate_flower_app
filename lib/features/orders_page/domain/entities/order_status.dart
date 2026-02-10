@@ -1,4 +1,3 @@
-// order_status.dart
 enum OrderStatus {
   pending('pending', 'قيد الانتظار'),//
   processing('processing', 'قيد المعالجة'),//activ

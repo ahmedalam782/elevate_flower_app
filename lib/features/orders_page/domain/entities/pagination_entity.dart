@@ -1,4 +1,3 @@
-// في ملف pagination_entity.dart
 import 'package:equatable/equatable.dart';
 
 class PaginationEntity extends Equatable {
