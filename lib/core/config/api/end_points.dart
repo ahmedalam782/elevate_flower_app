@@ -15,6 +15,7 @@ class EndPoints {
   static const String logout = "/auth/logout";
 
   static const String profileData = "/auth/profile-data";
+  static const String ordersPage = "/orders";
 
   //! CART
   static const String cartEndPoint = "/cart";
