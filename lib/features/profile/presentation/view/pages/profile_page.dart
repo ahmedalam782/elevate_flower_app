@@ -224,7 +224,9 @@ class _ProfilePageState extends State<ProfilePage> with AutomaticKeepAliveClient
                       iconPath: AppIcons.iconsTransactionOrder,
                       title: LocaleKeys.profile_my_orders.tr(),
                       onTap: () {
+                        context.go(Routes.ordersPage);
                         // TODO: Navigate to orders
+                          context.go(Routes.ordersPage);
                       },
                     ),
 
