@@ -9,6 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'app.dart';
+import 'core/config/flavors/app_flavors.dart';
 import 'core/config/di/injectable_config.dart';
 import 'core/helper/bloc/bloc_observer.dart';
 import 'core/languages/lang.dart';
@@ -26,6 +27,7 @@ void main() async {
     ScreenUtil.ensureScreenSize(),
     configureDependencies(),
   ]);
+  myAppFlavor = ProductionFlavor();
 
   FCMService().initialize();
 
