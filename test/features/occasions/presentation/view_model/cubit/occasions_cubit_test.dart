@@ -90,6 +90,14 @@ void main() {
     group('doIntent', () {
       blocTest<OccasionsCubit, OccasionsStates>(
         'should call _getOccasions when GetOccasionsEvent is passed',
+        setUp: () {
+          when(
+            mockGetOccasionsUseCase.call(),
+          ).thenAnswer((_) async => Success(data: testOccasions));
+          when(
+            mockGetProductsByOccasionUseCase.call('1'),
+          ).thenAnswer((_) async => const Success(data: []));
+        },
         build: () {
           when(
             mockGetOccasionsUseCase.call(),
@@ -99,6 +107,7 @@ void main() {
           ).thenAnswer((_) async => const Success(data: []));
           return cubit;
         },
+
         act: (cubit) => cubit.doIntent(OccasionsEvents.getOccasions()),
         expect: () => [
           const OccasionsStates(
