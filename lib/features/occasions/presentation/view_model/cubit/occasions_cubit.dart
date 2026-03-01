@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import '../../../../../core/config/base_state/base_state.dart';
 import '../../../domain/use_cases/get_occasions_use_case.dart';
 import '../../../domain/use_cases/get_products_by_occasion_use_case.dart';
@@ -18,21 +16,20 @@ class OccasionsCubit extends Cubit<OccasionsStates> {
     : super(const OccasionsStates());
 
   void doIntent(OccasionsEvents event) {
-    log(event.toString());
     event.when(
       getOccasions: _getOccasions,
       getFlowersByOccasions: _getFlowersByOccasion,
     );
   }
 
-  Future<void> _getOccasions() async {
+  Future<void> _getOccasions(int? id) async {
     emit(state.copyWith(occasions: const BaseState.loading()));
     final result = await _getOccasionsUseCase.call();
     result.when(
       success: (data) {
         emit(state.copyWith(occasions: BaseState.success(data)));
         if (data != null && data.isNotEmpty) {
-          _getFlowersByOccasion(data.first.id);
+          _getFlowersByOccasion(data[id ?? 0].id);
         }
       },
       error: (exception) {

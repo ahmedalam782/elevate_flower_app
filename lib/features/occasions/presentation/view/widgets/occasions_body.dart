@@ -1,3 +1,8 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:toastification/toastification.dart';
+
 import '../../../../../core/config/base_state/base_state.dart';
 import '../../../../../core/errors/failures.dart';
 import '../../../../../core/routes/routes.dart';
@@ -5,18 +10,13 @@ import '../../../../../core/shared/widgets/custom_tab_bar.dart';
 import '../../../../../core/shared/widgets/custom_toast.dart';
 import '../../../../../core/shared/widgets/error_page.dart';
 import '../../../../../core/shared/widgets/paginated_product_grid_view.dart';
-import '../../view_model/cubit/occasions_cubit.dart';
-import '../../view_model/cubit/occasions_events.dart';
-import '../../view_model/cubit/occasions_states.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
-import 'package:toastification/toastification.dart';
-
 import '../../../../cart/presentation/view/widgets/custom_add_to_cart_button.dart';
 import '../../../../cart/presentation/view_model/cubit/cart_cubit.dart';
 import '../../../../cart/presentation/view_model/cubit/cart_events.dart';
 import '../../../../cart/presentation/view_model/cubit/cart_states.dart';
+import '../../view_model/cubit/occasions_cubit.dart';
+import '../../view_model/cubit/occasions_events.dart';
+import '../../view_model/cubit/occasions_states.dart';
 
 class OccasionsBody extends StatefulWidget {
   const OccasionsBody({super.key, this.selectedIndex});
@@ -40,7 +40,6 @@ class _OccasionsBodyState extends State<OccasionsBody> {
   Widget build(BuildContext context) {
     return BlocConsumer<OccasionsCubit, OccasionsStates>(
       listener: (BuildContext context, OccasionsStates state) {
-        // Handle occasions error
         if (state.occasions.state == StateType.error) {
           final error = state.occasions.exception;
           if (error is Failures) {
@@ -50,9 +49,7 @@ class _OccasionsBodyState extends State<OccasionsBody> {
               type: ToastificationType.error,
             ).showToast();
           }
-        }
-        // Handle products error
-        if (state.productsByOccasion.state == StateType.error) {
+        } if (state.productsByOccasion.state == StateType.error) {
           final error = state.productsByOccasion.exception;
           if (error is Failures) {
             CustomToast(
@@ -67,8 +64,9 @@ class _OccasionsBodyState extends State<OccasionsBody> {
         if (state.occasions.state == StateType.error) {
           return ErrorPage(
             isConnectionerror: true,
-            onRefresh: () async =>
-                _cubit.doIntent(OccasionsEvents.getOccasions()),
+            onRefresh: () async => _cubit.doIntent(
+              OccasionsEvents.getOccasions(widget.selectedIndex ?? 0),
+            ),
           );
         }
         return Column(
