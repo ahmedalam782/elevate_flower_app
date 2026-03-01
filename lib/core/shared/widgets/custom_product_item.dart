@@ -61,105 +61,102 @@ class CustomProductItem extends StatelessWidget {
           borderRadius: BorderRadius.circular(8),
           border: Border.all(color: AppColors.grayA6, width: .5),
         ),
-        child: SizedBox(
-          width: 163,
-          child: Column(
-            spacing: 8,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Image Container
-              Expanded(
-                flex: 6,
-                child: AnimatedContainer(
-                  duration: const Duration(milliseconds: 500),
-                  curve: Curves.easeInOut,
-                  margin: const EdgeInsets.all(8),
-                  child: CustomCachedImage(
-                    imagePath: product.imageUrl ?? '',
-                    fit: BoxFit.fill,
-                    width: 147,
-                    height: 131,
-                  ),
+        child: Column(
+          spacing: 8,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Image Container
+            Expanded(
+              flex: 6,
+              child: AnimatedContainer(
+                duration: const Duration(milliseconds: 500),
+                curve: Curves.easeInOut,
+                margin: const EdgeInsets.all(8),
+                child: CustomCachedImage(
+                  imagePath: product.imageUrl ?? '',
+                  fit: BoxFit.fill,
+                  width: 147,
+                  height: 131,
                 ),
               ),
-
-              // Product Details
-              Expanded(
-                flex: 5,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 12),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      // Product Name
-                      Text(
-                        product.name ?? 'Product',
-                        style: 12.regular,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                      const Gap(4),
-                      // Price Section with Discount Badge
-                      Row(
-                        spacing: 6,
-                        children: [
-                          // Current Price
+            ),
+        
+            // Product Details
+            Expanded(
+              flex: 5,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 12),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // Product Name
+                    Text(
+                      product.name ?? 'Product',
+                      style: 12.regular,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    const Gap(4),
+                    // Price Section with Discount Badge
+                    Row(
+                      spacing: 6,
+                      children: [
+                        // Current Price
+                        Text(
+                          '${LocaleKeys.products_EGP.tr()} ${hasDiscount ? product.priceAfterDiscount!.toStringAsFixed(0) : product.price?.toStringAsFixed(0) ?? '0'}',
+                          style: 14.medium,
+                        ),
+        
+                        if (hasDiscount) ...[
+                          // Original Price (strikethrough)
                           Text(
-                            '${LocaleKeys.products_EGP.tr()} ${hasDiscount ? product.priceAfterDiscount!.toStringAsFixed(0) : product.price?.toStringAsFixed(0) ?? '0'}',
-                            style: 14.medium,
+                            product.price?.toStringAsFixed(0) ?? '0',
+                            style: 12.regular.copyWith(
+                              color: AppColors.gray7D,
+                              decoration: TextDecoration.lineThrough,
+                            ),
                           ),
-
-                          if (hasDiscount) ...[
-                            // Original Price (strikethrough)
-                            Text(
-                              product.price?.toStringAsFixed(0) ?? '0',
-                              style: 12.regular.copyWith(
-                                color: AppColors.gray7D,
-                                decoration: TextDecoration.lineThrough,
-                              ),
+        
+                          // Discount Badge (after price)
+                          Text(
+                            '$discountPercentage%',
+                            style: 12.regular.copyWith(
+                              color: AppColors.green0C,
                             ),
-
-                            // Discount Badge (after price)
-                            Text(
-                              '$discountPercentage%',
-                              style: 12.regular.copyWith(
-                                color: AppColors.green0C,
-                              ),
-                            ),
-                          ],
+                          ),
                         ],
-                      ),
-                      const Spacer(),
-
-                      // Add to Cart Button or Quantity Controls
-                      quantity == 0
-                          ? CustomButton(
-                              onPressed: () {
-                                addToCart(context, product.id);
-                              },
-                              title: LocaleKeys.products_add_to_cart.tr(),
-                              titleStyle: 13.medium.copyWith(
-                                color: AppColors.whiteF9,
-                              ),
-                              height: 28,
-                              padding: const EdgeInsets.symmetric(
-                                vertical: 0,
-                                horizontal: 0,
-                              ),
-                              leading: const Icon(
-                                Icons.shopping_cart_outlined,
-                                size: 14,
-                                color: AppColors.whiteF9,
-                              ),
-                            )
-                          : _buildQuantityControls(),
-                      const Gap(8),
-                    ],
-                  ),
+                      ],
+                    ),
+                    const Spacer(),
+        
+                    // Add to Cart Button or Quantity Controls
+                    quantity == 0
+                        ? CustomButton(
+                            onPressed: () {
+                              addToCart(context, product.id);
+                            },
+                            title: LocaleKeys.products_add_to_cart.tr(),
+                            titleStyle: 13.medium.copyWith(
+                              color: AppColors.whiteF9,
+                            ),
+                            height: 28,
+                            padding: const EdgeInsets.symmetric(
+                              vertical: 0,
+                              horizontal: 0,
+                            ),
+                            leading: const Icon(
+                              Icons.shopping_cart_outlined,
+                              size: 14,
+                              color: AppColors.whiteF9,
+                            ),
+                          )
+                        : _buildQuantityControls(),
+                    const Gap(8),
+                  ],
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
