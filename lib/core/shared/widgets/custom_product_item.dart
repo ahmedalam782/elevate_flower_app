@@ -1,15 +1,15 @@
 import 'package:easy_localization/easy_localization.dart';
-import '../entities/product_item_entity.dart';
-import 'custom_button.dart';
-import '../../theme/app_colors.dart';
-import '../../theme/app_typography.dart';
-import '../../../features/cart/presentation/view/widgets/custom_add_to_cart_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:shimmer/shimmer.dart';
 
+import '../../../features/cart/presentation/view/widgets/custom_add_to_cart_button.dart';
 import '../../languages/locale_keys.g.dart';
+import '../../theme/app_colors.dart';
+import '../../theme/app_typography.dart';
+import '../entities/product_item_entity.dart';
+import 'custom_button.dart';
 import 'custom_cached_image.dart';
 
 class CustomProductItem extends StatelessWidget {
@@ -72,17 +72,15 @@ class CustomProductItem extends StatelessWidget {
                 duration: const Duration(milliseconds: 500),
                 curve: Curves.easeInOut,
                 margin: const EdgeInsets.all(8),
-                decoration: BoxDecoration(
-                  color: AppColors.pinkF9,
-                  borderRadius: BorderRadius.circular(16),
-                ),
                 child: CustomCachedImage(
                   imagePath: product.imageUrl ?? '',
-                  fit: BoxFit.contain,
+                  fit: BoxFit.fill,
+                  width: 147,
+                  height: 131,
                 ),
               ),
             ),
-
+        
             // Product Details
             Expanded(
               flex: 5,
@@ -108,7 +106,7 @@ class CustomProductItem extends StatelessWidget {
                           '${LocaleKeys.products_EGP.tr()} ${hasDiscount ? product.priceAfterDiscount!.toStringAsFixed(0) : product.price?.toStringAsFixed(0) ?? '0'}',
                           style: 14.medium,
                         ),
-
+        
                         if (hasDiscount) ...[
                           // Original Price (strikethrough)
                           Text(
@@ -118,7 +116,7 @@ class CustomProductItem extends StatelessWidget {
                               decoration: TextDecoration.lineThrough,
                             ),
                           ),
-
+        
                           // Discount Badge (after price)
                           Text(
                             '$discountPercentage%',
@@ -130,7 +128,7 @@ class CustomProductItem extends StatelessWidget {
                       ],
                     ),
                     const Spacer(),
-
+        
                     // Add to Cart Button or Quantity Controls
                     quantity == 0
                         ? CustomButton(
