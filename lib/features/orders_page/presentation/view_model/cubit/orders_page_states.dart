@@ -15,10 +15,10 @@ class OrdersPageStates extends BaseState<OrdersEntity> {
   const OrdersPageStates.loading() : super.loading();
 
   // Success State
-  const OrdersPageStates.success(OrdersEntity data) : super.success(data);
+  const OrdersPageStates.success(OrdersEntity super.data) : super.success();
 
   // Error State
-  const OrdersPageStates.error(Exception exception) : super.error(exception);
+  const OrdersPageStates.error(Exception super.exception) : super.error();
 
   // More Loading State (for pagination)
   const OrdersPageStates.moreLoading(OrdersEntity? data)
