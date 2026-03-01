@@ -99,7 +99,7 @@ void main() {
           ).thenAnswer((_) async => const Success(data: []));
           return cubit;
         },
-        act: (cubit) => cubit.doIntent(OccasionsEvents.getOccasions()),
+        act: (cubit) => cubit.doIntent(OccasionsEvents.getOccasions(0)),
         expect: () => [
           const OccasionsStates(
             occasions: BaseState.loading(),
@@ -161,7 +161,7 @@ void main() {
           ).thenAnswer((_) async => Success(data: testProducts));
           return cubit;
         },
-        act: (cubit) => cubit.doIntent(OccasionsEvents.getOccasions()),
+        act: (cubit) => cubit.doIntent(OccasionsEvents.getOccasions(0)),
         expect: () => [
           const OccasionsStates(
             occasions: BaseState.loading(),
@@ -196,7 +196,7 @@ void main() {
           ).thenAnswer((_) async => const Error(exception: exception));
           return cubit;
         },
-        act: (cubit) => cubit.doIntent(OccasionsEvents.getOccasions()),
+        act: (cubit) => cubit.doIntent(OccasionsEvents.getOccasions(0)),
         expect: () {
           const exception = TestException('Network error');
           return [
@@ -224,7 +224,7 @@ void main() {
           ).thenAnswer((_) async => const Success(data: []));
           return cubit;
         },
-        act: (cubit) => cubit.doIntent(OccasionsEvents.getOccasions()),
+        act: (cubit) => cubit.doIntent(OccasionsEvents.getOccasions(0)),
         expect: () => [
           const OccasionsStates(
             occasions: BaseState.loading(),
