@@ -22,7 +22,7 @@ class HeaderSection extends StatelessWidget {
               // Logo
               InkWell(
                 onTap: () {
-                  context.push(Routes.carScreen);
+                  context.push(Routes.trackOrder);
                 },
                 child: Image.asset(
                   AppImages.imagesIcLauncherAndroid,

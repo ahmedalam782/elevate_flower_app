@@ -51,6 +51,7 @@ dependencies:
   shared_preferences: ^2.5.4
   shimmer: ^3.0.0
   toastification: ^3.0.3
+  url_launcher: ^6.3.2
   webview_flutter: ^4.13.1
 
 # ==============================================================
@@ -114,7 +115,6 @@ flutter:
 # ==============================================================
 # Flutter Assets Generator
 # ==============================================================
-
 # ---------- Icons (active) ----------
 flutter_assets:
   assets_path: assets/icons
@@ -132,7 +132,6 @@ flutter_assets:
 #   ignore_comments: true
 #   field_prefix: null
 #   classname: AppAnimations
-
 # ---------- Images (inactive) ----------
 # flutter_assets:
 #   assets_path: assets/images
