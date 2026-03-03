@@ -1,10 +1,12 @@
+import 'package:elevate_flower_app/core/routes/routes.dart';
 import 'package:elevate_flower_app/core/shared/widgets/custom_button.dart';
 import 'package:elevate_flower_app/features/track_order/presentation/view/widgets/driver_card.dart';
 import 'package:elevate_flower_app/features/track_order/presentation/view/widgets/estimated_arrival_section.dart';
-import 'package:elevate_flower_app/features/track_order/presentation/view/widgets/state_progress_section.dart';
-import 'package:elevate_flower_app/features/track_order/presentation/view/widgets/vehicle_image.dart';
+import 'package:elevate_flower_app/features/track_order/presentation/view/widgets/state_track/state_progress_section.dart';
+import 'package:elevate_flower_app/features/track_order/presentation/view/widgets/state_track/vehicle_image.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 
 class TrackOrderBody extends StatelessWidget {
   const TrackOrderBody({super.key});
@@ -51,7 +53,12 @@ class TrackOrderBody extends StatelessWidget {
           const Gap(40),
           OrderTimeline(steps: steps),
           const Gap(40),
-          CustomButton(title: "Show map", onPressed: () {}),
+          CustomButton(
+            title: "Show map",
+            onPressed: () {
+              context.push(Routes.trackMapOrder);
+            },
+          ),
         ],
       ),
     );

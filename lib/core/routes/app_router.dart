@@ -14,10 +14,12 @@ import 'package:elevate_flower_app/features/product_details/presentation/view/pa
 import 'package:elevate_flower_app/features/register/presentation/view/pages/register_page.dart';
 import 'package:elevate_flower_app/features/search/presentation/view/pages/search_screen.dart';
 import 'package:elevate_flower_app/features/terms_and_conditions/presentation/view/pages/terms_and_conditions_page.dart';
+import 'package:elevate_flower_app/features/track_order/presentation/view/pages/track_order_map.dart';
 import 'package:elevate_flower_app/features/track_order/presentation/view/pages/track_order_page.dart';
 import 'package:elevate_flower_app/features/user_addresses/presentation/view/pages/user_addresses_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:path/path.dart';
 
 import '../../features/forget_password/presentation/view/pages/forgetPassword_page.dart';
 import '../../features/login/presentation/view/pages/login_page.dart';
@@ -153,6 +155,11 @@ final GoRouter router = GoRouter(
       route: Routes.trackOrder,
       page: (state, context) =>
           TrackOrderPage(key: ValueKey(context.locale.languageCode.toString())),
+    ),
+    _customAnimatedGoRoute(
+      route: Routes.trackMapOrder,
+      page: (state, context) =>
+          TrackOrderMap(key: ValueKey(context.locale.languageCode.toString())),
     ),
   ],
 );
