@@ -1,9 +1,11 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:elevate_flower_app/core/utils/constants/app_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:location/location.dart';
 
 class MapWidget extends StatefulWidget {
   const MapWidget({super.key});
@@ -13,6 +15,8 @@ class MapWidget extends StatefulWidget {
 }
 
 class _MapWidgetState extends State<MapWidget> {
+  final Location _location = Location();
+  LatLng? _currentLocation;
   LatLngBounds? bounds;
   final Completer<GoogleMapController> _controller =
       Completer<GoogleMapController>();
@@ -43,12 +47,17 @@ class _MapWidgetState extends State<MapWidget> {
               markers: {
                 const Marker(
                   markerId: MarkerId("1"),
-                  position: LatLng(31.064474265366416, 31.433740570489253),
+                  position: LatLng(30.966292675165427, 31.236503598613734),
                 ),
                 const Marker(
                   markerId: MarkerId("2"),
-                  position: LatLng(30.966074265366416, 31.236740570489253),
+                  position: LatLng(30.96409959064242, 31.233553442716243),
                 ),
+                if (_currentLocation != null)
+                  Marker(
+                    markerId: const MarkerId("user"),
+                    position: _currentLocation!,
+                  ),
               },
 
               style: _style,
@@ -57,16 +66,36 @@ class _MapWidgetState extends State<MapWidget> {
                 if (bounds == null) {
                   bounds = await zoomToFitTwoPoints(
                     controller,
-                    const LatLng(31.064474265366416, 31.433740570489253),
-                    const LatLng(30.966074265366416, 31.236740570489253),
+                    const LatLng(30.966292675165427, 31.236503598613734),
+                    const LatLng(30.96409959064242, 31.233553442716243),
                   );
                   setState(() {});
                 }
+                trackOrder();
                 // controller.animateCamera(CameraUpdate.newLatLngBounds());
               },
               cameraTargetBounds: CameraTargetBounds(bounds),
             ),
           );
+  }
+
+  void trackOrder() async {
+    final controller = await _controller.future;
+    _location.onLocationChanged.listen((event) async {
+      log("location changed ===============");
+      setState(() {
+        _currentLocation = LatLng(event.latitude!, event.longitude!);
+        controller.animateCamera(
+          CameraUpdate.newCameraPosition(
+            CameraPosition(
+              target: LatLng(event.latitude!, event.longitude!),
+              zoom: 18,
+            ),
+          ),
+          duration: const Duration(milliseconds: 400),
+        );
+      });
+    });
   }
 }
 
