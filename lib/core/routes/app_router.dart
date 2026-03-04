@@ -13,6 +13,7 @@ import 'package:elevate_flower_app/features/orders_page/presentation/view/pages/
 import 'package:elevate_flower_app/features/product_details/presentation/view/pages/product_details_page.dart';
 import 'package:elevate_flower_app/features/register/presentation/view/pages/register_page.dart';
 import 'package:elevate_flower_app/features/search/presentation/view/pages/search_screen.dart';
+import 'package:elevate_flower_app/features/success_page/presentation/view/pages/success_page_page.dart';
 import 'package:elevate_flower_app/features/terms_and_conditions/presentation/view/pages/terms_and_conditions_page.dart';
 import 'package:elevate_flower_app/features/user_addresses/presentation/view/pages/user_addresses_page.dart';
 import 'package:flutter/material.dart';
@@ -124,6 +125,11 @@ final GoRouter router = GoRouter(
       route: Routes.search,
       page: (state, context) =>
           SearchScreen(key: ValueKey(context.locale.languageCode.toString())),
+    ),
+    _customAnimatedGoRoute(
+      route: Routes.successPage,
+      page: (state, context) =>
+          SuccessPage(key: ValueKey(context.locale.languageCode.toString())),
     ),
     _customAnimatedGoRoute(
       route: Routes.resetPassword,
