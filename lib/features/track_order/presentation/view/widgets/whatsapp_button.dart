@@ -7,7 +7,7 @@ import '../../../../../core/theme/app_images.dart';
 
 class WhatsappButton extends StatelessWidget {
   const WhatsappButton({super.key});
- 
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -20,12 +20,11 @@ class WhatsappButton extends StatelessWidget {
 }
 
 Future<void> whatsapp({required String contact}) async {
-  var androidUrl = "whatsapp://send?phone=+20$contact";
-  var iosUrl = "https://wa.me/+20$contact";
+  var Url = "https://wa.me/+20$contact";
 
   if (Platform.isIOS) {
-    await launchUrl(Uri.parse(iosUrl));
+    await launchUrl(Uri.parse(Url));
   } else {
-    await launchUrl(Uri.parse(androidUrl));
+    await launchUrl(Uri.parse(Url));
   }
 }

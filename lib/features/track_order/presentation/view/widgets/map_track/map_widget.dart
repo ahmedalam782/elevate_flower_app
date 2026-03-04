@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'package:elevate_flower_app/core/utils/constants/app_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 
@@ -40,41 +41,55 @@ class _MapWidgetState extends State<MapWidget> {
     return (_style == null)
         ? const SizedBox(height: 500, child: CircularProgressIndicator())
         : Expanded(
-            child: GoogleMap(
-              initialCameraPosition: _kGooglePlex,
-              zoomControlsEnabled: false,
-              zoomGesturesEnabled: false,
-              markers: {
-                const Marker(
-                  markerId: MarkerId("1"),
-                  position: LatLng(30.966292675165427, 31.236503598613734),
-                ),
-                const Marker(
-                  markerId: MarkerId("2"),
-                  position: LatLng(30.96409959064242, 31.233553442716243),
-                ),
-                if (_currentLocation != null)
-                  Marker(
-                    markerId: const MarkerId("user"),
-                    position: _currentLocation!,
-                  ),
-              },
+            child: Stack(
+              children: [
+                GoogleMap(
+                  initialCameraPosition: _kGooglePlex,
+                  zoomControlsEnabled: false,
+                  zoomGesturesEnabled: false,
+                  markers: {
+                    const Marker(
+                      markerId: MarkerId("1"),
+                      position: LatLng(30.966292675165427, 31.236503598613734),
+                    ),
+                    const Marker(
+                      markerId: MarkerId("2"),
+                      position: LatLng(30.96409959064242, 31.233553442716243),
+                    ),
+                    if (_currentLocation != null)
+                      Marker(
+                        markerId: const MarkerId("user"),
+                        position: _currentLocation!,
+                      ),
+                  },
 
-              style: _style,
-              onMapCreated: (GoogleMapController controller) async {
-                _controller.complete(controller);
-                if (bounds == null) {
-                  bounds = await zoomToFitTwoPoints(
-                    controller,
-                    const LatLng(30.966292675165427, 31.236503598613734),
-                    const LatLng(30.96409959064242, 31.233553442716243),
-                  );
-                  setState(() {});
-                }
-                trackOrder();
-                // controller.animateCamera(CameraUpdate.newLatLngBounds());
-              },
-              cameraTargetBounds: CameraTargetBounds(bounds),
+                  style: _style,
+                  onMapCreated: (GoogleMapController controller) async {
+                    _controller.complete(controller);
+                    if (bounds == null) {
+                      bounds = await zoomToFitTwoPoints(
+                        controller,
+                        const LatLng(30.966292675165427, 31.236503598613734),
+                        const LatLng(30.96409959064242, 31.233553442716243),
+                      );
+                      setState(() {});
+                    }
+                    trackOrder();
+                    // controller.animateCamera(CameraUpdate.newLatLngBounds());
+                  },
+                  cameraTargetBounds: CameraTargetBounds(bounds),
+                ),
+                Positioned(
+                  left: 16,
+                  top: 32,
+                  child: IconButton(
+                    onPressed: () {
+                      context.pop();
+                    },
+                    icon: const Icon(Icons.arrow_back_ios),
+                  ),
+                ),
+              ],
             ),
           );
   }
