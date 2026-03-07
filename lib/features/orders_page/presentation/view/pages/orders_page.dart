@@ -42,7 +42,7 @@ class _OrdersPageViewState extends State<_OrdersPageView> {
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios, color: Colors.black),
-          onPressed: () => context.go(Routes.carScreen),
+          onPressed: () => context.pop(),
         ),
         title: const Text(
           'My orders',
