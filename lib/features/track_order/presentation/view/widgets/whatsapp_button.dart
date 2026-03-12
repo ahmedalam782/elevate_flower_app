@@ -6,13 +6,13 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../../../../core/theme/app_images.dart';
 
 class WhatsappButton extends StatelessWidget {
-  const WhatsappButton({super.key});
-
+  const WhatsappButton({super.key, required this.phone});
+  final String phone;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () async {
-        await whatsapp(contact: "01207731315");
+        await whatsapp(contact: phone);
       },
       child: Image.asset(AppImages.whatsapp, width: 24, height: 24),
     );

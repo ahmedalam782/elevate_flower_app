@@ -1,6 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:elevate_flower_app/core/theme/app_colors.dart';
 import 'package:elevate_flower_app/core/theme/app_typography.dart';
+import 'package:elevate_flower_app/features/track_order/presentation/view_model/cubit/track_order_cubit.dart';
+import 'package:elevate_flower_app/features/track_order/presentation/view_model/cubit/track_order_states.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class OrderStep {
   final String title;
@@ -17,23 +21,26 @@ class OrderStep {
 }
 
 class OrderTimeline extends StatelessWidget {
-  final List<OrderStep> steps;
-
-  const OrderTimeline({super.key, required this.steps});
-
+  const OrderTimeline({super.key, required this.orderId});
+  final String orderId;
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: List.generate(steps.length, (index) {
-        final step = steps[index];
-        final isLast = index == steps.length - 1;
-        return OrderTimelineItem(
-          step: step,
-          isLast: isLast,
-          isFirst: index == 0,
+    return BlocBuilder<TrackOrderCubit, TrackOrderState>(
+      builder: (BuildContext context, TrackOrderState state) {
+        final stepsk = getSteps(state.orderState.data ?? '', state);
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: List.generate(stepsk.length, (index) {
+            final step = stepsk[index];
+            final isLast = index == stepsk.length - 1;
+            return OrderTimelineItem(
+              step: step,
+              isLast: isLast,
+              isFirst: index == 0,
+            );
+          }),
         );
-      }),
+      },
     );
   }
 }
@@ -155,4 +162,57 @@ class OrderTimelineItem extends StatelessWidget {
       );
     }
   }
+}
+//pending, inProgress, canceled, completed
+
+List<OrderStep> getSteps(String state, TrackOrderState trackOrderState) {
+  return [
+    OrderStep(
+      title: 'Received your order',
+      dateTime: toStringData(trackOrderState.orderDetails.data!.acceptedAt),
+      isCompleted: trackOrderState.orderDetails.data!.acceptedAt != null,
+      isActive: trackOrderState.orderDetails.data!.acceptedAt != null,
+    ),
+    OrderStep(
+      title: 'Preparing your order',
+      dateTime: toStringData(
+        trackOrderState.orderDetails.data!.arrivedAtPickUpAt,
+      ),
+      isCompleted: trackOrderState.orderDetails.data!.arrivedAtPickUpAt != null,
+      isActive: trackOrderState.orderDetails.data!.arrivedAtPickUpAt != null,
+    ),
+    OrderStep(
+      title: 'Out for delivery',
+      dateTime: toStringData(trackOrderState.orderDetails.data!.deliveringAt),
+      isCompleted: trackOrderState.orderDetails.data!.deliveringAt != null,
+      isActive: trackOrderState.orderDetails.data!.deliveringAt != null,
+    ),
+    OrderStep(
+      title: 'Delivered',
+      dateTime: toStringData(trackOrderState.orderDetails.data!.deliveredAt),
+      isCompleted: trackOrderState.orderDetails.data!.deliveredAt != null,
+      isActive: trackOrderState.orderDetails.data!.deliveredAt != null,
+    ),
+  ];
+}
+
+String toStringData(Timestamp? time) {
+  if (time == null) {
+    return "waitting";
+  }
+
+  final date = time.toDate();
+  late String day;
+  late String month;
+  if (date.day < 10) {
+    day = '0${date.day}';
+  } else {
+    day = date.day.toString();
+  }
+  if (date.month < 10) {
+    month = '0${date.month}';
+  } else {
+    month = date.month.toString();
+  }
+  return "$day $month ${date.year} - ${date.hour}:${date.minute}";
 }

@@ -1,125 +1,215 @@
 import 'dart:async';
-import 'dart:developer';
+import 'dart:ui' as ui;
 
+import 'package:dio/dio.dart';
+import 'package:elevate_flower_app/core/config/base_state/base_state.dart';
+import 'package:elevate_flower_app/core/config/di/injectable_config.dart';
+import 'package:elevate_flower_app/core/errors/handle_errors/handle_errors.dart';
+import 'package:elevate_flower_app/core/theme/app_images.dart';
 import 'package:elevate_flower_app/core/utils/constants/app_strings.dart';
+import 'package:elevate_flower_app/features/track_order/presentation/view_model/cubit/track_order_cubit.dart';
+import 'package:elevate_flower_app/features/track_order/presentation/view_model/cubit/track_order_events.dart';
+import 'package:elevate_flower_app/features/track_order/presentation/view_model/cubit/track_order_states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:location/location.dart';
 
 class MapWidget extends StatefulWidget {
   const MapWidget({super.key});
-
   @override
   State<MapWidget> createState() => _MapWidgetState();
 }
 
 class _MapWidgetState extends State<MapWidget> {
-  final Location _location = Location();
-  LatLng? _currentLocation;
+  Timer? _debounce;
+  BitmapDescriptor markerIcon = BitmapDescriptor.defaultMarker;
+  BitmapDescriptor userIcon = BitmapDescriptor.defaultMarker;
+  BitmapDescriptor storeIcon = BitmapDescriptor.defaultMarker;
   LatLngBounds? bounds;
   final Completer<GoogleMapController> _controller =
       Completer<GoogleMapController>();
-  static const CameraPosition _kGooglePlex = CameraPosition(
-    target: LatLng(30.964060450497563, 31.233796378712483),
-    zoom: 19,
-  );
+
   String? _style;
   @override
   void initState() {
-    _getMapStyle(path: AppStrings.mapStyle).then((value) {
-      setState(() {
-        _style = value;
-      });
+    loadAssets().then((value) {
+      setState(() {});
     });
+    getIt<TrackOrderCubit>().doIntent(
+      ListenToDriverLocationEvent(orderId: "6987f7c3e364ef6140518e56"),
+    );
     super.initState();
   }
 
   @override
-  Widget build(BuildContext context) {
-    return (_style == null)
-        ? const SizedBox(height: 500, child: CircularProgressIndicator())
-        : Expanded(
-            child: Stack(
-              children: [
-                GoogleMap(
-                  initialCameraPosition: _kGooglePlex,
-                  zoomControlsEnabled: false,
-                  zoomGesturesEnabled: false,
-                  markers: {
-                    const Marker(
-                      markerId: MarkerId("1"),
-                      position: LatLng(30.966292675165427, 31.236503598613734),
-                    ),
-                    const Marker(
-                      markerId: MarkerId("2"),
-                      position: LatLng(30.96409959064242, 31.233553442716243),
-                    ),
-                    if (_currentLocation != null)
-                      Marker(
-                        markerId: const MarkerId("user"),
-                        position: _currentLocation!,
-                      ),
-                  },
-
-                  style: _style,
-                  onMapCreated: (GoogleMapController controller) async {
-                    _controller.complete(controller);
-                    if (bounds == null) {
-                      bounds = await zoomToFitTwoPoints(
-                        controller,
-                        const LatLng(30.966292675165427, 31.236503598613734),
-                        const LatLng(30.96409959064242, 31.233553442716243),
-                      );
-                      setState(() {});
-                    }
-                    trackOrder();
-                    // controller.animateCamera(CameraUpdate.newLatLngBounds());
-                  },
-                  cameraTargetBounds: CameraTargetBounds(bounds),
-                ),
-                Positioned(
-                  left: 16,
-                  top: 32,
-                  child: IconButton(
-                    onPressed: () {
-                      context.pop();
-                    },
-                    icon: const Icon(Icons.arrow_back_ios),
-                  ),
-                ),
-              ],
-            ),
-          );
+  void dispose() {
+    _controller.future.then((value) => value.dispose());
+    super.dispose();
   }
 
-  void trackOrder() async {
-    final controller = await _controller.future;
-    _location.onLocationChanged.listen((event) async {
-      log("location changed ===============");
-      setState(() {
-        _currentLocation = LatLng(event.latitude!, event.longitude!);
-        controller.animateCamera(
-          CameraUpdate.newCameraPosition(
-            CameraPosition(
-              target: LatLng(event.latitude!, event.longitude!),
-              zoom: 18,
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: Stack(
+        children: [
+          BlocConsumer<TrackOrderCubit, TrackOrderState>(
+            bloc: getIt<TrackOrderCubit>(),
+            buildWhen: (previous, current) =>
+                previous.driverLocation != current.driverLocation,
+            builder: (context, state) {
+              if (state.driverLocation.state == StateType.error) {
+                return Center(
+                  child: Text(
+                    handleError(state.driverLocation.exception) ??
+                        'Something went wrong',
+                  ),
+                );
+              } else if (state.orderDetails.state == StateType.success &&
+                  state.driverLocation.state == StateType.success) {
+                return GoogleMap(
+                  initialCameraPosition: CameraPosition(
+                    target: LatLng(
+                      state.orderDetails.data!.driver.location.lat.toDouble(),
+                      state.orderDetails.data!.driver.location.lng.toDouble(),
+                    ),
+                    zoom: 17,
+                  ),
+                  onMapCreated: (GoogleMapController controller) async {
+                    if (!_controller.isCompleted) {
+                      _controller.complete(controller);
+                    }
+                    if (bounds == null) {
+                      zoomToFitTwoPoints(
+                        controller,
+                        LatLng(
+                          state.orderDetails.data!.store.lat.toDouble(),
+                          state.orderDetails.data!.store.lng.toDouble(),
+                        ),
+                        const LatLng(30.966332890017576, 31.236851875863298),
+                      ).then((value) {
+                        bounds = value;
+                        setState(() {});
+                      });
+                    }
+                  },
+                  onCameraMove: (position) =>
+                      _controller.future.then((value) async {
+                        _debounce?.cancel();
+                        _debounce = Timer(const Duration(seconds: 2), () {
+                          value.animateCamera(
+                            CameraUpdate.newLatLng(
+                              LatLng(
+                                state.driverLocation.data!.lat.toDouble(),
+                                state.driverLocation.data!.lng.toDouble(),
+                              ),
+                            ),
+
+                            duration: const Duration(milliseconds: 400),
+                          );
+                        });
+                      }),
+                  zoomControlsEnabled: false,
+                  zoomGesturesEnabled: true,
+                  style: _style,
+                  cameraTargetBounds: CameraTargetBounds(bounds),
+                  markers: {
+                    Marker(
+                      markerId: const MarkerId("store"),
+                      position: LatLng(
+                        state.orderDetails.data!.store.lat.toDouble(),
+                        state.orderDetails.data!.store.lng.toDouble(),
+                      ),
+                      infoWindow: const InfoWindow(
+                        title: "Store",
+                        snippet: "Store Location",
+                      ),
+                      icon: storeIcon,
+                    ),
+                    Marker(
+                      markerId: const MarkerId("user"),
+                      position: const LatLng(
+                        30.966332890017576,
+                        31.236851875863298,
+                      ),
+                      infoWindow: const InfoWindow(
+                        title: "User",
+                        snippet: "User Location",
+                      ),
+                      icon: userIcon,
+                    ),
+                    Marker(
+                      markerId: const MarkerId("Driver"),
+                      position: LatLng(
+                        state.driverLocation.data!.lat.toDouble(),
+                        state.driverLocation.data!.lng.toDouble(),
+                      ),
+                      icon: markerIcon,
+                      infoWindow: const InfoWindow(
+                        title: "Driver",
+                        snippet: "Driver Location",
+                      ),
+                    ),
+                  },
+                );
+              } else {
+                return const Center(child: CircularProgressIndicator());
+              }
+            },
+            listener: (BuildContext context, TrackOrderState state) async {
+              final controller = await _controller.future;
+              if (state.driverLocation.state == StateType.success) {
+                controller.animateCamera(
+                  CameraUpdate.newLatLng(
+                    LatLng(
+                      state.driverLocation.data!.lat.toDouble(),
+                      state.driverLocation.data!.lng.toDouble(),
+                    ),
+                  ),
+                  duration: const Duration(milliseconds: 400),
+                );
+              }
+            },
+          ),
+          Positioned(
+            left: 16,
+            top: 32,
+            child: IconButton(
+              onPressed: () {
+                context.pop();
+              },
+              icon: const Icon(Icons.arrow_back_ios),
             ),
           ),
-          duration: const Duration(milliseconds: 400),
-        );
-      });
-    });
+        ],
+      ),
+    );
+  }
+
+  Future<void> loadAssets() async {
+    await Future.wait([
+      _getMapStyle(path: AppStrings.mapStyle).then((value) {
+        _style = value;
+      }),
+      _markerFromUrl(
+        "https://flower.elevateegy.com/uploads/3be99805-65e0-4f05-9e98-4ccfb0b2ca5f-Chopper.png",
+      ).then((value) {
+        markerIcon = value;
+      }),
+      _markerFromAssets(AppImages.locationMarker).then((value) {
+        userIcon = value;
+      }),
+      _markerFromAssets(AppImages.locationMarker).then((value) {
+        storeIcon = value;
+      }),
+    ]);
   }
 }
 
 Future<String?> _getMapStyle({required String path}) async {
-  try {
-    return await rootBundle.loadString(path);
-  } catch (_) {
-    return null;
-  }
+  final style = await rootBundle.loadString(path);
+  return style;
 }
 
 Future<LatLngBounds> zoomToFitTwoPoints(
@@ -150,4 +240,29 @@ Future<LatLngBounds> zoomToFitTwoPoints(
 
   controller.animateCamera(cameraUpdate);
   return bounds;
+}
+
+Future<BitmapDescriptor> _markerFromUrl(String url) async {
+  final Response<List<int>> response = await getIt<Dio>().get<List<int>>(
+    url,
+    options: Options(responseType: ResponseType.bytes),
+  );
+  final Uint8List bytes = Uint8List.fromList(response.data!);
+
+  final ui.Codec codec = await ui.instantiateImageCodec(
+    bytes,
+    targetWidth: 150, // resize
+  );
+  final ui.Image image = (await codec.getNextFrame()).image;
+  final ByteData? byteData = await image.toByteData(
+    format: ui.ImageByteFormat.png,
+  );
+
+  return BitmapDescriptor.fromBytes(byteData!.buffer.asUint8List());
+}
+
+Future<BitmapDescriptor> _markerFromAssets(String path) async {
+  final ByteData bytes = await rootBundle.load(path);
+  final Uint8List list = bytes.buffer.asUint8List();
+  return BitmapDescriptor.fromBytes(list);
 }

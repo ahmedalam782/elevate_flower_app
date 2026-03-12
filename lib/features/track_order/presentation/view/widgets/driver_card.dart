@@ -1,18 +1,15 @@
-import 'dart:io';
-
 import 'package:elevate_flower_app/core/theme/app_colors.dart';
-import 'package:elevate_flower_app/core/theme/app_icons.dart';
 import 'package:elevate_flower_app/core/theme/app_images.dart';
 import 'package:elevate_flower_app/core/theme/app_typography.dart';
+import 'package:elevate_flower_app/features/track_order/domain/entities/track_order_entity.dart';
 import 'package:elevate_flower_app/features/track_order/presentation/view/widgets/phone_button.dart';
 import 'package:elevate_flower_app/features/track_order/presentation/view/widgets/whatsapp_button.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class DriverCard extends StatelessWidget {
-  const DriverCard({super.key});
+  const DriverCard({super.key, required this.driver});
+  final DriverEntity driver;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -23,7 +20,7 @@ class DriverCard extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Mohamed', style: 14.medium),
+            Text('${driver.firstName} ${driver.lastName}', style: 14.medium),
             Text(
               'Is your delivery hero for today',
               style: 12.medium.copyWith(color: AppColors.gray53),
@@ -31,14 +28,10 @@ class DriverCard extends StatelessWidget {
           ],
         ),
         const Gap(29),
-        const PhoneButton(),
+         PhoneButton(phone: driver.phoneNumber,),
         const Gap(22),
-        const WhatsappButton(),
+        WhatsappButton(phone: driver.phoneNumber,),
       ],
     );
   }
 }
-
-
-
-
