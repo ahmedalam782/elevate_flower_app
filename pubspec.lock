@@ -781,6 +781,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.5.14+3"
+  google_maps_marker_widgets:
+    dependency: "direct main"
+    description:
+      name: google_maps_marker_widgets
+      sha256: "2d1bd2862ba16554cad0425a96ce185718010d0d9e36087bb9df912bd5129c34"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.1"
   graphs:
     dependency: transitive
     description:
@@ -1405,6 +1413,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.0"
+  screenshot:
+    dependency: transitive
+    description:
+      name: screenshot
+      sha256: "63817697a7835e6ce82add4228e15d233b74d42975c143ad8cfe07009fab866b"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.0.0"
   shared_preferences:
     dependency: "direct main"
     description:

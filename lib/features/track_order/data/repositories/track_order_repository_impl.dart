@@ -30,7 +30,7 @@ class TrackOrderRepositoryImpl implements TrackOrderRepository {
         .map(
           (event) => event.when(
             success: (data) => Success(
-              data: DriverLocationEntity(lat: data!.lat, lng: data.lng),
+              data: DriverLocationEntity(lat: data!.lat.toDouble(), lng: data.lng.toDouble()),
             ),
             error: (exception) => Error(exception: exception),
           ),

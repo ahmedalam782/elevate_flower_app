@@ -1,20 +1,18 @@
 import 'dart:async';
-import 'dart:ui' as ui;
+import 'dart:developer';
 
-import 'package:dio/dio.dart';
 import 'package:elevate_flower_app/core/config/base_state/base_state.dart';
 import 'package:elevate_flower_app/core/config/di/injectable_config.dart';
 import 'package:elevate_flower_app/core/errors/handle_errors/handle_errors.dart';
-import 'package:elevate_flower_app/core/theme/app_images.dart';
-import 'package:elevate_flower_app/core/utils/constants/app_strings.dart';
+import 'package:elevate_flower_app/features/track_order/presentation/view/widgets/map_track/custom_marker.dart';
 import 'package:elevate_flower_app/features/track_order/presentation/view_model/cubit/track_order_cubit.dart';
 import 'package:elevate_flower_app/features/track_order/presentation/view_model/cubit/track_order_events.dart';
 import 'package:elevate_flower_app/features/track_order/presentation/view_model/cubit/track_order_states.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:google_maps_marker_widgets/google_maps_marker_widgets.dart';
 
 class MapWidget extends StatefulWidget {
   const MapWidget({super.key});
@@ -23,20 +21,16 @@ class MapWidget extends StatefulWidget {
 }
 
 class _MapWidgetState extends State<MapWidget> {
+  final MarkerWidgetsController _markerWidgetsController =
+      MarkerWidgetsController();
   Timer? _debounce;
-  BitmapDescriptor markerIcon = BitmapDescriptor.defaultMarker;
-  BitmapDescriptor userIcon = BitmapDescriptor.defaultMarker;
-  BitmapDescriptor storeIcon = BitmapDescriptor.defaultMarker;
   LatLngBounds? bounds;
   final Completer<GoogleMapController> _controller =
       Completer<GoogleMapController>();
+  GoogleMapController? _mapController;
 
-  String? _style;
   @override
   void initState() {
-    loadAssets().then((value) {
-      setState(() {});
-    });
     getIt<TrackOrderCubit>().doIntent(
       ListenToDriverLocationEvent(orderId: "6987f7c3e364ef6140518e56"),
     );
@@ -45,8 +39,57 @@ class _MapWidgetState extends State<MapWidget> {
 
   @override
   void dispose() {
+    _debounce?.cancel();
     _controller.future.then((value) => value.dispose());
     super.dispose();
+  }
+
+  void _addMarkers(TrackOrderState state) {
+    const storeMarkerId = MarkerId('storeMarker');
+    _markerWidgetsController.addMarkerWidget(
+      markerWidget: MarkerWidget(
+        markerId: storeMarkerId,
+        child: CustomMarker(label: state.orderDetails.data!.store.name),
+      ),
+      marker: Marker(
+        markerId: storeMarkerId,
+        anchor: const Offset(0.5, 0.5),
+        position: LatLng(
+          state.orderDetails.data!.store.lat,
+          state.orderDetails.data!.store.lng,
+        ),
+      ),
+    );
+    const driverMarkerId = MarkerId('driverMarker');
+    _markerWidgetsController.addMarkerWidget(
+      markerWidget: const MarkerWidget(
+        markerId: driverMarkerId,
+        child: DriverMarker(
+          imageUrl:
+              "https://flower.elevateegy.com/uploads/3be99805-65e0-4f05-9e98-4ccfb0b2ca5f-Chopper.png",
+        ),
+      ),
+      marker: Marker(
+        markerId: driverMarkerId,
+        position: LatLng(
+          state.orderDetails.data!.driver.location.lat,
+          state.orderDetails.data!.driver.location.lng,
+        ),
+        anchor: const Offset(0.5, 0.5),
+      ),
+    );
+    const userMarkerId = MarkerId('user');
+    _markerWidgetsController.addMarkerWidget(
+      markerWidget: const MarkerWidget(
+        markerId: userMarkerId,
+        child: CustomMarker(label: "Delivery Location"),
+      ),
+      marker: const Marker(
+        markerId: userMarkerId,
+        anchor: Offset(0.5, 0.5),
+        position: LatLng(30.966332890017576, 31.236851875863298),
+      ),
+    );
   }
 
   @override
@@ -57,118 +100,121 @@ class _MapWidgetState extends State<MapWidget> {
           BlocConsumer<TrackOrderCubit, TrackOrderState>(
             bloc: getIt<TrackOrderCubit>(),
             buildWhen: (previous, current) =>
-                previous.driverLocation != current.driverLocation,
-            builder: (context, state) {
-              if (state.driverLocation.state == StateType.error) {
+                (previous.driverLocation.state !=
+                    current.driverLocation.state ||
+                previous.driverLocation.data != current.driverLocation.data),
+            builder: (_, state) {
+              if (state.driverLocation.state == StateType.loading) {
+                return const Center(child: CircularProgressIndicator());
+              } else if (state.driverLocation.state == StateType.error) {
                 return Center(
                   child: Text(
                     handleError(state.driverLocation.exception) ??
-                        'Something went wrong',
+                        "Some thing went wrong",
                   ),
                 );
-              } else if (state.orderDetails.state == StateType.success &&
-                  state.driverLocation.state == StateType.success) {
-                return GoogleMap(
-                  initialCameraPosition: CameraPosition(
-                    target: LatLng(
-                      state.orderDetails.data!.driver.location.lat.toDouble(),
-                      state.orderDetails.data!.driver.location.lng.toDouble(),
-                    ),
-                    zoom: 17,
-                  ),
-                  onMapCreated: (GoogleMapController controller) async {
-                    if (!_controller.isCompleted) {
-                      _controller.complete(controller);
-                    }
-                    if (bounds == null) {
-                      zoomToFitTwoPoints(
-                        controller,
-                        LatLng(
-                          state.orderDetails.data!.store.lat.toDouble(),
-                          state.orderDetails.data!.store.lng.toDouble(),
+              } else if (state.driverLocation.state == StateType.success) {
+                return MarkerWidgets(
+                  markerWidgetsController: _markerWidgetsController,
+                  builder: (BuildContext context, Set<Marker> markers) {
+                    return GoogleMap(
+                      initialCameraPosition: CameraPosition(
+                        target: LatLng(
+                          state.orderDetails.data!.driver.location.lat,
+                          state.orderDetails.data!.driver.location.lng,
                         ),
-                        const LatLng(30.966332890017576, 31.236851875863298),
-                      ).then((value) {
-                        bounds = value;
-                        setState(() {});
-                      });
-                    }
-                  },
-                  onCameraMove: (position) =>
-                      _controller.future.then((value) async {
-                        _debounce?.cancel();
-                        _debounce = Timer(const Duration(seconds: 2), () {
-                          value.animateCamera(
-                            CameraUpdate.newLatLng(
-                              LatLng(
-                                state.driverLocation.data!.lat.toDouble(),
-                                state.driverLocation.data!.lng.toDouble(),
-                              ),
-                            ),
+                        zoom: 17,
+                      ),
+                      onMapCreated: (c) async {
+                        _mapController = c;
 
-                            duration: const Duration(milliseconds: 400),
-                          );
+                        if (!_controller.isCompleted) {
+                          _controller.complete(c);
+                        }
+                        if (bounds == null) {
+                          zoomToFitTwoPoints(
+                            c,
+                            LatLng(
+                              state.orderDetails.data!.store.lat,
+                              state.orderDetails.data!.store.lng,
+                            ),
+                            const LatLng(
+                              30.966332890017576,
+                              31.236851875863298,
+                            ),
+                          ).then((value) {
+                            bounds = value;
+                            setState(() {});
+                          });
+                        }
+                      },
+                      onCameraMove: (_) {
+                        if (!mounted) return;
+                        _controller.future.then((value) async {
+                          _debounce?.cancel();
+                          _debounce = Timer(const Duration(seconds: 2), () {
+                            log(
+                              "lat on camera move: ${state.driverLocation.data!.lat}",
+                            );
+                            log(
+                              "lng on camera move: ${state.driverLocation.data!.lng}",
+                            );
+                            value.animateCamera(
+                              CameraUpdate.newLatLng(
+                                LatLng(
+                                  state.driverLocation.data!.lat,
+                                  state.driverLocation.data!.lng,
+                                ),
+                              ),
+
+                              duration: const Duration(milliseconds: 400),
+                            );
+                          });
                         });
-                      }),
-                  zoomControlsEnabled: false,
-                  zoomGesturesEnabled: true,
-                  style: _style,
-                  cameraTargetBounds: CameraTargetBounds(bounds),
-                  markers: {
-                    Marker(
-                      markerId: const MarkerId("store"),
-                      position: LatLng(
-                        state.orderDetails.data!.store.lat.toDouble(),
-                        state.orderDetails.data!.store.lng.toDouble(),
-                      ),
-                      infoWindow: const InfoWindow(
-                        title: "Store",
-                        snippet: "Store Location",
-                      ),
-                      icon: storeIcon,
-                    ),
-                    Marker(
-                      markerId: const MarkerId("user"),
-                      position: const LatLng(
-                        30.966332890017576,
-                        31.236851875863298,
-                      ),
-                      infoWindow: const InfoWindow(
-                        title: "User",
-                        snippet: "User Location",
-                      ),
-                      icon: userIcon,
-                    ),
-                    Marker(
-                      markerId: const MarkerId("Driver"),
-                      position: LatLng(
-                        state.driverLocation.data!.lat.toDouble(),
-                        state.driverLocation.data!.lng.toDouble(),
-                      ),
-                      icon: markerIcon,
-                      infoWindow: const InfoWindow(
-                        title: "Driver",
-                        snippet: "Driver Location",
-                      ),
-                    ),
+                      },
+                      zoomControlsEnabled: false,
+                      zoomGesturesEnabled: true,
+                      style: getIt<TrackOrderCubit>().style,
+                      cameraTargetBounds: CameraTargetBounds(bounds),
+                      markers: markers,
+                    );
                   },
                 );
               } else {
-                return const Center(child: CircularProgressIndicator());
+                return const SizedBox();
               }
             },
             listener: (BuildContext context, TrackOrderState state) async {
-              final controller = await _controller.future;
+              if (_markerWidgetsController.markers.value.isEmpty) {
+                _addMarkers(state);
+              }
               if (state.driverLocation.state == StateType.success) {
-                controller.animateCamera(
-                  CameraUpdate.newLatLng(
-                    LatLng(
-                      state.driverLocation.data!.lat.toDouble(),
-                      state.driverLocation.data!.lng.toDouble(),
-                    ),
-                  ),
+                final marker = _markerWidgetsController.markerForId(
+                  const MarkerId('driverMarker'),
+                )!;
+                final newPosition = LatLng(
+                  state.driverLocation.data!.lat,
+                  state.driverLocation.data!.lng,
+                );
+                final updatedMarker = marker.copyWith(
+                  positionParam: newPosition,
+                );
+                _markerWidgetsController.updateMarker(
+                  updatedMarker,
                   duration: const Duration(milliseconds: 400),
                 );
+
+                if (_mapController != null) {
+                  _mapController!.animateCamera(
+                    CameraUpdate.newLatLng(
+                      LatLng(
+                        state.driverLocation.data!.lat,
+                        state.driverLocation.data!.lng,
+                      ),
+                    ),
+                    duration: const Duration(milliseconds: 400),
+                  );
+                }
               }
             },
           ),
@@ -187,82 +233,33 @@ class _MapWidgetState extends State<MapWidget> {
     );
   }
 
-  Future<void> loadAssets() async {
-    await Future.wait([
-      _getMapStyle(path: AppStrings.mapStyle).then((value) {
-        _style = value;
-      }),
-      _markerFromUrl(
-        "https://flower.elevateegy.com/uploads/3be99805-65e0-4f05-9e98-4ccfb0b2ca5f-Chopper.png",
-      ).then((value) {
-        markerIcon = value;
-      }),
-      _markerFromAssets(AppImages.locationMarker).then((value) {
-        userIcon = value;
-      }),
-      _markerFromAssets(AppImages.locationMarker).then((value) {
-        storeIcon = value;
-      }),
-    ]);
+  Future<LatLngBounds> zoomToFitTwoPoints(
+    GoogleMapController controller,
+    LatLng point1,
+    LatLng point2,
+  ) async {
+    LatLngBounds bounds;
+
+    if (point1.latitude > point2.latitude &&
+        point1.longitude > point2.longitude) {
+      bounds = LatLngBounds(southwest: point2, northeast: point1);
+    } else if (point1.longitude > point2.longitude) {
+      bounds = LatLngBounds(
+        southwest: LatLng(point1.latitude, point2.longitude),
+        northeast: LatLng(point2.latitude, point1.longitude),
+      );
+    } else if (point1.latitude > point2.latitude) {
+      bounds = LatLngBounds(
+        southwest: LatLng(point2.latitude, point1.longitude),
+        northeast: LatLng(point1.latitude, point2.longitude),
+      );
+    } else {
+      bounds = LatLngBounds(southwest: point1, northeast: point2);
+    }
+
+    CameraUpdate cameraUpdate = CameraUpdate.newLatLngBounds(bounds, 50);
+
+    controller.animateCamera(cameraUpdate);
+    return bounds;
   }
-}
-
-Future<String?> _getMapStyle({required String path}) async {
-  final style = await rootBundle.loadString(path);
-  return style;
-}
-
-Future<LatLngBounds> zoomToFitTwoPoints(
-  GoogleMapController controller,
-  LatLng point1,
-  LatLng point2,
-) async {
-  LatLngBounds bounds;
-
-  if (point1.latitude > point2.latitude &&
-      point1.longitude > point2.longitude) {
-    bounds = LatLngBounds(southwest: point2, northeast: point1);
-  } else if (point1.longitude > point2.longitude) {
-    bounds = LatLngBounds(
-      southwest: LatLng(point1.latitude, point2.longitude),
-      northeast: LatLng(point2.latitude, point1.longitude),
-    );
-  } else if (point1.latitude > point2.latitude) {
-    bounds = LatLngBounds(
-      southwest: LatLng(point2.latitude, point1.longitude),
-      northeast: LatLng(point1.latitude, point2.longitude),
-    );
-  } else {
-    bounds = LatLngBounds(southwest: point1, northeast: point2);
-  }
-
-  CameraUpdate cameraUpdate = CameraUpdate.newLatLngBounds(bounds, 50);
-
-  controller.animateCamera(cameraUpdate);
-  return bounds;
-}
-
-Future<BitmapDescriptor> _markerFromUrl(String url) async {
-  final Response<List<int>> response = await getIt<Dio>().get<List<int>>(
-    url,
-    options: Options(responseType: ResponseType.bytes),
-  );
-  final Uint8List bytes = Uint8List.fromList(response.data!);
-
-  final ui.Codec codec = await ui.instantiateImageCodec(
-    bytes,
-    targetWidth: 150, // resize
-  );
-  final ui.Image image = (await codec.getNextFrame()).image;
-  final ByteData? byteData = await image.toByteData(
-    format: ui.ImageByteFormat.png,
-  );
-
-  return BitmapDescriptor.fromBytes(byteData!.buffer.asUint8List());
-}
-
-Future<BitmapDescriptor> _markerFromAssets(String path) async {
-  final ByteData bytes = await rootBundle.load(path);
-  final Uint8List list = bytes.buffer.asUint8List();
-  return BitmapDescriptor.fromBytes(list);
 }

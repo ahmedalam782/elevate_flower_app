@@ -1,3 +1,4 @@
+import 'package:elevate_flower_app/core/theme/app_colors.dart';
 import 'package:json_annotation/json_annotation.dart';
 part 'credit_payment_response.g.dart';
 
@@ -557,7 +558,7 @@ class Icon {
   @JsonKey(name: 'type')
   String? type;
 
-  Icon({this.file, this.type});
+  Icon({this.file, this.type, required color});
 
   factory Icon.fromJson(Map<String, dynamic> json) => _$IconFromJson(json);
 

@@ -4,7 +4,7 @@ class TrackOrderEntity {
   final String id;
   final String paymentType;
   final String state;
-  final num totalPrice;
+  final double totalPrice;
   final Timestamp? acceptedAt;
   final Timestamp? arrivedAtPickUpAt;
   final Timestamp? deliveringAt;
@@ -51,15 +51,15 @@ class DriverEntity {
 }
 
 class DriverLocationEntity {
-  final num lat;
-  final num lng;
+  final double lat;
+  final double lng;
 
   const DriverLocationEntity({required this.lat, required this.lng});
 }
 
 class UserEntity {
-  final num lat;
-  final num lng;
+  final double lat;
+  final double lng;
 
   const UserEntity({required this.lat, required this.lng});
 }
@@ -69,8 +69,8 @@ class StoreEntity {
   final String address;
   final String phoneNumber;
   final String photo;
-  final num lat;
-  final num lng;
+  final double lat;
+  final double lng;
 
   const StoreEntity({
     required this.lat,

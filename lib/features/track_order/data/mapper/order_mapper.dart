@@ -9,7 +9,7 @@ extension OrderMapper on FirestoreOrderDetailsModel {
     id: order.id,
     paymentType: order.paymentType,
     state: order.state,
-    totalPrice: order.totalPrice,
+    totalPrice: order.totalPrice.toDouble(),
     acceptedAt: order.acceptedAt,
     arrivedAtPickUpAt: order.arrivedAtPickUpAt,
     deliveringAt: order.deliveringAt,
@@ -29,18 +29,18 @@ extension DriverMapper on FirestoreOrderDriverModel {
     phoneNumber: phoneNumber,
     photo: photo,
     vehicleImage: "",
-    location: DriverLocationEntity(lat: lat, lng: lng),
+    location: DriverLocationEntity(lat: lat.toDouble(), lng: lng.toDouble()),
   );
 }
 
 extension UserMapper on FirestoreOrderUserModel {
-  UserEntity toEntity() => UserEntity(lat: lat, lng: lng);
+  UserEntity toEntity() => UserEntity(lat: lat.toDouble(), lng: lng.toDouble());
 }
 
 extension StoreMapper on FirestoreOrderStoreModel {
   StoreEntity toEntity() => StoreEntity(
-    lat: lat,
-    lng: lng,
+    lat: lat.toDouble(),
+    lng: lng.toDouble(),
     name: name,
     address: address,
     phoneNumber: phoneNumber??'',
