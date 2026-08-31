@@ -24,12 +24,10 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordStates> {
   bool animatePage = true;
 
   ForgetPasswordCubit({
-    required SendOtpToEmailUseCase sendOtpToEmailUseCase,
+    required this._sendOtpToEmailUseCase,
     required VerifyOtpUseCase verifyOtpUseCase,
-    required ResetPasswordUseCase resetPasswordUseCase,
-  }) : _sendOtpToEmailUseCase = sendOtpToEmailUseCase,
-       _verifyOtpUseCase = verifyOtpUseCase,
-       _resetPasswordUseCase = resetPasswordUseCase,
+    required this._resetPasswordUseCase,
+  }) : _verifyOtpUseCase = verifyOtpUseCase,
        super(const ForgetPasswordStates(isLoading: false));
 
   Future<void> doIntent(

@@ -37,7 +37,7 @@ class TrackOrderCubit extends Cubit<TrackOrderState> {
         }
 
       case ListenToDriverLocationEvent():
-        if (_driverLocationtreamSubscription == null) {
+        if (_driverLocationtreamSubscription == null) { 
           _listenToDriverLocation(orderId: event.orderId);
         }
 

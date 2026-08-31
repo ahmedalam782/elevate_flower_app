@@ -21,6 +21,8 @@ class TrackOrderBody extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: BlocBuilder<TrackOrderCubit, TrackOrderState>(
+        buildWhen: (previous, current) =>
+            previous.orderDetails.state != current.orderDetails.state,
         builder: (BuildContext context, TrackOrderState state) {
           if (state.orderDetails.state == StateType.loading) {
             return const Center(child: CircularProgressIndicator());

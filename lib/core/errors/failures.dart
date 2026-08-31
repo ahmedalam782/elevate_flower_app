@@ -49,6 +49,10 @@ class ServerFailure extends Failures {
         return ServerFailure(
           errorMessage: LocaleKeys.error_api_failure_unknown.tr(),
         );
+      case DioExceptionType.transformTimeout:
+        return ServerFailure(
+          errorMessage: LocaleKeys.error_api_failure_unknown.tr(),
+        );
     }
   }
 

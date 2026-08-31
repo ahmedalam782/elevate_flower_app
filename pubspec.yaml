@@ -7,7 +7,7 @@ version: 1.0.0+1
 # Environment
 # ==============================================================
 environment:
-  sdk: ^3.10.4
+  sdk: ^3.13.2
 
 # ==============================================================
 # Dependencies
@@ -15,6 +15,7 @@ environment:
 dependencies:
   cached_network_image: ^3.4.1
   cloud_firestore: ^6.1.3
+  device_preview: ^1.3.1
   dio: ^5.9.1
   easy_localization: ^3.0.8
   equatable: ^2.0.8

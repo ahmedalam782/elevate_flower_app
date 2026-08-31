@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:elevate_flower_app/core/config/di/injectable_config.dart';
 import 'package:elevate_flower_app/core/theme/app_colors.dart';
 import 'package:elevate_flower_app/core/theme/app_typography.dart';
 import 'package:elevate_flower_app/features/track_order/presentation/view_model/cubit/track_order_cubit.dart';
+import 'package:elevate_flower_app/features/track_order/presentation/view_model/cubit/track_order_events.dart';
 import 'package:elevate_flower_app/features/track_order/presentation/view_model/cubit/track_order_states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -20,14 +22,29 @@ class OrderStep {
   });
 }
 
-class OrderTimeline extends StatelessWidget {
+class OrderTimeline extends StatefulWidget {
   const OrderTimeline({super.key, required this.orderId});
   final String orderId;
+
+  @override
+  State<OrderTimeline> createState() => _OrderTimelineState();
+}
+
+class _OrderTimelineState extends State<OrderTimeline> {
+  @override
+  void initState() {
+    super.initState();
+    getIt<TrackOrderCubit>().doIntent(
+      ListenToOrderStateEvent(orderId: widget.orderId),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<TrackOrderCubit, TrackOrderState>(
-      builder: (BuildContext context, TrackOrderState state) {
-        final stepsk = getSteps(state.orderState.data ?? '', state);
+    return BlocSelector<TrackOrderCubit, TrackOrderState, String?>(
+      selector: (state) => state.orderState.data,
+      builder: (BuildContext context, String? state) {
+        final stepsk = getSteps(state ?? '', getIt<TrackOrderCubit>().state);
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: List.generate(stepsk.length, (index) {
@@ -68,16 +85,6 @@ class OrderTimelineItem extends StatelessWidget {
         Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            if (!isFirst)
-              Container(
-                width: 2,
-                color: step.isCompleted
-                    ? AppColors.primerColor
-                    : AppColors.gray53,
-                constraints: const BoxConstraints(minHeight: (_lineHeight / 5)),
-              ),
-
-            if (isFirst) const SizedBox(height: _lineHeight / 6),
             _buildDot(),
             if (!isLast)
               Container(
@@ -85,9 +92,7 @@ class OrderTimelineItem extends StatelessWidget {
                 color: step.isCompleted
                     ? AppColors.primerColor
                     : AppColors.gray53,
-                constraints: const BoxConstraints(
-                  minHeight: (_lineHeight / 1.5),
-                ),
+                constraints: const BoxConstraints(minHeight: _lineHeight),
               ),
           ],
         ),
@@ -163,35 +168,43 @@ class OrderTimelineItem extends StatelessWidget {
     }
   }
 }
-//pending, inProgress, canceled, completed
+//pending, inProgress, arrivedAtPickup, Delivering ,delivered
 
 List<OrderStep> getSteps(String state, TrackOrderState trackOrderState) {
+  int stateNum = switch (state) {
+    "pending" => 0,
+    "inProgress" => 1,
+    "arrivedAtPickup" => 2,
+    "delivering" => 3,
+    "delivered" => 4,
+    _ => 0,
+  };
   return [
     OrderStep(
       title: 'Received your order',
       dateTime: toStringData(trackOrderState.orderDetails.data!.acceptedAt),
-      isCompleted: trackOrderState.orderDetails.data!.acceptedAt != null,
-      isActive: trackOrderState.orderDetails.data!.acceptedAt != null,
+      isCompleted: stateNum >= 1,
+      isActive: stateNum >= 0,
     ),
     OrderStep(
       title: 'Preparing your order',
       dateTime: toStringData(
         trackOrderState.orderDetails.data!.arrivedAtPickUpAt,
       ),
-      isCompleted: trackOrderState.orderDetails.data!.arrivedAtPickUpAt != null,
-      isActive: trackOrderState.orderDetails.data!.arrivedAtPickUpAt != null,
+      isCompleted: stateNum >= 3,
+      isActive: stateNum >= 2,
     ),
     OrderStep(
       title: 'Out for delivery',
       dateTime: toStringData(trackOrderState.orderDetails.data!.deliveringAt),
-      isCompleted: trackOrderState.orderDetails.data!.deliveringAt != null,
-      isActive: trackOrderState.orderDetails.data!.deliveringAt != null,
+      isCompleted: stateNum >= 3,
+      isActive: stateNum >= 3,
     ),
     OrderStep(
       title: 'Delivered',
       dateTime: toStringData(trackOrderState.orderDetails.data!.deliveredAt),
-      isCompleted: trackOrderState.orderDetails.data!.deliveredAt != null,
-      isActive: trackOrderState.orderDetails.data!.deliveredAt != null,
+      isCompleted: stateNum == 4,
+      isActive: stateNum == 4,
     ),
   ];
 }
