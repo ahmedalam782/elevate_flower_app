@@ -26,3 +26,27 @@ Future<Result<T>> executeApi<T>(Future<T> Function() apiCall) async {
     return Error<T>(exception: ex);
   }
 }
+
+/// Executes an API call that returns a [Stream<T>] and yields [Result<T>]
+/// for each emitted value. Yields [Error] on no internet or on exception.
+Stream<Result<T>> executeApiForStream<T>(Stream<T> Function() apiCall) async* {
+  if (!await getIt.get<InternetConnection>().hasInternetAccess) {
+    yield Error<T>(
+      exception: NetworkFailures(
+        errorMessage: LocaleKeys.global_no_internet.tr(),
+      ),
+    );
+    return;
+  }
+  try {
+    await for (final data in apiCall()) {
+      yield Success<T>(data: data);
+    }
+  } on DioException catch (ex) {
+    yield Error<T>(
+      exception: ServerFailure.fromDioException(dioException: ex),
+    );
+  } on Exception catch (ex) {
+    yield Error<T>(exception: ex);
+  }
+}

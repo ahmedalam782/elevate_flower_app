@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -45,6 +46,9 @@ abstract class CoreInjectableModule {
     return dio;
   }
 
+  @lazySingleton
+  FirebaseFirestore get firestore => FirebaseFirestore.instance;
+  
   @lazySingleton
   CancelToken cancelToken() => CancelToken();
 

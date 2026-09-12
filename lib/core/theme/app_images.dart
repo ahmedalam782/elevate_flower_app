@@ -13,4 +13,6 @@ class AppImages {
   static const String locationSvg = "assets/icons/location.svg";
   static const String emptyCartIcon = "assets/icons/no_items_in_cart.svg";
   static const String locationMarker = "assets/images/location_marker.png";
+  static const String driver = "assets/images/delivery_boy.png";
+  static const String whatsapp = "assets/icons/whatsapp.png";
 }

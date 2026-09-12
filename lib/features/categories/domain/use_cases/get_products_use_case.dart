@@ -7,8 +7,7 @@ import 'package:injectable/injectable.dart';
 class GetProductsUseCase {
   final CategoriesRepository _repository;
 
-  GetProductsUseCase({required CategoriesRepository repository})
-    : _repository = repository;
+  GetProductsUseCase({required this._repository});
 
   Future<Result<List<ProductEntity>>> call(String? categoryId) async {
     return await _repository.getAllproducts(categoryId);

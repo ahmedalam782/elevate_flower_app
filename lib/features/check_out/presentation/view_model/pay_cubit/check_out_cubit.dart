@@ -54,11 +54,9 @@ class CheckOutCubit extends Cubit<CheckOutState> {
     );
     result.when(
       success: (paymentResult) {
-        log('Payment Success: $paymentResult');
         emit(state.copyWith(isLoading: false, paymentResult: paymentResult));
       },
       error: (error) {
-        log('Payment Error: $error');
         emit(state.copyWith(isLoading: false, error: error));
       },
     );
@@ -94,3 +92,4 @@ class CheckOutCubit extends Cubit<CheckOutState> {
     );
   }
 }
+

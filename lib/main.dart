@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:elevate_flower_app/core/fcm/fcm_config.dart';
 import 'package:elevate_flower_app/firebase_options.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -8,12 +9,12 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+
 import 'app.dart';
 import 'core/config/di/injectable_config.dart';
 import 'core/helper/bloc/bloc_observer.dart';
 import 'core/languages/lang.dart';
 import 'core/routes/url_strategy.dart';
-import 'package:firebase_core/firebase_core.dart';
 
 const bool runLocal = false;
 void main() async {
@@ -38,7 +39,8 @@ void main() async {
     return true;
   };
 
-  //Disable crashlytics in debug => await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(!kDebugMode);
+  //Disable crashlytics in debug =>
+  await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(false);
 
   // Set custom Bloc observer for debugging
   Bloc.observer = MyBlocObserver();
