@@ -1,9 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 import '../../../../../core/languages/locale_keys.g.dart';
-import '../../../../../core/routes/routes.dart';
 import '../../../../../core/theme/app_colors.dart';
 import '../../../../../core/theme/app_images.dart';
 import 'search_text_field.dart';
@@ -23,10 +21,7 @@ class HeaderSection extends StatelessWidget {
               // Logo
               InkWell(
                 onTap: () {
-                  context.push(
-                    Routes.trackOrder,
-                    extra: "6987f7c3e364ef6140518e56",
-                  );
+                  context.push(Routes.carScreen);
                 },
                 child: Image.asset(
                   AppImages.imagesIcLauncherAndroid,
@@ -46,7 +41,7 @@ class HeaderSection extends StatelessWidget {
               ),
               const SizedBox(width: 16),
               // Search Field
-              const Expanded(child: SearchTextField()),
+              const Expanded(child: SearchTextField(height: 40)),
             ],
           ),
           const SizedBox(height: 20),
