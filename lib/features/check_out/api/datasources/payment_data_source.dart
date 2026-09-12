@@ -17,7 +17,6 @@ class PaymentDataSource implements PaymentDataSourceContract {
   Future<Result<CashPaymentResponse>> payWithCash({
     required ShippingAddressModel address,
   }) async {
-    log('Initiating cash payment with address: $address');
     return await executeApi(() async => await _apiClient.payWithCash(address));
   }
 

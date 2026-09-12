@@ -558,7 +558,7 @@ class Icon {
   @JsonKey(name: 'type')
   String? type;
 
-  Icon({this.file, this.type, required color});
+  Icon({this.file, this.type});
 
   factory Icon.fromJson(Map<String, dynamic> json) => _$IconFromJson(json);
 
