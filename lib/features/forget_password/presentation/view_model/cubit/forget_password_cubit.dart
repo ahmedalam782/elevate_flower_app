@@ -25,10 +25,9 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordStates> {
 
   ForgetPasswordCubit({
     required this._sendOtpToEmailUseCase,
-    required VerifyOtpUseCase verifyOtpUseCase,
+    required this._verifyOtpUseCase,
     required this._resetPasswordUseCase,
-  }) : _verifyOtpUseCase = verifyOtpUseCase,
-       super(const ForgetPasswordStates(isLoading: false));
+  }) : super(const ForgetPasswordStates(isLoading: false));
 
   Future<void> doIntent(
     ForgetPasswordEvents event,

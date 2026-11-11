@@ -1,4 +1,3 @@
-import 'package:elevate_flower_app/core/theme/app_colors.dart';
 import 'package:json_annotation/json_annotation.dart';
 part 'credit_payment_response.g.dart';
 

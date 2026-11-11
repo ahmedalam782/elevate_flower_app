@@ -21,11 +21,10 @@ import 'package:injectable/injectable.dart';
 class AddressDetailsCubit extends Cubit<AddressDetailsStates> {
   AddressDetailsCubit({
     required this._getStatesUseCase,
-    required GetCitiesUseCase getCitiesUseCase,
+    required this._getCitiesUseCase,
     required this._addAddressUseCase,
     required this._updateAddressUseCase,
-  }) : _getCitiesUseCase = getCitiesUseCase,
-       super(
+  }) : super(
          AddressDetailsStates(
            isFetchingLocation: false,
            fetchingLocalData: false,

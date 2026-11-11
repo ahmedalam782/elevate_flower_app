@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import '../../../../core/config/api/api_executer.dart';
 import '../../../../core/config/base_response/result.dart';

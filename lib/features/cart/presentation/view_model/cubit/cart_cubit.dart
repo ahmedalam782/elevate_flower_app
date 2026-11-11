@@ -20,12 +20,11 @@ import 'package:injectable/injectable.dart';
 class CartCubit extends Cubit<CartStates> {
   CartCubit({
     required this._getCartDataUseCase,
-    required AddProductToCartUseCase addProductToCartUseCase,
+    required this._addProductToCartUseCase,
     required this._removeProductFromCartUseCase,
     required this._clearUserCartUseCase,
     required this._updateProductInCartUsecase,
-  }) : _addProductToCartUseCase = addProductToCartUseCase,
-       super(CartStates.initial());
+  }) : super(CartStates.initial());
 
   final GetCartDataUseCase _getCartDataUseCase;
   final AddProductToCartUseCase _addProductToCartUseCase;
