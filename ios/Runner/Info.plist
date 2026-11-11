@@ -10,6 +10,12 @@
 	<string>We need camera access to take your profile photo</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>LSApplicationQueriesSchemes</key>
+		<array>
+		  <string>sms</string>
+		  <string>tel</string>
+		  <string>whatsapp</string>
+		</array>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>

@@ -14,10 +14,9 @@ import 'package:injectable/injectable.dart';
 class ProductDetailsCubit extends Cubit<ProductDetailsStates> {
   final GetSpeceficProductUseCase _getSpeceficProductUseCase;
   ProductDetailsCubit({
-    required GetSpeceficProductUseCase getSpeceficProductUseCase,
+    required this._getSpeceficProductUseCase,
     required AddProductToCartUseCase addSpeceficProductUseCase,
-  }) : _getSpeceficProductUseCase = getSpeceficProductUseCase,
-       super(
+  }) : super(
          ProductDetailsStates(
            state: const BaseState<SpeceficProductEntity>.initial(),
            isAddingProductToCart: false,

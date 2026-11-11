@@ -12,8 +12,8 @@ class CategoriesRepositoryImpl implements CategoriesRepository {
   final CategoriesRemoteDataSourceContract _remoteDataSource;
 
   CategoriesRepositoryImpl({
-    required CategoriesRemoteDataSourceContract remoteDataSource,
-  }) : _remoteDataSource = remoteDataSource;
+    required this._remoteDataSource,
+  });
 
   @override
   Future<Result<List<CategoryEntity>>> getAllCategories() async {

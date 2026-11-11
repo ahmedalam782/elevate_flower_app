@@ -11,8 +11,7 @@ class CategoriesRemoteDataSourceImpl
     implements CategoriesRemoteDataSourceContract {
   final CategoriesApiClient _apiClient;
 
-  CategoriesRemoteDataSourceImpl({required CategoriesApiClient apiClient})
-    : _apiClient = apiClient;
+  CategoriesRemoteDataSourceImpl({required this._apiClient});
 
   @override
   Future<Result<CategoryResponseModel>> getAllCategories() async {
