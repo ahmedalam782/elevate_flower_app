@@ -16,8 +16,10 @@ class TrackOrderPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider.value(
       value: getIt<TrackOrderCubit>()
-        ..doIntent(GetOrderDetailsEvent(orderId: orderId))
-        ..doIntent(ListenToOrderStateEvent(orderId: orderId)),
+        ..doIntent(GetOrderDetailsEvent(orderId: "6987f7c3e364ef6140518e56"))
+        ..doIntent(
+          ListenToOrderStateEvent(orderId: "6987f7c3e364ef6140518e56"),
+        ),
       child: Scaffold(
         appBar: AppBar(
           title: Text('Track Order', style: 20.medium),
