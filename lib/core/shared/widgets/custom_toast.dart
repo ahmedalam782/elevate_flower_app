@@ -32,20 +32,27 @@ class CustomToast {
       type: type,
       closeOnClick: true,
       dragToClose: true,
-      showProgressBar: true,
+      showProgressBar: false,
       showIcon: false,
+      closeButton: const ToastCloseButton(showType: CloseButtonShowType.none),
       context: context,
+      borderRadius: BorderRadius.circular(10),
+      borderSide: BorderSide.none,
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
       title: Text(
         header ?? "",
-        style: 16.semiBold.copyWith(color: AppColors.whiteF9),
+        style: 14.semiBold.copyWith(color: AppColors.whiteF9),
       ),
       description: description != null
           ? Text(
               description!,
-              style: 16.regular.copyWith(color: AppColors.whiteF9),
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              style: 12.regular.copyWith(color: AppColors.whiteF9),
             )
           : null,
-      autoCloseDuration: const Duration(seconds: 5),
+      autoCloseDuration: const Duration(seconds: 3),
     );
   }
 

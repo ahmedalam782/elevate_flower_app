@@ -1,11 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import '../../../../../core/shared/widgets/product_hero.dart';
 import 'image_dot_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ProductImageSlider extends StatefulWidget {
   final List<String> images;
-  const ProductImageSlider({super.key, required this.images});
+  final String? productId;
+  const ProductImageSlider({super.key, required this.images, this.productId});
 
   @override
   State<ProductImageSlider> createState() => _ProductImageSliderState();
@@ -29,12 +31,19 @@ class _ProductImageSliderState extends State<ProductImageSlider> {
             },
             itemCount: widget.images.length,
             itemBuilder: (context, index) {
-              return CachedNetworkImage(
+              final image = CachedNetworkImage(
                 imageUrl: widget.images[index],
                 width: 1.sw,
                 height: 450.h,
                 fit: BoxFit.cover,
               );
+              if (index == 0 && widget.productId != null) {
+                return Hero(
+                  tag: productHeroTag(widget.productId!),
+                  child: image,
+                );
+              }
+              return image;
             },
           ),
         ),

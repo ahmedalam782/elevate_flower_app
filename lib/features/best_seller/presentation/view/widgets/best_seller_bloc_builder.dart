@@ -1,3 +1,4 @@
+import 'package:elevate_flower_app/features/product_details/presentation/view/product_details_args.dart';
 import '../../../../../core/errors/handle_errors/handle_errors.dart';
 import '../../../../../core/routes/routes.dart';
 import '../../../../../core/shared/widgets/custom_shimmer_grid.dart';
@@ -36,7 +37,10 @@ class BestSellerBlocBuilder extends StatelessWidget {
                 return PaginatedProductGridView(
                   products: data.products ?? [],
                   onProductTap: (product) {
-                    context.push(Routes.productDetails, extra: product.id);
+                    context.push(
+                        Routes.productDetails,
+                        extra: ProductDetailsArgs(id: product.id, imageUrl: product.imageUrl),
+                      );
                   },
                   onAddToCart: (product) {
                     addToCart(context, product.id);

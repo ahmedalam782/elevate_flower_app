@@ -11,6 +11,7 @@ import '../../theme/app_typography.dart';
 import '../entities/product_item_entity.dart';
 import 'custom_button.dart';
 import 'custom_cached_image.dart';
+import 'product_hero.dart';
 
 class CustomProductItem extends StatelessWidget {
   final ProductItemEntity product;
@@ -72,11 +73,14 @@ class CustomProductItem extends StatelessWidget {
                 duration: const Duration(milliseconds: 500),
                 curve: Curves.easeInOut,
                 margin: const EdgeInsets.all(8),
-                child: CustomCachedImage(
-                  imagePath: product.imageUrl ?? '',
-                  fit: BoxFit.fill,
-                  width: 147,
-                  height: 131,
+                child: Hero(
+                  tag: productHeroTag(product.id),
+                  child: CustomCachedImage(
+                    imagePath: product.imageUrl ?? '',
+                    fit: BoxFit.fill,
+                    width: 147,
+                    height: 131,
+                  ),
                 ),
               ),
             ),

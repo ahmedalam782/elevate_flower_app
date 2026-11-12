@@ -20,12 +20,23 @@ class OccasionsPage extends StatefulWidget {
 }
 
 class _OccasionsPageState extends State<OccasionsPage> {
-  OccasionsCubit get _viewModel => getIt<OccasionsCubit>();
+  late final OccasionsCubit _viewModel;
+
+  @override
+  void initState() {
+    super.initState();
+    // Load once when the page is first created. Doing this inside build()
+    // re-triggered the request every time the page was rebuilt (e.g. when
+    // returning from the product details page), which caused a second
+    // loading state behind an already loaded list.
+    _viewModel = getIt<OccasionsCubit>()
+      ..doIntent(OccasionsEvents.getOccasions(widget.selectedIndex ?? 0));
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider.value(
-      value: _viewModel
-        ..doIntent(OccasionsEvents.getOccasions(widget.selectedIndex ?? 0)),
+      value: _viewModel,
       child: BlocProvider.value(
         value: getIt<CartCubit>(),
         child: BlocBuilder<OccasionsCubit, OccasionsStates>(
