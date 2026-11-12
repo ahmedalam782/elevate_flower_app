@@ -1,3 +1,4 @@
+import 'package:elevate_flower_app/features/product_details/presentation/view/product_details_args.dart';
 import '../../../../../core/routes/routes.dart';
 import 'product_home_shimmer.dart';
 import 'product_item.dart';
@@ -33,8 +34,12 @@ class BestsellerBuilder extends StatelessWidget {
                   final item = products[index];
 
                   return ProductItem(
+                    productId: item.id,
                     onTap: () {
-                      context.push(Routes.productDetails, extra: item.id);
+                      context.push(
+                        Routes.productDetails,
+                        extra: ProductDetailsArgs(id: item.id, imageUrl: item.imgCover),
+                      );
                     },
                     imageUrl: item.imgCover,
                     name: item.title,

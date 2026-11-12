@@ -1,3 +1,4 @@
+import 'package:elevate_flower_app/features/product_details/presentation/view/product_details_args.dart';
 import 'package:easy_localization/easy_localization.dart';
 import '../../../../../core/languages/locale_keys.g.dart';
 import '../../../../../core/routes/routes.dart';
@@ -89,7 +90,10 @@ class ProductCardBuilder extends StatelessWidget {
           product: product,
           quantity: quantity,
           onTap: () {
-            context.push(Routes.productDetails, extra: product.id);
+            context.push(
+                        Routes.productDetails,
+                        extra: ProductDetailsArgs(id: product.id, imageUrl: product.imageUrl),
+                      );
           },
           onAddToCart: () {
             addToCart(context, product.id);

@@ -1,9 +1,11 @@
 import '../../../../../core/shared/widgets/optimized_cached_image.dart';
+import '../../../../../core/shared/widgets/product_hero.dart';
 import '../../../../../core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ProductItem extends StatelessWidget {
+  final String? productId;
   final String imageUrl;
   final String name;
   final int? price;
@@ -11,6 +13,7 @@ class ProductItem extends StatelessWidget {
 
   const ProductItem({
     super.key,
+    this.productId,
     required this.imageUrl,
     required this.name,
     this.price,
@@ -29,12 +32,20 @@ class ProductItem extends StatelessWidget {
             Expanded(
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(12),
-                child: OptimizedCachedImage(
-                  imageUrl: imageUrl,
-                  height: 130.h,
-                  fit: BoxFit.cover,
-                  // width: ,
-                ),
+                child: productId == null
+                    ? OptimizedCachedImage(
+                        imageUrl: imageUrl,
+                        height: 130.h,
+                        fit: BoxFit.cover,
+                      )
+                    : Hero(
+                        tag: productHeroTag(productId!),
+                        child: OptimizedCachedImage(
+                          imageUrl: imageUrl,
+                          height: 130.h,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
 
                 // Image.network(
                 //   imageUrl,

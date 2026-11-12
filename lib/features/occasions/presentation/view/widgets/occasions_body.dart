@@ -1,3 +1,4 @@
+import 'package:elevate_flower_app/features/product_details/presentation/view/product_details_args.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -98,7 +99,10 @@ class _OccasionsBodyState extends State<OccasionsBody> {
                 builder: (context, cartState) {
                   return PaginatedProductGridView(
                     onProductTap: (product) {
-                      context.push(Routes.productDetails, extra: product.id);
+                      context.push(
+                        Routes.productDetails,
+                        extra: ProductDetailsArgs(id: product.id, imageUrl: product.imageUrl),
+                      );
                     },
                     onAddToCart: (product) {
                       addToCart(context, product.id);
