@@ -8,8 +8,6 @@ class AddressDetailsData {
   @JsonKey(includeToJson: false, includeFromJson: false)
   final String? street;
   final String? city;
-  final String? addressId;
-
   final String? username;
   final String? lat;
   final String? long;
@@ -21,7 +19,6 @@ class AddressDetailsData {
     this.lat,
     this.long,
     this.phone,
-    this.addressId,
   });
 
   factory AddressDetailsData.fromJson(Map<String, dynamic> json) =>

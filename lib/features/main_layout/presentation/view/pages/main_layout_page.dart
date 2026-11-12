@@ -76,7 +76,6 @@ class _MainLayoutState extends State<MainLayoutPage> {
           const ProfilePage(),
 
          
-
         ],
       ),
       bottomNavigationBar: CustomNavBar(

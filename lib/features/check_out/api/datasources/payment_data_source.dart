@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import '../../../../core/config/api/api_executer.dart';
 import '../../../../core/config/base_response/result.dart';
@@ -17,7 +16,6 @@ class PaymentDataSource implements PaymentDataSourceContract {
   Future<Result<CashPaymentResponse>> payWithCash({
     required ShippingAddressModel address,
   }) async {
-    log('Initiating cash payment with address: $address');
     return await executeApi(() async => await _apiClient.payWithCash(address));
   }
 

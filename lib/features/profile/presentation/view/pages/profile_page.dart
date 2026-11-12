@@ -31,7 +31,8 @@ class ProfilePage extends StatefulWidget {
   State<ProfilePage> createState() => _ProfilePageState();
 }
 
-class _ProfilePageState extends State<ProfilePage> with AutomaticKeepAliveClientMixin{
+class _ProfilePageState extends State<ProfilePage>
+    with AutomaticKeepAliveClientMixin {
   bool _notificationEnabled = true;
   String _appVersion = '';
   final int _notificationCount = 3; // Badge count
@@ -224,9 +225,7 @@ class _ProfilePageState extends State<ProfilePage> with AutomaticKeepAliveClient
                       iconPath: AppIcons.iconsTransactionOrder,
                       title: LocaleKeys.profile_my_orders.tr(),
                       onTap: () {
-                        context.go(Routes.ordersPage);
-                        // TODO: Navigate to orders
-                          context.go(Routes.ordersPage);
+                        context.push(Routes.ordersPage);
                       },
                     ),
 
@@ -237,7 +236,6 @@ class _ProfilePageState extends State<ProfilePage> with AutomaticKeepAliveClient
                       iconPath: AppIcons.iconsLocation,
                       title: LocaleKeys.profile_saved_address.tr(),
                       onTap: () {
-                        // TODO: Navigate to saved addresses
                         context.push(Routes.userAddresses);
                       },
                     ),
@@ -368,7 +366,7 @@ class _ProfilePageState extends State<ProfilePage> with AutomaticKeepAliveClient
       ),
     );
   }
-  
+
   @override
   // TODO: implement wantKeepAlive
   bool get wantKeepAlive => true;

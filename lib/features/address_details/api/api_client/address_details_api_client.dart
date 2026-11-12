@@ -15,7 +15,7 @@ abstract class AddressDetailsApiClient {
 
   @PATCH(EndPoints.addressEndPoint)
   Future<void> addAddress(@Body() AddressDetailsData data);
-  @PATCH("${EndPoints.addressEndPoint}/{id}")
+  @PATCH(EndPoints.addressEndPoint)
   Future<void> updateAddress(
     @Body() AddressDetailsData data,
     @Path() String id,
