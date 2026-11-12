@@ -29,7 +29,6 @@ extension AddressEntityExtension on AddressEntity {
   AddressDetailsData toAddressDetailsData() {
     return AddressDetailsData(
       street: street ?? '',
-      addressId: id ?? '',
       username: '',
       city: city ?? '',
       lat: lat ?? '',

@@ -21,7 +21,6 @@ class UserAddressEntity {
 
   AddressDetailsData toAddressDetailsData() {
     return AddressDetailsData(
-      addressId: id,
       city: city,
       lat: lat,
       long: long,
