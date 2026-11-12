@@ -1,3 +1,4 @@
+import 'package:elevate_flower_app/features/product_details/presentation/view/product_details_args.dart';
 import 'package:easy_localization/easy_localization.dart';
 import '../../../../../core/config/base_state/base_state.dart';
 import '../../../../../core/config/di/injectable_config.dart';
@@ -98,7 +99,10 @@ class _SearchScreenContent extends StatelessWidget {
                             onProductTap: (product) {
                               context.push(
                                 Routes.productDetails,
-                                extra: product.id,
+                                extra: ProductDetailsArgs(
+                                  id: product.id,
+                                  imageUrl: product.imageUrl,
+                                ),
                               );
                             },
                             onAddToCart: (product) {

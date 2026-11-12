@@ -19,17 +19,12 @@ import 'package:injectable/injectable.dart';
 @lazySingleton
 class CartCubit extends Cubit<CartStates> {
   CartCubit({
-    required GetCartDataUseCase getCartDataUseCase,
-    required AddProductToCartUseCase addProductToCartUseCase,
-    required RemoveProductFromCartUseCase removeProductFromCartUseCase,
-    required ClearUserCartUseCase clearUserCartUseCase,
-    required UpdateProductInCartUsecase updateProductInCartUsecase,
-  }) : _getCartDataUseCase = getCartDataUseCase,
-       _addProductToCartUseCase = addProductToCartUseCase,
-       _removeProductFromCartUseCase = removeProductFromCartUseCase,
-       _clearUserCartUseCase = clearUserCartUseCase,
-       _updateProductInCartUsecase = updateProductInCartUsecase,
-       super(CartStates.initial());
+    required this._getCartDataUseCase,
+    required this._addProductToCartUseCase,
+    required this._removeProductFromCartUseCase,
+    required this._clearUserCartUseCase,
+    required this._updateProductInCartUsecase,
+  }) : super(CartStates.initial());
 
   final GetCartDataUseCase _getCartDataUseCase;
   final AddProductToCartUseCase _addProductToCartUseCase;

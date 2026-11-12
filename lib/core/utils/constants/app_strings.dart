@@ -16,4 +16,5 @@ class AppStrings {
   static const String cititesJsonpath = 'assets/json/cities.json';
   static const String statesJsonPath = 'assets/json/states.json';
   static const String citiesKey = 'cities';
+  static const String mapStyle = "assets/json/map_style.json";
 }

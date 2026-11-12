@@ -19,6 +19,8 @@ class Routes {
   static const String userAddresses = "/user-addresses";
 
   static const String checkOut = "/check-out";
+  static const String trackOrder = "/trackOrderPage";
+  static const String trackMapOrder = "/trackMapOrder";
 
   static const String webPay = "/web-pay";
   static const String addressDetails = "/address-details";

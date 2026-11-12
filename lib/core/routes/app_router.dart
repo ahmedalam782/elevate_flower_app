@@ -11,12 +11,17 @@ import 'package:elevate_flower_app/features/edit_profile/presentation/view/pages
 import 'package:elevate_flower_app/features/occasions/presentation/view/pages/occasions_page.dart';
 import 'package:elevate_flower_app/features/orders_page/presentation/view/pages/orders_page.dart';
 import 'package:elevate_flower_app/features/product_details/presentation/view/pages/product_details_page.dart';
+import 'package:elevate_flower_app/features/product_details/presentation/view/product_details_args.dart';
 import 'package:elevate_flower_app/features/register/presentation/view/pages/register_page.dart';
 import 'package:elevate_flower_app/features/search/presentation/view/pages/search_screen.dart';
 import 'package:elevate_flower_app/features/terms_and_conditions/presentation/view/pages/terms_and_conditions_page.dart';
+import 'package:elevate_flower_app/features/track_order/domain/entities/track_order_entity.dart';
+import 'package:elevate_flower_app/features/track_order/presentation/view/pages/track_order_map.dart';
+import 'package:elevate_flower_app/features/track_order/presentation/view/pages/track_order_page.dart';
 import 'package:elevate_flower_app/features/user_addresses/presentation/view/pages/user_addresses_page.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
+
 import '../../features/forget_password/presentation/view/pages/forgetPassword_page.dart';
 import '../../features/login/presentation/view/pages/login_page.dart';
 import '../../features/main_layout/presentation/view/pages/main_layout_page.dart';
@@ -58,10 +63,17 @@ final GoRouter router = GoRouter(
     ),
     _customAnimatedGoRoute(
       route: Routes.productDetails,
-      page: (state, context) => ProductDetailsPage(
-        productId: (state.extra as String?) ?? "",
-        key: ValueKey(context.locale.languageCode.toString()),
-      ),
+      page: (state, context) {
+        final extra = state.extra;
+        final args = extra is ProductDetailsArgs
+            ? extra
+            : ProductDetailsArgs(id: extra is String ? extra : '');
+        return ProductDetailsPage(
+          productId: args.id,
+          previewImageUrl: args.imageUrl,
+          key: ValueKey(context.locale.languageCode.toString()),
+        );
+      },
     ),
     _customAnimatedGoRoute(
       route: Routes.bestSellers,
@@ -147,35 +159,34 @@ final GoRouter router = GoRouter(
       page: (state, context) =>
           OrdersPage(key: ValueKey(context.locale.languageCode.toString())),
     ),
+    _customAnimatedGoRoute(
+      route: Routes.trackOrder,
+      page: (state, context) => TrackOrderPage(
+        key: ValueKey(context.locale.languageCode.toString()),
+        orderId: state.extra as String,
+      ),
+    ),
+    _customAnimatedGoRoute(
+      route: Routes.trackMapOrder,
+      page: (state, context) => TrackOrderMap(
+        key: ValueKey(context.locale.languageCode.toString()),
+        driver: state.extra as DriverEntity,
+      ),
+    ),
   ],
 );
 
 GoRoute _customAnimatedGoRoute({
   required String route,
   required Widget Function(GoRouterState state, BuildContext context) page,
-  Duration duration = const Duration(milliseconds: 450),
-  Offset beginOffset = const Offset(1, 0),
-  Offset endOffset = Offset.zero,
-  Curve curve = Curves.easeInOut,
   List<GoRoute> routes = const [],
 }) => GoRoute(
   path: route,
   routes: routes,
-  pageBuilder: (context, state) => CustomTransitionPage(
-    key: state.pageKey,
-    child: page(state, context),
-    transitionDuration: duration,
-    reverseTransitionDuration: duration,
-    transitionsBuilder: (context, animation, secondaryAnimation, child) {
-      return SlideTransition(
-        position: Tween<Offset>(
-          begin: beginOffset,
-          end: endOffset,
-        ).animate(CurvedAnimation(parent: animation, curve: curve)),
-        child: child,
-      );
-    },
-  ),
+  // CupertinoPage gives the iOS slide transition and the swipe-back gesture
+  // on every route (and supports Hero animations).
+  pageBuilder: (context, state) =>
+      CupertinoPage(key: state.pageKey, child: page(state, context)),
 );
 
 String getCurrentRoute(BuildContext context) {

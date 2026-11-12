@@ -1,16 +1,15 @@
 import 'package:elevate_flower_app/features/orders_page/domain/entities/order_entity.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
+
+import '../../../../../core/routes/routes.dart';
 
 class OrderCard extends StatelessWidget {
   final OrderEntity order;
   final bool isActive;
 
-  const OrderCard({
-    super.key,
-    required this.order,
-    required this.isActive,
-  });
+  const OrderCard({super.key, required this.order, required this.isActive});
 
   @override
   Widget build(BuildContext context) {
@@ -18,12 +17,9 @@ class OrderCard extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 16),
       // ✅ FIX overflow: مفيش fixed height - الـ container بيكبر مع المحتوى
       decoration: BoxDecoration(
-        color:  Colors.white,
+        color: Colors.white,
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(
-          color: Colors.grey.shade300,
-          width: 1,
-        ),
+        border: Border.all(color: Colors.grey.shade300, width: 1),
       ),
       child: Padding(
         padding: const EdgeInsets.all(12),
@@ -59,11 +55,7 @@ class OrderCard extends StatelessWidget {
                         //   );
                         // },
                       )
-                    : const Icon(
-                        Icons.image,
-                        size: 40,
-                        color: Colors.grey,
-                      ),
+                    : const Icon(Icons.image, size: 40, color: Colors.grey),
               ),
             ),
             const SizedBox(width: 12),
@@ -97,10 +89,7 @@ class OrderCard extends StatelessWidget {
                     isActive
                         ? 'Order number# ${order.formattedOrderNumber}'
                         : 'Delivered on ${_formatDate(order.createdAt)}',
-                    style: const TextStyle(
-                      fontSize: 12,
-                      color: Colors.black54,
-                    ),
+                    style: const TextStyle(fontSize: 12, color: Colors.black54),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
@@ -112,7 +101,10 @@ class OrderCard extends StatelessWidget {
                     child: ElevatedButton(
                       onPressed: () {
                         if (isActive) {
-                          _trackOrder(context);
+                          context.push(
+                            Routes.trackOrder,
+                            extra: "6987f7c3e364ef6140518e56",
+                          );
                         } else {
                           _reorder(context);
                         }
@@ -149,14 +141,12 @@ class OrderCard extends StatelessWidget {
   }
 
   void _trackOrder(BuildContext context) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Track order clicked')),
-    );
+    ScaffoldMessenger.of(context)
+        .showSnackBar(const SnackBar(content: Text('Track order clicked')));
   }
 
   void _reorder(BuildContext context) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Reorder clicked')),
-    );
+    ScaffoldMessenger.of(context)
+        .showSnackBar(const SnackBar(content: Text('Reorder clicked')));
   }
 }

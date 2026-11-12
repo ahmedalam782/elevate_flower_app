@@ -1,4 +1,6 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
+import '../../../../../core/shared/widgets/product_hero.dart';
 import '../../../../../core/config/base_state/base_state.dart';
 import '../../../../../core/config/di/injectable_config.dart';
 import '../../../../../core/errors/failures.dart';
@@ -18,7 +20,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ProductDetailsPage extends StatefulWidget {
   final String productId;
-  const ProductDetailsPage({super.key, required this.productId});
+
+  /// Image already shown on the card the user tapped. Used as the Hero
+  /// destination while the product data is still loading.
+  final String? previewImageUrl;
+  const ProductDetailsPage({
+    super.key,
+    required this.productId,
+    this.previewImageUrl,
+  });
 
   static const double expandedHeight = 450;
 
@@ -35,6 +45,46 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
     super.initState();
   }
 
+  /// Shown before the data arrives. The Hero here exists on the very first
+  /// frame of the route transition, which is what lets the card image fly
+  /// into place instead of popping in after the loading finishes.
+  Widget _buildLoadingPreview(BuildContext context) {
+    final url = widget.previewImageUrl;
+    if (url == null || url.isEmpty) {
+      return const Center(child: CircularProgressIndicator());
+    }
+    return Stack(
+      children: [
+        Positioned(
+          top: 0,
+          left: 0,
+          right: 0,
+          child: Hero(
+            tag: productHeroTag(widget.productId),
+            child: CachedNetworkImage(
+              imageUrl: url,
+              width: 1.sw,
+              height: ProductDetailsPage.expandedHeight.h,
+              fit: BoxFit.cover,
+            ),
+          ),
+        ),
+        Positioned(
+          top: MediaQuery.of(context).padding.top,
+          left: 4,
+          child: IconButton(
+            icon: const Icon(Icons.chevron_left, color: Colors.black),
+            onPressed: () => Navigator.pop(context),
+          ),
+        ),
+        Padding(
+          padding: EdgeInsets.only(top: ProductDetailsPage.expandedHeight.h),
+          child: const Center(child: CircularProgressIndicator()),
+        ),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -46,8 +96,10 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
             final currentState = state.state.state;
             return Scaffold(
               appBar: currentState == StateType.error ? AppBar() : null,
-              body: currentState == StateType.loading
-                  ? const Center(child: CircularProgressIndicator())
+              body:
+                  (currentState == StateType.loading ||
+                      currentState == StateType.initial)
+                  ? _buildLoadingPreview(context)
                   : currentState == StateType.error
                   ? Padding(
                       padding: EdgeInsets.symmetric(horizontal: 16.w),
@@ -124,6 +176,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                                   flexibleSpace: FlexibleSpaceBar(
                                     collapseMode: CollapseMode.parallax,
                                     background: ProductImageSlider(
+                                      productId: widget.productId,
                                       images:
                                           state.state.data?.productImages ?? [],
                                     ),
